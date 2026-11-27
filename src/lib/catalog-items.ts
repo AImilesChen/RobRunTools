@@ -1,5 +1,5 @@
 import itemData from '../data/items.json';
-import { homeGameplayPreview } from './home-game-media.mjs';
+import { homeGameplayEnabled } from './home-game-media.mjs';
 import homeMedia from '../../assets/home-gameplay/sources.json';
 import catalogMedia from '../../assets/item-icons/sources.json';
 
@@ -34,12 +34,12 @@ for (const item of itemData) {
 export const catalogCategories = [...categoryIndex.values()].sort((a, b) => a.label.localeCompare(b.label));
 
 export function catalogItemArt(item: CatalogItem) {
-  if (!homeGameplayPreview) return null;
-
   const icon = catalogMedia[item.id as keyof typeof catalogMedia];
-  if (icon) return { src: '/catalog-art/' + icon.file, width: icon.width, height: icon.height };
+  if (icon) return { src: homeGameplayEnabled ? '/catalog-art/' + icon.file : icon.source, width: icon.width, height: icon.height };
   const home = homeMedia[item.id as keyof typeof homeMedia];
-  if (home?.source.startsWith('https://robrunwiki.net/assets/items/')) return { src: '/gameplay-home/' + home.file, width: home.width, height: home.height };
+  if (home?.source.startsWith('https://robrunwiki.net/assets/items/')) {
+    return { src: homeGameplayEnabled ? '/gameplay-home/' + home.file : home.source, width: home.width, height: home.height };
+  }
 
   return null;
 }

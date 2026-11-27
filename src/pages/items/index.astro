@@ -3,7 +3,6 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import CatalogItemCard from '../../components/CatalogItemCard.astro';
 import HomeIcon from '../../components/HomeIcon.astro';
 import { catalogCategories, catalogItems, itemRarities, referencePrice } from '../../lib/catalog-items';
-import { homeGameplayPreview } from '../../lib/home-game-media.mjs';
 import { priceRange } from '../../lib/item-value';
 import '../../styles/catalog-items.css';
 
@@ -141,7 +140,7 @@ const lookupExamples = ['action_camera_1_cumulative', 'gold_bar_1'].flatMap(id =
           ))}
         </nav>
       </div>
-      {homeGameplayPreview && <p class="catalog-credit">Game item icons © Kefir. See <a href="/sources/#item-art">catalog image sources</a>.</p>}
+      <p class="catalog-credit">Game item icons © Kefir. See <a href="/sources/#item-art">catalog image sources</a>.</p>
     </section>
 
     <section class="catalog-guide-faq" aria-labelledby="catalog-faq-title">

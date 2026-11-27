@@ -1,5 +1,6 @@
 ---
 import sources from '../../assets/home-gameplay/sources.json';
+import { homeGameplayEnabled, homeMediaUrl } from '../lib/home-game-media.mjs';
 
 interface Props {
   name: keyof typeof sources;
@@ -10,14 +11,23 @@ interface Props {
   class?: string;
 }
 const { name, small, sizes, alt, priority = false, class: className } = Astro.props;
-const full = sources[name];
-const compact = small ? sources[small] : null;
-const path = (file: string) => '/gameplay-home/' + file;
+// The local poster for these clips is a video frame. Use a published still for the remote version.
+const alternateStills: Partial<Record<keyof typeof sources, keyof typeof sources>> = {
+  locations: 'hero',
+  'mission-start': 'beginner',
+  'mission-sale': 'mission-items',
+  'mission-timer': 'crew',
+  'role-police': 'role-crews',
+  'video-cover': 'crew',
+};
+const alternate = alternateStills[name];
+const full = sources[!homeGameplayEnabled && alternate ? alternate : name];
+const compact = homeGameplayEnabled && small ? sources[small] : null;
 const srcset = compact
-  ? path(compact.file) + ' ' + compact.width + 'w, ' + path(full.file) + ' ' + full.width + 'w'
+  ? homeMediaUrl(compact) + ' ' + compact.width + 'w, ' + homeMediaUrl(full) + ' ' + full.width + 'w'
   : undefined;
 ---
 
-<img class={className} src={path(full.file)} srcset={srcset} sizes={sizes} width={full.width} height={full.height} alt={alt}
-  loading={priority ? 'eager' : 'lazy'} fetchpriority={priority ? 'high' : undefined} decoding="async" />
+<img class={className} src={homeMediaUrl(full)} srcset={srcset} sizes={srcset ? sizes : undefined} width={full.width} height={full.height} alt={alt}
+  loading={priority ? 'eager' : 'lazy'} fetchpriority={priority ? 'high' : undefined} decoding="async" referrerpolicy="no-referrer" />
 

@@ -1,7 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { officialGamePage, officialSteamPage } from '../lib/game-media.mjs';
-import { homeGameplayPreview } from '../lib/home-game-media.mjs';
 import itemArt from '../../assets/item-icons/sources.json';
 
 const sources = [
@@ -40,13 +39,13 @@ const artSources = [
             </div>
           ))}
         </div>
-        {homeGameplayPreview && <section class="src-item" id="item-art">
+        <section class="src-item" id="item-art">
           <h2 class="src-name">Catalog Image Sources</h2>
           <p class="src-note">Game item icons © Kefir. Images were matched to game item IDs using these community archives.</p>
           <ul class="src-note">
             {artSources.map(source => <li><a href={source.url}>{source.name}</a></li>)}
           </ul>
-        </section>}
+        </section>
         <p class="src-foot">
           Item data is from game version 0.7.0. ROB RUN is in Early Access and numbers change with every patch. We do
           not publish guessed values — missing data is marked Unknown or Unverified.

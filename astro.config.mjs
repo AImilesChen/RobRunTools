@@ -5,7 +5,7 @@ import react from '@astrojs/react';
 import searchFiles from './scripts/astro-search-files.mjs';
 import { siteUrl } from './src/lib/site-release.mjs';
 import { officialArtPreview } from './src/lib/game-media.mjs';
-import { homeGameplayPreview } from './src/lib/home-game-media.mjs';
+import { homeGameplayEnabled } from './src/lib/home-game-media.mjs';
 
 const mapPreview = {
   name: 'robrun-map-preview',
@@ -17,7 +17,7 @@ const mapPreview = {
 };
 
 const gameplayAssets = {
-  name: 'robrun-gameplay-preview-assets',
+  name: 'robrun-gameplay-assets',
   hooks: {
     'astro:build:done': async ({ dir }) => {
       const assetSets = [
@@ -37,6 +37,6 @@ const gameplayAssets = {
 };
 
 export default defineConfig({
-  integrations: [react(), searchFiles(), ...(officialArtPreview ? [mapPreview] : []), ...(homeGameplayPreview ? [gameplayAssets] : [])],
+  integrations: [react(), searchFiles(), ...(officialArtPreview ? [mapPreview] : []), ...(homeGameplayEnabled ? [gameplayAssets] : [])],
   site: siteUrl,
 });

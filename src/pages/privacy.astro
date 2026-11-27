@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { publicContact } from '../lib/site-release.mjs';
 import { communityItemImageBase, officialArtPreview } from '../lib/game-media.mjs';
+import { homeGameplayEnabled } from '../lib/home-game-media.mjs';
 ---
 
 <BaseLayout title="Privacy Policy — ROB RUN Companion" description="The privacy policy for ROB RUN Companion.">
@@ -30,7 +31,7 @@ import { communityItemImageBase, officialArtPreview } from '../lib/game-media.mj
         <h2>External resources and links</h2>
         <p>Pages request fonts from Google Fonts. Those requests expose connection details, such as your IP address, to the provider. See <a href="https://policies.google.com/privacy">Google’s privacy policy</a>. Following a link to Steam or a wiki takes you to that service.</p>
         {(officialArtPreview || communityItemImageBase) && <p>This design preview also loads game screenshots from Steam’s image servers and item thumbnails from the community image host. Those hosts receive requests from your browser.</p>}
-        <p>When you select Play on the launch trailer, the page loads YouTube’s embedded player. YouTube receives connection information needed to play the video. The Home page also provides a link to watch it directly.</p>
+        {!homeGameplayEnabled && <p>Gameplay images and video on the homepage load from Steam and the official ROB RUN site. Item images load from the <a href="/sources/#item-art">listed community archives</a>. Your browser sends connection details, such as your IP address, to these services when it loads the media.</p>}
         <p>This version of the site does not include application integrations for advertising or audience analytics.</p>
 
         <h2>Contact and privacy requests</h2>
