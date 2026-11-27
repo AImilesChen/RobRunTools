@@ -17,6 +17,8 @@ import '../styles/home.css';
 const formatCount = new Intl.NumberFormat('en-US');
 const itemUrl = (slug: string) => '/items/' + slug + '/';
 const searchExample = '/search/?q=Action+Camera';
+const trailerId = 'M1pK-GEB34I';
+const trailerWatch = 'https://www.youtube.com/watch?v=' + trailerId;
 const itemMedia = (id: string) => Object.hasOwn(media, id) ? id as keyof typeof media : null;
 const actions = [
   { href: '/items/', label: 'Check a Price', tone: 'value', detail: 'Look up an in-game item', icon: 'box' },
@@ -60,7 +62,7 @@ for (const { district } of locationRecords) {
 const districts = [...districtCount].sort((a, b) => b[1] - a[1]);
 const districtMax = districts[0]?.[1] ?? 1;
 const featuredCategories = [
-  { slug: 'valuables', tone: 'value', icon: 'diamond' }, { slug: 'weapons', tone: 'equipment', icon: 'compare', tone: 'equipment' },
+  { slug: 'valuables', tone: 'value', icon: 'diamond' }, { slug: 'weapons', tone: 'equipment', icon: 'compare' },
   { slug: 'vehicles', tone: 'locations', icon: 'vehicle' }, { slug: 'keys', tone: 'guides', icon: 'key' },
   { slug: 'cargo', tone: 'value', icon: 'box' }, { slug: 'armor', tone: 'equipment', icon: 'shield' },
   { slug: 'medical', tone: 'timers', icon: 'medical' }, { slug: 'documents', tone: 'guides', icon: 'document' },
@@ -88,9 +90,9 @@ const missions = [
   { id: 'M-09', name: 'Set a Reset Reminder', tone: 'timers', detail: 'Build a countdown from the opening time and interval you enter.', href: '/servers/', icon: 'timer', scene: 'mission-timer' },
 ] as const;
 const gameRoles = [
-  { name: 'Criminals', tone: 'timers', scene: 'role-robbers', alt: 'Masked players inside a Looty Bay jewelry store', detail: 'Look for valuables, plan what to carry and check the value of your haul.', href: '/tools/loot-calculator/', label: 'Estimate loot' },
-  { name: 'Police', tone: 'equipment', scene: 'role-police', alt: 'A police player confronting another player indoors in ROB RUN', detail: 'Policing is a playable role in Looty Bay. Get familiar with the districts and their recorded locations.', href: '/locations/', label: 'Browse locations' },
-  { name: 'Crews', tone: 'guides', scene: 'role-crews', alt: 'A group of players gathered around cars in Looty Bay', detail: 'Team up with other players, organize raids and build a hideout.', href: '/guides/beginner-guide/', label: 'Read the beginner guide' },
+  { name: 'Criminals', tone: 'timers', icon: 'box', scene: 'role-robbers', alt: 'Masked players inside a Looty Bay jewelry store', detail: 'Look for valuables, plan what to carry and check the value of your haul.', href: '/tools/loot-calculator/', label: 'Estimate loot' },
+  { name: 'Police', tone: 'equipment', icon: 'shield', scene: 'role-police', alt: 'A police player confronting another player indoors in ROB RUN', detail: 'Policing is a playable role in Looty Bay. Get familiar with the districts and their recorded locations.', href: '/locations/', label: 'Browse locations' },
+  { name: 'Crews', tone: 'guides', icon: 'book', scene: 'role-crews', alt: 'A group of players gathered around cars in Looty Bay', detail: 'Team up with other players, organize raids and build a hideout.', href: '/guides/beginner-guide/', label: 'Read the beginner guide' },
 ] as const;
 const announcements = [
   { date: '2026-11-23', displayDate: 'Nov 23, 2026', title: 'Anti-Cheat Measures and Servers', summary: 'Kefir discusses anti-cheat work and plans for servers.', href: 'https://store.steampowered.com/news/app/4262460/view/712292668328117294' },
@@ -117,7 +119,7 @@ const faqs = [
           <HomeGameImage name="hero" small="hero-small" alt="" sizes="100vw" priority />
           <span>LOOTY BAY</span>
         </div>
-      ) : <HeroBackdrop image="terrain" watermark="LOOTY BAY" grid />}
+      ) : <><HeroBackdrop image="terrain" watermark="LOOTY BAY" grid /><img class="home-brand-backdrop" src="/brand/rr-emblem.webp" alt="" width="460" height="460" decoding="async" /></>}
       <div class="container home-hero-grid">
         <div class="home-hero-copy">
           <p class="home-eyebrow">Independent loot and location reference</p>
@@ -136,7 +138,7 @@ const faqs = [
           </div>
           <div class="home-hero-links">
             <p class="home-hero-note">Free tools. No account required.</p>
-            {homeGameplayPreview && <a class="home-text-link" href="#gameplay">Watch gameplay <HomeIcon name="arrow" size={17} /></a>}
+            <a class="home-text-link" href="#gameplay">{homeGameplayPreview ? 'Watch gameplay' : 'Watch the launch trailer'} <HomeIcon name="arrow" size={17} /></a>
           </div>
         </div>
 
@@ -333,9 +335,9 @@ const faqs = [
       </div>
     </section>
 
-    {homeGameplayPreview && (
-      <section id="gameplay" class="home-section home-video" data-tone="tools" aria-labelledby="gameplay-title">
-        <div class="container">
+    <section id="gameplay" class="home-section home-video" data-tone="tools" aria-labelledby="gameplay-title">
+      <div class="container">
+        {homeGameplayPreview ? (
           <div class="home-video-banner" data-home-preview="feature">
             <HomeGameImage class="home-video-backdrop" name="video-cover" small="video-cover-small" sizes="(max-width: 820px) 100vw, 94vw" alt="" />
             <video class="home-video-backdrop home-video-loop" data-clip={officialGameplayVideo} muted loop playsinline preload="none" aria-hidden="true"></video>
@@ -351,12 +353,24 @@ const faqs = [
               <span class="home-preview-pause"><HomeIcon name="pause" size={19} /></span>
             </button>
           </div>
-        </div>
-      </section>
-    )}
+        ) : (
+          <div class="home-trailer">
+            <div class="home-trailer-media" data-trailer={trailerId}>
+              <img src="/brand/rob-run-companion.webp" alt="" loading="lazy" decoding="async" />
+              <button type="button" class="btn home-trailer-play" hidden><HomeIcon name="play" size={19} /> Play launch trailer</button>
+            </div>
+            <div class="home-trailer-copy">
+              <h2 id="gameplay-title">ROB RUN in Motion</h2>
+              <p class="home-section-copy">See Looty Bay in the Early Access launch trailer from Kefir, published by IGN. The player loads from YouTube when you select Play.</p>
+              <a class="home-text-link" href={trailerWatch}>Watch on YouTube <HomeIcon name="external" size={17} /></a>
+              <a class="home-text-link" href={officialSteamPage}>More trailers on Steam <HomeIcon name="external" size={17} /></a>
+            </div>
+          </div>
+        )}
+      </div>
+    </section>
 
-    {homeGameplayPreview && (
-      <section class="home-section home-roles" data-tone="equipment" aria-labelledby="roles-title">
+    <section class="home-section home-roles" data-tone="equipment" aria-labelledby="roles-title">
         <div class="container">
           <div class="home-section-head">
             <div><h2 id="roles-title">Looty Bay in Practice</h2><p>Explore the roles and activities shown by Kefir, with links to relevant companion tools.</p></div>
@@ -366,8 +380,8 @@ const faqs = [
             {gameRoles.map(role => (
               <li data-tone={role.tone}>
                 <a class="home-role-card" href={role.href}>
-                  <div class="home-role-visual">
-                    <HomeGameImage name={role.scene} alt={role.alt} />
+                  <div class:list={['home-role-visual', { 'home-role-visual--icon': !homeGameplayPreview }]}>
+                    {homeGameplayPreview ? <HomeGameImage name={role.scene} alt={role.alt} /> : <HomeIcon name={role.icon} size={27} />}
                     <h3>{role.name}</h3>
                   </div>
                   <div class="home-role-copy"><p>{role.detail}</p><span class="home-text-link">{role.label} <HomeIcon name="arrow" size={17} /></span></div>
@@ -376,7 +390,7 @@ const faqs = [
             ))}
           </ul>
           <div class="home-crew">
-            <HomeGameImage name="crew" small="crew-small" alt="" sizes="(max-width: 820px) 100vw, 70vw" />
+            {homeGameplayPreview && <HomeGameImage name="crew" small="crew-small" alt="" sizes="(max-width: 820px) 100vw, 70vw" />}
             <div>
               <h3>Running With a Crew</h3>
               <p>In ROB RUN you can join or build a clan, organize raids together and fight for territory.</p>
@@ -384,8 +398,7 @@ const faqs = [
             </div>
           </div>
         </div>
-      </section>
-    )}
+    </section>
 
     <section class="home-section home-news" data-tone="equipment" aria-labelledby="news-title">
       <div class="container">
@@ -488,4 +501,18 @@ const faqs = [
 
 <script>
   import '../lib/home-video-previews';
+  const trailer = document.querySelector<HTMLElement>('[data-trailer]');
+  const play = trailer?.querySelector<HTMLButtonElement>('button');
+  if (trailer && play) {
+    play.hidden = false;
+    play.addEventListener('click', () => {
+      const player = document.createElement('iframe');
+      player.src = `https://www.youtube-nocookie.com/embed/${trailer.dataset.trailer}?autoplay=1`;
+      player.title = 'ROB RUN Early Access launch trailer';
+      player.allow = 'autoplay; encrypted-media; picture-in-picture';
+      player.allowFullscreen = true;
+      trailer.replaceChildren(player);
+      player.focus();
+    }, { once: true });
+  }
 </script>

@@ -47,6 +47,9 @@ const lookupExamples = ['action_camera_1_cumulative', 'gold_bar_1'].flatMap(id =
           </div>
         )}
         <div class="catalog-lookup-estimate">
+          <dl class="catalog-lookup-prices" aria-label="Sample listed prices">
+            {lookupExamples.map(item => <div><dt><a href={'/items/' + item.slug + '/'}>{item.name}</a></dt><dd>{priceRange(item.priceMin, item.priceMax)}</dd></div>)}
+          </dl>
           <a class="btn" href="/tools/loot-calculator/">Estimate your loot <HomeIcon name="arrow" size={16} /></a>
         </div>
       </section>

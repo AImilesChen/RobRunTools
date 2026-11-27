@@ -1,10 +1,13 @@
 ---
 import HeroBackdrop from './HeroBackdrop.astro';
 import { officialArtPreview, officialSteamPage } from '../lib/game-media.mjs';
+import items from '../data/items.json';
+import { priceRange } from '../lib/item-value';
 
 interface Props { mode: 'loot' | 'sale'; }
 const { mode } = Astro.props;
 const sale = mode === 'sale';
+const example = items.find(item => item.id === 'action_camera_1_cumulative');
 ---
 <main class="value-tool" data-value-tool data-mode={mode}>
   <section class="calculator-hero">
@@ -38,10 +41,40 @@ const sale = mode === 'sale';
       <button type="button" class="btn btn-dark" data-clear hidden>Clear List</button>
     </aside>
   </div>
+  {!sale && (
+    <section class="container calculator-guide" aria-labelledby="calculator-guide-title">
+      <h2 id="calculator-guide-title">How to estimate your ROB RUN loot</h2>
+      <div class="calculator-guide-grid">
+        <div>
+          <h3>Build your list</h3>
+          <p>Choose an item, enter its quantity and select <strong>Add Item</strong>. You can also select several items in the <a href="/items/">item database</a> and bring them here together.</p>
+        </div>
+        <div>
+          <h3>Read the estimate</h3>
+          <p>The calculator adds the lower and upper listed values separately. Items with an unknown price appear in a separate count so you can see what the total covers.</p>
+        </div>
+        {example && example.priceMin !== null && example.priceMax !== null && (
+          <div>
+            <h3>Try two Action Cameras</h3>
+            <p>Two units have a combined reference value of <strong>{priceRange(example.priceMin * 2, example.priceMax * 2)}</strong>.</p>
+            <a href="/tools/loot-calculator/?add=action_camera_1_cumulative&amp;qty=2">Load this example →</a>
+          </div>
+        )}
+      </div>
+    </section>
+  )}
 </main>
 
 <style>
   .value-tool { padding-bottom: var(--section-space); min-height: 65vh; }
+  .calculator-guide { margin-top: var(--section-space); }
+  .calculator-guide h2 { padding: 16px; border-inline-start: 3px solid var(--accent); background: var(--surface); font-size: clamp(28px, 4vw, 43px); }
+  .calculator-guide-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 20px; }
+  .calculator-guide-grid > div { padding: 16px; border: 1px solid var(--border); background: var(--surface); }
+  .calculator-guide-grid h3 { font-size: 24px; }
+  .calculator-guide-grid p { margin: 10px 0 4px; color: #c8d1d9; }
+  .calculator-guide-grid a { color: var(--accent); text-decoration: underline; }
+  @media (max-width: 700px) { .calculator-guide-grid { grid-template-columns: minmax(0, 1fr); } }
   .calculator-hero { position: relative; isolation: isolate; padding-block: 18px 20px; border-bottom: 1px solid var(--border); }
   .back-link { color: var(--muted); font-size: 14px; display: inline-block; margin-bottom: 12px; }
   .back-link:hover { color: var(--accent); }

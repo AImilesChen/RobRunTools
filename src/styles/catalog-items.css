@@ -48,6 +48,10 @@
 }
 .catalog-lookup-examples button:hover { border-color: var(--accent); color: var(--accent); }
 .catalog-lookup-estimate { grid-column: 2; grid-row: 1 / span 3; display: grid; place-items: center; padding-inline-start: 18px; border-inline-start: 1px solid #3b4c54; }
+.catalog-lookup-prices { width: 100%; margin: 0 0 8px; font-size: 13px; }
+.catalog-lookup-prices > div { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2px 8px; padding-block: 4px; border-bottom: 1px solid #3b4c54; }
+.catalog-lookup-prices a:hover { color: var(--accent); text-decoration: underline; }
+.catalog-lookup-prices dd { margin: 0; color: #ffd38a; font-weight: 700; font-variant-numeric: tabular-nums; }
 .catalog-lookup-estimate .btn { display: inline-flex; align-items: center; gap: 9px; color: var(--text); background: #1b2329; border: 1px solid #647684; clip-path: none; }
 .catalog-lookup-estimate .btn:hover { border-color: var(--accent); color: var(--accent); }
 .catalog-results { padding-top: 16px; }
@@ -228,6 +232,7 @@
   .catalog-lookup-submit svg { display: none; }
   .catalog-lookup-examples button { min-height: 36px; }
   .catalog-lookup-estimate { grid-column: 1; grid-row: auto; place-items: start; padding: 0; border: 0; }
+  .catalog-lookup-prices { display: none; }
   .catalog-lookup-estimate .btn { min-height: 34px; padding: 3px 0; border: 0; background: transparent; color: var(--accent); font: 700 14px/1.2 var(--font-body); text-transform: none; letter-spacing: 0; }
   #item-results, .catalog-price-guide { scroll-margin-top: 72px; }
   .catalog-select { padding-inline: 5px; }
