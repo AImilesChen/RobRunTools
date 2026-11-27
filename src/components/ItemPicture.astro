@@ -1,0 +1,28 @@
+---
+import HomeIcon from './HomeIcon.astro';
+import { catalogItemArt, type CatalogItem } from '../lib/catalog-items';
+import { homeGameplayPreview } from '../lib/home-game-media.mjs';
+
+interface Props {
+  item: CatalogItem;
+  large?: boolean;
+  priority?: boolean;
+}
+
+const { item, large = false, priority = false } = Astro.props;
+const art = catalogItemArt(item);
+const icons = {
+  valuables: 'diamond', weapons: 'compare', vehicles: 'vehicle', keys: 'key',
+  armor: 'shield', protection: 'shield', medical: 'medical', documents: 'document',
+  laboratory: 'medical', 'car-upgrades': 'vehicle', cargo: 'box', 'cumulative-items': 'timer',
+} as const;
+const icon = icons[item.category as keyof typeof icons] ?? 'box';
+---
+<div class:list={['catalog-picture', { 'catalog-picture--large': large }]} data-rarity={item.rarity ?? 'none'} aria-hidden="true">
+  <span class="catalog-picture-fallback">
+    <HomeIcon name={icon} size={large ? 55 : 32} />
+    {homeGameplayPreview && <span>Image unavailable</span>}
+  </span>
+  {art && <img src={art.src} width={art.width} height={art.height} loading={priority ? 'eager' : 'lazy'} decoding="async" alt="" onerror="this.hidden = true" />}
+</div>
+

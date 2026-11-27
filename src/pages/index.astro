@@ -1,0 +1,491 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroBackdrop from '../components/HeroBackdrop.astro';
+import HomeIcon from '../components/HomeIcon.astro';
+import HomeGameImage from '../components/HomeGameImage.astro';
+import { homeGameplayPreview, officialGameplayVideo, officialRobRunSite } from '../lib/home-game-media.mjs';
+import media from '../../assets/home-gameplay/sources.json';
+import items from '../data/items.json';
+import weapons from '../data/weapons.json';
+import { locationRecords } from '../lib/location-records';
+import { priceRange } from '../lib/item-value';
+import { officialGamePage, officialSteamPage } from '../lib/game-media.mjs';
+import { tools } from '../lib/site-catalog';
+import { siteUrl } from '../lib/site-release.mjs';
+import '../styles/home.css';
+
+const formatCount = new Intl.NumberFormat('en-US');
+const itemUrl = (slug: string) => '/items/' + slug + '/';
+const searchExample = '/search/?q=Action+Camera';
+const itemMedia = (id: string) => Object.hasOwn(media, id) ? id as keyof typeof media : null;
+const actions = [
+  { href: '/items/', label: 'Check a Price', tone: 'value', detail: 'Look up an in-game item', icon: 'box' },
+  { href: '/locations/', label: 'Browse Districts', tone: 'locations', detail: 'Find records in Looty Bay', icon: 'pin' },
+  { href: '/tools/loot-calculator/', label: 'Total Your Loot', tone: 'tools', detail: 'Estimate a haul by quantity', icon: 'calculator' },
+  { href: '/guides/beginner-guide/', label: 'Read the Starter Guide', tone: 'guides', detail: 'Get ready for your first run', icon: 'book' },
+] as const;
+const previewIds = ['action_camera_1_cumulative', 'gold_bar_1', 'vinyl_2', 'plot_sale_3'];
+const previewItems = previewIds.flatMap(id => items.filter(item => item.id === id));
+const exampleItem = previewItems.find(item => item.id === previewIds[0]);
+const exampleQuantity = 2;
+const exampleMin = exampleItem?.priceMin ?? exampleItem?.priceMax ?? null;
+const exampleMax = exampleItem?.priceMax ?? exampleItem?.priceMin ?? null;
+const example = exampleItem && exampleMin !== null && exampleMax !== null ? {
+  range: priceRange(exampleQuantity * exampleMin, exampleQuantity * exampleMax),
+  unit: priceRange(exampleItem.priceMin, exampleItem.priceMax),
+  href: '/tools/loot-calculator/?' + new URLSearchParams({
+    add: exampleItem.id,
+    qty: String(exampleQuantity),
+  }),
+  name: exampleItem.name,
+} : null;
+
+const categoryIndex = new Map<string, { name: string; count: number }>();
+for (const item of items) {
+  const category = categoryIndex.get(item.category);
+  if (category) category.count += 1;
+  else categoryIndex.set(item.category, { name: item.categoryName, count: 1 });
+}
+const pricedCount = items.filter(item => item.priceMin !== null || item.priceMax !== null).length;
+const stats = [
+  { label: 'Items', tone: 'value', count: items.length, href: '/items/' },
+  { label: 'Weapon profiles', tone: 'equipment', count: weapons.length, href: '/weapons/' },
+  { label: 'Location records', tone: 'locations', count: locationRecords.length, href: '/locations/' },
+  { label: 'Item categories', tone: 'guides', count: categoryIndex.size, href: '#database-categories' },
+];
+const districtCount = new Map<string, number>();
+for (const { district } of locationRecords) {
+  districtCount.set(district, (districtCount.get(district) ?? 0) + 1);
+}
+const districts = [...districtCount].sort((a, b) => b[1] - a[1]);
+const districtMax = districts[0]?.[1] ?? 1;
+const featuredCategories = [
+  { slug: 'valuables', tone: 'value', icon: 'diamond' }, { slug: 'weapons', tone: 'equipment', icon: 'compare', tone: 'equipment' },
+  { slug: 'vehicles', tone: 'locations', icon: 'vehicle' }, { slug: 'keys', tone: 'guides', icon: 'key' },
+  { slug: 'cargo', tone: 'value', icon: 'box' }, { slug: 'armor', tone: 'equipment', icon: 'shield' },
+  { slug: 'medical', tone: 'timers', icon: 'medical' }, { slug: 'documents', tone: 'guides', icon: 'document' },
+] as const;
+const categories = featuredCategories.flatMap(entry => {
+  const category = categoryIndex.get(entry.slug);
+  return category ? [{ ...entry, ...category }] : [];
+});
+const categoryIcons = new Map<string, typeof featuredCategories[number]['icon']>(
+  featuredCategories.map(({ slug, icon }) => [slug, icon]),
+);
+const showcaseIds = ['plot_sale_3', 'egg_faberge_1', 'vest5_m1', 'car_cargo_2', 'srreaper_m1', 'vial_5'];
+const showcase = showcaseIds.flatMap(id => items.filter(item => item.id === id && item.priceMax !== null));
+const secondaryTools = [
+  { ...tools[1], icon: 'sale', tone: 'value' },
+  { ...tools[2], icon: 'compare' },
+  { ...tools[3], icon: 'timer', tone: 'timers' },
+] as const;
+const missions = [
+  { id: 'M-01', name: 'Get Ready for a Run', tone: 'guides', detail: 'Start with the beginner reference and the terms it uses.', href: '/guides/beginner-guide/', icon: 'book', scene: 'mission-start' },
+  { id: 'M-02', name: 'Find District Records', tone: 'locations', detail: 'Narrow the directory to a district or a location type.', href: '/locations/', icon: 'pin', scene: 'mission-explore' },
+  { id: 'M-03', name: 'Look Up Your Loot', tone: 'value', detail: 'Open an item entry for its listed value and rarity.', href: '/items/', icon: 'box', scene: 'mission-items' },
+  { id: 'M-04', name: 'Compare Your Loadout', tone: 'equipment', detail: 'See listed range and damage side by side.', href: '/tools/weapon-compare/', icon: 'compare', scene: 'mission-equipment' },
+  { id: 'M-05', name: 'Work Out a Sale', tone: 'tools', detail: 'Add your haul and apply an optional manual adjustment.', href: '/tools/sale-calculator/', icon: 'sale', scene: 'mission-sale' },
+  { id: 'M-09', name: 'Set a Reset Reminder', tone: 'timers', detail: 'Build a countdown from the opening time and interval you enter.', href: '/servers/', icon: 'timer', scene: 'mission-timer' },
+] as const;
+const gameRoles = [
+  { name: 'Criminals', tone: 'timers', scene: 'role-robbers', alt: 'Masked players inside a Looty Bay jewelry store', detail: 'Look for valuables, plan what to carry and check the value of your haul.', href: '/tools/loot-calculator/', label: 'Estimate loot' },
+  { name: 'Police', tone: 'equipment', scene: 'role-police', alt: 'A police player confronting another player indoors in ROB RUN', detail: 'Policing is a playable role in Looty Bay. Get familiar with the districts and their recorded locations.', href: '/locations/', label: 'Browse locations' },
+  { name: 'Crews', tone: 'guides', scene: 'role-crews', alt: 'A group of players gathered around cars in Looty Bay', detail: 'Team up with other players, organize raids and build a hideout.', href: '/guides/beginner-guide/', label: 'Read the beginner guide' },
+] as const;
+const announcements = [
+  { date: '2026-11-23', displayDate: 'Nov 23, 2026', title: 'Anti-Cheat Measures and Servers', summary: 'Kefir discusses anti-cheat work and plans for servers.', href: 'https://store.steampowered.com/news/app/4262460/view/712292668328117294' },
+  { date: '2026-11-20', displayDate: 'Nov 20, 2026', title: 'Patch Notes', summary: 'Read Kefir’s notes on the changes in this update.', href: 'https://store.steampowered.com/news/app/4262460/view/712292668328116976' },
+];
+const faqs = [
+  { question: 'Is this an official ROB RUN website?', answer: 'ROB RUN Companion is an independent fan project for adult players. Kefir does not operate or endorse the site.' },
+  { question: 'Are the tools free? Do I need an account?', answer: 'The tools are free to use. You can search, estimate loot and set a timer without an account or a game login.' },
+  { question: 'Where does the reference data come from?', answer: 'The Sources page lists the official game references and the community data used for the item and location directories.', link: '/sources/', linkText: 'View data sources' },
+  { question: 'What do the listed prices mean?', answer: 'Prices are in-game reference values from the dataset. Sale values can differ in play. An Unknown price means the source provides no usable value.' },
+  { question: 'Can I compare ROB RUN weapons here?', answer: 'Yes. Compare two to four listed weapon profiles by damage, fire rate, range and other recorded stats.', link: '/tools/weapon-compare/', linkText: 'Compare weapons' },
+  { question: 'Where does the wipe countdown come from?', answer: 'The manual timer uses the opening time and interval you enter. Confirm the schedule with your server before setting a countdown.' },
+];
+---
+
+<BaseLayout title="ROB RUN Item Prices, Looty Bay Locations & Tools | ROB RUN Companion" description="Check ROB RUN item prices, find Looty Bay locations, compare weapon stats and calculate loot or sale values with free tools. Read the beginner guide or set a wipe timer.">
+  {!homeGameplayPreview && <script type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org', '@type': 'WebSite', name: 'ROB RUN Companion', url: siteUrl,
+  })} />}
+  <main class="home-page">
+    <section class:list={['home-hero', { 'home-hero--game': homeGameplayPreview }]} aria-labelledby="home-title">
+      {homeGameplayPreview ? (
+        <div class="home-game-layer" aria-hidden="true">
+          <HomeGameImage name="hero" small="hero-small" alt="" sizes="100vw" priority />
+          <span>LOOTY BAY</span>
+        </div>
+      ) : <HeroBackdrop image="terrain" watermark="LOOTY BAY" grid />}
+      <div class="container home-hero-grid">
+        <div class="home-hero-copy">
+          <p class="home-eyebrow">Independent loot and location reference</p>
+          <h1 id="home-title">ROB RUN <span>COMPANION</span></h1>
+          <p class="home-lead">Check what your loot is worth, look up a location or compare weapons before your next run.</p>
+          <form class="home-search" action="/search/" method="get" role="search" aria-label="Site search">
+            <label class="sr-only" for="home-search">Search items, locations, tools or guides</label>
+            <span class="home-search-input"><HomeIcon name="search" size={20} /><input type="search" id="home-search" name="q" placeholder="Search items and more…" required data-primary-search /></span>
+            <button type="submit" class="btn">Search</button>
+          </form>
+          <div class="home-search-examples">
+            <span>Try</span>
+            <a href={searchExample}>Action Camera</a>
+            <a href="/search/?q=Gold+Bar">Gold Bar</a>
+            <a href="/search/?q=Loot+Calculator">Loot Calculator</a>
+          </div>
+          <div class="home-hero-links">
+            <p class="home-hero-note">Free tools. No account required.</p>
+            {homeGameplayPreview && <a class="home-text-link" href="#gameplay">Watch gameplay <HomeIcon name="arrow" size={17} /></a>}
+          </div>
+        </div>
+
+        <nav class="home-quick" aria-label="Quick actions">
+          {actions.map(action => (
+            <a href={action.href} class="home-quick-card" data-tone={action.tone}>
+              <span class="home-icon-wrap"><HomeIcon name={action.icon} /></span>
+              <span><strong>{action.label}</strong><small>{action.detail}</small></span>
+              <span class="home-quick-arrow"><HomeIcon name="arrow" size={17} /></span>
+            </a>
+          ))}
+        </nav>
+
+        <section class="home-stats" aria-labelledby="home-stats-title">
+          <h2 id="home-stats-title" class="sr-only">Inside the Database</h2>
+          <ul>
+            {stats.map(stat => <li><a href={stat.href} data-tone={stat.tone}><strong>{formatCount.format(stat.count)}</strong><span>{stat.label}</span></a></li>)}
+          </ul>
+        </section>
+
+        <div class="home-hero-feature">
+          <a class="home-hero-db" data-tone="value" href="/items/">
+            <span class="home-hero-db-label"><HomeIcon name="box" size={17} /> Priced Items</span>
+            <strong>{formatCount.format(pricedCount)}</strong>
+            <span>Entries with a reference price <HomeIcon name="arrow" size={16} /></span>
+          </a>
+          <aside class="home-price-panel" data-tone="value" aria-labelledby="price-preview-title">
+            <div class="home-price-head"><span class="home-icon-wrap"><HomeIcon name="box" size={18} /></span><h2 id="price-preview-title">Sample Item Values</h2></div>
+            <ul>
+              {previewItems.map(item => (
+                <li><a href={itemUrl(item.slug)}><span>{item.name}</span><strong>{priceRange(item.priceMin, item.priceMax)}</strong></a></li>
+              ))}
+            </ul>
+            <a class="home-text-link" href="/items/">Browse the database <HomeIcon name="arrow" size={17} /></a>
+          </aside>
+        </div>
+      </div>
+    </section>
+    {homeGameplayPreview && (
+      <p class="container home-art-credit">Game scenes © Kefir · <a href={officialSteamPage}>Steam gallery</a> · <a href={officialRobRunSite}>ROB RUN site</a></p>
+    )}
+
+    <section class="home-section" aria-labelledby="start-title">
+      <div class="container">
+        <div class:list={['home-start', { 'home-start--game': homeGameplayPreview }]}>
+          {homeGameplayPreview && (
+            <figure class="home-start-art">
+              <HomeGameImage name="beginner" small="beginner-small" sizes="(max-width: 820px) 100vw, 55vw" alt="ROB RUN players in a large interior with guards and other characters" />
+              <figcaption>Game scene © Kefir</figcaption>
+            </figure>
+          )}
+          <div class="home-start-copy" data-tone="guides">
+            <p class="home-eyebrow">Start here</p>
+            <h2 id="start-title">Your First Run in Looty Bay</h2>
+            <p>Learn how to read the item database and use the location directory. Start with a single item, then add quantities to see how they affect your estimate.</p>
+            <a class="btn" href="/guides/beginner-guide/">Read the Beginner Guide <HomeIcon name="arrow" size={18} /></a>
+            <nav class="home-topic-links" aria-label="Beginner topics">
+              <a href="/items/">Item Database</a><a href="/locations/">Locations</a><a href="/glossary/">Game Terms</a><a href="/faq/">Site FAQ</a>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class:list={['home-section', 'home-location', { 'home-location--game': homeGameplayPreview }]} data-tone="locations" aria-labelledby="location-title">
+      {homeGameplayPreview && <HomeGameImage class="home-location-art" name="locations" small="locations-small" sizes="(max-width: 820px) 100vw, 70vw" alt="" />}
+      <div class="container home-split">
+        <div>
+          <p class="home-eyebrow">Location directory</p>
+          <h2 id="location-title">Looty Bay District Records</h2>
+          <p class="home-section-copy">Search community location records by district, name or type. Open a record to see its building details and source when available.</p>
+          <a class="btn btn-dark" href="/locations/">Browse Locations <HomeIcon name="arrow" size={18} /></a>
+        </div>
+        <div class="home-districts">
+          <div class="home-district-head"><h3>Records by District</h3><a class="home-text-link" href="/sources/">Sources <HomeIcon name="arrow" size={16} /></a></div>
+          <ul>
+            {districts.map(([district, count]) => (
+              <li>
+                <a href={'/locations/?' + new URLSearchParams({ district })}>
+                  <span>{district}</span><span class="home-district-bar" aria-hidden="true"><span style={{ width: (count / districtMax * 100) + '%' }}></span></span>
+                  <strong>{formatCount.format(count)}</strong><HomeIcon name="arrow" size={16} />
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="home-section" aria-labelledby="tools-title">
+      <div class="container">
+        <div class="home-section-head">
+          <div><h2 id="tools-title">Essential Toolkit</h2><p>Check the value of a haul, compare equipment or plan around a reset.</p></div>
+          <a class="home-text-link" href="/tools/">View all tools <HomeIcon name="arrow" size={18} /></a>
+        </div>
+        <div class="home-tool-layout">
+          <div class="home-loot-card" data-tone="tools">
+            <span class="home-icon-wrap"><HomeIcon name="calculator" size={24} /></span>
+            <h3>{tools[0].name}</h3>
+            <p>{tools[0].text}</p>
+            {example ? (
+              <>
+                <dl class="home-example">
+                  <div><dt>Example haul</dt><dd>{exampleQuantity} × {example.name}</dd></div>
+                  <div><dt>Listed price per item</dt><dd>{example.unit}</dd></div>
+                  <div class="home-example-total"><dt>Estimated in-game total</dt><dd>{example.range}</dd></div>
+                </dl>
+                <a class="btn" href={example.href}>Try This Example <HomeIcon name="arrow" size={18} /></a>
+              </>
+            ) : <a class="btn" href="/tools/loot-calculator/">Open Loot Calculator <HomeIcon name="arrow" size={18} /></a>}
+          </div>
+          <div class="home-tool-list">
+            {secondaryTools.map(tool => (
+              <a class="home-tool-row" data-tone={tool.tone} href={tool.href + '/'}>
+                <span class="home-icon-wrap"><HomeIcon name={tool.icon} /></span>
+                <div><h3>{tool.name}</h3><p>{tool.text}</p></div><HomeIcon name="arrow" size={18} />
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="home-section home-valuables" data-tone="value" aria-labelledby="valuables-title">
+      <div class="container">
+        <div class="home-section-head">
+          <div><h2 id="valuables-title">Valuable Finds by Category</h2><p>Six picks from across the item database, with listed in-game price ranges.</p></div>
+          <a class="home-text-link" href="/rankings/">View item rankings <HomeIcon name="arrow" size={18} /></a>
+        </div>
+        <ul class="home-values">
+          {showcase.map(item => {
+            const photo = homeGameplayPreview ? itemMedia(item.id) : null;
+            return (
+              <li>
+                <a class:list={['home-value-card', { 'home-value-card--game': photo }]} data-rarity={item.rarity} href={itemUrl(item.slug)}>
+                  <div class="home-value-art">
+                    <span class="home-rarity">{item.rarity || 'Unknown rarity'}</span>
+                    <div class="home-item-thumb">{photo ? <HomeGameImage name={photo} alt="" /> : <HomeIcon name={categoryIcons.get(item.category) ?? 'box'} size={53} />}</div>
+                  </div>
+                  <div class="home-value-content"><span>{item.categoryName}</span><h3>{item.name}</h3><strong>{priceRange(item.priceMin, item.priceMax)}</strong><span class="home-text-link">View item <HomeIcon name="arrow" size={16} /></span></div>
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+        {homeGameplayPreview && <p class="home-section-caption">Game item icons © Kefir · <a href="https://robrunwiki.net/">Community image archive</a></p>}
+      </div>
+    </section>
+
+    <section class="home-section home-categories" data-tone="locations" aria-labelledby="database-categories">
+      <div class="container">
+        <div class="home-section-head">
+          <div><h2 id="database-categories">Browse by Category</h2><p>Start with a category to narrow the item database.</p></div>
+          <a class="home-text-link" href="/items/">View all items <HomeIcon name="arrow" size={18} /></a>
+        </div>
+        <ul class="home-category-list">
+          {categories.map(category => (
+            <li><a href={'/items/category/' + category.slug + '/'} data-tone={category.tone}><HomeIcon name={category.icon} /><span><strong>{category.name}</strong><small>{formatCount.format(category.count)} items</small></span><HomeIcon name="arrow" size={15} /></a></li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <section class="home-section home-missions" data-tone="guides" aria-labelledby="mission-title">
+      <div class="container">
+        <div class="home-section-head">
+          <div><h2 id="mission-title">Pick a Task for Your Run</h2>
+            {homeGameplayPreview && <p>Scroll through game previews or open a task to get started.</p>}
+          </div>
+          {homeGameplayPreview && <button class="home-autoplay" type="button" data-home-autoplay aria-label="Automatic video playback" aria-pressed="false" hidden>Autoplay off</button>}
+        </div>
+        <ul class="home-mission-list">
+          {missions.map(mission => (
+            <li class="home-mission-tile" data-tone={mission.tone} data-home-preview={homeGameplayPreview ? 'mission' : undefined}>
+              <a href={mission.href} class:list={{ 'home-mission--game': homeGameplayPreview }}>
+                {homeGameplayPreview && (
+                  <>
+                    <HomeGameImage class="home-mission-photo" name={mission.scene} alt="" />
+                    <video class="home-mission-photo home-mission-loop" data-clip={'/gameplay-home/' + media[mission.scene + '-motion' as keyof typeof media].file} muted playsinline preload="none" aria-hidden="true"></video>
+                  </>
+                )}
+                <div class="home-mission-top"><span>{mission.id}</span><HomeIcon name={mission.icon} size={26} /></div>
+                <h3>{mission.name}</h3><p>{mission.detail}</p><HomeIcon name="arrow" size={18} />
+              </a>
+              {homeGameplayPreview && (
+                <button class="home-mission-preview" data-preview-toggle type="button" aria-label={'Video preview for ' + mission.name} aria-pressed="false" title="Play preview" hidden>
+                  <span class="home-preview-play"><HomeIcon name="play" size={17} /></span>
+                  <span class="home-preview-pause"><HomeIcon name="pause" size={17} /></span>
+                </button>
+              )}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    {homeGameplayPreview && (
+      <section id="gameplay" class="home-section home-video" data-tone="tools" aria-labelledby="gameplay-title">
+        <div class="container">
+          <div class="home-video-banner" data-home-preview="feature">
+            <HomeGameImage class="home-video-backdrop" name="video-cover" small="video-cover-small" sizes="(max-width: 820px) 100vw, 94vw" alt="" />
+            <video class="home-video-backdrop home-video-loop" data-clip={officialGameplayVideo} muted loop playsinline preload="none" aria-hidden="true"></video>
+            <div class="home-video-copy">
+              <p class="home-eyebrow">Footage by Kefir</p>
+              <h2 id="gameplay-title">ROB RUN in Motion</h2>
+              <p class="home-section-copy">A short gameplay montage from the official Steam page, from desert roads to Looty Bay interiors.</p>
+              <a class="btn btn-dark" href={officialSteamPage}>Watch trailers on Steam <HomeIcon name="external" size={18} /></a>
+              <p class="home-video-error" data-preview-error role="status" hidden>The preview is unavailable here. The Steam page has more footage.</p>
+            </div>
+            <button class="home-mission-preview home-feature-preview" type="button" data-preview-toggle aria-label="ROB RUN gameplay preview" aria-pressed="false" title="Play preview" hidden>
+              <span class="home-preview-play"><HomeIcon name="play" size={19} /></span>
+              <span class="home-preview-pause"><HomeIcon name="pause" size={19} /></span>
+            </button>
+          </div>
+        </div>
+      </section>
+    )}
+
+    {homeGameplayPreview && (
+      <section class="home-section home-roles" data-tone="equipment" aria-labelledby="roles-title">
+        <div class="container">
+          <div class="home-section-head">
+            <div><h2 id="roles-title">Looty Bay in Practice</h2><p>Explore the roles and activities shown by Kefir, with links to relevant companion tools.</p></div>
+            <a class="home-text-link" href={officialSteamPage}>Game overview on Steam <HomeIcon name="external" size={17} /></a>
+          </div>
+          <ul class="home-role-list">
+            {gameRoles.map(role => (
+              <li data-tone={role.tone}>
+                <a class="home-role-card" href={role.href}>
+                  <div class="home-role-visual">
+                    <HomeGameImage name={role.scene} alt={role.alt} />
+                    <h3>{role.name}</h3>
+                  </div>
+                  <div class="home-role-copy"><p>{role.detail}</p><span class="home-text-link">{role.label} <HomeIcon name="arrow" size={17} /></span></div>
+                </a>
+              </li>
+            ))}
+          </ul>
+          <div class="home-crew">
+            <HomeGameImage name="crew" small="crew-small" alt="" sizes="(max-width: 820px) 100vw, 70vw" />
+            <div>
+              <h3>Running With a Crew</h3>
+              <p>In ROB RUN you can join or build a clan, organize raids together and fight for territory.</p>
+              <a class="btn btn-dark" href={officialSteamPage}>Explore ROB RUN on Steam <HomeIcon name="external" size={17} /></a>
+            </div>
+          </div>
+        </div>
+      </section>
+    )}
+
+    <section class="home-section home-news" data-tone="equipment" aria-labelledby="news-title">
+      <div class="container">
+        <div class="home-section-head">
+          <div><h2 id="news-title">Game Updates</h2><p>Selected official announcements from Kefir.</p></div>
+          <a class="home-text-link" href="https://store.steampowered.com/news/app/4262460">All Steam announcements <HomeIcon name="external" size={17} /></a>
+        </div>
+        <div class="home-news-grid">
+          <ul class="home-announcements">
+            {announcements.map(post => (
+              <li><a href={post.href}><span><time datetime={post.date}>{post.displayDate}</time><span> · Kefir on Steam</span></span><h3>{post.title}</h3><p>{post.summary}</p><HomeIcon name="external" size={20} /></a></li>
+            ))}
+          </ul>
+          <aside class="home-source-card" aria-labelledby="home-source-title">
+            <h3 id="home-source-title">About the Data</h3>
+            <p><strong>{formatCount.format(pricedCount)}</strong> items have a listed reference price in the current dataset.</p>
+            <p>Item and location records come from community data. Game announcements link directly to Kefir.</p>
+            <a class="home-text-link" href="/sources/">See sources and coverage <HomeIcon name="arrow" size={18} /></a>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="home-section home-saved" data-tone="guides" aria-labelledby="saved-title">
+      <div class="container home-saved-grid">
+        <div class="home-saved-lead">
+          <span class="home-icon-wrap"><HomeIcon name="box" size={24} /></span>
+          <h2 id="saved-title">Pick Up Where You Left Off</h2>
+          <p>Save useful item references and keep track of your manual reset timers. Your favorites and timer settings stay in this browser.</p>
+          <a class="btn" href="/dashboard/">Open Your Dashboard <HomeIcon name="arrow" size={18} /></a>
+        </div>
+        <div class="home-saved-links">
+          <a class="home-tool-row" href="/favorites/" data-tone="value"><span class="home-icon-wrap"><HomeIcon name="diamond" /></span><div><h3>Saved Items</h3><p>Open the item entries you marked as favorites.</p></div><HomeIcon name="arrow" size={18} /></a>
+          <a class="home-tool-row" href="/servers/" data-tone="timers"><span class="home-icon-wrap"><HomeIcon name="timer" /></span><div><h3>Server Reset Timer</h3><p>Set a countdown using the schedule you enter.</p></div><HomeIcon name="arrow" size={18} /></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="home-section home-activities" aria-label="Daily challenge and guide reference">
+      <div class="container home-activity-grid">
+        <section class="home-activity" data-tone="equipment" aria-labelledby="reference-title">
+          <span class="home-icon-wrap"><HomeIcon name="book" size={24} /></span>
+          <div><h2 id="reference-title">Game Terms and Guides</h2><p>Look up terms such as Federal Raid and Notoriety, or find a starting point in the guide collection.</p><div class="home-reference-links"><a class="home-text-link" href="/glossary/">Open the glossary <HomeIcon name="arrow" size={18} /></a><a class="home-text-link" href="/guides/">Browse guides <HomeIcon name="arrow" size={18} /></a></div></div>
+        </section>
+        <section class="home-activity" data-tone="guides" aria-labelledby="daily-title">
+          <span class="home-icon-wrap"><HomeIcon name="puzzle" size={24} /></span>
+          <div><h2 id="daily-title">Daily Item Guess</h2><p>Identify an item from four clues. The puzzle follows the UTC date and your record is saved in this browser.</p><a class="home-text-link" href="/daily/">Play daily guess <HomeIcon name="arrow" size={18} /></a></div>
+        </section>
+      </div>
+    </section>
+
+    <section class="home-section home-reference" data-tone="locations" aria-labelledby="reference-guide-title">
+      <div class="container">
+        <div class="home-section-head">
+          <div><h2 id="reference-guide-title">ROB RUN Item Prices, Locations and Tools</h2>
+          <p>Use this reference to check a value, find a district entry or plan what to carry into your next run.</p></div>
+        </div>
+        <div class="home-reference-grid">
+          <article>
+            <h3>Look Up ROB RUN Item Prices</h3>
+            <p>Search the <a href="/items/">ROB RUN item database</a> for loot, weapons, vehicles and keys. Entries show category, rarity and the listed in-game price or price range when one is available. Compare upper-end values in the <a href="/rankings/">item rankings</a>.</p>
+          </article>
+          <article>
+            <h3>Find Locations in Looty Bay</h3>
+            <p>The <a href="/locations/">Looty Bay location directory</a> lets you filter community records by district, name and location type. It covers Sunny Beach, Downtown, Parkside and Lauren Hills. Open a record to see the details and community source it lists.</p>
+          </article>
+          <article>
+            <h3>Estimate a Haul or Compare Weapons</h3>
+            <p>Add item quantities to the <a href="/tools/loot-calculator/">loot calculator</a>, or use the <a href="/tools/sale-calculator/">sale calculator</a> to apply a percentage adjustment you enter. The <a href="/tools/weapon-compare/">weapon comparison tool</a> puts two to four profiles side by side.</p>
+          </article>
+          <article>
+            <h3>Start Playing and Track Your Next Reset</h3>
+            <p>The <a href="/guides/beginner-guide/">ROB RUN beginner guide</a> covers the game and your first hour in Looty Bay. The <a href="/servers/">wipe timer</a> calculates a countdown from your own opening time and reset interval. Verify your schedule with your server.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="home-section home-faq" aria-labelledby="faq-title">
+      <div class="container home-faq-grid">
+        <div>
+          <h2>What Is ROB RUN?</h2>
+          <p class="home-section-copy">ROB RUN is Kefir’s free-to-play multiplayer crime sandbox in Steam Early Access. Players take on rival crews or the police, build hideouts and start fresh after server wipes.</p>
+          <a class="home-text-link" href={officialGamePage}>Kefir’s official game page <HomeIcon name="external" size={17} /></a>
+          <a class="home-text-link" href={officialSteamPage}>View ROB RUN on Steam <HomeIcon name="external" size={17} /></a>
+        </div>
+        <div>
+          <h2 id="faq-title">Frequently Asked Questions</h2>
+          <div class="home-faq-list">
+            {faqs.map(faq => <details><summary>{faq.question}</summary><p>{faq.answer} {faq.link && <a href={faq.link}>{faq.linkText}</a>}</p></details>)}
+          </div>
+          <a class="home-text-link" href="/faq/">Read the full FAQ <HomeIcon name="arrow" size={18} /></a>
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
+
+
+
+<script>
+  import '../lib/home-video-previews';
+</script>

@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { tools } from '../../lib/site-catalog';
+---
+
+<BaseLayout title="ROB RUN Tools — Free Calculators and Timers" description="Estimate item and sale values, compare ROB RUN weapon attributes or set a manual wipe timer. Free without an account.">
+  <main class="container tools">
+    <h1>ROB RUN Tools</h1>
+    <p>Estimate item values, compare equipment or keep track of your next reset. Free, no account required.</p>
+    <div class="tool-grid">
+      {tools.map(tool => <a href={tool.href} class="card"><h2>{tool.name}</h2><p>{tool.text}</p><span aria-hidden="true">↗</span></a>)}
+    </div>
+  </main>
+</BaseLayout>
+
+<style>
+  .tools { padding-block: 52px 64px; min-height: 65vh; }
+  h1 { font-size: clamp(48px,6vw,78px); }
+  p { color: var(--muted); }
+  .tool-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 14px; margin-top: 25px; }
+  .tool-grid a { position: relative; min-height: 122px; padding: 17px 44px 17px 17px; }
+  .tool-grid a:hover { border-color: var(--accent); }
+  h2 { font-size: 32px; }
+  .tool-grid p { margin: 10px 0 0; }
+  .tool-grid span { position: absolute; right: 17px; top: 15px; color: var(--accent); }
+  @media (max-width: 570px) { .tool-grid { grid-template-columns: 1fr; } .tools { padding-block: 34px; } }
+</style>

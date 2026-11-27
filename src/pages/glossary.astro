@@ -1,0 +1,94 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const terms = [
+  { t: 'Federal Raid (Wipe)', d: 'The weekly reset. Every seven days the Federal Raid wipes plots, bases, weapons and cash, and the race starts again.' },
+  { t: 'Looty Bay', d: 'The city where ROB RUN takes place. It has four districts: Sunny Beach, Downtown, Parkside and Lauren Hills.' },
+  { t: 'Fence', d: 'A buyer for stolen goods. Every item has a fence price range — the amount you can get for selling it.' },
+  { t: 'Notoriety', d: 'Your reputation in the city. It affects how the world reacts to you. Exact thresholds are not published by Kefir and are unverified.' },
+  { t: 'B-Coins', d: 'The premium currency. Cosmetic only — B-Coins do not affect stats or gameplay.' },
+  { t: 'Extraction / Extract', d: 'Getting out of a dangerous area with your loot still on you. If you die, you lose what you carried.' },
+  { t: 'Cargo', d: 'Shipments you can haul for a payout. Cargo has an unpack time and a fine if you fail.' },
+  { t: 'Barter', d: 'Trading items for other items instead of cash, usually at workbenches or vendors.' },
+];
+---
+
+<BaseLayout title="ROB RUN Glossary — In-Game Terms" description="The ROB RUN glossary: Federal Raid, Looty Bay, fence, notoriety and the other terms you will see.">
+  <main>
+    <section class="page-hero">
+      <span class="watermark" aria-hidden="true">GLOSSARY</span>
+      <div class="container">
+        <p class="eyebrow">// GUIDES · GLOSSARY</p>
+        <h1 class="page-title">Glossary</h1>
+        <p class="page-sub">The terms you will see across the game and this site.</p>
+      </div>
+    </section>
+
+    <section class="gloss-section">
+      <div class="container">
+        <dl class="gloss-list">
+          {terms.map((x) => (
+            <div class="gloss-item">
+              <dt>{x.t}</dt>
+              <dd>{x.d}</dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  .page-hero {
+    padding: 48px 0 40px;
+    border-bottom: 1px solid var(--border);
+    background: linear-gradient(90deg, rgba(20, 22, 27, 0.95) 0%, rgba(20, 22, 27, 0.5) 100%);
+  }
+  .page-title {
+    font-size: clamp(44px, 6vw, 72px);
+    margin: 12px 0 8px;
+  }
+  .page-sub {
+    color: var(--muted);
+    font-size: 17px;
+    margin: 0;
+  }
+  .gloss-section {
+    padding: 32px 0 64px;
+  }
+  .gloss-section .container {
+    max-width: 760px;
+  }
+  .gloss-list {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .gloss-item {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 24px;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .gloss-item dt {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 700;
+    font-size: 17px;
+    color: var(--accent);
+  }
+  .gloss-item dd {
+    margin: 0;
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+  @media (max-width: 600px) {
+    .gloss-item {
+      grid-template-columns: 1fr;
+      gap: 6px;
+    }
+  }
+</style>

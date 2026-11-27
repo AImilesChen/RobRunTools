@@ -1,0 +1,90 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="About — ROB RUN Companion" description="About ROB RUN Companion: a free, unofficial fan site for ROB RUN with item data, maps and tools.">
+  <main>
+    <section class="page-hero">
+      <span class="watermark" aria-hidden="true">ABOUT</span>
+      <div class="container">
+        <p class="eyebrow">// ABOUT</p>
+        <h1 class="page-title">About</h1>
+        <p class="page-sub">What this site is, and what it is not.</p>
+      </div>
+    </section>
+
+    <article class="article">
+      <div class="container">
+        <figure class="brand-lockup">
+          <img src="/brand/rob-run-companion.webp" width="960" height="640" alt="ROB RUN Companion" loading="lazy" />
+        </figure>
+        <h2>What this is</h2>
+        <p>
+          ROB RUN Companion is a free, unofficial companion site for the game ROB RUN. It brings together an item
+          database, weapon stats, loot points, calculators and guides so you can find what you need without juggling a
+          dozen tabs.
+        </p>
+
+        <h2>Unofficial, and proud of it</h2>
+        <p>
+          This site is <strong>not affiliated with Kefir</strong>, the developer and publisher of ROB RUN. We are a fan
+          project. "ROB RUN" and all game assets belong to their respective rights holders.
+        </p>
+
+        <h2>Everything is free</h2>
+        <p>
+          Every tool and every page on this site is free. There are no paid tiers, no accounts and no locked content.
+          Advertising is a possible future source of funding.
+        </p>
+
+        <h2>Where the data comes from</h2>
+        <p>
+          Item, weapon and map data comes from the open tables published by
+          <a href="https://robrunwiki.com/en/data/" target="_blank" rel="noopener">ROB RUN Wiki</a> (game version 0.7.0).
+          See <a href="/sources">Sources</a> for the full list.
+        </p>
+      </div>
+    </article>
+  </main>
+</BaseLayout>
+
+<style>
+  .page-hero {
+    padding: 48px 0 40px;
+    border-bottom: 1px solid var(--border);
+    background: linear-gradient(90deg, rgba(20, 22, 27, 0.95) 0%, rgba(20, 22, 27, 0.5) 100%);
+  }
+  .page-title {
+    font-size: clamp(44px, 6vw, 72px);
+    margin: 12px 0 8px;
+  }
+  .page-sub {
+    color: var(--muted);
+    font-size: 17px;
+    margin: 0;
+  }
+  .article {
+    padding: 40px 0 64px;
+  }
+  .article .container {
+    max-width: 760px;
+  }
+  .brand-lockup { margin: 0 0 28px; background: #0c0d0f; border: 1px solid var(--border); }
+  .brand-lockup img { width: 100%; max-width: 560px; height: auto; margin: 0 auto; }
+  .article h2 {
+    font-size: 26px;
+    margin: 32px 0 10px;
+  }
+  .article h2:first-child {
+    margin-top: 0;
+  }
+  .article p {
+    color: var(--text);
+    font-size: 16px;
+    line-height: 1.75;
+    margin: 0 0 14px;
+  }
+  .article a {
+    color: var(--accent);
+  }
+</style>

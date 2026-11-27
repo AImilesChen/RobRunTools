@@ -1,0 +1,77 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { publicContact } from '../lib/site-release.mjs';
+---
+
+<BaseLayout title="Terms of Use — ROB RUN Companion" description="The terms of use for ROB RUN Companion.">
+  <main>
+    <section class="page-hero">
+      <span class="watermark" aria-hidden="true">TERMS</span>
+      <div class="container">
+        <p class="eyebrow">// TERMS</p>
+        <h1 class="page-title">Terms of Use</h1>
+        <p class="page-sub">Use of the site, tool limits and data sources.</p>
+      </div>
+    </section>
+
+    <article class="article">
+      <div class="container">
+        <h2>Free and unofficial</h2>
+        <p>
+          ROB RUN Companion is operated by mileschen, an individual based in mainland China. It is a free, independent fan project for adults. Kefir does not operate or endorse this website. The tools require no website account, subscription or game login.
+        </p>
+
+        <h2>Data accuracy</h2>
+        <p>
+          Game records and prices reflect the sources and versions listed. A missing value appears as Unknown. Calculator outputs use listed values and your entries. Manual adjustments and timer settings reflect assumptions you enter. Check the <a href="/sources/">sources</a> and current game information before relying on a result.
+        </p>
+
+        <h2>Use and attribution</h2>
+        <p>
+          Use the tools for game reference and avoid activity that disrupts the site or affects other users. Game materials and third-party data remain subject to the rights of their respective owners.
+        </p>
+
+        <h2>Local records and corrections</h2>
+        <p>Saved records are held in your browser. See the <a href="/privacy/">Privacy Policy</a> for what is stored and how to remove it.</p>
+        <p>For a data correction or rights concern, provide the affected page, the issue and a source where available. {publicContact ? <a href={`mailto:${publicContact}`}>{publicContact}</a> : <a href="/contact/">Contact the site operator</a>}</p>
+      </div>
+    </article>
+  </main>
+</BaseLayout>
+
+<style>
+  .page-hero {
+    padding: 48px 0 40px;
+    border-bottom: 1px solid var(--border);
+    background: linear-gradient(90deg, rgba(20, 22, 27, 0.95) 0%, rgba(20, 22, 27, 0.5) 100%);
+  }
+  .page-title {
+    font-size: clamp(44px, 6vw, 72px);
+    margin: 12px 0 8px;
+  }
+  .page-sub {
+    color: var(--muted);
+    font-size: 17px;
+    margin: 0;
+  }
+  .article {
+    padding: 40px 0 64px;
+  }
+  .article .container {
+    max-width: 760px;
+  }
+  .article h2 {
+    font-size: 26px;
+    margin: 32px 0 10px;
+  }
+  .article h2:first-child {
+    margin-top: 0;
+  }
+  .article p {
+    color: var(--text);
+    font-size: 16px;
+    line-height: 1.75;
+    margin: 0 0 14px;
+  }
+  .article a { color: var(--accent); }
+</style>

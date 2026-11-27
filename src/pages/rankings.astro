@@ -1,0 +1,191 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import items from '../data/items.json';
+
+const rarityLabel: Record<string, string> = {
+  common: 'Common',
+  uncommon: 'Uncommon',
+  epic: 'Epic',
+  legendary: 'Legendary',
+  exotic: 'Exotic',
+};
+const rarityColor: Record<string, string> = {
+  common: '#92989B',
+  uncommon: '#57C68A',
+  epic: '#A88ADC',
+  legendary: '#F2C64A',
+  exotic: '#E91E76',
+};
+
+const priced = items.filter((i) => i.priceMax != null);
+const categories = [...new Set(items.map((i) => i.categoryName))].sort();
+const top = [...priced].sort((a, b) => (b.priceMax ?? 0) - (a.priceMax ?? 0)).slice(0, 100);
+---
+
+<BaseLayout title="ROB RUN Rankings — Most Valuable Items" description="Compare ROB RUN items ordered by their upper listed in-game values. Filter by category and rarity.">
+  <main>
+    <section class="page-hero">
+      <span class="watermark" aria-hidden="true">RANKINGS</span>
+      <div class="container">
+        <p class="eyebrow">// RANKINGS · TOP 100</p>
+        <h1 class="page-title">Most Valuable Items</h1>
+        <p class="page-sub">Ranked by the upper end of each listed reference price. <a href="/items/">Browse items by lower listed value</a>.</p>
+        <div class="toolbar">
+          <select id="category" class="toolbar-select">
+            <option value="">All categories</option>
+            {categories.map((c) => <option value={c}>{c}</option>)}
+          </select>
+          <select id="rarity" class="toolbar-select">
+            <option value="">All rarities</option>
+            <option value="common">Common</option>
+            <option value="uncommon">Uncommon</option>
+            <option value="epic">Epic</option>
+            <option value="legendary">Legendary</option>
+            <option value="exotic">Exotic</option>
+          </select>
+        </div>
+      </div>
+    </section>
+
+    <section class="rank-section">
+      <div class="container">
+        <ol class="rank-list" id="rank-list">
+          {top.map((item, idx) => (
+            <li class="rank-item" data-category={item.categoryName} data-rarity={item.rarity ?? 'none'}>
+              <span class="rank-pos">{idx + 1}</span>
+              <a href={`/items/${item.slug}`} class="rank-name">{item.name}</a>
+              <span class="rank-rarity" style={`color:${item.rarity ? rarityColor[item.rarity] : '#8A8F98'}`}>
+                {item.rarity ? rarityLabel[item.rarity] : 'None'}
+              </span>
+              <span class="rank-cat">{item.categoryName}</span>
+              <span class="rank-price">${(item.priceMax ?? 0).toLocaleString('en-US')}</span>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  .page-hero {
+    padding: 48px 0 40px;
+    border-bottom: 1px solid var(--border);
+    background: linear-gradient(90deg, rgba(20, 22, 27, 0.95) 0%, rgba(20, 22, 27, 0.5) 100%);
+  }
+  .page-title {
+    font-size: clamp(44px, 6vw, 72px);
+    margin: 12px 0 8px;
+  }
+  .page-sub {
+    color: var(--muted);
+    font-size: 17px;
+    margin: 0 0 20px;
+  }
+  .page-sub a { color: var(--accent); }
+  .toolbar {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .toolbar-select {
+    background: var(--input);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 12px 14px;
+    font-size: 14px;
+    font-family: var(--font-body);
+    cursor: pointer;
+  }
+  .rank-section {
+    padding: 32px 0 64px;
+  }
+  .rank-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .rank-item {
+    display: grid;
+    grid-template-columns: 48px 1fr 120px 160px 140px;
+    gap: 16px;
+    align-items: center;
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  .rank-item:hover {
+    background: rgba(46, 230, 200, 0.04);
+  }
+  .rank-pos {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-style: italic;
+    font-size: 20px;
+    color: var(--accent);
+  }
+  .rank-name {
+    color: var(--text);
+    font-weight: 500;
+    font-size: 15px;
+  }
+  .rank-name:hover {
+    color: var(--accent);
+  }
+  .rank-rarity {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-style: italic;
+    font-size: 13px;
+    text-transform: uppercase;
+  }
+  .rank-cat {
+    color: var(--muted);
+    font-size: 13px;
+  }
+  .rank-price {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-style: italic;
+    font-size: 17px;
+    color: var(--accent);
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
+  @media (max-width: 700px) {
+    .rank-item {
+      grid-template-columns: 36px 1fr 90px;
+    }
+    .rank-rarity,
+    .rank-cat {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  const categorySel = document.getElementById('category') as HTMLSelectElement;
+  const raritySel = document.getElementById('rarity') as HTMLSelectElement;
+  const list = document.getElementById('rank-list') as HTMLElement;
+  const items = Array.from(list.querySelectorAll<HTMLElement>('.rank-item'));
+
+  function apply() {
+    const cat = categorySel.value;
+    const rar = raritySel.value;
+    let visible = items.filter((el) => {
+      const okC = !cat || el.dataset.category === cat;
+      const okR = !rar || el.dataset.rarity === rar;
+      return okC && okR;
+    });
+    items.forEach((el) => (el.style.display = 'none'));
+    visible.forEach((el) => (el.style.display = ''));
+    visible.forEach((el, i) => {
+      const pos = el.querySelector('.rank-pos');
+      if (pos) pos.textContent = String(i + 1);
+    });
+  }
+
+  categorySel.addEventListener('change', apply);
+  raritySel.addEventListener('change', apply);
+</script>

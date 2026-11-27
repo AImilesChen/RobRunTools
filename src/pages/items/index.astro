@@ -1,0 +1,173 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CatalogItemCard from '../../components/CatalogItemCard.astro';
+import HomeIcon from '../../components/HomeIcon.astro';
+import { catalogCategories, catalogItems, itemRarities, referencePrice } from '../../lib/catalog-items';
+import { homeGameplayPreview } from '../../lib/home-game-media.mjs';
+import { priceRange } from '../../lib/item-value';
+import '../../styles/catalog-items.css';
+
+const quickCategories = ['valuables', 'cargo', 'weapons', 'keys', 'vehicles'].flatMap(slug =>
+  catalogCategories.filter(category => category.slug === slug)
+);
+const pricedCount = catalogItems.filter(item => referencePrice(item) !== null).length;
+const exampleItem = catalogItems.find(item => item.id === 'action_camera_1_cumulative');
+const exampleQuantity = 2;
+const lookupExamples = ['action_camera_1_cumulative', 'gold_bar_1'].flatMap(id =>
+  catalogItems.filter(item => item.id === id)
+);
+---
+
+<BaseLayout
+  title="ROB RUN Item Prices, Rarity & Loot Database"
+  description="Check ROB RUN item prices and rarity for loot, weapons, keys and vehicles. Compare listed values and use the loot calculator to estimate your haul."
+>
+  <main class="catalog-main">
+    <header class="catalog-intro catalog-intro--compact">
+      <div class="container">
+        <nav class="catalog-breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span aria-current="page">Items</span></nav>
+        <div class="catalog-intro-row">
+          <h1>ROB RUN Item Database</h1>
+          <p class="catalog-data"><strong>{pricedCount}</strong> with prices <span aria-hidden="true">·</span> {catalogCategories.length} categories <a href="/sources/">Data sources <HomeIcon name="arrow" size={15} /></a></p>
+        </div>
+      </div>
+    </header>
+
+    <div class="container catalog-lookup-wrap">
+      <section class="catalog-lookup" aria-labelledby="item-lookup-title">
+        <h2 id="item-lookup-title">Check an item price</h2>
+        <form class="catalog-lookup-form" id="item-lookup" action="/items/#item-results" method="get" role="search" aria-labelledby="item-lookup-title">
+          <label class="catalog-search" for="item-query"><HomeIcon name="search" size={22} /><span class="sr-only">Search items</span><input type="search" id="item-query" name="q" placeholder="Enter an item name" autocomplete="off" data-primary-search /></label>
+          <button type="submit" class="btn catalog-lookup-submit">Find price <HomeIcon name="arrow" size={17} /></button>
+        </form>
+        {lookupExamples.length > 0 && (
+          <div class="catalog-lookup-examples" id="item-lookup-examples" hidden>
+            <span>Try</span>
+            {lookupExamples.map(item => <button type="button" data-item-example={item.name}>{item.name}</button>)}
+          </div>
+        )}
+        <div class="catalog-lookup-estimate">
+          <a class="btn" href="/tools/loot-calculator/">Estimate your loot <HomeIcon name="arrow" size={16} /></a>
+        </div>
+      </section>
+    </div>
+
+    <section class="container catalog-results" id="item-results" tabindex="-1" aria-labelledby="item-results-title">
+      <h2 id="item-results-title" class="sr-only">Item results</h2>
+      <div class="catalog-tools">
+        <div class="catalog-filter-row">
+          <div class="catalog-quick-categories" role="group" aria-label="Quick categories" hidden>
+            <button type="button" data-category-filter="" aria-pressed="true">All items</button>
+            {quickCategories.map(category => (
+              <button type="button" data-category-filter={category.slug} aria-pressed="false">{category.label} <span>{category.count}</span></button>
+            ))}
+          </div>
+          <select id="item-sort" class="catalog-select" aria-label="Sort items">
+            <option value="auto">Price ↓ (auto)</option>
+            <option value="value-desc">Price ↓</option>
+            <option value="value-asc">Price ↑</option>
+            <option value="name">Name: A–Z</option>
+          </select>
+          <details id="item-filters" class="catalog-filters">
+            <summary>Filters <span id="filter-count" hidden></span></summary>
+            <div class="catalog-filter-fields">
+              <label>Category<select id="item-category" class="catalog-select">
+                <option value="">All categories</option>
+                {catalogCategories.map(category => <option value={category.slug}>{category.label} ({category.count})</option>)}
+              </select></label>
+              <label>Rarity<select id="item-rarity" class="catalog-select">
+                <option value="">All rarities</option>
+                {Object.entries(itemRarities).map(([key, name]) => <option value={key}>{name}</option>)}
+              </select></label>
+            </div>
+          </details>
+        </div>
+        <div class="catalog-result-line">
+          <button type="button" id="clear-item-filters" class="catalog-clear" hidden>Clear filters</button>
+          <p class="catalog-price-basis">Price sort uses the lower value for ranges. <a href="#item-price-guide">How prices work</a></p>
+        </div>
+      </div>
+
+      <div id="filter-empty" class="catalog-empty" hidden>
+        <p>No items match your search and filters.</p>
+        <a href="/locations/">Looking for a district or place? Open the Looty Bay directory.</a>
+      </div>
+      <p id="favorite-feedback" class="catalog-empty" role="status" hidden></p>
+
+      <div class="catalog-grid" id="item-grid">
+        {catalogItems.map((item, index) => <CatalogItemCard item={item} actions priority={index < 5} />)}
+      </div>
+      <div class="catalog-load-more">
+        <p id="catalog-count" role="status">{catalogItems.length} items</p>
+        <button type="button" class="btn btn-dark" id="show-more-items" hidden>Show more items <HomeIcon name="arrow" size={17} /></button>
+      </div>
+      <form id="estimate-selection" class="catalog-estimate" action="/tools/loot-calculator/" method="get" hidden>
+        <span id="estimate-count" role="status">0 items selected</span>
+        <button type="button" id="estimate-clear" class="btn btn-dark">Clear selection</button>
+        <button type="submit" class="btn">Estimate selected items</button>
+      </form>
+    </section>
+
+    <section class="container catalog-price-guide" id="item-price-guide" aria-labelledby="catalog-guide-title">
+      <div class="catalog-guide-heading">
+        <h2 id="catalog-guide-title">How to Check Loot Value in ROB RUN</h2>
+      </div>
+      <ol class="catalog-guide-steps" role="list">
+        <li><h3><span aria-hidden="true">1</span> Find an item</h3><p>Search by its English or Russian name, or narrow the list by category and rarity.</p></li>
+        <li><h3><span aria-hidden="true">2</span> Check the listed value</h3><p>Open the item page for its price, available attributes and source record.</p></li>
+        <li><h3><span aria-hidden="true">3</span> Estimate your haul</h3><p>Tick <strong>Estimate</strong> on each item, select <strong>Estimate selected items</strong> and set quantities in the <a href="/tools/loot-calculator/">loot calculator</a>.</p></li>
+      </ol>
+
+      <div class="catalog-guide-reference">
+        {exampleItem && exampleItem.priceMin !== null && exampleItem.priceMax !== null && (
+          <div class="catalog-guide-example">
+            <h3>Loot estimate example</h3>
+            <dl>
+              <div><dt><a href={'/items/' + exampleItem.slug + '/'}>{exampleItem.name}</a> per unit</dt><dd>{priceRange(exampleItem.priceMin, exampleItem.priceMax)}</dd></div>
+              <div><dt>Estimated value for {exampleQuantity} units</dt><dd>{priceRange(exampleItem.priceMin * exampleQuantity, exampleItem.priceMax * exampleQuantity)}</dd></div>
+            </dl>
+            <a class="btn catalog-guide-example-link" href={'/tools/loot-calculator/?add=' + encodeURIComponent(exampleItem.id) + '&qty=' + exampleQuantity}>Try this estimate <HomeIcon name="arrow" size={16} /></a>
+          </div>
+        )}
+        <nav class="catalog-guide-categories" aria-labelledby="catalog-guide-categories-title">
+          <h3 id="catalog-guide-categories-title">Browse Item Categories</h3>
+          {quickCategories.map(category => (
+            <a href={'/items/category/' + category.slug + '/'}>
+              <span>{category.label}</span><span class="catalog-guide-category-count">{category.count} items</span><HomeIcon name="arrow" size={15} />
+            </a>
+          ))}
+        </nav>
+      </div>
+      {homeGameplayPreview && <p class="catalog-credit">Game item icons © Kefir. See <a href="/sources/#item-art">catalog image sources</a>.</p>}
+    </section>
+
+    <section class="catalog-guide-faq" aria-labelledby="catalog-faq-title">
+      <div class="container">
+        <h2 id="catalog-faq-title">Item Price FAQ</h2>
+        <div class="catalog-guide-questions">
+          <details open>
+            <summary>What does a price range mean?</summary>
+            <p>The two numbers give the lower and upper reference values for one unit in the current dataset. The amount you get in-game can vary.</p>
+          </details>
+          <details>
+            <summary>Why does an item show Unknown?</summary>
+            <p>The source record has no usable price. The calculator reports those units separately and totals the items with known values.</p>
+          </details>
+          <details>
+            <summary>Why do the rankings show a different order?</summary>
+            <p>The catalog sorts price ranges by their lower value. The <a href="/rankings/">most valuable items ranking</a> sorts by the upper value.</p>
+          </details>
+          <details>
+            <summary>Where do the listed prices come from?</summary>
+            <p>We use ROB RUN Wiki community data. Values can change with game updates. Check the <a href="/sources/">data sources</a> for the game version and open an item for its source record.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
+
+<script>
+  import '../../lib/catalog-list';
+</script>
+

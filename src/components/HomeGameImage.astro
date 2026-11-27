@@ -1,0 +1,23 @@
+---
+import sources from '../../assets/home-gameplay/sources.json';
+
+interface Props {
+  name: keyof typeof sources;
+  small?: keyof typeof sources;
+  sizes?: string;
+  alt: string;
+  priority?: boolean;
+  class?: string;
+}
+const { name, small, sizes, alt, priority = false, class: className } = Astro.props;
+const full = sources[name];
+const compact = small ? sources[small] : null;
+const path = (file: string) => '/gameplay-home/' + file;
+const srcset = compact
+  ? path(compact.file) + ' ' + compact.width + 'w, ' + path(full.file) + ' ' + full.width + 'w'
+  : undefined;
+---
+
+<img class={className} src={path(full.file)} srcset={srcset} sizes={sizes} width={full.width} height={full.height} alt={alt}
+  loading={priority ? 'eager' : 'lazy'} fetchpriority={priority ? 'high' : undefined} decoding="async" />
+

@@ -1,0 +1,98 @@
+---
+import { previewScenes } from '../lib/game-media.mjs';
+
+interface Props {
+  image: 'city' | 'equipment' | 'terrain';
+  watermark: string;
+  grid?: boolean;
+  motion?: boolean;
+}
+
+const { image, watermark, grid = false, motion = false } = Astro.props;
+const source = previewScenes[image];
+---
+
+<div class:list={['hero-backdrop', { 'hero-backdrop--grid': grid }]} aria-hidden="true" data-hero-motion={motion ? '' : undefined}>
+  <div class:list={['hero-scene', `hero-scene--${image}`]} style={source ? { '--hero-art': `url("${source}")` } : undefined}></div>
+  <span class="hero-word">{watermark}</span>
+  <div class="hero-shade"></div>
+</div>
+
+<style>
+  .hero-backdrop {
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    background: var(--bg);
+  }
+  .hero-scene, .hero-shade {
+    position: absolute;
+    inset: 0;
+  }
+  .hero-scene {
+    background-position: right center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: #172028;
+  }
+  .hero-scene--city {
+    background-image: var(--hero-art, linear-gradient(100deg, #15181e, #203339));
+    background-position: center 58%;
+  }
+  .hero-scene--equipment {
+    background-image: var(--hero-art, repeating-linear-gradient(126deg, #202b32 0 1px, #182127 1px 22px));
+    background-position: center 51%;
+  }
+  .hero-scene--terrain {
+    background-image: radial-gradient(ellipse at 80% 46%, #29424a, transparent 65%),
+      repeating-linear-gradient(0deg, rgb(174 210 222 / 12%) 0 1px, transparent 1px 30px),
+      repeating-linear-gradient(90deg, rgb(174 210 222 / 12%) 0 1px, transparent 1px 30px);
+    background-size: cover, auto, auto;
+  }
+  .hero-word {
+    position: absolute;
+    top: 45%;
+    right: 4%;
+    translate: 0 -50%;
+    font: italic 900 clamp(140px, 23vw, 400px)/.85 var(--font-display);
+    letter-spacing: -.035em;
+    color: rgb(237 244 247 / 5%);
+    white-space: nowrap;
+    user-select: none;
+  }
+  .hero-shade {
+    background: linear-gradient(90deg, #12151a 0%, rgb(18 21 26 / 93%) 24%, rgb(18 21 26 / 67%) 58%, rgb(18 21 26 / 18%) 100%),
+      linear-gradient(0deg, rgb(18 21 26 / 90%), transparent 58%);
+  }
+  .hero-backdrop--grid::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(rgb(186 223 231 / 8%) 1px, transparent 1px), linear-gradient(90deg, rgb(186 223 231 / 8%) 1px, transparent 1px);
+    background-size: 42px 42px;
+    opacity: .48;
+    mask-image: linear-gradient(90deg, transparent 12%, #000 70%, transparent);
+  }
+  [data-hero-motion] .hero-scene {
+    inset: -24px -64px;
+    animation: terrain-drift 28s ease-in-out infinite alternate;
+    animation-play-state: paused;
+  }
+  [data-hero-motion][data-moving] .hero-scene { animation-play-state: running; }
+  @keyframes terrain-drift {
+    from { transform: translate3d(-22px, -7px, 0) scale(1.05); }
+    to { transform: translate3d(32px, 12px, 0) scale(1.12); }
+  }
+  @media (max-width: 760px) {
+    .hero-shade {
+      background: linear-gradient(90deg, rgb(18 21 26 / 96%), rgb(18 21 26 / 72%)),
+        linear-gradient(0deg, #12151a, transparent 65%);
+    }
+    .hero-word { right: -12%; opacity: .55; }
+  }
+  @media (prefers-reduced-motion: reduce), (max-width: 760px) {
+    [data-hero-motion] .hero-scene { inset: 0; animation: none; }
+  }
+</style>

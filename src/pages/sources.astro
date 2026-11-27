@@ -1,0 +1,108 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { officialGamePage, officialSteamPage } from '../lib/game-media.mjs';
+import { homeGameplayPreview } from '../lib/home-game-media.mjs';
+import itemArt from '../../assets/item-icons/sources.json';
+
+const sources = [
+  { name: 'ROB RUN — Kefir', url: officialGamePage, note: 'The developer’s overview and creator program.' },
+  { name: 'ROB RUN on Steam', url: officialSteamPage, note: 'Official store page, game screenshots, description and system requirements.' },
+  { name: 'Steam Announcements', url: 'https://store.steampowered.com/news/app/4262460', note: 'Patch notes and outage notices from Kefir.' },
+  { name: 'Kefir Help Center', url: 'https://kefirgames.helpshift.com/hc/en/14-rob-run/', note: 'Official answers and the error code list.' },
+  { name: 'ROB RUN Wiki — Community Open Data', url: 'https://robrunwiki.com/en/data/', note: 'Community tables for items, weapons and location records (game version 0.7.0). Used with attribution.' },
+];
+const artSources = [
+  { name: 'ROB RUN Wiki', url: 'https://robrunwiki.com/' },
+  { name: 'Community image archive', url: 'https://robrunwiki.net/' },
+  { name: 'ROB RUN Wiki Japan', url: 'https://robrunwikijp.com/' },
+  { name: 'ROB RUN Wiki on robrun.pro', url: 'https://robrun.pro/' },
+].filter(source => Object.values(itemArt).some(art => art.source.startsWith(source.url)));
+---
+
+<BaseLayout title="Sources — ROB RUN Companion" description="The data sources behind ROB RUN Companion, with attribution.">
+  <main>
+    <section class="page-hero">
+      <span class="watermark" aria-hidden="true">SOURCES</span>
+      <div class="container">
+        <p class="eyebrow">// SOURCES</p>
+        <h1 class="page-title">Sources</h1>
+        <p class="page-sub">Where our data comes from, and who to credit.</p>
+      </div>
+    </section>
+
+    <section class="src-section">
+      <div class="container">
+        <div class="src-list">
+          {sources.map((s) => (
+            <div class="src-item">
+              <a href={s.url} target="_blank" rel="noopener" class="src-name">{s.name} →</a>
+              <p class="src-note">{s.note}</p>
+            </div>
+          ))}
+        </div>
+        {homeGameplayPreview && <section class="src-item" id="item-art">
+          <h2 class="src-name">Catalog Image Sources</h2>
+          <p class="src-note">Game item icons © Kefir. Images were matched to game item IDs using these community archives.</p>
+          <ul class="src-note">
+            {artSources.map(source => <li><a href={source.url}>{source.name}</a></li>)}
+          </ul>
+        </section>}
+        <p class="src-foot">
+          Item data is from game version 0.7.0. ROB RUN is in Early Access and numbers change with every patch. We do
+          not publish guessed values — missing data is marked Unknown or Unverified.
+        </p>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  .page-hero {
+    padding: 48px 0 40px;
+    border-bottom: 1px solid var(--border);
+    background: linear-gradient(90deg, rgba(20, 22, 27, 0.95) 0%, rgba(20, 22, 27, 0.5) 100%);
+  }
+  .page-title {
+    font-size: clamp(44px, 6vw, 72px);
+    margin: 12px 0 8px;
+  }
+  .page-sub {
+    color: var(--muted);
+    font-size: 17px;
+    margin: 0;
+  }
+  .src-section {
+    padding: 32px 0 64px;
+  }
+  .src-section .container {
+    max-width: 760px;
+  }
+  .src-list {
+    display: flex;
+    flex-direction: column;
+  }
+  .src-item {
+    padding: 20px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .src-name {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--accent);
+    margin: 0;
+  }
+  .src-note {
+    color: var(--muted);
+    font-size: 15px;
+    margin: 6px 0 0;
+    line-height: 1.6;
+  }
+  .src-foot {
+    color: var(--muted);
+    font-size: 13px;
+    margin-top: 28px;
+    line-height: 1.7;
+  }
+</style>

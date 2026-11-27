@@ -1,0 +1,100 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="ROB RUN Beginner Guide — Your First Hour in Looty Bay" description="A beginner guide to ROB RUN: what the game is, your first hour in Looty Bay, the weekly wipe and key systems.">
+  <main>
+    <section class="page-hero">
+      <span class="watermark" aria-hidden="true">GUIDE</span>
+      <div class="container">
+        <p class="eyebrow">// GUIDES · BEGINNER</p>
+        <h1 class="page-title">Beginner Guide</h1>
+        <p class="page-sub">What ROB RUN is and how to survive your first hour in Looty Bay.</p>
+      </div>
+    </section>
+
+    <article class="article">
+      <div class="container">
+        <h2>What is ROB RUN?</h2>
+        <p>
+          ROB RUN is a free crime-sandbox MMO by Kefir, in Early Access on Steam since November 4, 2026. Every cop and
+          every criminal on the map is a real player. You rob stores, houses and banks in the city of Looty Bay, haul
+          cargo, run a base, or join the police. Whatever you take, someone else can take back.
+        </p>
+
+        <h2>Your first hour</h2>
+        <ol>
+          <li><strong>Pick a side.</strong> Start as a criminal to learn the loop — looting, selling, surviving. Police have their own progression and are better once you understand the city.</li>
+          <li><strong>Learn the map.</strong> Looty Bay has four districts: Sunny Beach, Downtown, Parkside and Lauren Hills. Every district has its own buildings, loot spots and risk.</li>
+          <li><strong>Grab cheap loot first.</strong> Small shops and houses give you a safe first payday. Save the bank, the vault and the big heists for when you have gear and a crew.</li>
+          <li><strong>Sell at a fence.</strong> Loot has a fence price range — the highest value comes from the right items. Check the <a href="/items">item database</a> before you sell.</li>
+          <li><strong>Do not get attached.</strong> Death costs your carried items. If the escape is too risky, cut your losses and leave.</li>
+        </ol>
+
+        <h2>The weekly loop</h2>
+        <p>
+          Every seven days the <strong>Federal Raid</strong> wipes plots, bases, weapons and cash — and the race starts
+          again. A week is enough to go from a nobody to a boss, then lose it all. Plan around the
+          <a href="/servers">wipe timer</a>.
+        </p>
+
+        <h2>Key systems</h2>
+        <ul>
+          <li><strong>Base.</strong> Your hideout stores loot and vehicles. Build workbenches and safes, but remember the richer your base, the more intruders it attracts.</li>
+          <li><strong>Clans.</strong> You can survive alone, but you thrive in a crew. Clans hold districts, run raids and negotiate truces.</li>
+          <li><strong>Police.</strong> Players can enlist at the station, get issued gear and earn money fighting crime.</li>
+          <li><strong>Notoriety.</strong> Your reputation affects how the city treats you. The exact thresholds are not published by Kefir and are marked as unverified where we mention them.</li>
+        </ul>
+
+        <p class="note">Game version 0.7.0 data. Early Access — mechanics change with every patch.</p>
+      </div>
+    </article>
+  </main>
+</BaseLayout>
+
+<style>
+  .page-hero {
+    padding: 48px 0 40px;
+    border-bottom: 1px solid var(--border);
+    background: linear-gradient(90deg, rgba(20, 22, 27, 0.95) 0%, rgba(20, 22, 27, 0.5) 100%);
+  }
+  .page-title {
+    font-size: clamp(44px, 6vw, 72px);
+    margin: 12px 0 8px;
+  }
+  .page-sub {
+    color: var(--muted);
+    font-size: 17px;
+    margin: 0;
+  }
+  .article {
+    padding: 40px 0 64px;
+  }
+  .article .container {
+    max-width: 760px;
+  }
+  .article h2 {
+    font-size: 28px;
+    margin: 36px 0 12px;
+  }
+  .article h2:first-child {
+    margin-top: 0;
+  }
+  .article p,
+  .article li {
+    color: var(--text);
+    font-size: 16px;
+    line-height: 1.75;
+    margin: 0 0 14px;
+  }
+  .article a {
+    color: var(--accent);
+  }
+  .article .note {
+    color: var(--muted);
+    font-size: 13px;
+    margin-top: 32px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+  }
+</style>

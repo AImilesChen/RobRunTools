@@ -1,0 +1,176 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="ROB RUN Weapon Comparison — Side-by-Side Stats" description="Compare up to 4 ROB RUN weapons side by side: damage, fire rate, magazine, range and DPS.">
+  <main>
+    <section class="calc-hero">
+      
+      <div class="container">
+        <p class="eyebrow">// TOOLS · WEAPON COMPARE</p>
+        <h1 class="calc-title">Weapon Comparison</h1>
+        <p class="calc-sub">Compare the listed attributes of two to four weapons. Highlighting shows the highest number in a row.</p>
+      </div>
+    </section>
+
+    <section class="calc-section">
+      <div class="container">
+        <div class="add-row">
+          <input id="weapon-search" class="add-input" list="weapon-list" placeholder="Choose a weapon…" aria-label="Weapon" autocomplete="off" />
+          <datalist id="weapon-list"></datalist>
+          <button id="add" class="btn">Add Weapon</button>
+        </div>
+        <p class="hint" id="hint" role="status">Add 2–4 weapons to compare.</p>
+        <div class="table-wrap" id="compare-wrap" role="region" aria-label="Weapon comparison" tabindex="0" hidden></div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  .calc-hero {
+    padding: 28px 0 22px;
+    border-bottom: 1px solid var(--border);
+    background: linear-gradient(90deg, rgba(20, 22, 27, 0.95) 0%, rgba(20, 22, 27, 0.5) 100%);
+  }
+  .calc-title {
+    font-size: clamp(44px, 6vw, 72px);
+    margin: 12px 0 8px;
+  }
+  .calc-sub {
+    color: var(--muted);
+    font-size: 17px;
+    margin: 0;
+  }
+  .calc-section {
+    padding: 32px 0 64px;
+  }
+  .add-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 14px;
+    max-width: 640px;
+  }
+  .add-input {
+    flex: 1;
+    min-width: 0;
+    background: var(--input);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 14px 16px;
+    font-size: 15px;
+    font-family: var(--font-body);
+  }
+  .add-input:focus {
+    outline: 1px solid var(--accent);
+  }
+  .hint {
+    color: var(--muted);
+    font-size: 13px;
+    margin: 0 0 20px;
+  }
+  .table-wrap {
+    overflow-x: auto;
+    border: 1px solid var(--border);
+  }
+  .table-wrap :global(table) { width: 100%; border-collapse: collapse; font-size: 14px; font-variant-numeric: tabular-nums; }
+  .table-wrap :global(th), .table-wrap :global(td) { padding: 10px 12px; text-align: right; border-bottom: 1px solid var(--border); white-space: nowrap; }
+  .table-wrap :global(th:first-child) { text-align: left; }
+  .table-wrap :global(thead) { background: var(--surface); }
+  .table-wrap :global(button) { color: var(--muted); background: var(--input); border: 1px solid var(--border); min-width: 44px; min-height: 44px; cursor: pointer; margin-left: 10px; }
+  .table-wrap :global(button:hover) { color: var(--hot); }
+  .table-wrap :global(.best) { color: var(--accent); font-weight: 700; }
+</style>
+
+<script>
+  import weapons from '../../data/weapons.json';
+
+  const byName = new Map(weapons.map(weapon => [weapon.name.toLowerCase(), weapon]));
+  const input = document.querySelector<HTMLInputElement>('#weapon-search')!;
+  const addButton = document.querySelector<HTMLButtonElement>('#add')!;
+  const options = document.querySelector<HTMLDataListElement>('#weapon-list')!;
+  const wrap = document.querySelector<HTMLElement>('#compare-wrap')!;
+  const hint = document.querySelector('#hint')!;
+  for (const weapon of byName.values()) {
+    const option = document.createElement('option');
+    option.value = weapon.name;
+    options.append(option);
+  }
+
+  const selected: typeof weapons = [];
+  const stats = [
+    ['damage', 'Damage'],
+    ['headshotDamage', 'Headshot damage'],
+    ['roundsPerMinute', 'Fire rate (RPM)'],
+    ['magazine', 'Magazine capacity'],
+    ['fullDamageRangeM', 'Full-damage range (m)'],
+    ['damagePerSecond', 'Damage per second'],
+  ] as const;
+
+  function render() {
+    wrap.hidden = !selected.length;
+    wrap.replaceChildren();
+    if (!selected.length) {
+      hint.textContent = 'Add 2–4 weapons to compare.';
+      return;
+    }
+    hint.textContent = selected.length === 1 ? 'Add another weapon to compare.' : `${selected.length} of 4 weapons selected.`;
+    const table = document.createElement('table');
+    const headers = table.createTHead().insertRow();
+    const column = document.createElement('th');
+    column.textContent = 'Attribute';
+    headers.append(column);
+    for (const weapon of selected) {
+      const header = document.createElement('th');
+      header.scope = 'col';
+      header.textContent = weapon.name;
+      const remove = document.createElement('button');
+      remove.type = 'button';
+      remove.textContent = '×';
+      remove.setAttribute('aria-label', `Remove ${weapon.name}`);
+      remove.addEventListener('click', () => {
+        selected.splice(selected.indexOf(weapon), 1);
+        render();
+        input.focus();
+      });
+      header.append(remove);
+      headers.append(header);
+    }
+    const body = table.createTBody();
+    for (const [key, label] of stats) {
+      const row = body.insertRow();
+      const heading = document.createElement('th');
+      heading.scope = 'row';
+      heading.textContent = label;
+      row.append(heading);
+      const values = selected.map(weapon => weapon[key]);
+      const known = values.filter((value): value is number => typeof value === 'number');
+      const highest = Math.max(...known);
+      for (const value of values) {
+        const cell = row.insertCell();
+        cell.textContent = value == null ? 'Unknown' : String(value);
+        if (known.length > 1 && value === highest) {
+          cell.className = 'best';
+          cell.setAttribute('aria-label', `${value} (highest listed value)`);
+        }
+      }
+    }
+    wrap.append(table);
+  }
+
+  function add() {
+    const weapon = byName.get(input.value.trim().toLowerCase());
+    if (!weapon) { hint.textContent = 'Choose a weapon from the suggestions.'; return; }
+    if (selected.includes(weapon)) { hint.textContent = 'This weapon is already in the comparison.'; return; }
+    if (selected.length === 4) { hint.textContent = 'Remove a weapon to add another.'; return; }
+    selected.push(weapon);
+    input.value = '';
+    render();
+    input.focus();
+  }
+
+  addButton.addEventListener('click', add);
+  input.addEventListener('keydown', event => {
+    if (event.key === 'Enter') add();
+  });
+</script>

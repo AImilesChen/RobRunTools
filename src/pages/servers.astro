@@ -1,0 +1,257 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="ROB RUN Manual Wipe Timer" description="Set a manual ROB RUN reset timer from an opening time and reset period you provide.">
+  <main>
+    <section class="page-hero">
+      <span class="watermark" aria-hidden="true">SERVERS</span>
+      <div class="container">
+        <p class="eyebrow">// SERVERS</p>
+        <h1 class="page-title">Manual Wipe Timer</h1>
+        <p class="page-sub">Plan around your next calculated reset using a schedule you provide.</p>
+      </div>
+    </section>
+
+    <section class="timer-section">
+      <div class="container">
+        <p class="eyebrow">// WIPE TIMER</p>
+        <h2 class="block-title">Track a Server</h2>
+        <p class="block-sub">Enter an opening time in this device’s time zone and the number of days between resets. Timers are saved in this browser and use the values you enter.</p>
+
+        <div class="add-server">
+          <input id="srv-name" class="srv-input" placeholder="Name this timer" aria-label="Server label" />
+          <input id="srv-start" class="srv-input" type="datetime-local" aria-label="Server opening time" />
+          <input id="srv-period" class="srv-input srv-period" type="number" placeholder="Period (days)" min="1" step="1" aria-label="Wipe period in days" />
+          <button id="add-srv" class="btn">Save Timer</button>
+        </div>
+
+        <p id="server-feedback" role="status"></p>
+        <ul id="server-list" class="server-list"></ul>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  .page-hero {
+    padding: 48px 0 40px;
+    border-bottom: 1px solid var(--border);
+    background: linear-gradient(90deg, rgba(20, 22, 27, 0.95) 0%, rgba(20, 22, 27, 0.5) 100%);
+  }
+  .page-title {
+    font-size: clamp(44px, 6vw, 72px);
+    margin: 12px 0 8px;
+  }
+  .page-sub {
+    color: var(--muted);
+    font-size: 17px;
+    margin: 0;
+  }
+  .timer-section {
+    padding: 32px 0 64px;
+  }
+  .block-title {
+    font-size: 34px;
+    margin: 8px 0 6px;
+  }
+  .block-sub {
+    color: var(--muted);
+    font-size: 15px;
+    margin: 0 0 20px;
+  }
+  .add-server {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+  .srv-input {
+    background: var(--input);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 12px 14px;
+    font-size: 14px;
+    font-family: var(--font-body);
+    min-width: 160px;
+  }
+  .srv-period {
+    min-width: 70px;
+    width: 70px;
+  }
+  .srv-input:focus {
+    outline: 1px solid var(--accent);
+  }
+
+  .server-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .server-list :global(.server-item) {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .server-list :global(.srv-name) {
+    flex: 1;
+    font-weight: 500;
+    font-size: 15px;
+  }
+  .server-list :global(.srv-count) {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-style: italic;
+    font-size: 28px;
+    color: var(--accent);
+    font-variant-numeric: tabular-nums;
+  }
+  .server-list :global(.srv-count).done {
+    color: var(--hot);
+  }
+  .server-list :global(.srv-period-tag) {
+    color: var(--muted);
+    font-size: 12px;
+  }
+  .server-list :global(.srv-del) {
+    background: none;
+    border: none;
+    color: var(--muted);
+    cursor: pointer;
+    font-size: 18px;
+  }
+  .server-list :global(.srv-del):hover {
+    color: var(--hot);
+  }
+  .server-list :global(.empty-list) {
+    color: var(--muted);
+    font-size: 14px;
+    padding: 10px 0;
+  }
+  @media (max-width: 520px) {
+    .server-list :global(.server-item) { flex-wrap: wrap; }
+  }
+</style>
+
+<script>
+  type Server = { name: string; startAt: number; periodDays: number };
+  const STORE_KEY = 'rr_wipe_servers';
+  const listEl = document.getElementById('server-list') as HTMLElement;
+  const nameInput = document.getElementById('srv-name') as HTMLInputElement;
+  const startInput = document.getElementById('srv-start') as HTMLInputElement;
+  const periodInput = document.getElementById('srv-period') as HTMLInputElement;
+  const addBtn = document.getElementById('add-srv') as HTMLButtonElement;
+  const feedback = document.getElementById('server-feedback')!;
+
+  let servers: Server[] = [];
+  try {
+    const saved = JSON.parse(localStorage.getItem(STORE_KEY) || '[]');
+    if (Array.isArray(saved)) servers = saved.filter(entry => entry &&
+      typeof entry.name === 'string' && Number.isFinite(entry.startAt) &&
+      Number.isSafeInteger(entry.periodDays) && entry.periodDays >= 1);
+  } catch {
+    servers = [];
+  }
+
+  function nextWipe(s: Server): number {
+    const periodMs = s.periodDays * 24 * 3600 * 1000;
+    const now = Date.now();
+    if (now <= s.startAt) return s.startAt;
+    const elapsed = now - s.startAt;
+    const cycles = Math.ceil(elapsed / periodMs);
+    return s.startAt + cycles * periodMs;
+  }
+
+  function fmtCountdown(ms: number): string {
+    if (ms <= 0) return 'Reset time reached';
+    const d = Math.floor(ms / 86400000);
+    const h = Math.floor((ms % 86400000) / 3600000);
+    const m = Math.floor((ms % 3600000) / 60000);
+    const s = Math.floor((ms % 60000) / 1000);
+    return `${d}d ${h}h ${m}m ${s}s`;
+  }
+
+  function commit(next: Server[]) {
+    try {
+      localStorage.setItem(STORE_KEY, JSON.stringify(next));
+      servers = next;
+      feedback.textContent = '';
+      render();
+      return true;
+    } catch {
+      feedback.textContent = 'This browser could not save your timers.';
+      return false;
+    }
+  }
+
+  function tick() {
+    const now = Date.now();
+    listEl.querySelectorAll<HTMLElement>('.srv-count').forEach((element, index) => {
+      element.textContent = fmtCountdown(nextWipe(servers[index]) - now);
+    });
+  }
+
+  function render() {
+    listEl.replaceChildren();
+    if (!servers.length) {
+      const empty = document.createElement('li');
+      empty.className = 'empty-list';
+      empty.textContent = 'No saved timers. Enter an opening time and reset period above.';
+      listEl.append(empty);
+      return;
+    }
+    servers.forEach((server, index) => {
+      const li = document.createElement('li');
+      li.className = 'server-item';
+      const name = document.createElement('span');
+      name.className = 'srv-name';
+      name.textContent = server.name;
+      const period = document.createElement('span');
+      period.className = 'srv-period-tag';
+      period.textContent = `Every ${server.periodDays} days`;
+      const countdown = document.createElement('span');
+      countdown.className = 'srv-count';
+      const remove = document.createElement('button');
+      remove.type = 'button';
+      remove.className = 'srv-del';
+      remove.setAttribute('aria-label', `Remove timer for ${server.name}`);
+      remove.textContent = '×';
+      remove.addEventListener('click', () => {
+        if (commit(servers.filter((_, i) => i !== index))) addBtn.focus();
+      });
+      li.append(name, period, countdown, remove);
+      listEl.append(li);
+    });
+    tick();
+  }
+
+  function addServer() {
+    const name = nameInput.value.trim() || 'Server';
+    const startAt = new Date(startInput.value).getTime();
+    const periodDays = periodInput.valueAsNumber;
+    if (!Number.isFinite(startAt)) {
+      feedback.textContent = 'Enter a valid opening date and time.';
+      startInput.focus();
+      return;
+    }
+    if (!Number.isSafeInteger(periodDays) || periodDays < 1 || !Number.isFinite(startAt + periodDays * 86400000)) {
+      feedback.textContent = 'Enter a reset period in whole days, 1 or more.';
+      periodInput.focus();
+      return;
+    }
+    if (commit([...servers, { name, startAt, periodDays }])) {
+      nameInput.value = '';
+      feedback.textContent = 'Timer saved in this browser.';
+    }
+  }
+
+  addBtn.addEventListener('click', addServer);
+  render();
+  setInterval(tick, 1000);
+</script>

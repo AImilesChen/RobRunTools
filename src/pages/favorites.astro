@@ -1,0 +1,267 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { communityItemImageBase } from '../lib/game-media.mjs';
+
+
+---
+
+<BaseLayout noindex title="Favorites — ROB RUN Companion" description="Your favorited ROB RUN items, saved locally in your browser.">
+  <main>
+    <section class="page-hero">
+      <span class="watermark" aria-hidden="true">FAVORITES</span>
+      <div class="container">
+        <p class="eyebrow">// FAVORITES</p>
+        <h1 class="page-title">Your Favorites</h1>
+        <p class="page-sub">Items you saved. Stored locally in your browser.</p>
+        <div class="actions">
+          <button id="clear" class="btn btn-dark">Clear all</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="fav-section">
+      <div class="container">
+        <div id="fav-grid" class="fav-grid" data-image-base={communityItemImageBase}></div>
+        <p id="empty" class="empty" role="status"></p>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  .page-hero {
+    padding: 48px 0 40px;
+    border-bottom: 1px solid var(--border);
+    background: linear-gradient(90deg, rgba(20, 22, 27, 0.95) 0%, rgba(20, 22, 27, 0.5) 100%);
+  }
+  .page-title {
+    font-size: clamp(44px, 6vw, 72px);
+    margin: 12px 0 8px;
+  }
+  .page-sub {
+    color: var(--muted);
+    font-size: 17px;
+    margin: 0;
+  }
+  .actions {
+    margin-top: 20px;
+  }
+  .fav-section {
+    padding: 32px 0 64px;
+  }
+  .fav-grid {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 14px;
+  }
+  .fav-grid :global(.f-card) {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 14px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+  .fav-grid :global(.f-top) {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 12px;
+  }
+  .fav-grid :global(.f-price) {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-style: italic;
+    font-size: 15px;
+  }
+  .fav-grid :global(.f-rarity) {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-style: italic;
+    font-size: 12px;
+    text-transform: uppercase;
+  }
+  .fav-grid :global(.f-icon) {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 0 100%);
+    margin-bottom: 12px;
+    position: relative;
+  }
+  .fav-grid :global(.f-icon) img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 14px;
+    z-index: 1;
+  }
+  .fav-grid :global(.f-initial) {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-style: italic;
+    font-size: 40px;
+  }
+  .fav-grid :global(.f-name) {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1.3;
+  }
+  .fav-grid :global(.f-name) a {
+    color: var(--text);
+  }
+  .fav-grid :global(.f-name) a:hover {
+    color: var(--accent);
+  }
+  .fav-grid :global(.f-del) {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: var(--input);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    line-height: 1;
+  }
+  .fav-grid :global(.f-del):hover {
+    color: var(--hot);
+  }
+  .empty {
+    color: var(--muted);
+    font-size: 15px;
+    padding: 20px 0;
+  }
+  @media (max-width: 1200px) {
+    .fav-grid {
+      grid-template-columns: repeat(5, 1fr);
+    }
+  }
+  @media (max-width: 900px) {
+    .fav-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  @media (max-width: 560px) {
+    .fav-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+</style>
+
+<script>
+  import items from '../data/items.json';
+
+  const rarityColor: Record<string, string> = {
+    common: '#92989B',
+    uncommon: '#57C68A',
+    epic: '#A88ADC',
+    legendary: '#F2C64A',
+    exotic: '#E91E76',
+  };
+  const rarityBg: Record<string, string> = {
+    common: '#383B3B',
+    uncommon: '#233D30',
+    epic: '#403348',
+    legendary: '#5E4922',
+    exotic: '#5D203E',
+  };
+  const rarityLabel: Record<string, string> = {
+    common: 'Common',
+    uncommon: 'Uncommon',
+    epic: 'Epic',
+    legendary: 'Legendary',
+    exotic: 'Exotic',
+  };
+  import { readFavorites, toggle } from '../lib/favorites';
+
+  const grid = document.getElementById('fav-grid') as HTMLElement;
+  const emptyEl = document.getElementById('empty') as HTMLElement;
+  const clearBtn = document.getElementById('clear') as HTMLButtonElement;
+  const byId = new Map(items.map((i) => [i.id, i]));
+  const imageBase = grid.dataset.imageBase ?? '';
+
+  function fmtPrice(n: number | null) {
+    return n == null ? 'Unknown' : '$' + n.toLocaleString('en-US');
+  }
+
+  function render() {
+    let favIds;
+    try {
+      favIds = readFavorites().filter(id => byId.has(id));
+    } catch {
+      emptyEl.textContent = 'Saved records could not be read. Your data may still be stored in this browser.';
+      return;
+    }
+    grid.innerHTML = '';
+    if (favIds.length === 0) {
+      emptyEl.textContent = 'No favorites yet. Tap the ☆ on any item to save it.';
+      return;
+    }
+    emptyEl.textContent = '';
+    favIds.forEach((id) => {
+      const i = byId.get(id);
+      if (!i) return;
+      const color = i.rarity ? rarityColor[i.rarity] : '#8A8F98';
+      const bg = i.rarity ? rarityBg[i.rarity] : '#2B303A';
+      const div = document.createElement('div');
+      div.className = 'f-card';
+      div.innerHTML = `
+        <button class="f-del" type="button">×</button>
+        <div class="f-top">
+          <span class="f-price"></span>
+          <span class="f-rarity"></span>
+        </div>
+        <div class="f-icon">
+          <span class="f-initial" aria-hidden="true"></span>
+        </div>
+        <div class="f-name"><a></a></div>
+      `;
+      const link = div.querySelector<HTMLAnchorElement>('.f-name a')!;
+      link.href = `/items/${encodeURIComponent(i.slug)}/`;
+      link.textContent = i.name;
+      div.querySelector('.f-price')!.textContent = fmtPrice(i.priceMin ?? i.priceMax);
+      const rarity = div.querySelector<HTMLElement>('.f-rarity')!;
+      rarity.style.color = color;
+      rarity.textContent = i.rarity ? rarityLabel[i.rarity] : 'Rarity not provided';
+      const icon = div.querySelector<HTMLElement>('.f-icon')!;
+      icon.style.background = bg;
+      icon.style.color = color;
+      icon.querySelector('.f-initial')!.textContent = i.name.charAt(0);
+      if (imageBase) {
+        const image = document.createElement('img');
+        image.src = `${imageBase}${encodeURIComponent(i.id)}.webp`;
+        image.loading = 'lazy';
+        image.alt = '';
+        image.addEventListener('error', () => image.remove());
+        icon.prepend(image);
+      }
+      const remove = div.querySelector<HTMLButtonElement>('.f-del')!;
+      remove.setAttribute('aria-label', `Remove ${i.name}`);
+      remove.addEventListener('click', () => {
+        try {
+          toggle(id);
+          render();
+        } catch {
+          emptyEl.textContent = 'This browser could not remove the saved item. Check its site-data settings and try again.';
+        }
+      });
+      grid.appendChild(div);
+    });
+  }
+
+  clearBtn.addEventListener('click', () => {
+    try {
+      localStorage.removeItem('rr_favorites');
+      render();
+      emptyEl.textContent = 'Favorites cleared in this browser.';
+    } catch {
+      emptyEl.textContent = 'This browser could not clear your saved items. Check its site-data settings and try again.';
+    }
+  });
+  render();
+</script>

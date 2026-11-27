@@ -1,0 +1,97 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { guides } from '../../lib/site-catalog';
+---
+
+<BaseLayout title="ROB RUN Guides — Beginner Guide, FAQ & Glossary" description="ROB RUN guides: beginner guide, frequently asked questions and the glossary of in-game terms.">
+  <main>
+    <section class="page-hero">
+      <span class="watermark" aria-hidden="true">GUIDES</span>
+      <div class="container">
+        <p class="eyebrow">// GUIDES</p>
+        <h1 class="page-title">Guides</h1>
+        <p class="page-sub">Everything you need to survive your first week in Looty Bay.</p>
+      </div>
+    </section>
+
+    <section class="guides-section">
+      <div class="container">
+        <div class="guide-grid">
+          {guides.map((g) => (
+            <a href={g.href} class="guide-card">
+              <span class="guide-tag">{g.tag}</span>
+              <h2 class="guide-title">{g.name}</h2>
+              <p class="guide-desc">{g.text}</p>
+              <span class="guide-arrow">→</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  .page-hero {
+    padding: 48px 0 40px;
+    border-bottom: 1px solid var(--border);
+    background: linear-gradient(90deg, rgba(20, 22, 27, 0.95) 0%, rgba(20, 22, 27, 0.5) 100%);
+  }
+  .page-title {
+    font-size: clamp(44px, 6vw, 72px);
+    margin: 12px 0 8px;
+  }
+  .page-sub {
+    color: var(--muted);
+    font-size: 17px;
+    margin: 0;
+  }
+  .guides-section {
+    padding: 32px 0 64px;
+  }
+  .guide-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .guide-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 24px;
+    position: relative;
+    transition: border-color 0.15s;
+  }
+  .guide-card:hover {
+    border-color: var(--accent);
+  }
+  .guide-tag {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-style: italic;
+    color: var(--accent);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+  }
+  .guide-title {
+    font-size: 26px;
+    margin: 14px 0 8px;
+  }
+  .guide-desc {
+    color: var(--muted);
+    font-size: 14px;
+    margin: 0;
+    line-height: 1.5;
+  }
+  .guide-arrow {
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    color: var(--accent);
+    font-size: 20px;
+  }
+  @media (max-width: 900px) {
+    .guide-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

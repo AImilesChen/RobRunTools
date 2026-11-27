@@ -1,0 +1,95 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { publicContact } from '../lib/site-release.mjs';
+---
+
+<BaseLayout title="Contact — ROB RUN Companion" description="Contact ROB RUN Companion about data corrections, suggestions, privacy or rights concerns." noindex={!publicContact}>
+  <main>
+    <section class="page-hero">
+      <span class="watermark" aria-hidden="true">CONTACT</span>
+      <div class="container">
+        <p class="eyebrow">// CONTACT</p>
+        <h1 class="page-title">Contact</h1>
+        <p class="page-sub">Data corrections, suggestions, privacy and rights concerns.</p>
+      </div>
+    </section>
+
+    <section class="contact-section">
+      <div class="container">
+        {publicContact ? (
+          <p class="contact-address">Email the site operator at <a href={`mailto:${publicContact}`}>{publicContact}</a>.</p>
+        ) : (
+          <p class="contact-address">Email contact is not yet available. For game account or technical issues, use the game's support links on the <a href="/sources">Sources page</a>.</p>
+        )}
+        <div class="contact-grid">
+          <div class="contact-card">
+            <h2>Report a data error</h2>
+            <p>Include the page URL, the field that appears wrong and a source for the correction.</p>
+          </div>
+          <div class="contact-card">
+            <h2>Suggest a feature</h2>
+            <p>Tell us what you are trying to do and where the current tools fall short.</p>
+          </div>
+          <div class="contact-card">
+            <h2>Privacy and rights</h2>
+            <p>Describe the request and identify the relevant page or material. Leave out game passwords and unnecessary personal information.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  .page-hero {
+    padding: 48px 0 40px;
+    border-bottom: 1px solid var(--border);
+    background: linear-gradient(90deg, rgba(20, 22, 27, 0.95) 0%, rgba(20, 22, 27, 0.5) 100%);
+  }
+  .page-title {
+    font-size: clamp(44px, 6vw, 72px);
+    margin: 12px 0 8px;
+  }
+  .page-sub {
+    color: var(--muted);
+    font-size: 17px;
+    margin: 0;
+  }
+  .contact-section {
+    padding: 32px 0 64px;
+  }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .contact-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 24px;
+  }
+  .contact-card h2 {
+    font-size: 22px;
+    margin: 0 0 10px;
+  }
+  .contact-card p {
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 0 0 14px;
+  }
+  .contact-address {
+    margin: 0 0 16px;
+    color: var(--muted);
+    overflow-wrap: anywhere;
+  }
+  .contact-address a {
+    color: var(--accent);
+    text-decoration: underline;
+  }
+  @media (max-width: 900px) {
+    .contact-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,174 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Search ROB RUN — ROB RUN Companion" description="Find items, vehicles, location records, tools and guides in ROB RUN Companion." noindex>
+  <main class="container search-main">
+    <h1>Search ROB RUN</h1>
+    <form id="site-search-form" action="/search/" method="get" role="search">
+      <label class="sr-only" for="query">Search items, locations, tools or guides</label>
+      <input id="query" name="q" type="search" placeholder="Search the site…" aria-describedby="search-help" data-primary-search autocomplete="off" autofocus />
+      <button type="submit" class="btn">Search</button>
+    </form>
+    <p id="search-help">Search by name or keyword. Use ↑ and ↓ to choose, then Enter to open.</p>
+    <div id="search-status" role="status">Enter a name or keyword to search.</div>
+    <div id="search-results" class="results"></div>
+    <nav class="browse" aria-label="Browse references"><a href="/items/">Browse items</a><a href="/locations/">Browse locations</a></nav>
+    <noscript><p>Search needs JavaScript. You can still browse items and locations.</p></noscript>
+  </main>
+</BaseLayout>
+
+<style>
+  .search-main { padding-block: clamp(30px, 5vw, 64px); min-height: 52vh; }
+  h1 { font-size: clamp(38px, 5vw, 66px); margin-bottom: 20px; }
+  form { display: flex; align-items: stretch; gap: 8px; max-width: 680px; }
+  input { min-width: 0; flex: 1; padding: 12px 14px; border: 1px solid var(--control-border); background: var(--input); color: var(--text); font: inherit; }
+  input::placeholder { color: var(--muted); }
+  #search-help, #search-status { color: var(--muted); margin: 10px 0; overflow-wrap: anywhere; }
+  #search-help { font-size: 14px; }
+  .results { max-width: 920px; margin: 14px 0 20px; display: grid; gap: 18px; }
+  .results :global(h2) { font-size: 25px; margin: 0 0 8px; }
+  .results :global(ul) { padding: 0; margin: 0; list-style: none; display: grid; gap: 6px; }
+  .results :global(button) { margin-top: 8px; }
+  .results :global(a) { display: grid; grid-template-columns: minmax(0,1fr) auto; gap: 10px; align-items: center; border: 1px solid var(--border); padding: 12px 15px; min-height: 55px; background: var(--surface); }
+  .results :global(a:hover) { border-color: var(--accent); }
+  .results :global(strong), .results :global(small) { display: block; overflow-wrap: anywhere; }
+  .results :global(small) { color: var(--muted); }
+  .results :global(.listed-price) { text-align: right; font-size: 14px; font-variant-numeric: tabular-nums; }
+  .browse { color: var(--accent); display: flex; flex-wrap: wrap; gap: 8px 20px; }
+  @media (max-width: 420px) { .results :global(a) { padding: 9px 12px; } .results :global(.listed-price) { max-width: 120px; } }
+</style>
+
+<script>
+  import items from '../data/items.json';
+  import { priceRange } from '../lib/item-value';
+  import { locationRecords, locationRecordUrl } from '../lib/location-records';
+  import { tools, guides } from '../lib/site-catalog';
+
+  const form = document.querySelector<HTMLFormElement>('#site-search-form')!;
+  const input = document.querySelector<HTMLInputElement>('#query')!;
+  const status = document.querySelector('#search-status')!;
+  const results = document.querySelector('#search-results')!;
+  const normalize = (value: string) => value.normalize('NFKC').toLowerCase().trim();
+  const itemEntries = items.map(item => ({
+    name: item.name, href: '/items/' + encodeURIComponent(item.slug) + '/',
+    detail: item.categoryName, keywords: item.nameRu ?? '', value: priceRange(item.priceMin, item.priceMax),
+    vehicle: item.category === 'vehicles',
+  }));
+  const groups = [
+    { label: 'Items', entries: itemEntries.filter(entry => !entry.vehicle) },
+    { label: 'Vehicles', entries: itemEntries.filter(entry => entry.vehicle) },
+    { label: 'Locations', entries: locationRecords.map(record => ({
+      name: record.name, href: locationRecordUrl(record.id),
+      detail: [record.district, record.building, record.id].filter(Boolean).join(' · '),
+      keywords: record.type, value: '',
+    })) },
+    { label: 'Tools', entries: tools.map(entry => ({ ...entry, detail: entry.text, value: '' })) },
+    { label: 'Guides', entries: guides.map(entry => ({ ...entry, detail: entry.text, value: '' })) },
+  ].map(group => ({
+    label: group.label,
+    entries: group.entries.map(entry => ({ ...entry, key: normalize(entry.name), terms: normalize(`${entry.name} ${entry.detail} ${entry.keywords}`) })),
+  }));
+
+  function render() {
+    const query = input.value.trim();
+    const key = normalize(query);
+    results.replaceChildren();
+
+    if (!key) {
+      status.textContent = 'Enter a name or keyword to search.';
+      return;
+    }
+
+    const terms = key.split(/\s+/);
+    let count = 0;
+    for (const group of groups) {
+      const matches = group.entries.filter(entry => terms.every(term => entry.terms.includes(term)))
+        .sort((a, b) => Number(b.key === key) - Number(a.key === key) ||
+          Number(b.key.startsWith(key)) - Number(a.key.startsWith(key)));
+      if (!matches.length) continue;
+      count += matches.length;
+      const section = document.createElement('section');
+      const heading = document.createElement('h2');
+      heading.textContent = `${group.label} (${matches.length})`;
+      const list = document.createElement('ul');
+
+      function appendMatches(from: number, to: number) {
+        for (const entry of matches.slice(from, to)) {
+          const row = document.createElement('li');
+          const link = document.createElement('a');
+          const identity = document.createElement('span');
+          const name = document.createElement('strong');
+          const detail = document.createElement('small');
+          link.href = entry.href;
+          name.textContent = entry.name;
+          detail.textContent = entry.detail;
+          identity.append(name, detail);
+          link.append(identity);
+          if (entry.value) {
+            const value = document.createElement('span');
+            value.textContent = entry.value;
+            value.className = 'listed-price';
+            link.append(value);
+          }
+          row.append(link);
+          list.append(row);
+        }
+      }
+
+      const limit = 12;
+      appendMatches(0, limit);
+      section.append(heading, list);
+      if (matches.length > limit) {
+        const more = document.createElement('button');
+        more.type = 'button';
+        more.className = 'btn btn-dark';
+        more.textContent = `Show all ${matches.length} ${group.label.toLowerCase()}`;
+        more.addEventListener('click', () => {
+          appendMatches(limit, matches.length);
+          list.querySelectorAll('a')[limit]?.focus();
+          more.remove();
+        });
+        section.append(more);
+      }
+      results.append(section);
+    }
+    status.textContent = count
+      ? `${count} ${count === 1 ? 'result' : 'results'} for “${query}”.`
+      : `No matches for “${query}”. Try a shorter query or browse the directory.`;
+  }
+
+  function updateSearch() {
+    const url = new URL(location.href);
+    if (input.value.trim()) url.searchParams.set('q', input.value.trim());
+    else url.searchParams.delete('q');
+    if (url.href !== location.href) history.replaceState(history.state, '', url);
+    render();
+  }
+
+  function restoreSearch() {
+    input.value = new URLSearchParams(location.search).get('q') ?? '';
+    render();
+  }
+
+  form.addEventListener('submit', event => { event.preventDefault(); updateSearch(); });
+  input.addEventListener('input', updateSearch);
+  input.addEventListener('keydown', event => {
+    if (event.key !== 'ArrowDown') return;
+    const first = results.querySelector('a');
+    if (first) { event.preventDefault(); first.focus(); }
+  });
+  results.addEventListener('keydown', event => {
+    if (!(event.target instanceof HTMLAnchorElement)) return;
+    if (event.key === 'Escape') { event.preventDefault(); input.focus(); return; }
+    if (event.key !== 'ArrowUp' && event.key !== 'ArrowDown') return;
+    const links = [...results.querySelectorAll('a')];
+    const index = links.indexOf(event.target);
+    event.preventDefault();
+    if (event.key === 'ArrowUp') (links[index - 1] ?? input).focus();
+    else links[index + 1]?.focus();
+  });
+  window.addEventListener('pageshow', restoreSearch);
+  window.addEventListener('popstate', restoreSearch);
+  restoreSearch();
+</script>

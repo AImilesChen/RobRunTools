@@ -1,0 +1,266 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Daily Challenge — ROB RUN Companion" description="Guess a ROB RUN item from four clues. The puzzle follows the UTC date.">
+  <main>
+    <section class="page-hero">
+      <span class="watermark" aria-hidden="true">DAILY</span>
+      <div class="container">
+        <p class="eyebrow">// DAILY CHALLENGE</p>
+        <h1 class="page-title">Daily Guess</h1>
+        <p class="page-sub">Use the clues to guess today’s item. The puzzle follows the UTC date.</p>
+        <p class="date-line" id="date-line"></p>
+      </div>
+    </section>
+
+    <section class="daily-section">
+      <div class="container daily-layout">
+        <div class="clues-card">
+          <h2 class="block-title">Clues</h2>
+          <ul class="clues" id="clues"></ul>
+        </div>
+
+        <div class="guess-card">
+          <input id="guess" class="guess-input" list="item-list" placeholder="Type your guess…" aria-label="Your item guess" autocomplete="off" />
+          <datalist id="item-list"></datalist>
+          <button id="submit" class="btn">Guess</button>
+          <p class="feedback" id="feedback" role="status"></p>
+        </div>
+
+        <div class="stats-card">
+          <h2 class="block-title">Your record</h2>
+          <div class="record-row">
+            <span class="record-label">Streak</span>
+            <span class="record-value" id="streak">0</span>
+          </div>
+          <div class="record-row">
+            <span class="record-label">Total correct</span>
+            <span class="record-value" id="total">0</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  .page-hero {
+    padding: 48px 0 40px;
+    border-bottom: 1px solid var(--border);
+    background: linear-gradient(90deg, rgba(20, 22, 27, 0.95) 0%, rgba(20, 22, 27, 0.5) 100%);
+  }
+  .page-title {
+    font-size: clamp(44px, 6vw, 72px);
+    margin: 12px 0 8px;
+  }
+  .page-sub {
+    color: var(--muted);
+    font-size: 17px;
+    margin: 0;
+  }
+  .date-line {
+    color: var(--accent);
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 700;
+    font-size: 14px;
+    margin-top: 12px;
+  }
+  .daily-section {
+    padding: 32px 0 64px;
+  }
+  .daily-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+    align-items: start;
+  }
+  .clues-card,
+  .guess-card,
+  .stats-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 24px;
+  }
+  .block-title {
+    font-size: 22px;
+    margin: 0 0 16px;
+  }
+  .clues {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .clues :global(.clue) {
+    font-size: 15px;
+    line-height: 1.5;
+  }
+  .clues :global(.clue) .k {
+    color: var(--muted);
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-size: 12px;
+    display: block;
+  }
+  .guess-input {
+    width: 100%;
+    background: var(--input);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 14px 16px;
+    font-size: 15px;
+    font-family: var(--font-body);
+    margin-bottom: 12px;
+  }
+  .guess-input:focus {
+    outline: 1px solid var(--accent);
+  }
+  .feedback {
+    font-size: 14px;
+    margin-top: 14px;
+    line-height: 1.6;
+  }
+  .feedback.correct {
+    color: var(--accent);
+  }
+  .feedback.wrong {
+    color: var(--hot);
+  }
+  .feedback a {
+    color: var(--accent);
+  }
+  .record-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .record-label {
+    color: var(--muted);
+    font-size: 14px;
+  }
+  .record-value {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-style: italic;
+    font-size: 24px;
+    color: var(--accent);
+  }
+  @media (max-width: 900px) {
+    .daily-layout {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script>
+  import items from '../data/items.json';
+  const eligible = items.filter((i) => i.rarity && i.priceMin != null && i.name && i.name.length > 1);
+
+  function seed(str: string) {
+    let h = 0;
+    for (let i = 0; i < str.length; i++) h = (h * 31 + str.charCodeAt(i)) >>> 0;
+    return h;
+  }
+  const today = new Date().toISOString().slice(0, 10);
+  const answer = eligible[seed(today) % eligible.length];
+
+  document.getElementById('date-line')!.textContent = `${today} (UTC) · ${eligible.length} possible items`;
+
+  function fmt(n: number) {
+    return '$' + n.toLocaleString('en-US');
+  }
+  const cluesEl = document.getElementById('clues')!;
+  const clueData: [string, string][] = [
+    ['Rarity', answer.rarity!],
+    ['Category', answer.categoryName],
+    ['First letter', answer.name.charAt(0).toUpperCase()],
+    ['Listed price', answer.priceMax == null ? fmt(answer.priceMin!) : `${fmt(answer.priceMin!)} – ${fmt(answer.priceMax)}`],
+  ];
+  cluesEl.innerHTML = clueData
+    .map(([k, v]) => `<li class="clue"><span class="k">${k}</span>${v}</li>`)
+    .join('');
+
+  const datalist = document.getElementById('item-list') as HTMLDataListElement;
+  for (const i of eligible) {
+    const opt = document.createElement('option');
+    opt.value = i.name;
+    datalist.appendChild(opt);
+  }
+
+  const guessInput = document.getElementById('guess') as HTMLInputElement;
+  const submitBtn = document.getElementById('submit') as HTMLButtonElement;
+  const feedback = document.getElementById('feedback') as HTMLElement;
+  const streakEl = document.getElementById('streak') as HTMLElement;
+  const totalEl = document.getElementById('total') as HTMLElement;
+
+  const STORE = 'rr_daily';
+  let record: { last?: string; streak: number; total: number; done?: string } = { streak: 0, total: 0 };
+  try {
+    record = JSON.parse(localStorage.getItem(STORE) || '{}');
+    record = { streak: 0, total: 0, ...record };
+  } catch {
+    record = { streak: 0, total: 0 };
+  }
+  const alreadyDone = record.done === today;
+
+  function save() {
+    localStorage.setItem(STORE, JSON.stringify(record));
+  }
+  function renderRecord() {
+    streakEl.textContent = String(record.streak || 0);
+    totalEl.textContent = String(record.total || 0);
+  }
+
+  if (alreadyDone) {
+    feedback.classList.remove('wrong');
+    feedback.classList.add('correct');
+    feedback.innerHTML = `Already guessed today. The answer was <a href="/items/${answer.slug}">${answer.name}</a>.`;
+    submitBtn.setAttribute('disabled', 'true');
+  }
+
+  function submit() {
+    const g = guessInput.value.trim().toLowerCase();
+    if (!g || record.done === today) return;
+    if (g === answer.name.toLowerCase()) {
+      feedback.classList.remove('wrong');
+    feedback.classList.add('correct');
+      feedback.innerHTML = `Correct! It's <a href="/items/${answer.slug}">${answer.name}</a>.`;
+      if (!alreadyDone) {
+        record.total = (record.total || 0) + 1;
+        const yesterday = new Date(Date.now() - 86400000).toISOString().slice(0, 10);
+        record.streak = record.last === yesterday ? (record.streak || 0) + 1 : 1;
+        record.last = today;
+        record.done = today;
+        try {
+          save();
+        } catch {
+          feedback.append(' This browser could not save your record.');
+        }
+        renderRecord();
+        submitBtn.setAttribute('disabled', 'true');
+      }
+    } else {
+      feedback.classList.remove('correct');
+      feedback.classList.add('wrong');
+      feedback.textContent = 'Not quite. Try again.';
+    }
+  }
+
+  submitBtn.addEventListener('click', submit);
+  guessInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      submit();
+    }
+  });
+  renderRecord();
+</script>

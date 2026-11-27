@@ -1,0 +1,80 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { publicContact } from '../lib/site-release.mjs';
+import { communityItemImageBase, officialArtPreview } from '../lib/game-media.mjs';
+---
+
+<BaseLayout title="Privacy Policy — ROB RUN Companion" description="The privacy policy for ROB RUN Companion.">
+  <main>
+    <section class="page-hero">
+      <span class="watermark" aria-hidden="true">PRIVACY</span>
+      <div class="container">
+        <p class="eyebrow">// PRIVACY</p>
+        <h1 class="page-title">Privacy Policy</h1>
+        <p class="page-sub">How this site handles requests, browser records and messages.</p>
+      </div>
+    </section>
+
+    <article class="article">
+      <div class="container">
+        <h2>Who runs the site</h2>
+        <p>ROB RUN Companion is an independent site for adults operated by mileschen, an individual based in mainland China. The site’s tools are free and require no website account.</p>
+
+        <h2>Browser tools and saved records</h2>
+        <p>Search matching and calculations run in your browser. Favorites store selected item IDs. Manual timers store the label, opening time and reset period you enter. The daily challenge saves completion and progress on this browser.</p>
+        <p>These browser records have no application-set expiry. Clear this site’s data in your browser to remove them. Clearing browser data does not delete a message you previously sent.</p>
+
+        <h2>Page requests and searches</h2>
+        <p>Delivering a page or asset involves information such as your IP address, requested address and browser headers. Search terms submitted from the homepage appear in the page address and may appear in browser history or delivery logs. Use game terms in search and keep personal information out of tool inputs.</p>
+
+        <h2>External resources and links</h2>
+        <p>Pages request fonts from Google Fonts. Those requests expose connection details, such as your IP address, to the provider. See <a href="https://policies.google.com/privacy">Google’s privacy policy</a>. Following a link to Steam or a wiki takes you to that service.</p>
+        {(officialArtPreview || communityItemImageBase) && <p>This design preview also loads game screenshots from Steam’s image servers and item thumbnails from the community image host. Those hosts receive requests from your browser.</p>}
+        <p>This version of the site does not include application integrations for advertising or audience analytics.</p>
+
+        <h2>Contact and privacy requests</h2>
+        <p>When you email us, we receive your address and the information you send. We use it to respond, investigate corrections and handle privacy or rights requests. Share only what is needed for your request.</p>
+        <p>{publicContact ? <a href={`mailto:${publicContact}`}>{publicContact}</a> : <a href="/contact/">Contact the site operator</a>}</p>
+      </div>
+    </article>
+  </main>
+</BaseLayout>
+
+<style>
+  .page-hero {
+    padding: 48px 0 40px;
+    border-bottom: 1px solid var(--border);
+    background: linear-gradient(90deg, rgba(20, 22, 27, 0.95) 0%, rgba(20, 22, 27, 0.5) 100%);
+  }
+  .page-title {
+    font-size: clamp(44px, 6vw, 72px);
+    margin: 12px 0 8px;
+  }
+  .page-sub {
+    color: var(--muted);
+    font-size: 17px;
+    margin: 0;
+  }
+  .article {
+    padding: 40px 0 64px;
+  }
+  .article .container {
+    max-width: 760px;
+  }
+  .article h2 {
+    font-size: 26px;
+    margin: 32px 0 10px;
+  }
+  .article h2:first-child {
+    margin-top: 0;
+  }
+  .article p {
+    color: var(--text);
+    font-size: 16px;
+    line-height: 1.75;
+    margin: 0 0 14px;
+  }
+  .article a {
+    color: var(--accent);
+  }
+</style>

@@ -1,0 +1,110 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const faqs = [
+  {
+    q: 'What is ROB RUN?',
+    a: 'ROB RUN is a free crime-sandbox MMO by Kefir, on Steam in Early Access since November 4, 2026. Every cop and every criminal is a real player, and the city of Looty Bay resets every seven days.',
+  },
+  {
+    q: 'Is ROB RUN free?',
+    a: 'Yes. The game is free to play. B-Coins buy cosmetics only and do not affect stats.',
+  },
+  {
+    q: 'When is the wipe?',
+    a: 'The "Federal Raid" wipes plots, bases, weapons and cash every seven days. The exact schedule varies per server — track it with our <a href="/servers">wipe timer</a>.',
+  },
+  {
+    q: 'Is this site official?',
+    a: 'No. This is an unofficial fan site and is not affiliated with Kefir. See <a href="/about">About</a> for details.',
+  },
+  {
+    q: 'Where does the data come from?',
+    a: 'Item and weapon data comes from the open tables published by <a href="https://robrunwiki.com/en/data/">ROB RUN Wiki</a>, game version 0.7.0. See our <a href="/sources">Sources</a> page.',
+  },
+  {
+    q: 'Why do some items show "Unknown" price?',
+    a: 'Some items have no fence price in the game data. We show Unknown rather than a made-up number.',
+  },
+];
+---
+
+<BaseLayout title="ROB RUN FAQ — Frequently Asked Questions" description="Frequently asked questions about ROB RUN: is it free, when is the wipe, is this site official, and where the data comes from.">
+  <main>
+    <section class="page-hero">
+      <span class="watermark" aria-hidden="true">FAQ</span>
+      <div class="container">
+        <p class="eyebrow">// GUIDES · FAQ</p>
+        <h1 class="page-title">FAQ</h1>
+        <p class="page-sub">Quick answers to the most common questions.</p>
+      </div>
+    </section>
+
+    <section class="faq-section">
+      <div class="container">
+        <div class="faq-list">
+          {faqs.map((f) => (
+            <details class="faq-item">
+              <summary>{f.q}</summary>
+              <p set:html={f.a} />
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  .page-hero {
+    padding: 48px 0 40px;
+    border-bottom: 1px solid var(--border);
+    background: linear-gradient(90deg, rgba(20, 22, 27, 0.95) 0%, rgba(20, 22, 27, 0.5) 100%);
+  }
+  .page-title {
+    font-size: clamp(44px, 6vw, 72px);
+    margin: 12px 0 8px;
+  }
+  .page-sub {
+    color: var(--muted);
+    font-size: 17px;
+    margin: 0;
+  }
+  .faq-section {
+    padding: 32px 0 64px;
+  }
+  .faq-section .container {
+    max-width: 760px;
+  }
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .faq-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+  }
+  .faq-item summary {
+    cursor: pointer;
+    padding: 18px 20px;
+    font-weight: 500;
+    font-size: 16px;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 700;
+  }
+  .faq-item summary:hover {
+    color: var(--accent);
+  }
+  .faq-item p {
+    padding: 0 20px 18px;
+    margin: 0;
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+  .faq-item p a {
+    color: var(--accent);
+  }
+</style>

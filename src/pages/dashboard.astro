@@ -1,0 +1,268 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import items from '../data/items.json';
+
+
+---
+
+<BaseLayout noindex title="Dashboard — ROB RUN Companion" description="Your ROB RUN Companion dashboard: favorites and saved servers, all stored locally.">
+  <main>
+    <section class="page-hero">
+      <span class="watermark" aria-hidden="true">DASHBOARD</span>
+      <div class="container">
+        <p class="eyebrow">// MY DASHBOARD</p>
+        <h1 class="page-title">Dashboard</h1>
+        <p class="page-sub">Your saved data. Favorites and timer settings are saved in this browser.</p>
+      </div>
+    </section>
+
+    <section class="dash-section">
+      <div class="container">
+        <div class="stat-row">
+          <div class="stat-card">
+            <span class="stat-label">FAVORITES</span>
+            <span class="stat-value" id="fav-count">0</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label">SAVED SERVERS</span>
+            <span class="stat-value" id="srv-count">0</span>
+          </div>
+        </div>
+
+        <h2 class="block-title">Favorites</h2>
+        <div id="fav-grid" class="fav-grid"></div>
+        <p id="fav-empty" class="empty"></p>
+
+        <h2 class="block-title">Saved servers</h2>
+        <ul id="srv-list" class="srv-list"></ul>
+        <p id="srv-empty" class="empty"></p>
+
+        <div class="data-row">
+          <button id="clear-favs" class="btn btn-dark">Clear favorites</button>
+          <button id="clear-srvs" class="btn btn-dark">Clear servers</button>
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  .page-hero {
+    padding: 48px 0 40px;
+    border-bottom: 1px solid var(--border);
+    background: linear-gradient(90deg, rgba(20, 22, 27, 0.95) 0%, rgba(20, 22, 27, 0.5) 100%);
+  }
+  .page-title {
+    font-size: clamp(44px, 6vw, 72px);
+    margin: 12px 0 8px;
+  }
+  .page-sub {
+    color: var(--muted);
+    font-size: 17px;
+    margin: 0;
+  }
+  .dash-section {
+    padding: 32px 0 64px;
+  }
+  .stat-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+  .stat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .stat-label {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 700;
+    color: var(--muted);
+    font-size: 13px;
+    letter-spacing: 0.08em;
+  }
+  .stat-value {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-style: italic;
+    font-size: 40px;
+    color: var(--accent);
+  }
+  .block-title {
+    font-size: 28px;
+    margin: 0 0 16px;
+  }
+  .fav-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 12px;
+    margin-bottom: 40px;
+  }
+  .fav-grid :global(.f-chip) {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 12px;
+    text-align: center;
+  }
+  .fav-grid :global(.f-chip) a {
+    color: var(--text);
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .fav-grid :global(.f-chip) a:hover {
+    color: var(--accent);
+  }
+  .fav-grid :global(.f-chip) .rarity {
+    display: block;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 700;
+    font-size: 11px;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+  .srv-list {
+    list-style: none;
+    margin: 0 0 40px;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .srv-list :global(.srv-item) {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 14px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .srv-list :global(.srv-name) {
+    font-weight: 500;
+    font-size: 15px;
+  }
+  .srv-list :global(.srv-count) {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-style: italic;
+    color: var(--accent);
+    font-variant-numeric: tabular-nums;
+  }
+  .data-row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .empty {
+    color: var(--muted);
+    font-size: 14px;
+    margin: 0 0 24px;
+  }
+  @media (max-width: 900px) {
+    .fav-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  @media (max-width: 560px) {
+    .fav-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .stat-row {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script>
+  import items from '../data/items.json';
+
+  const rarityColor: Record<string, string> = {
+    common: '#92989B',
+    uncommon: '#57C68A',
+    epic: '#A88ADC',
+    legendary: '#F2C64A',
+    exotic: '#E91E76',
+  };
+  const rarityLabel: Record<string, string> = {
+    common: 'Common',
+    uncommon: 'Uncommon',
+    epic: 'Epic',
+    legendary: 'Legendary',
+    exotic: 'Exotic',
+  };
+  import { getAll } from '../lib/favorites';
+
+  const byId = new Map(items.map((i) => [i.id, i]));
+  const favGrid = document.getElementById('fav-grid') as HTMLElement;
+  const favEmpty = document.getElementById('fav-empty') as HTMLElement;
+  const favCount = document.getElementById('fav-count') as HTMLElement;
+  const srvList = document.getElementById('srv-list') as HTMLElement;
+  const srvEmpty = document.getElementById('srv-empty') as HTMLElement;
+  const srvCount = document.getElementById('srv-count') as HTMLElement;
+
+  function renderFavs() {
+    const ids = getAll();
+    favCount.textContent = String(ids.length);
+    favGrid.innerHTML = '';
+    if (ids.length === 0) {
+      favEmpty.textContent = 'No favorites yet. Save items from the database.';
+      return;
+    }
+    favEmpty.textContent = '';
+    ids.forEach((id) => {
+      const i = byId.get(id);
+      if (!i) return;
+      const color = i.rarity ? rarityColor[i.rarity] : '#8A8F98';
+      const div = document.createElement('div');
+      div.className = 'f-chip';
+      div.innerHTML = `<a href="/items/${i.slug}">${i.name}</a><span class="rarity" style="color:${color}">${i.rarity ? rarityLabel[i.rarity] : 'None'}</span>`;
+      favGrid.appendChild(div);
+    });
+  }
+
+  function renderSrvs() {
+    let srvs: any[] = [];
+    try {
+      const saved = JSON.parse(localStorage.getItem('rr_wipe_servers') || '[]');
+      if (Array.isArray(saved)) srvs = saved.filter(entry => entry && typeof entry.name === 'string' && Number.isSafeInteger(entry.periodDays));
+    } catch {
+      srvs = [];
+    }
+    srvCount.textContent = String(srvs.length);
+    srvList.innerHTML = '';
+    if (srvs.length === 0) {
+      srvEmpty.textContent = 'No saved servers. Add one on the Servers page.';
+      return;
+    }
+    srvEmpty.textContent = '';
+    srvs.forEach((s) => {
+      const li = document.createElement('li');
+      li.className = 'srv-item';
+      const name = document.createElement('span');
+      name.className = 'srv-name';
+      name.textContent = s.name;
+      const interval = document.createElement('span');
+      interval.className = 'srv-count';
+      interval.textContent = `Every ${s.periodDays} days`;
+      li.append(name, interval);
+      srvList.appendChild(li);
+    });
+  }
+
+  document.getElementById('clear-favs')?.addEventListener('click', () => {
+    localStorage.removeItem('rr_favorites');
+    renderFavs();
+  });
+  document.getElementById('clear-srvs')?.addEventListener('click', () => {
+    localStorage.removeItem('rr_wipe_servers');
+    renderSrvs();
+  });
+
+  renderFavs();
+  renderSrvs();
+</script>

@@ -1,0 +1,293 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import items from '../../data/items.json';
+import { priceRange } from '../../lib/item-value';
+import weapons from '../../data/weapons.json';
+import ItemPicture from '../../components/ItemPicture.astro';
+import CatalogItemCard from '../../components/CatalogItemCard.astro';
+import { catalogItems, itemRarities } from '../../lib/catalog-items';
+import '../../styles/catalog-items.css';
+
+type Item = (typeof items)[number];
+type Weapon = (typeof weapons)[number];
+
+const rarityColor: Record<string, string> = {
+  common: '#92989B',
+  uncommon: '#57C68A',
+  epic: '#A88ADC',
+  legendary: '#F2C64A',
+  exotic: '#E91E76',
+};
+export async function getStaticPaths() {
+  const weaponById = new Map(weapons.map((w) => [w.id, w]));
+  return items.map((item) => ({
+    params: { slug: item.slug },
+    props: { item, weapon: weaponById.get(item.id) ?? null },
+  }));
+}
+
+const { item, weapon } = Astro.props as { item: Item; weapon: Weapon | null };
+
+const color = item.rarity ? rarityColor[item.rarity] : '#8A8F98';
+
+const hasPrice = item.priceMin !== null || item.priceMax !== null;
+const lootUrl = `/tools/loot-calculator/?item=${encodeURIComponent(item.id)}`;
+const categoryUrl = '/items/category/' + item.category + '/';
+const relatedItems = catalogItems.filter(candidate => candidate.category === item.category && candidate.name !== item.name).slice(0, 4);
+---
+
+<BaseLayout title={`${item.name} — ROB RUN ${hasPrice ? 'Listed Price & Details' : 'Item Details'}`} description={`Look up ${item.name} in ROB RUN. Check its category, ${hasPrice ? 'listed prices' : 'available attributes'} and source.`}>
+  <main>
+    <div class="container detail">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a> <span aria-hidden="true">/</span> <a href="/items/">Items</a> <span aria-hidden="true">/</span> <a href={categoryUrl}>{item.categoryName}</a> <span aria-hidden="true">/</span> <span class="current" aria-current="page">{item.name}</span>
+      </nav>
+
+      <div class="detail-grid">
+        <ItemPicture item={item} large priority />
+        <div class="detail-info">
+          <p class="eyebrow">// {item.categoryName}</p>
+          <h1 class="detail-title">{item.name}</h1>
+          <div class="tags">
+            <span class="tag" style={`color:${color};border-color:${color}`}>
+              {itemRarities[item.rarity ?? 'none'] ?? itemRarities.none}
+            </span>
+            <span class="tag">{item.categoryName}</span>
+          </div>
+          <div class="price-box">
+            <span class="price-label">Listed price</span>
+            <span class="price-value">{priceRange(item.priceMin, item.priceMax)}</span>
+            <p class="price-note">{hasPrice ? 'Reference value from the listed source. Actual sale values may differ.' : 'The current source provides no usable price.'} <a href={item.url}>View source ↗</a></p>
+          </div>
+          <div class="detail-actions">
+            {hasPrice && <a class="btn" href={lootUrl}>Estimate loot value</a>}
+            <button class="detail-fav" data-id={item.id} type="button" aria-pressed="false">☆ Favorite</button>
+          </div>
+          <p id="save-item-feedback" role="status" hidden></p>
+        </div>
+      </div>
+
+      {weapon && (
+        <section class="weapon-stats">
+          <p class="eyebrow">// WEAPON STATS</p>
+          <h2 class="block-title">Combat Data</h2>
+          <div class="stats-grid">
+            <div class="stat"><span class="stat-k">Damage</span><span class="stat-v">{weapon.damage ?? 'Unknown'}</span></div>
+            <div class="stat"><span class="stat-k">Headshot</span><span class="stat-v">{weapon.headshotDamage ?? 'Unknown'}</span></div>
+            <div class="stat"><span class="stat-k">Fire rate</span><span class="stat-v">{weapon.roundsPerMinute == null ? 'Unknown' : `${weapon.roundsPerMinute} RPM`}</span></div>
+            <div class="stat"><span class="stat-k">Magazine</span><span class="stat-v">{weapon.magazine ?? 'Unknown'}</span></div>
+            <div class="stat"><span class="stat-k">Full-damage range</span><span class="stat-v">{weapon.fullDamageRangeM == null ? 'Unknown' : `${weapon.fullDamageRangeM} m`}</span></div>
+            <div class="stat highlight"><span class="stat-k">DPS</span><span class="stat-v">{weapon.damagePerSecond ?? 'Unknown'}</span></div>
+          </div>
+        </section>
+      )}
+
+      <section class="source-card">
+        <p class="eyebrow">// SOURCE</p>
+        <p class="source-line">
+          Source: <a href={item.url}>ROB RUN Wiki community record</a>. Listed prices can change with Early Access updates.
+        </p>
+        <p class="source-line muted">Unofficial fan site · not affiliated with Kefir.</p>
+      </section>
+      {relatedItems.length > 0 && (
+        <section class="catalog-related" aria-labelledby="related-items-title">
+          <h2 id="related-items-title">More in {item.categoryName}</h2>
+          <div class="catalog-grid">{relatedItems.map(candidate => <CatalogItemCard item={candidate} />)}</div>
+          <p><a class="catalog-readback" href={categoryUrl}>Browse all {item.categoryName.toLowerCase()}</a></p>
+        </section>
+      )}
+    </div>
+  </main>
+</BaseLayout>
+
+<style>
+  .detail {
+    padding-block: 28px var(--section-space);
+  }
+  .breadcrumb {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 28px;
+  }
+  .breadcrumb a {
+    color: var(--accent);
+  }
+  .breadcrumb .current {
+    color: var(--text);
+  }
+  .breadcrumb span {
+    margin: 0 6px;
+  }
+
+  .detail-grid {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 32px;
+    align-items: start;
+  }
+  .detail-title {
+    font-size: clamp(40px, 5vw, 64px);
+    margin: 12px 0 16px;
+  }
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  .tag {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-style: italic;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 6px 12px;
+    border: 1px solid var(--border);
+    color: var(--muted);
+  }
+  .price-box {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .price-label {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 700;
+    color: var(--muted);
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .price-value {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-style: italic;
+    font-size: 40px;
+    color: var(--accent);
+  }
+  .detail-fav {
+    background: var(--input);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 10px 20px;
+    cursor: pointer;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    min-height: 44px;
+  }
+  .detail-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+  .detail-fav:hover {
+    border-color: var(--gold);
+  }
+  .detail-fav.active {
+    color: var(--gold);
+    border-color: var(--gold);
+  }
+
+  .weapon-stats {
+    margin-top: 48px;
+    padding-top: 40px;
+    border-top: 1px solid var(--border);
+  }
+  .block-title {
+    font-size: 30px;
+    margin: 8px 0 20px;
+  }
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 14px;
+  }
+  .stat {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 16px;
+  }
+  .stat-k {
+    display: block;
+    font-size: 12px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 6px;
+  }
+  .stat-v {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-style: italic;
+    font-size: 28px;
+    color: var(--text);
+  }
+  .stat.highlight .stat-v {
+    color: var(--accent);
+  }
+
+  .source-card {
+    margin-top: 48px;
+    padding: 20px 24px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+  }
+  .source-line {
+    margin: 6px 0 0;
+    font-size: 14px;
+    color: var(--text);
+  }
+  .source-line a {
+    color: var(--accent);
+  }
+  .source-line.muted {
+    color: var(--muted);
+    font-size: 13px;
+  }
+
+  @media (max-width: 900px) {
+    .detail-grid { grid-template-columns: minmax(125px, .55fr) minmax(0,1fr); gap: 18px; }
+    .stats-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  @media (max-width: 560px) {
+    .detail-grid { grid-template-columns: minmax(0, 1fr); }
+    .stats-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  .price-note { font-size: 14px; color: var(--muted); margin: 6px 0 0; }
+  .price-note a { color: var(--accent); }
+  .detail-title { overflow-wrap: anywhere; }
+  .price-value { color: var(--text); font: 700 clamp(24px, 4vw, 40px)/1.15 var(--font-body); font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+</style>
+
+<script>
+  import { isFav, toggle } from '../../lib/favorites';
+
+  const favBtn = document.querySelector<HTMLButtonElement>('.detail-fav');
+  const feedback = document.getElementById('save-item-feedback')!;
+  function refresh() {
+    const active = favBtn ? isFav(favBtn.dataset.id || '') : false;
+    favBtn?.classList.toggle('active', active);
+    if (favBtn) {
+      favBtn.setAttribute('aria-pressed', String(active));
+      favBtn.textContent = active ? '★ Favorited' : '☆ Favorite';
+    }
+  }
+  favBtn?.addEventListener('click', () => {
+    try {
+      const id = favBtn.dataset.id!;
+      const saved = toggle(id).includes(id);
+      refresh();
+      feedback.textContent = saved ? 'Item saved in this browser.' : 'Item removed from saved items.';
+    } catch {
+      feedback.textContent = 'This browser could not update your saved items. Check its site-data settings and try again.';
+    }
+    feedback.hidden = false;
+  });
+  refresh();
+</script>

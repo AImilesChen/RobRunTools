@@ -1,0 +1,54 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import CatalogItemCard from '../../../components/CatalogItemCard.astro';
+import { catalogCategories, catalogItems, referencePrice, type CatalogItem } from '../../../lib/catalog-items';
+import '../../../styles/catalog-items.css';
+
+export function getStaticPaths() {
+  return catalogCategories.map(({ slug, label }) => ({
+    params: { slug },
+    props: { slug, label, items: catalogItems.filter(item => item.category === slug) },
+  }));
+}
+
+const { slug, label, items } = Astro.props as { slug: string; label: string; items: CatalogItem[] };
+const priced = items.filter(item => referencePrice(item) !== null).length;
+const filterUrl = '/items/?category=' + encodeURIComponent(slug);
+---
+
+<BaseLayout title={label + ' — ROB RUN Item Prices and Rarity'} description={'Look up ' + label.toLowerCase() + ' in the ROB RUN item database. Compare listed values, rarity and available item details.'}>
+  <main class="catalog-main">
+    <header class="catalog-intro">
+      <div class="container">
+        <nav class="catalog-breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><a href="/items/">Items</a><span aria-hidden="true">/</span><span aria-current="page">{label}</span></nav>
+        <div class="catalog-intro-row">
+          <div>
+            <h1>{label}</h1>
+            <p>Browse {label.toLowerCase()} in ROB RUN. Open a record for its rarity, source and available in-game reference prices.</p>
+          </div>
+          <p class="catalog-data">{items.length} items <span aria-hidden="true">·</span> {priced} with prices <a href="/sources/">Data sources</a></p>
+        </div>
+        <div class="catalog-category-extras"><a href={filterUrl}>Search or estimate {label.toLowerCase()}</a><a href="/items/">Browse all items</a></div>
+      </div>
+    </header>
+
+    <section class="container catalog-results" aria-labelledby="category-results-title">
+      <h2 id="category-results-title" class="sr-only">{label} item results</h2>
+      <div class="catalog-grid">
+        {items.map((item, index) => <CatalogItemCard item={item} priority={index < 5} />)}
+      </div>
+    </section>
+    <section class="container catalog-guide" aria-labelledby="category-guide-title">
+      <div>
+        <h2 id="category-guide-title">Compare {label} Reference Prices</h2>
+        <p>Entries with a listed price are ordered by the lower end of the range, or their only listed value. Open the <a href={filterUrl}>filtered item database</a> to search within this category or select a batch for the loot calculator.</p>
+      </div>
+      <nav aria-label="Related resources">
+        <h3>Item tools</h3>
+        <a href="/tools/loot-calculator/">Loot calculator</a>
+        <a href="/rankings/">Item price rankings</a>
+      </nav>
+    </section>
+  </main>
+</BaseLayout>
+

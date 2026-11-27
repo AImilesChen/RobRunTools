@@ -1,0 +1,201 @@
+{
+  "hero": {
+    "file": "hero.webp",
+    "width": 1560,
+    "height": 878,
+    "source": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4262460/563949646eef0f9de2a6fa1f78d79bbdbbfd85dc/ss_563949646eef0f9de2a6fa1f78d79bbdbbfd85dc.1920x1080.jpg?t=1795595062"
+  },
+  "hero-small": {
+    "file": "hero-small.webp",
+    "width": 720,
+    "height": 405,
+    "source": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4262460/563949646eef0f9de2a6fa1f78d79bbdbbfd85dc/ss_563949646eef0f9de2a6fa1f78d79bbdbbfd85dc.1920x1080.jpg?t=1795595062"
+  },
+  "beginner": {
+    "file": "beginner.webp",
+    "width": 1100,
+    "height": 619,
+    "source": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4262460/838584dd1348b5a85f8e9bc840fbfe2b689f556c/ss_838584dd1348b5a85f8e9bc840fbfe2b689f556c.1920x1080.jpg?t=1795595062"
+  },
+  "beginner-small": {
+    "file": "beginner-small.webp",
+    "width": 600,
+    "height": 338,
+    "source": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4262460/838584dd1348b5a85f8e9bc840fbfe2b689f556c/ss_838584dd1348b5a85f8e9bc840fbfe2b689f556c.1920x1080.jpg?t=1795595062"
+  },
+  "locations": {
+    "file": "locations.webp",
+    "width": 972,
+    "height": 358,
+    "source": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4262460/extras/927da323f734022bb40fe10c8653832e.mp4?t=1795595062"
+  },
+  "locations-small": {
+    "file": "locations-small.webp",
+    "width": 560,
+    "height": 206,
+    "source": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4262460/extras/927da323f734022bb40fe10c8653832e.mp4?t=1795595062"
+  },
+  "mission-start": {
+    "file": "mission-start.webp",
+    "width": 640,
+    "height": 236,
+    "source": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4262460/extras/8320e7e90ed978791b61178f8030656c.mp4?t=1795595062"
+  },
+  "mission-explore": {
+    "file": "mission-explore.webp",
+    "width": 620,
+    "height": 349,
+    "source": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4262460/563949646eef0f9de2a6fa1f78d79bbdbbfd85dc/ss_563949646eef0f9de2a6fa1f78d79bbdbbfd85dc.1920x1080.jpg?t=1795595062"
+  },
+  "mission-items": {
+    "file": "mission-items.webp",
+    "width": 620,
+    "height": 349,
+    "source": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4262460/58c183d67d59bf7cfd5ab0554b452d4e4e371102/ss_58c183d67d59bf7cfd5ab0554b452d4e4e371102.1920x1080.jpg?t=1795595062"
+  },
+  "mission-equipment": {
+    "file": "mission-equipment.webp",
+    "width": 620,
+    "height": 349,
+    "source": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4262460/e16f10d92eeb37401f77be4fdee0d7cab70d4b6a/ss_e16f10d92eeb37401f77be4fdee0d7cab70d4b6a.1920x1080.jpg?t=1795595062"
+  },
+  "mission-sale": {
+    "file": "mission-sale.webp",
+    "width": 640,
+    "height": 236,
+    "source": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4262460/extras/16670a122997ba3cba8e16bdd7161c4b.mp4?t=1795595062"
+  },
+  "mission-timer": {
+    "file": "mission-timer.webp",
+    "width": 640,
+    "height": 236,
+    "source": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4262460/extras/f40d1141196b641442842422b0b3a8f9.mp4?t=1795595062"
+  },
+  "role-robbers": {
+    "file": "role-robbers.webp",
+    "width": 620,
+    "height": 349,
+    "source": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4262460/258546065bdba3f2dc14b476a6c0ba8caaf5b367/ss_258546065bdba3f2dc14b476a6c0ba8caaf5b367.1920x1080.jpg?t=1795595062"
+  },
+  "role-police": {
+    "file": "role-police.webp",
+    "width": 640,
+    "height": 236,
+    "source": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4262460/extras/61abeb20a3a20ba83615a6f47b13cbb6.mp4?t=1795595062"
+  },
+  "role-crews": {
+    "file": "role-crews.webp",
+    "width": 560,
+    "height": 350,
+    "source": "https://robrun.com/_next/static/media/3.05706e8b.avif"
+  },
+  "crew": {
+    "file": "crew.webp",
+    "width": 620,
+    "height": 349,
+    "source": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4262460/021a08079176959be882c88607b13727f49c470f/ss_021a08079176959be882c88607b13727f49c470f.1920x1080.jpg?t=1795595062"
+  },
+  "crew-small": {
+    "file": "crew-small.webp",
+    "width": 560,
+    "height": 315,
+    "source": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4262460/021a08079176959be882c88607b13727f49c470f/ss_021a08079176959be882c88607b13727f49c470f.1920x1080.jpg?t=1795595062"
+  },
+  "video-cover": {
+    "file": "video-cover.webp",
+    "width": 972,
+    "height": 358,
+    "source": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4262460/extras/8664158e9f4ec8fdccca84b17d7d6370.mp4?t=1795595062"
+  },
+  "video-cover-small": {
+    "file": "video-cover-small.webp",
+    "width": 520,
+    "height": 192,
+    "source": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4262460/extras/8664158e9f4ec8fdccca84b17d7d6370.mp4?t=1795595062"
+  },
+  "plot_sale_3": {
+    "file": "plot_sale_3.webp",
+    "width": 160,
+    "height": 152,
+    "source": "https://robrunwiki.net/assets/items/plot_sale_3.webp"
+  },
+  "egg_faberge_1": {
+    "file": "egg_faberge_1.webp",
+    "width": 78,
+    "height": 160,
+    "source": "https://robrunwiki.net/assets/items/egg_faberge_1.webp"
+  },
+  "vest5_m1": {
+    "file": "vest5_m1.webp",
+    "width": 150,
+    "height": 160,
+    "source": "https://robrunwiki.net/assets/items/vest5_m1.webp"
+  },
+  "car_cargo_2": {
+    "file": "car_cargo_2.webp",
+    "width": 160,
+    "height": 153,
+    "source": "https://robrunwiki.net/assets/items/car_cargo_2.webp"
+  },
+  "vial_5": {
+    "file": "vial_5.webp",
+    "width": 119,
+    "height": 124,
+    "source": "https://robrunwiki.net/assets/items/vial_5.webp"
+  },
+  "srreaper_m1": {
+    "file": "srreaper_m1.webp",
+    "width": 160,
+    "height": 46,
+    "source": "https://robrunwiki.net/assets/items/srreaper_m1.webp"
+  },
+  "driving-video": {
+    "file": "driving.mp4",
+    "width": 1170,
+    "height": 512,
+    "duration": "00:00:07.38",
+    "source": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4262460/extras/8664158e9f4ec8fdccca84b17d7d6370.mp4?t=1795595062"
+  },
+  "mission-start-motion": {
+    "file": "mission-start-motion.mp4",
+    "width": 560,
+    "height": 206,
+    "duration": "00:00:04.40",
+    "source": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4262460/extras/8320e7e90ed978791b61178f8030656c.mp4?t=1795595062"
+  },
+  "mission-explore-motion": {
+    "file": "mission-explore-motion.mp4",
+    "width": 560,
+    "height": 206,
+    "duration": "00:00:04.40",
+    "source": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4262460/extras/927da323f734022bb40fe10c8653832e.mp4?t=1795595062"
+  },
+  "mission-items-motion": {
+    "file": "mission-items-motion.mp4",
+    "width": 560,
+    "height": 206,
+    "duration": "00:00:04.40",
+    "source": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4262460/extras/8664158e9f4ec8fdccca84b17d7d6370.mp4?t=1795595062"
+  },
+  "mission-equipment-motion": {
+    "file": "mission-equipment-motion.mp4",
+    "width": 560,
+    "height": 206,
+    "duration": "00:00:04.40",
+    "source": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4262460/extras/61abeb20a3a20ba83615a6f47b13cbb6.mp4?t=1795595062"
+  },
+  "mission-sale-motion": {
+    "file": "mission-sale-motion.mp4",
+    "width": 560,
+    "height": 206,
+    "duration": "00:00:04.40",
+    "source": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4262460/extras/16670a122997ba3cba8e16bdd7161c4b.mp4?t=1795595062"
+  },
+  "mission-timer-motion": {
+    "file": "mission-timer-motion.mp4",
+    "width": 560,
+    "height": 206,
+    "duration": "00:00:04.40",
+    "source": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4262460/extras/f40d1141196b641442842422b0b3a8f9.mp4?t=1795595062"
+  }
+}

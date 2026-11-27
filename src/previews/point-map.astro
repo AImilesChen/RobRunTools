@@ -1,0 +1,428 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroBackdrop from '../components/HeroBackdrop.astro';
+import mapData from '../data/map-spots.json';
+import 'leaflet/dist/leaflet.css';
+
+const types = mapData.types;
+const spots = mapData.spots;
+---
+
+<BaseLayout
+  title="Looty Bay Point Map — ROB RUN Companion" noindex
+  description="Explore recorded Looty Bay point locations with approximate building outlines."
+>
+  <main>
+    <section class="map-hero">
+      <HeroBackdrop image="terrain" watermark="MAP" grid motion />
+      <div class="container">
+        <p class="eyebrow">// POINT MAP PREVIEW · {spots.length} RECORDS</p>
+        <h1 class="map-title">Looty Bay Point Map</h1>
+        <p class="map-sub">Select a point to see its type and location. Building outlines are approximate.</p>
+        <button type="button" class="map-motion" id="map-motion" hidden>Pause background motion</button>
+      </div>
+    </section>
+
+    <section class="map-section">
+      <div class="container">
+        <div class="map-layout">
+          <div class="legend" aria-labelledby="point-filters">
+            <h2 id="point-filters">Filter points</h2>
+            <div class="map-filter-fields">
+              <label>Point type
+                <select id="map-type"><option value="">All point types</option>{types.map(type => <option value={type.id}>{type.name}</option>)}</select>
+              </label>
+              <label>Location
+                <select id="map-place"><option value="">All locations</option>{mapData.places.map(place => <option value={place.id}>{place.name}</option>)}</select>
+              </label>
+            </div>
+            <div class="map-filter-actions">
+              <p id="map-count" role="status"></p>
+              <button type="button" id="map-reset" class="btn btn-dark">Reset View</button>
+            </div>
+            <a href="/locations">Browse location records ↗</a>
+            <noscript><p>Enable JavaScript to use the point map.</p></noscript>
+          </div>
+          <div class="map-workspace">
+            <div id="map" class="map-canvas" role="region" aria-label="Looty Bay point map">
+              <p id="map-loading"><span role="status">Loading map…</span> <a href="/locations">Browse location records instead</a>.</p>
+            </div>
+            <div id="map-selection" class="map-selection" role="status" hidden><strong>Selected point</strong><span></span></div>
+          </div>
+        </div>
+        <p class="map-note">
+          Coordinates from <a href="https://robrunwiki.net/map/" target="_blank" rel="noopener">ROB RUN Wiki</a>,
+          game build {mapData.build}. Dots show loot points by type — no base image, so building shapes are approximate.
+        </p>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  .map-hero {
+    padding: 26px 0 24px;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    isolation: isolate;
+  }
+  .map-title {
+    font-size: clamp(34px, 5.4vw, 68px);
+    margin: 12px 0 8px;
+  }
+  .map-sub {
+    color: var(--muted);
+    font-size: 16px;
+    margin: 0;
+  }
+  .map-section {
+    padding: 20px 0 var(--section-space);
+  }
+  .map-layout {
+    display: grid;
+    grid-template: 'workspace filters' / minmax(0, 1fr) 255px;
+    gap: 16px;
+    align-items: start;
+  }
+  .map-workspace { grid-area: workspace; min-width: 0; }
+  .map-motion { margin-top: 8px; padding: 0 8px; min-height: 44px; color: var(--muted); background: transparent; border: 1px solid var(--border); cursor: pointer; }
+  .map-motion:hover { color: var(--text); border-color: var(--control-border); }
+  .map-selection { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 4px 12px; padding: 10px 14px; color: var(--text); background: var(--surface); border: 1px solid var(--control-border); }
+  .map-canvas {
+    height: 640px;
+    background: #0d0f13;
+    border: 1px solid var(--border);
+    position: relative;
+    z-index: 1;
+  }
+  .legend {
+    grid-area: filters;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 16px;
+  }
+  .legend h2 {
+    font-size: 18px;
+    margin: 0 0 12px;
+  }
+  #map-loading { padding: 14px; }
+  .legend a, #map-loading a { color: var(--accent); }
+  .map-filter-fields { display: grid; gap: 10px; }
+  .legend label { display: grid; gap: 3px; min-width: 0; font-size: 14px; color: var(--muted); }
+  .legend select { width: 100%; min-height: 44px; padding: 6px; color: var(--text); background: var(--input); border: 1px solid var(--control-border); }
+  .map-filter-actions { margin: 10px 0; }
+  .map-filter-actions p { margin: 0 0 7px; }
+  .map-filter-actions button { padding-inline: 12px; }
+  .map-note {
+    color: var(--muted);
+    font-size: 13px;
+    margin-top: 16px;
+    line-height: 1.7;
+  }
+  .map-note a {
+    color: var(--accent);
+  }
+  @media (max-width: 900px) {
+    .map-layout { grid-template: 'filters' 'workspace' / minmax(0, 1fr); gap: 11px; }
+    .legend { padding: 11px; }
+    .legend h2 { margin-bottom: 6px; }
+    .map-filter-fields { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+    .map-filter-actions { display: flex; justify-content: space-between; align-items: center; gap: 8px 12px; margin: 6px 0; }
+    .map-filter-actions p { margin: 0; }
+    .map-canvas {
+      height: 480px;
+    }
+  }
+  @media (max-width: 760px) {
+    .map-hero { padding: 18px 0; }
+    .map-canvas { height: min(63svh, 480px); }
+  }
+</style>
+
+<script is:inline>
+  window.setTimeout(() => {
+    const waiting = document.querySelector('#map-loading [role="status"]');
+    if (waiting) waiting.textContent = 'The map is taking longer than expected.';
+  }, 8000);
+</script>
+
+<script>
+  import L from 'leaflet';
+  import mapData from '../data/map-spots.json';
+
+  const { types, places, width, height } = mapData;
+  const spots = mapData.spots.map(spot => ({ ...spot, y: height - spot.y }));
+
+  const typeColor: Record<string, string> = {};
+  const typeName: Record<string, string> = {};
+  for (const t of types) {
+    typeColor[t.id] = t.color;
+    typeName[t.id] = t.name;
+  }
+  const placeName: Record<string, string> = {};
+  for (const p of places) placeName[p.id] = p.name;
+
+  const placeDistrict: Record<string, string> = {
+    nightclub: 'Sunny Beach',
+    'liquor-sunny': 'Sunny Beach',
+    'hotel-sunny-west': 'Sunny Beach',
+    'grand-hotel': 'Sunny Beach',
+    'cafe-pier': 'Sunny Beach',
+    'hotel-sunny-east': 'Sunny Beach',
+    'jeweler-sunny': 'Sunny Beach',
+    'gun-shop-sunny': 'Sunny Beach',
+    'equipment-sunny': 'Sunny Beach',
+    'pharmacy-sunny': 'Sunny Beach',
+    'electronics-sunny': 'Sunny Beach',
+    'gas-station': 'Downtown',
+    'cafe-downtown': 'Downtown',
+    'liquor-downtown': 'Downtown',
+    'liquor-downtown-north': 'Downtown',
+    'looty-bay-bank': 'Downtown',
+    'electronics-downtown': 'Downtown',
+    'equipment-downtown': 'Downtown',
+    'jeweler-downtown': 'Downtown',
+    'pharmacy-downtown': 'Downtown',
+    'gun-shop-downtown': 'Downtown',
+    'art-gallery': 'Parkside',
+    'police-station': 'Parkside',
+    'noble-mansion': 'Lauren Hills',
+    'elite-cottage': 'Lauren Hills',
+    cottage: 'Lauren Hills',
+    'loraine-house-se': 'Lauren Hills',
+    'loraine-house-ne': 'Lauren Hills',
+  };
+  const districtColor: Record<string, string> = {
+    'Sunny Beach': '#2EE6C8',
+    Downtown: '#FF6A3D',
+    Parkside: '#A88ADC',
+    'Lauren Hills': '#F5C542',
+  };
+
+  const map = L.map('map', {
+    crs: L.CRS.Simple,
+    minZoom: -3,
+    maxZoom: 5,
+    zoomSnap: 0.5,
+    attributionControl: false,
+    zoomControl: true,
+  });
+
+  const bounds = L.latLngBounds([0, 0], [height, width]);
+  map.fitBounds(bounds);
+  map.setMaxBounds(bounds.pad(0.2));
+
+  type Box = { minX: number; maxX: number; minY: number; maxY: number };
+  const bb: Record<string, Box> = {};
+  for (const s of spots) {
+    if (!bb[s.place]) bb[s.place] = { minX: s.x, maxX: s.x, minY: s.y, maxY: s.y };
+    else {
+      const b = bb[s.place];
+      b.minX = Math.min(b.minX, s.x);
+      b.maxX = Math.max(b.maxX, s.x);
+      b.minY = Math.min(b.minY, s.y);
+      b.maxY = Math.max(b.maxY, s.y);
+    }
+  }
+
+  const districtBox: Record<string, Box> = {};
+  for (const [pid, b] of Object.entries(bb)) {
+    const d = placeDistrict[pid] || 'Other';
+    if (!districtBox[d]) districtBox[d] = { minX: b.minX, maxX: b.maxX, minY: b.minY, maxY: b.maxY };
+    else {
+      districtBox[d].minX = Math.min(districtBox[d].minX, b.minX);
+      districtBox[d].maxX = Math.max(districtBox[d].maxX, b.maxX);
+      districtBox[d].minY = Math.min(districtBox[d].minY, b.minY);
+      districtBox[d].maxY = Math.max(districtBox[d].maxY, b.maxY);
+    }
+  }
+
+  for (const [d, b] of Object.entries(districtBox)) {
+    const c = districtColor[d] || '#888';
+    L.rectangle(
+      [
+        [b.minY - 30, b.minX - 30],
+        [b.maxY + 30, b.maxX + 30],
+      ],
+      { color: c, fillColor: c, fillOpacity: 0.045, weight: 1.2, dashArray: '6 6' }
+    ).addTo(map);
+    L.marker([b.minY - 18, b.minX], {
+      icon: L.divIcon({ className: 'district-label', html: `<span style="color:${c}">${d}</span>`, iconSize: [0, 0] }),
+      interactive: false,
+    }).addTo(map);
+  }
+
+  for (const [pid, b] of Object.entries(bb)) {
+    const d = placeDistrict[pid] || 'Other';
+    const c = districtColor[d] || '#888';
+    L.rectangle(
+      [
+        [b.minY - 9, b.minX - 9],
+        [b.maxY + 9, b.maxX + 9],
+      ],
+      { color: c, fillColor: c, fillOpacity: 0.12, weight: 1.5 }
+    ).addTo(map);
+  }
+
+  const pointsLayer = L.layerGroup().addTo(map);
+  const typeFilter = document.querySelector<HTMLSelectElement>('#map-type')!;
+  const placeFilter = document.querySelector<HTMLSelectElement>('#map-place')!;
+  const resultCount = document.querySelector('#map-count')!;
+  const selection = document.querySelector<HTMLElement>('#map-selection')!;
+  const selectionName = selection.querySelector('span')!;
+  const markers = spots.map(spot => {
+    const label = `${typeName[spot.type] || spot.type} · ${placeName[spot.place] || spot.place}`;
+    const color = typeColor[spot.type] || '#fff';
+    const marker = L.circleMarker([spot.y, spot.x], {
+      radius: 4, color, weight: 1, fillColor: color, fillOpacity: 0.85,
+    }).bindTooltip(() => {
+      const text = document.createElement('span');
+      text.textContent = label;
+      return text;
+    }).bindPopup(() => {
+      const text = document.createElement('span');
+      text.textContent = label;
+      return text;
+    });
+    marker.on('click', () => {
+      selectionName.textContent = label;
+      selection.hidden = false;
+    });
+    return { spot, marker };
+  });
+
+  function applyFilters() {
+    const type = typeFilter.value;
+    const place = placeFilter.value;
+    selection.hidden = true;
+    pointsLayer.clearLayers();
+    let count = 0;
+    for (const { spot, marker } of markers) {
+      if ((type && spot.type !== type) || (place && spot.place !== place)) continue;
+      pointsLayer.addLayer(marker);
+      count++;
+    }
+    resultCount.textContent = count ? `${count.toLocaleString('en-US')} points shown` : 'No points match these filters.';
+  }
+
+  typeFilter.addEventListener('change', applyFilters);
+  placeFilter.addEventListener('change', () => {
+    applyFilters();
+    const box = bb[placeFilter.value];
+    if (box) map.fitBounds([[box.minY, box.minX], [box.maxY, box.maxX]], { maxZoom: 3, padding: [24, 24], animate: false });
+    else map.fitBounds(bounds, { animate: false });
+  });
+  document.querySelector('#map-reset')!.addEventListener('click', () => {
+    typeFilter.value = '';
+    placeFilter.value = '';
+    applyFilters();
+    map.fitBounds(bounds, { animate: false });
+  });
+  applyFilters();
+  document.querySelector('#map-loading')?.remove();
+
+  const byPlace: Record<string, { sx: number; sy: number; n: number }> = {};
+  for (const s of spots) {
+    if (!byPlace[s.place]) byPlace[s.place] = { sx: 0, sy: 0, n: 0 };
+    byPlace[s.place].sx += s.x;
+    byPlace[s.place].sy += s.y;
+    byPlace[s.place].n += 1;
+  }
+  const placeLabels = L.layerGroup().addTo(map);
+  const labels = new Map<string, L.Marker>();
+  for (const [pid, agg] of Object.entries(byPlace)) {
+    const cx = agg.sx / agg.n;
+    const cy = agg.sy / agg.n;
+    const name = placeName[pid] || pid;
+    const label = document.createElement('span');
+    label.textContent = name;
+    labels.set(pid, L.marker([cy, cx], {
+      icon: L.divIcon({
+        className: 'place-label',
+        html: label,
+        iconSize: [0, 0],
+      }),
+      interactive: false,
+    }));
+  }
+
+  function refreshLabels() {
+    placeLabels.clearLayers();
+    if (placeFilter.value) {
+      const label = labels.get(placeFilter.value);
+      if (label) placeLabels.addLayer(label);
+    } else if (map.getZoom() >= 1) {
+      for (const label of labels.values()) placeLabels.addLayer(label);
+    }
+  }
+
+  map.on('zoomend', refreshLabels);
+  placeFilter.addEventListener('change', refreshLabels);
+  document.querySelector('#map-reset')!.addEventListener('click', refreshLabels);
+  refreshLabels();
+
+  const backdrop = document.querySelector<HTMLElement>('[data-hero-motion]');
+  const motionButton = document.querySelector<HTMLButtonElement>('#map-motion');
+  if (backdrop && motionButton) {
+    const staticMode = matchMedia('(prefers-reduced-motion: reduce), (max-width: 760px)');
+    let visible = false;
+    let paused = false;
+    const updateMotion = () => {
+      backdrop.toggleAttribute('data-moving', visible && !paused && !staticMode.matches && !document.hidden);
+      motionButton.hidden = staticMode.matches;
+      motionButton.textContent = paused ? 'Resume background motion' : 'Pause background motion';
+    };
+    const observer = new IntersectionObserver(([entry]) => {
+      visible = entry.isIntersecting;
+      updateMotion();
+    });
+    observer.observe(backdrop);
+    staticMode.addEventListener('change', updateMotion);
+    document.addEventListener('visibilitychange', updateMotion);
+    motionButton.addEventListener('click', () => { paused = !paused; updateMotion(); });
+    updateMotion();
+  }
+</script>
+
+<style is:global>
+  .district-label span {
+    display: block;
+    transform: translate(-50%, -50%);
+    font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif;
+    font-weight: 900;
+    font-style: italic;
+    font-size: 16px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    pointer-events: none;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
+  }
+  .place-label span {
+    display: block;
+    transform: translate(-50%, -50%);
+    background: rgba(20, 22, 27, 0.85);
+    color: #f5f6f8;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 2px 8px;
+    border: 1px solid rgba(46, 230, 200, 0.4);
+    white-space: nowrap;
+    pointer-events: none;
+  }
+  .leaflet-tooltip {
+    background: #1d2026;
+    color: #f5f6f8;
+    border: 1px solid #2b303a;
+    font-size: 12px;
+    box-shadow: none;
+  }
+  .leaflet-tooltip-top:before {
+    border-top-color: #1d2026;
+  }
+  .leaflet-control-zoom a {
+    background: #1d2026 !important;
+    color: #f5f6f8 !important;
+    border-color: #2b303a !important;
+  }
+</style>

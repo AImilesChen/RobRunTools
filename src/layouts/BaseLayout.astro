@@ -1,0 +1,314 @@
+---
+import '../styles/global.css';
+import { canonicalUrl } from '../lib/site-release.mjs';
+import { officialArtPreview, officialSteamPage, previewScenes } from '../lib/game-media.mjs';
+import { tools } from '../lib/site-catalog';
+import { homeGameplayPreview } from '../lib/home-game-media.mjs';
+import items from '../data/items.json';
+
+interface Props {
+  title: string;
+  description: string;
+  noindex?: boolean;
+}
+
+const { title, description, noindex = false } = Astro.props;
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+const isHome = path === '/';
+const canonical = canonicalUrl(Astro.url.pathname);
+const shareImage = new URL('/brand/robrun-social.jpg', canonical).href;
+const links = [
+  { href: '/items', label: 'Items', detail: 'Look up item names, categories and listed prices.', scene: 'equipment' },
+  { href: '/locations', label: 'Locations', detail: 'Find Looty Bay location records by name, district or type.', scene: 'terrain' },
+  { href: '/tools', label: 'Tools', detail: 'Estimate item values, compare weapons or set a manual timer.', scene: 'equipment' },
+  { href: '/servers', label: 'Wipe Timer', detail: 'Set a reset timer from your own server schedule.', scene: 'terrain' },
+  { href: '/guides', label: 'Guides', detail: 'Start with the beginner reference or look up a term.', scene: 'city' },
+];
+const menu = [
+  ...links,
+  { href: '/weapons', label: 'Weapon database', detail: 'Check listed damage, fire rate, range and magazine capacity.' },
+  { href: '/rankings', label: 'Item rankings', detail: 'See which database entries have the highest listed values.' },
+  { href: '/favorites', label: 'Saved items', detail: 'Return to item references you saved in this browser.' },
+  { href: '/dashboard', label: 'Dashboard', detail: 'Review favorites and manual timers saved in this browser.' },
+  { href: '/daily', label: 'Daily item guess', detail: 'Use the clues to guess an item from the database.' },
+  { href: '/faq', label: 'FAQ', detail: 'Get answers about source data, free tools and saved records.' },
+];
+const active = (href: string) => path === href || path.startsWith(href + '/');
+const menuEntries = menu.map((entry, index) => ({
+  ...entry,
+  scene: 'scene' in entry ? entry.scene : 'city',
+  number: String(index + 1).padStart(2, '0'),
+}));
+const preview = menuEntries.find(entry => active(entry.href)) ?? menuEntries[0];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="referrer" content="strict-origin" />
+    <meta name="description" content={description} />
+    {noindex || homeGameplayPreview ? <meta name="robots" content="noindex" /> : <link rel="canonical" href={canonical} />}
+    <title>{title}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,700;0,900;1,700;1,900&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
+    <link rel="icon" sizes="16x16" type="image/png" href="/brand/rr-16.png" />
+    <link rel="icon" sizes="32x32" type="image/png" href="/brand/rr-32.png" />
+    <link rel="icon" sizes="48x48" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/brand/apple-touch-icon.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={shareImage} />
+    <meta property="og:image:alt" content="ROB RUN Companion brand mark" />
+    <meta name="twitter:card" content="summary_large_image" />
+  </head>
+  <body>
+    <a class="skip-link" href="#page-content">Skip to content</a>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a href="/" class="logo">
+          <img src="/brand/rr-emblem.webp" width="42" height="42" alt="" />
+          <span>ROB RUN <span class="word-sub">COMPANION</span></span>
+        </a>
+        <form class="header-search" action="/search/" method="get" role="search" aria-label="Header search">
+          <label class="sr-only" for="header-query">Search from the navigation</label>
+          <input id="header-query" type="search" name="q" placeholder="Search items and more…" required />
+          <button type="submit" aria-label="Submit header search">
+            <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.3" /><path d="m16 16 4 4" /></svg>
+          </button>
+        </form>
+        <nav class="nav" aria-label="Primary">
+          {links.map(({ href, label }) => <a href={href} aria-current={active(href) ? 'page' : undefined}>{label}</a>)}
+        </nav>
+        <div class="header-actions">
+          <a class="header-control header-search-link" href="/search/" aria-label="Search the site">
+            <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.3" /><path d="m16 16 4 4" /></svg>
+            <span class="search-label">Search</span>
+          </a>
+          <button class="header-control menu-button" id="menu-trigger" type="button" aria-label="Menu" aria-haspopup="dialog" aria-controls="site-menu" aria-expanded="false">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" /></svg>
+            <span>Menu</span>
+          </button>
+        </div>
+      </div>
+      <div class="reference-ribbon">
+        <div class="container"><span><span class="reference-marker" aria-hidden="true"></span>{isHome ? 'Community reference data' : items.length.toLocaleString('en-US') + ' items in the database'}</span><a href="/sources">Data sources <span aria-hidden="true">↗</span></a></div>
+      </div>
+    </header>
+
+    <dialog id="site-menu" aria-labelledby="site-menu-title">
+      <div class="menu-head">
+        <h2 id="site-menu-title">Explore</h2>
+        <form method="dialog"><button class="header-control" autofocus>Close <span aria-hidden="true">×</span></button></form>
+      </div>
+      <div class="menu-layout">
+        <nav aria-label="Site menu">
+          {menuEntries.map(({ href, label, detail, scene, number }) => (
+            <a class:list={[{ 'is-previewed': href === preview.href }]} href={href} data-section={label} data-detail={detail} data-scene={scene} data-image={previewScenes[scene as keyof typeof previewScenes]} data-number={number} aria-current={active(href) ? 'page' : undefined}>
+              <span class="menu-item-number" aria-hidden="true">{number}</span>
+              <span>{label}</span><span aria-hidden="true">↗</span>
+            </a>
+          ))}
+        </nav>
+        <aside class="menu-preview" aria-label="Section preview">
+          <div class="menu-scene" data-preview-scene={preview.scene} style={previewScenes[preview.scene as keyof typeof previewScenes] ? { '--menu-art': `url("${previewScenes[preview.scene as keyof typeof previewScenes]}")` } : undefined} aria-hidden="true"></div>
+          <span class="menu-scene-number" data-preview-number aria-hidden="true">{preview.number}</span>
+          <div class="menu-preview-copy">
+            <p class="menu-preview-title" data-preview-title>{preview.label}</p>
+            <p class="menu-preview-detail" data-preview-detail>{preview.detail}</p>
+            <a class="btn" href={preview.href} data-preview-link>Open {preview.label}</a>
+            {officialArtPreview && <a class="preview-credit" href={officialSteamPage} data-preview-credit hidden={!previewScenes[preview.scene as keyof typeof previewScenes]}>Game screenshot © Kefir · Steam</a>}
+          </div>
+        </aside>
+      </div>
+    </dialog>
+
+    <div id="page-content" tabindex="-1"><slot /></div>
+
+    <footer class="site-footer">
+      <div class:list={['container', 'footer-inner', { 'footer-inner--home': isHome }]}>
+        <div>
+          <p class="foot-brand">{isHome ? <a href="/">ROB RUN COMPANION</a> : 'ROB RUN COMPANION'}</p>
+          <p class="foot-note">Independent fan project. Not affiliated with or endorsed by Kefir.</p>
+          {isHome && <p class="foot-note">Game names and materials belong to their respective rights holders.</p>}
+        </div>
+        {isHome && (
+          <>
+            <div class="footer-link-group">
+              <p>Explore</p>
+              <nav aria-label="Explore">
+                {links.filter(link => link.href !== '/tools').map(link => <a href={link.href}>{link.label}</a>)}
+                <a href="/weapons/">Weapons</a><a href="/faq/">FAQ</a>
+              </nav>
+            </div>
+            <div class="footer-link-group">
+              <p>Tools</p>
+              <nav aria-label="Tools">{tools.map(tool => <a href={tool.href}>{tool.name}</a>)}</nav>
+            </div>
+          </>
+        )}
+        <div class:list={{ 'footer-link-group': isHome }}>
+          {isHome && <p>About this site</p>}
+          <nav aria-label="About this site">
+            <a href="/about">About</a><a href="/sources">Sources</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="/contact">Contact</a>
+          </nav>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const dialog = document.querySelector<HTMLDialogElement>('#site-menu');
+      const trigger = document.querySelector<HTMLButtonElement>('#menu-trigger');
+
+      if (dialog && trigger) {
+        trigger.addEventListener('click', () => {
+          dialog.showModal();
+          trigger.setAttribute('aria-expanded', 'true');
+        });
+        dialog.addEventListener('close', () => {
+          trigger.setAttribute('aria-expanded', 'false');
+          trigger.focus();
+        });
+        dialog.addEventListener('click', (event) => {
+          if (event.target !== dialog) return;
+          const bounds = dialog.getBoundingClientRect();
+          if (event.clientX < bounds.left || event.clientX > bounds.right ||
+            event.clientY < bounds.top || event.clientY > bounds.bottom) dialog.close();
+        });
+        const previewTitle = dialog.querySelector('[data-preview-title]')!;
+        const previewDetail = dialog.querySelector('[data-preview-detail]')!;
+        const previewScene = dialog.querySelector<HTMLElement>('[data-preview-scene]')!;
+        const previewNumber = dialog.querySelector('[data-preview-number]')!;
+        const previewLink = dialog.querySelector<HTMLAnchorElement>('[data-preview-link]')!;
+        const credit = dialog.querySelector<HTMLElement>('[data-preview-credit]');
+        const previewLinks = dialog.querySelectorAll<HTMLAnchorElement>('[data-section]');
+        const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)');
+        for (const link of previewLinks) {
+          const showPreview = () => {
+            previewTitle.textContent = link.dataset.section ?? '';
+            previewDetail.textContent = link.dataset.detail ?? '';
+            previewNumber.textContent = link.dataset.number ?? '';
+            previewLink.href = link.href;
+            previewLink.textContent = `Open ${link.dataset.section ?? ''}`;
+            const scene = link.dataset.scene ?? 'city';
+            if (previewScene.dataset.previewScene !== scene) {
+              previewScene.dataset.previewScene = scene;
+              const image = link.dataset.image;
+              previewScene.style.setProperty('--menu-art', image ? `url("${image}")` : '');
+              if (credit) credit.hidden = !image;
+              if (!reduceMotion.matches) previewScene.animate({ opacity: [.4, 1] }, { duration: 240 });
+            }
+            for (const item of previewLinks) item.classList.toggle('is-previewed', item === link);
+          };
+          link.addEventListener('pointerenter', showPreview);
+          link.addEventListener('focus', showPreview);
+        }
+      }
+
+      document.addEventListener('keydown', (event) => {
+        if (!(event.ctrlKey || event.metaKey) || event.key.toLowerCase() !== 'k' || dialog?.open) return;
+        event.preventDefault();
+        const search = document.querySelector<HTMLInputElement>('[data-primary-search]');
+        const headerSearch = document.querySelector<HTMLInputElement>('#header-query');
+        if (search) search.focus();
+        else if (headerSearch?.getClientRects().length) headerSearch.focus();
+        else location.assign('/search/');
+      });
+    </script>
+
+    <style>
+      .skip-link { position: fixed; z-index: 30; top: 12px; left: 12px; padding: 10px 16px; background: var(--input); transform: translateY(-180%); }
+      .skip-link:focus { transform: none; }
+      .site-header { position: sticky; top: 0; z-index: 10; background: linear-gradient(105deg, #1c222a, #15191f 76%); border-bottom: 1px solid var(--border); }
+      .header-inner { display: flex; align-items: center; gap: clamp(9px, 1.35vw, 21px); min-height: 68px; }
+      .logo { display: inline-flex; align-items: center; gap: 9px; margin-right: auto; flex-shrink: 0; font: italic 900 24px/.95 var(--font-display); }
+      .logo img { object-fit: contain; }
+      .word-sub { display: block; color: #d5fa46; font-size: .59em; letter-spacing: .105em; margin-top: 3px; }
+      .header-search { display: flex; min-width: 145px; max-width: 430px; flex: 1 1 320px; min-height: 44px; border: 1px solid #53616d; background: #11151b; }
+      .header-search:focus-within { outline: 2px solid var(--accent); outline-offset: 2px; }
+      .header-search input { min-width: 0; flex: 1; padding: 0 11px; background: transparent; border: 0; color: var(--text); font: 14px var(--font-body); outline: none; }
+      .header-search input::placeholder { color: #b2beca; }
+      .header-search button { min-width: 42px; border: 0; background: #213c3d; color: var(--accent); display: grid; place-items: center; cursor: pointer; }
+      .header-search button:hover { background: var(--accent); color: #13201f; }
+      .nav, .header-actions { display: flex; align-items: center; gap: 7px; }
+      .nav a {
+        position: relative; isolation: isolate; min-height: 44px; display: grid; place-items: center; white-space: nowrap; padding: 0 clamp(9px, 1.2vw, 16px);
+        color: #e5e9ed; font: italic 700 17px/1 var(--font-display); letter-spacing: .035em; text-transform: uppercase;
+      }
+      .nav a::before { position: absolute; content: ''; inset: 0; z-index: -1; transform: skewX(-8deg); border-bottom: 1px solid #4d5965; background: #222933; }
+      .nav a:is(:hover, :focus-visible, [aria-current]) { color: var(--accent); }
+      .nav a:is(:hover, :focus-visible, [aria-current])::before { border-color: var(--accent); background: #263941; }
+      #site-menu a[aria-current] { color: var(--accent); }
+      .header-control { min-width: 44px; min-height: 44px; display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 0 12px; background: var(--input); color: var(--text); border: 1px solid var(--border); font: 700 14px var(--font-body); cursor: pointer; }
+      .header-control:hover { border-color: var(--accent); }
+      .header-search-link { display: none; }
+      .menu-button { background: transparent; color: #141a10; position: relative; isolation: isolate; border: 0; padding-inline: 16px; font: italic 900 19px var(--font-display); text-transform: uppercase; letter-spacing: .06em; }
+      .menu-button::before { content: ''; position: absolute; inset: 0; z-index: -1; transform: skewX(-8deg); background: #d5fa46; }
+      .menu-button:hover::before, .menu-button[aria-expanded="true"]::before { background: #e7ff99; }
+      .reference-ribbon { border-top: 1px solid var(--border); background: #101519; color: var(--muted); font-size: 12px; }
+      .reference-ribbon .container { position: relative; min-height: 28px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+      .reference-ribbon .container::after { content: ''; position: absolute; bottom: 0; left: var(--page-gutter); right: var(--page-gutter); height: 3px; background: repeating-linear-gradient(90deg, #46545a 0 1px, transparent 1px 17px); pointer-events: none; }
+      .reference-marker { display: inline-block; width: 7px; height: 7px; margin-right: 7px; background: var(--accent); }
+      .reference-ribbon a:hover { color: var(--accent); }
+      #site-menu { width: min(410px, calc(100% - 16px)); max-width: none; height: 100dvh; max-height: none; margin: 0 0 0 auto; padding: 24px; color: var(--text); background: var(--surface); border: 0; border-left: 1px solid var(--control-border); overflow-y: auto; }
+      #site-menu::backdrop { background: rgb(5 8 12 / 75%); }
+      .menu-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 0 0 20px; }
+      .menu-head h2 { font-size: 36px; }
+      #site-menu nav { display: grid; }
+      #site-menu nav a { display: grid; grid-template-columns: 24px minmax(0, 1fr) auto; align-items: center; gap: 8px; padding: 10px 14px; border-top: 1px solid var(--border); min-height: 48px; font: italic 700 clamp(19px, 2.2vw, 29px)/1 var(--font-display); }
+      .menu-item-number { font: 700 12px var(--font-body); font-variant-numeric: tabular-nums; }
+      #site-menu nav a:hover, #site-menu nav a:focus-visible { color: var(--accent); }
+      .menu-preview { display: none; }
+      @media (min-width: 900px) {
+        #site-menu { width: min(1380px, calc(100% - 48px)); padding: clamp(26px, 4vw, 56px); }
+        .menu-layout { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); gap: clamp(24px, 4vw, 58px); }
+        #site-menu nav a.is-previewed { background: var(--accent); color: var(--input); clip-path: polygon(0 0, calc(100% - 13px) 0, 100% 13px, 100% 100%, 0 100%); }
+        #site-menu nav a.is-previewed:focus-visible { clip-path: none; outline-color: var(--text); outline-offset: -4px; }
+        .menu-preview { position: relative; isolation: isolate; overflow: hidden; display: flex; align-items: flex-end; min-height: 490px; border: 1px solid var(--control-border); padding: clamp(24px, 3vw, 44px); background: var(--input); }
+        .menu-scene { z-index: -2; position: absolute; inset: 0; background: center center / cover no-repeat; }
+        .menu-scene[data-preview-scene="city"] { background-image: var(--menu-art, linear-gradient(140deg, #263c43, #13181e 70%)); }
+        .menu-scene[data-preview-scene="equipment"] { background-image: var(--menu-art, repeating-linear-gradient(130deg, #2c3d44 0 1px, #19232a 1px 25px)); }
+        .menu-scene[data-preview-scene="terrain"] { background-image: radial-gradient(ellipse at 60% 27%, #39535a, #131b22 80%); }
+        .menu-preview::before { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(0deg, #101216 0%, rgb(16 18 22 / 75%) 30%, transparent 75%); pointer-events: none; }
+        .menu-scene-number { position: absolute; top: 20px; right: 28px; font: italic 900 clamp(76px, 10vw, 176px)/.85 var(--font-display); color: transparent; -webkit-text-stroke: 1px rgb(220 243 240 / 60%); pointer-events: none; }
+        .menu-preview-title { font: italic 900 clamp(38px, 5vw, 72px)/.92 var(--font-display); margin: 0 0 12px; text-transform: uppercase; }
+        .menu-preview-detail { margin: 0 0 20px; color: #d5dde0; max-width: 360px; }
+        .preview-credit { display: block; margin-top: 10px; color: var(--muted); font-size: 12px; }
+      }
+      .site-footer { padding: 30px 0; background: var(--surface); border-top: 1px solid var(--border); }
+      .footer-inner { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 20px; }
+      .foot-brand { font: italic 900 22px var(--font-display); margin: 0; }
+      .foot-note { color: var(--muted); margin: 5px 0 0; font-size: 13px; }
+      .site-footer nav { display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 14px; color: var(--muted); }
+      .site-footer nav a:hover { color: var(--accent); }
+      .footer-inner--home { display: grid; grid-template-columns: minmax(0, 1.7fr) repeat(3, minmax(0, 1fr)); align-items: start; }
+      .footer-link-group > p { font-weight: 700; margin: 0 0 6px; }
+      .footer-link-group nav { flex-direction: column; gap: 1px; }
+      .footer-link-group a { display: flex; align-items: center; min-height: 32px; width: fit-content; }
+      @media (max-width: 650px) {
+        .footer-inner--home { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        .footer-inner--home > div:first-child { grid-column: 1 / -1; }
+      }
+      @media (max-width: 960px) {
+        .header-search { display: none; }
+        .header-search-link { display: inline-flex; }
+      }
+      @media (max-width: 850px) {
+        .header-inner { min-height: 64px; }
+        .nav, .search-label { display: none; }
+        .reference-ribbon { display: none; }
+        .header-actions { gap: 8px; }
+        .logo { font-size: 20px; }
+        .logo img { width: 34px; height: 34px; }
+      }
+      @media (max-width: 360px) {
+        .header-control { padding-inline: 8px; }
+        .menu-button span { display: none; }
+      }
+    </style>
+  </body>
+</html>

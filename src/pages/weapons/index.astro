@@ -1,0 +1,169 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import weapons from '../../data/weapons.json';
+
+const sorted = [...weapons].sort((a, b) => (b.damagePerSecond ?? 0) - (a.damagePerSecond ?? 0));
+---
+
+<BaseLayout
+  title="ROB RUN Weapons — Damage, Fire Rate & DPS"
+  description="Compare all 46 ROB RUN weapons: damage, headshot damage, fire rate, magazine, range and DPS."
+>
+  <main>
+    <section class="page-hero">
+      <span class="watermark" aria-hidden="true">WEAPONS</span>
+      <div class="container">
+        <p class="eyebrow">// WEAPONS · 46 ITEMS</p>
+        <h1 class="page-title">Weapon Database</h1>
+        <p class="page-sub">Damage, fire rate, magazine and DPS for every weapon in ROB RUN. Click a header to sort.</p>
+      </div>
+    </section>
+
+    <section class="table-section">
+      <div class="container">
+        <div class="table-wrap">
+          <table class="weapon-table" id="weapon-table">
+            <thead>
+              <tr>
+                <th data-key="name" class="sortable">Weapon</th>
+                <th data-key="damage" class="sortable num">Damage</th>
+                <th data-key="headshotDamage" class="sortable num">Headshot</th>
+                <th data-key="roundsPerMinute" class="sortable num">RPM</th>
+                <th data-key="magazine" class="sortable num">Magazine</th>
+                <th data-key="fullDamageRangeM" class="sortable num">Range (m)</th>
+                <th data-key="damagePerSecond" class="sortable num active">DPS</th>
+              </tr>
+            </thead>
+            <tbody>
+              {sorted.map((w) => (
+                <tr>
+                  <td class="w-name"><a href={`/items/${w.slug}`}>{w.name}</a></td>
+                  <td class="num">{w.damage}</td>
+                  <td class="num">{w.headshotDamage}</td>
+                  <td class="num">{w.roundsPerMinute}</td>
+                  <td class="num">{w.magazine}</td>
+                  <td class="num">{w.fullDamageRangeM}</td>
+                  <td class="num dps">{w.damagePerSecond}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  .page-hero {
+    padding: 48px 0 40px;
+    border-bottom: 1px solid var(--border);
+    background: linear-gradient(90deg, rgba(20, 22, 27, 0.95) 0%, rgba(20, 22, 27, 0.5) 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  .page-title {
+    font-size: clamp(44px, 6vw, 72px);
+    margin: 12px 0 8px;
+  }
+  .page-sub {
+    color: var(--muted);
+    font-size: 17px;
+    margin: 0;
+  }
+
+  .table-section {
+    padding: 32px 0 64px;
+  }
+  .table-wrap {
+    overflow-x: auto;
+    border: 1px solid var(--border);
+  }
+  .weapon-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+  .weapon-table th,
+  .weapon-table td {
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+  .weapon-table thead th {
+    background: var(--surface);
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-style: italic;
+    font-size: 13px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--muted);
+    position: sticky;
+    top: 64px;
+    white-space: nowrap;
+  }
+  .weapon-table tbody tr:hover {
+    background: rgba(46, 230, 200, 0.04);
+  }
+  .weapon-table .num {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
+  .weapon-table th.num {
+    text-align: right;
+  }
+  .w-name a {
+    color: var(--text);
+    font-weight: 500;
+  }
+  .w-name a:hover {
+    color: var(--accent);
+  }
+  .dps {
+    color: var(--accent);
+    font-weight: 500;
+  }
+  .sortable {
+    cursor: pointer;
+    user-select: none;
+  }
+  .sortable:hover {
+    color: var(--accent);
+  }
+  .sortable.active {
+    color: var(--accent);
+  }
+</style>
+
+<script>
+  const table = document.getElementById('weapon-table') as HTMLTableElement;
+  const tbody = table.querySelector('tbody') as HTMLTableSectionElement;
+  const headers = Array.from(table.querySelectorAll<HTMLTableCellElement>('th.sortable'));
+  let state: { key: string; dir: 1 | -1 } = { key: 'damagePerSecond', dir: -1 };
+
+  headers.forEach((th) => {
+    th.addEventListener('click', () => {
+      const key = th.dataset.key!;
+      if (state.key === key) {
+        state.dir = state.dir === 1 ? -1 : 1;
+      } else {
+        state = { key, dir: key === 'name' ? 1 : -1 };
+      }
+      headers.forEach((h) => h.classList.toggle('active', h.dataset.key === key));
+      sortRows();
+    });
+  });
+
+  function sortRows() {
+    const rows = Array.from(tbody.querySelectorAll<HTMLTableRowElement>('tr'));
+    const { key, dir } = state;
+    rows.sort((a, b) => {
+      const ca = key === 'name' ? (a.querySelector('.w-name a')?.textContent || '') : a.cells[[...headers].findIndex(h => h.dataset.key === key)].textContent || '';
+      const cb = key === 'name' ? (b.querySelector('.w-name a')?.textContent || '') : b.cells[[...headers].findIndex(h => h.dataset.key === key)].textContent || '';
+      if (key === 'name') return ca.localeCompare(cb) * dir;
+      return (Number(ca) - Number(cb)) * dir;
+    });
+    rows.forEach((r) => tbody.appendChild(r));
+  }
+</script>

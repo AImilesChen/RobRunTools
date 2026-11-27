@@ -1,0 +1,250 @@
+---
+import HeroBackdrop from './HeroBackdrop.astro';
+import { officialArtPreview, officialSteamPage } from '../lib/game-media.mjs';
+
+interface Props { mode: 'loot' | 'sale'; }
+const { mode } = Astro.props;
+const sale = mode === 'sale';
+---
+<main class="value-tool" data-value-tool data-mode={mode}>
+  <section class="calculator-hero">
+    <HeroBackdrop image="equipment" watermark={sale ? 'SALE VALUE' : 'LOOT VALUE'} />
+    <div class="container">
+      <a class="back-link" href="/tools">← All tools</a>
+      <h1>{sale ? 'ROB RUN Sale Calculator' : 'ROB RUN Loot Calculator'}</h1>
+      <p class="intro">{sale ? 'Estimate sale value from item quantities and an optional manual adjustment.' : 'Add items and quantities to estimate their combined listed value.'}</p>
+      {officialArtPreview && <a class="art-credit" href={officialSteamPage}>Game screenshot © Kefir · Steam</a>}
+    </div>
+  </section>
+  <div class="container calc-layout">
+    <section class="work-area" aria-labelledby="list-title">
+      <h2 id="list-title">Your items</h2>
+      <form class="add-row" novalidate>
+        <label class="item-field">Item<input name="item" list="item-options" placeholder="Choose an item…" autocomplete="off" /></label>
+        <datalist id="item-options"></datalist>
+        <label class="quantity-field">Quantity<input name="qty" type="number" value="1" min="1" step="1" /></label>
+        <button type="submit" class="btn">Add Item</button>
+      </form>
+      {sale && <div class="adjust-row"><label>Manual adjustment (%)<input name="adjustment" type="number" min="0" step="any" value="0" /></label><p>Use 0% for listed prices. This is your assumption, not a verified game bonus.</p></div>}
+      <p class="error" role="status" data-feedback hidden></p>
+      <p class="list-empty" data-empty>Add an item to start an estimate.</p>
+      <ul class="item-list" aria-label="Selected items"></ul>
+    </section>
+    <aside class="total-card card" aria-labelledby="total-title">
+      <h2 id="total-title">{sale ? 'Estimated sale value' : 'Value estimate'}</h2>
+      <p class="total" data-total role="status">No items added</p>
+      <p class="unknown" data-unknown hidden></p>
+      <p class="limit">{sale ? 'Acquisition costs, fees and losses are not deducted. This is an estimate of income.' : 'The estimate uses available listed prices. For item details and prices, see the item database.'}</p>
+      <button type="button" class="btn btn-dark" data-clear hidden>Clear List</button>
+    </aside>
+  </div>
+</main>
+
+<style>
+  .value-tool { padding-bottom: var(--section-space); min-height: 65vh; }
+  .calculator-hero { position: relative; isolation: isolate; padding-block: 18px 20px; border-bottom: 1px solid var(--border); }
+  .back-link { color: var(--muted); font-size: 14px; display: inline-block; margin-bottom: 12px; }
+  .back-link:hover { color: var(--accent); }
+  h1 { font-size: clamp(36px, 5vw, 62px); }
+  .intro { color: var(--muted); margin: 8px 0 0; }
+  .art-credit { display: inline-block; margin-top: 6px; color: var(--muted); font-size: 12px; }
+  .calc-layout { display: grid; grid-template-columns: minmax(0,1.8fr) minmax(235px,1fr); align-items: start; gap: 14px; padding-top: 16px; }
+  .work-area, .total-card { border: 1px solid var(--border); background: var(--surface); padding: clamp(14px,2.5vw,22px); }
+  .total-card { border-top: 2px solid var(--accent); }
+  h2 { font-size: 28px; margin-bottom: 14px; }
+  .add-row { display: grid; grid-template-columns: minmax(0,1fr) 78px auto; align-items: end; gap: 8px; }
+  label { display: grid; gap: 4px; font-size: 14px; color: var(--muted); }
+  input { width: 100%; min-width: 0; min-height: 44px; padding: 8px; border: 1px solid var(--control-border); background: var(--input); color: var(--text); font: 16px var(--font-body); }
+  input::placeholder { color: var(--muted); }
+  .adjust-row { display: flex; align-items: end; flex-wrap: wrap; gap: 7px 14px; margin-top: 16px; }
+  .adjust-row input { width: 100%; }
+  .adjust-row p, .limit, .list-empty { color: var(--muted); font-size: 14px; }
+  .adjust-row p { margin: 0; }
+  .error { margin: 12px 0 0; color: #ff9c7d; }
+  .item-list { margin: 12px 0 0; padding: 0; list-style: none; }
+  .item-list :global(li) { display: grid; grid-template-columns: minmax(0,1fr) 65px minmax(70px,auto) 44px; align-items: center; gap: 8px; padding-block: 9px; border-top: 1px solid var(--border); }
+  .item-list :global(a) { overflow-wrap: anywhere; font-weight: 700; }
+  .item-list :global(a:hover) { color: var(--accent); }
+  .item-list :global(input) { width: 100%; min-height: 44px; padding: 6px; border: 1px solid var(--control-border); background: var(--input); color: var(--text); font: 16px var(--font-body); }
+  .item-list :global(button) { min-height: 44px; background: var(--input); color: var(--text); border: 1px solid var(--control-border); cursor: pointer; font-size: 20px; }
+  .item-list :global(.subtotal) { text-align: end; overflow-wrap: anywhere; font-size: 13px; }
+  .total { font-size: clamp(18px,3vw,29px); line-height: 1.2; font-weight: 700; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; margin: 8px 0; }
+  .unknown { color: #ffd38a; }
+  @media (max-width: 780px) { .calc-layout { grid-template-columns: 1fr; } }
+  @media (max-width: 390px) { .add-row { grid-template-columns: minmax(0,1fr) 70px; } .add-row button { grid-column: 1 / -1; justify-self: start; } }
+</style>
+
+<script>
+  import items from '../data/items.json';
+  import { priceRange } from '../lib/item-value';
+  import { batchEstimateLimit } from '../lib/estimate-selection';
+
+  const tool = document.querySelector<HTMLElement>('[data-value-tool]')!;
+  const form = tool.querySelector<HTMLFormElement>('form')!;
+  const itemInput = form.querySelector<HTMLInputElement>('[name=item]')!;
+  const quantity = form.querySelector<HTMLInputElement>('[name=qty]')!;
+  const adjustment = tool.querySelector<HTMLInputElement>('[name=adjustment]');
+  const options = tool.querySelector<HTMLDataListElement>('datalist')!;
+  const list = tool.querySelector<HTMLUListElement>('.item-list')!;
+  const total = tool.querySelector<HTMLElement>('[data-total]')!;
+  const unknown = tool.querySelector<HTMLElement>('[data-unknown]')!;
+  const empty = tool.querySelector<HTMLElement>('[data-empty]')!;
+  const clear = tool.querySelector<HTMLButtonElement>('[data-clear]')!;
+  const feedback = tool.querySelector<HTMLElement>('[data-feedback]')!;
+  const byChoice = new Map<string, typeof items[number]>();
+  const selection = new URLSearchParams(location.search);
+  const selectedId = selection.get('item');
+  const byId = new Map(items.map(item => [item.id, item]));
+  const nameCounts = new Map<string, number>();
+  for (const item of items) {
+    const name = item.name.toLowerCase();
+    nameCounts.set(name, (nameCounts.get(name) ?? 0) + 1);
+  }
+  for (const item of items) {
+    const label = nameCounts.get(item.name.toLowerCase()) === 1 ? item.name : `${item.name} (${item.id})`;
+    byChoice.set(label.toLowerCase(), item);
+    if (item.id === selectedId && !itemInput.value) itemInput.value = label;
+    const option = document.createElement('option');
+    option.value = label;
+    options.append(option);
+  }
+
+  const entries = new Map<string, { item: typeof items[number]; qty: number; count: HTMLInputElement; subtotal: HTMLSpanElement }>();
+
+  function showFeedback(message: string) {
+    feedback.hidden = !message;
+    feedback.textContent = message;
+  }
+
+  function update() {
+    empty.hidden = entries.size > 0;
+    clear.hidden = entries.size === 0;
+    let missingQuantity = 0;
+    let min = 0;
+    let max = 0;
+    let priced = 0;
+    const percent = adjustment?.valueAsNumber ?? 0;
+    const validAdjustment = Number.isFinite(percent) && percent >= 0;
+    adjustment?.setAttribute('aria-invalid', String(!validAdjustment));
+    const multiplier = 1 + percent / 100;
+
+    for (const { item, qty, subtotal } of entries.values()) {
+      const lower = item.priceMin ?? item.priceMax;
+      const upper = item.priceMax ?? item.priceMin;
+      if (lower === null || upper === null) {
+        subtotal.textContent = 'Unknown';
+        missingQuantity += qty;
+        continue;
+      }
+      priced += 1;
+      const lineMin = lower * qty * multiplier;
+      const lineMax = upper * qty * multiplier;
+      subtotal.textContent = validAdjustment && Number.isFinite(lineMin) && Number.isFinite(lineMax)
+        ? priceRange(Math.round(lineMin), Math.round(lineMax))
+        : '—';
+      min += lineMin;
+      max += lineMax;
+    }
+
+    unknown.hidden = missingQuantity === 0;
+    unknown.textContent = missingQuantity === 1
+      ? '1 unit excluded because its listed price is unknown.'
+      : `${missingQuantity} units excluded because their listed prices are unknown.`;
+
+    if (!validAdjustment) total.textContent = 'Enter a valid non-negative adjustment.';
+    else if (!entries.size) total.textContent = 'No items added';
+    else if (!priced) total.textContent = 'No listed values available';
+    else if (!Number.isFinite(min) || !Number.isFinite(max)) total.textContent = 'The estimate is too large. Use a smaller adjustment.';
+    else total.textContent = priceRange(Math.round(min), Math.round(max));
+  }
+
+  function validQuantity(value: number) {
+    return Number.isSafeInteger(value) && value >= 1;
+  }
+
+  function addRow(item: typeof items[number], qty: number) {
+    const row = document.createElement('li');
+    const link = document.createElement('a');
+    link.href = '/items/' + encodeURIComponent(item.slug);
+    link.textContent = item.name;
+    const count = document.createElement('input');
+    count.type = 'number';
+    count.min = '1';
+    count.step = '1';
+    count.value = String(qty);
+    count.setAttribute('aria-label', `Quantity for ${item.name}`);
+    const subtotal = document.createElement('span');
+    subtotal.className = 'subtotal';
+    const remove = document.createElement('button');
+    remove.type = 'button';
+    remove.textContent = '×';
+    remove.setAttribute('aria-label', `Remove ${item.name}`);
+    const entry = { item, qty, count, subtotal };
+    entries.set(item.id, entry);
+    count.addEventListener('input', () => {
+      if (!validQuantity(count.valueAsNumber)) return;
+      showFeedback('');
+      entry.qty = count.valueAsNumber;
+      update();
+    });
+    count.addEventListener('change', () => {
+      if (!validQuantity(count.valueAsNumber)) {
+        showFeedback('Enter a whole number of 1 or more. The previous quantity was kept.');
+        count.value = String(entry.qty);
+      } else {
+        showFeedback('');
+        entry.qty = count.valueAsNumber;
+        update();
+      }
+    });
+    remove.addEventListener('click', () => {
+      entries.delete(item.id);
+      row.remove();
+      showFeedback('');
+      update();
+      itemInput.focus();
+    });
+    row.append(link, count, subtotal, remove);
+    list.append(row);
+  }
+
+  form.addEventListener('submit', event => {
+    event.preventDefault();
+    const item = byChoice.get(itemInput.value.trim().toLowerCase());
+    const qty = quantity.valueAsNumber;
+    if (!item) { showFeedback('Choose an item from the suggestions.'); itemInput.focus(); return; }
+    if (!validQuantity(qty)) { showFeedback('Enter a whole number of 1 or more.'); quantity.focus(); return; }
+    const existing = entries.get(item.id);
+    if (existing && !validQuantity(existing.qty + qty)) { showFeedback('The combined quantity is too large.'); return; }
+    if (existing) {
+      existing.qty += qty;
+      existing.count.value = String(existing.qty);
+    } else {
+      addRow(item, qty);
+    }
+    itemInput.value = '';
+    quantity.value = '1';
+    showFeedback('');
+    update();
+    itemInput.focus();
+  });
+  adjustment?.addEventListener('input', update);
+  clear.addEventListener('click', () => {
+    entries.clear();
+    list.replaceChildren();
+    showFeedback('');
+    update();
+    itemInput.focus();
+  });
+  const selectedIds = [...new Set(selection.getAll('add'))];
+  const requestedQuantity = Number(selection.get('qty'));
+  const startingQuantity = selectedIds.length === 1 && validQuantity(requestedQuantity) ? requestedQuantity : 1;
+  let unavailable = selectedIds.length > batchEstimateLimit;
+  for (const id of selectedIds.slice(0, batchEstimateLimit)) {
+    const item = byId.get(id);
+    if (item) addRow(item, startingQuantity);
+    else unavailable = true;
+  }
+  if (unavailable) showFeedback('Some selected items could not be loaded. Search for an item to add it to this estimate.');
+  update();
+</script>

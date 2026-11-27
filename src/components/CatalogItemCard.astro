@@ -1,0 +1,34 @@
+---
+import ItemPicture from './ItemPicture.astro';
+import { itemRarities, referencePrice, type CatalogItem } from '../lib/catalog-items';
+import { priceRange } from '../lib/item-value';
+
+interface Props {
+  item: CatalogItem;
+  actions?: boolean;
+  priority?: boolean;
+}
+const { item, actions = false, priority = false } = Astro.props;
+const rarity = item.rarity ?? 'none';
+const price = referencePrice(item);
+---
+<article class="item-card" data-id={item.id} data-name={item.name} data-name-ru={item.nameRu} data-category={item.category}
+  data-category-name={item.categoryName} data-rarity={rarity} data-price={price ?? ''}>
+  <a href={'/items/' + item.slug + '/'} class="item-link">
+    <div class="catalog-card-meta">
+      <span class:list={['item-price', { 'item-price--unknown': price === null }]}>{priceRange(item.priceMin, item.priceMax)}</span>
+      <span class="catalog-rarity">{itemRarities[rarity] ?? itemRarities.none}</span>
+    </div>
+    <ItemPicture item={item} priority={priority} />
+    <h3 class="item-name">{item.name}</h3>
+    <p class="item-cat">{item.categoryName}</p>
+  </a>
+  {actions && <div class="catalog-card-actions">
+    <label class="estimate-choice" hidden>
+      <input type="checkbox" form="estimate-selection" name="add" value={item.id} aria-label={'Select ' + item.name + ' for estimate'} />
+      <span>Estimate</span>
+    </label>
+    <button class="fav-btn" type="button" data-id={item.id} aria-label={'Save item: ' + item.name} aria-pressed="false" data-label={item.name}>☆</button>
+  </div>}
+</article>
+
