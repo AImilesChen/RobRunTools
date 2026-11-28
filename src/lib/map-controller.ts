@@ -3,6 +3,7 @@ import type { MapPlace, MapPoint } from './map-data';
 import type { LatLngBoundsExpression } from 'leaflet';
 import { filterMapData, readMapState, writeMapState, mapPosition, matchesMapQuery } from './map-query.mjs';
 import { MAP_NOTES_KEY, mapNotesExport, validateMapNotes, mergeMapNotes } from './map-notes.mjs';
+import { MAP_PROGRESS_KEY, progressKey, progressExport, validateMapProgress, mergeMapProgress } from './map-progress.mjs';
 
 export async function mountMapExplorer(root: HTMLElement) {
   if (root.dataset.mounted) return;
@@ -32,6 +33,14 @@ export async function mountMapExplorer(root: HTMLElement) {
   let draftNote:MapNote|null=null;
   let showArchived=false;
   let addingNote=false;
+  type Progress={mapId:string;kind:'place'|'point';id:string;favorite:boolean;explored:boolean;mapVersion:string};
+  let progress:Progress[]=[];
+  let progressError='';
+  let progressWritable=true;
+  let savedFilter='all';
+  const availableProgress=new Set([...mapPlaces.map(place=>`${place.mapId}:place:${place.id}`),...mapPoints.map(point=>`${point.mapId}:point:${point.id}`)]);
+  try{const stored=localStorage.getItem(MAP_PROGRESS_KEY);if(stored)progress=validateMapProgress(JSON.parse(stored),availableProgress);}
+  catch{progressError='Saved places could not be read. They have not been overwritten. Check this browser’s site-data settings before editing.';progressWritable=false;}
   try{const stored=localStorage.getItem(MAP_NOTES_KEY);if(stored)notes=validateMapNotes(JSON.parse(stored),mapDefinitions.map(map=>map.id));}
   catch{notesError='Saved notes could not be read. They have not been overwritten. Check this browser’s site-data settings before editing notes.';notesWritable=false;}
   let fitZoom = 0;
@@ -180,6 +189,35 @@ export async function mountMapExplorer(root: HTMLElement) {
     state.place=null;state.point=null;detail.hidden=true;update();setPanel('results');saveUrl(true);
   }
   function detailParagraph(text: string, className='') { detail.append(element('p',className,text)); }
+  function statusFor(kind:'place'|'point',id:string){return progress.find(entry=>entry.mapId===definition.id&&entry.kind===kind&&entry.id===id);}
+  function saveProgress(next:Progress[]){if(!progressWritable)throw new Error(progressError);localStorage.setItem(MAP_PROGRESS_KEY,JSON.stringify(progressExport(next)));progress=next;}
+  function drawProgressControls(kind:'place'|'point',id:string){
+    const current=statusFor(kind,id);
+    const group=element('fieldset','map-personal-status');group.append(element('legend','','Your progress · this browser'));
+    for(const [field,label] of [['favorite','Favorite this location'],['explored','Mark as explored']] as const){
+      const row=element('label');const input=element('input');input.type='checkbox';input.checked=Boolean(current?.[field]);input.disabled=!progressWritable;
+      input.addEventListener('change',()=>{try{
+        const entry={mapId:definition.id,kind,id,favorite:current?.favorite??false,explored:current?.explored??false,mapVersion:definition.version,[field]:input.checked};
+        saveProgress([...progress.filter(item=>progressKey(item)!==progressKey(entry)),entry]);update();
+      }catch{input.checked=!input.checked;shareStatus.textContent='This browser could not save the status. Existing saved places were kept.';}});
+      row.append(input,document.createTextNode(label));group.append(row);
+    }
+    detail.append(group);if(progressError)detailParagraph(progressError,'map-detail-note');
+  }
+  function drawSavedList(){
+    list.replaceChildren();
+    list.append(element('p','map-detail-note','Favorites and exploration checks stay in this browser. They describe your own progress, not live loot availability.'));
+    if(progressError)list.append(element('p','map-selection-warning',progressError));
+    const label=element('label','map-detail-note','Show saved places');const select=element('select','map-saved-filter');select.setAttribute('aria-label','Show saved places');
+    for(const [value,text] of [['all','All saved'],['favorites','Favorites'],['explored','Explored'],['unexplored','Favorites still to explore']]){const option=element('option','',text);option.value=value;option.selected=value===savedFilter;select.append(option);}
+    select.addEventListener('change',()=>{savedFilter=select.value;drawSavedList();});label.append(select);list.append(label);
+    const entries=progress.filter(entry=>entry.mapId===definition.id&&(entry.favorite||entry.explored)&&(savedFilter==='all'||savedFilter==='favorites'&&entry.favorite||savedFilter==='explored'&&entry.explored||savedFilter==='unexplored'&&entry.favorite&&!entry.explored));
+    if(!entries.length)list.append(element('p','map-empty','No saved places in this view. Open a public location or point to favorite it or mark it explored.'));
+    for(const entry of entries){const object=entry.kind==='place'?byPlace.get(entry.id):byPoint.get(entry.id);if(object)list.append(resultButton(entry.kind==='place'?'places':'points',object));}
+    const exportButton=element('button','map-secondary-button','Export saved places');exportButton.type='button';exportButton.disabled=!progress.length;
+    exportButton.addEventListener('click',()=>{const url=URL.createObjectURL(new Blob([JSON.stringify(progressExport(progress),null,2)],{type:'application/json'}));const a=link(url,'');a.download='robrun-saved-places.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);});
+    const importButton=element('button','map-secondary-button','Import saved places');importButton.type='button';importButton.disabled=!progressWritable;importButton.addEventListener('click',()=>$<HTMLInputElement>('[data-import-progress]').click());list.append(exportButton,importButton);
+  }
   function drawDetails() {
     const note=currentNote();if(note){detail.hidden=false;list.hidden=true;$('.map-result-tabs').hidden=true;drawNoteEditor(note);return;}
     const {point,place}=currentSelection();
@@ -221,6 +259,7 @@ export async function mountMapExplorer(root: HTMLElement) {
     if(place?.id==='world-looty-bay') detail.append(link('/map/','Open Looty Bay map →','map-primary-button'));
     if(place?.referenceUrl) detail.append(link(place.referenceUrl,'Open regional location references →','map-primary-button'));
     if(place?.recordMatch==='unmatched-numbering') detailParagraph('This residential marker is named by direction. Its match to the numbered cottages in the location directory has not been confirmed.');
+    drawProgressControls(point?'point':'place',selected.id);
     const addNote=element('button','map-secondary-button','Add a personal note here');addNote.type='button';addNote.disabled=!notesWritable;addNote.addEventListener('click',()=>createDraft(selected,point?(point.name??type?.name??'Point'):place!.name));detail.append(addNote);
     const share=element('button','map-secondary-button','Copy link to this position');share.type='button';share.addEventListener('click',copyView);detail.append(share);
     detail.append(link(definition.source,'View coordinate source ↗'));
@@ -234,6 +273,7 @@ export async function mountMapExplorer(root: HTMLElement) {
     const symbol=element('span','map-result-symbol',kind==='places'?(place!.level?'L'+place!.level:place!.name.slice(0,1)):'·');symbol.setAttribute('aria-hidden','true');
     if(type)symbol.style.setProperty('--symbol-color',type.color);
     const text=element('span');text.append(element('strong','',title),element('small','',kind==='places'?`${place!.district} · ${place!.type}`:place?`${place.name} · ${place.district}`:'Building not assigned'));
+    const progressStatus=statusFor(kind==='places'?'place':'point',object.id);if(progressStatus?.favorite||progressStatus?.explored)text.append(element('small','map-saved-status',[progressStatus.favorite?'★ Favorite':'',progressStatus.explored?'✓ Explored':''].filter(Boolean).join(' · ')));
     button.append(symbol,text,element('span','map-result-arrow','→'));
     button.setAttribute('aria-label',`${title}${kind==='points'?' · '+(place?.name??'unassigned')+' · '+object.id:''}`);
     button.dataset[kind==='places'?'selectPlace':'selectPoint']=object.id;
@@ -241,6 +281,7 @@ export async function mountMapExplorer(root: HTMLElement) {
   }
   function drawList() {
     if(state.tab==='notes'){drawNotesList();return;}
+    if(state.tab==='saved'){drawSavedList();return;}
     list.replaceChildren();
     const results=state.tab==='places'?filtered.places:filtered.points;
     if(!results.length){
@@ -251,14 +292,16 @@ export async function mountMapExplorer(root: HTMLElement) {
     for(const result of results.slice(0,resultLimit))list.append(resultButton(state.tab as 'places'|'points',result));
     if(results.length>resultLimit){const more=element('button','map-secondary-button',`Show more (${results.length-resultLimit} remaining)`);more.type='button';more.addEventListener('click',()=>{resultLimit+=50;drawList();});list.append(more);}
   }
-  function setTab(tab:'places'|'points'|'notes') {state.tab=tab;state.place=null;state.point=null;selectedNoteId=null;draftNote=null;resultLimit=50;update();saveUrl(true);}
+  function setTab(tab:'places'|'points'|'notes'|'saved') {state.tab=tab;state.place=null;state.point=null;selectedNoteId=null;draftNote=null;resultLimit=50;update();saveUrl(true);}
   function update() {
     filtered=filterMapData(places,points,types,state);
     $('[data-place-count]').textContent=String(filtered.places.length);
     const pointCount=root.querySelector('[data-point-count]');if(pointCount)pointCount.textContent=String(filtered.points.length);
     $('[data-note-count]').textContent=String(notes.filter(note=>note.mapId===definition.id&&!note.archived).length);
+    const savedCount=progress.filter(entry=>entry.mapId===definition.id&&(entry.favorite||entry.explored)).length;$('[data-saved-count]').textContent=String(savedCount);
     countSummary.textContent=`${filtered.places.length} places${points.length?' · '+filtered.points.length.toLocaleString('en-US')+' points':''}`;
     if(state.tab==='notes')countSummary.textContent=`${visibleNotes().length} personal notes on this map`;
+    if(state.tab==='saved')countSummary.textContent=`${savedCount} saved places on this map`;
     $('[data-mobile-result-count]').textContent=state.point||state.place||selectedNoteId?'Selected location':state.tab==='notes'?'Personal notes':`${filtered.places.length} places${points.length?' · '+filtered.points.length+' points':''}`;
     root.querySelectorAll<HTMLButtonElement>('[data-result-tab]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.resultTab===state.tab)));
     $('[data-clear-query]').hidden=!state.q;
@@ -368,6 +411,10 @@ export async function mountMapExplorer(root: HTMLElement) {
   }
 
   root.dataset.enhanced='true';syncInputs();
+  $<HTMLInputElement>('[data-import-progress]').addEventListener('change',async event=>{const input=event.currentTarget as HTMLInputElement;const file=input.files?.[0];if(!file)return;try{
+    if(file.size>1024*1024)throw new Error('Choose a saved-places export smaller than 1 MB.');
+    const incoming=validateMapProgress(JSON.parse(await file.text()),availableProgress);const merged=mergeMapProgress(progress,incoming);const added=merged.length-progress.length;saveProgress(merged);update();shareStatus.textContent=`Imported ${added} entries. Existing progress was kept.`;
+  }catch(error){shareStatus.textContent=error instanceof Error?error.message:'The saved-places file could not be read.';}finally{input.value='';}});
   $('[data-cancel-note]').addEventListener('click',cancelAddNote);
   $<HTMLInputElement>('[data-import-notes]').addEventListener('change',async event=>{const input=event.currentTarget as HTMLInputElement;const file=input.files?.[0];if(!file)return;try{
     if(file.size>1024*1024)throw new Error('Choose a notes export smaller than 1 MB.');
@@ -386,7 +433,7 @@ export async function mountMapExplorer(root: HTMLElement) {
   root.querySelector('[data-types-none]')?.addEventListener('click',()=>setTypes([]));
   root.querySelectorAll<HTMLElement>('[data-type-only]').forEach(button=>button.addEventListener('click',()=>setTypes([button.dataset.typeOnly!])));
   $('[data-clear-filters]').addEventListener('click',clearFilters);
-  root.querySelectorAll<HTMLElement>('[data-result-tab]').forEach(button=>button.addEventListener('click',()=>setTab(button.dataset.resultTab as 'places'|'points'|'notes')));
+  root.querySelectorAll<HTMLElement>('[data-result-tab]').forEach(button=>button.addEventListener('click',()=>setTab(button.dataset.resultTab as 'places'|'points'|'notes'|'saved')));
   $('[data-zoom-in]').addEventListener('click',()=>map?.zoomIn(.5));$('[data-zoom-out]').addEventListener('click',()=>map?.zoomOut(.5));
   $('[data-fit-map]').addEventListener('click',()=>{fitWholeMap();saveUrl(true);});
   $('[data-full-map]').addEventListener('click',()=>{

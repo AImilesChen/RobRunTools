@@ -47,11 +47,12 @@ const groups = [
 
     <aside class="map-results-panel" aria-labelledby="map-results-heading" data-map-results-panel>
       <div class="map-panel-head"><h2 id="map-results-heading">Places on this map</h2><button type="button" class="map-icon-button map-mobile-only" data-close-panel aria-label="Close results">×</button></div>
-      <div class="map-result-tabs" role="group" aria-label="Result type"><button type="button" aria-pressed="true" data-result-tab="places">Places <span data-place-count>{places.length}</span></button>{points.length>0 && <button type="button" aria-pressed="false" data-result-tab="points">Points <span data-point-count>{points.length}</span></button>}<button type="button" aria-pressed="false" data-result-tab="notes">Notes <span data-note-count>0</span></button></div>
+      <div class="map-result-tabs" role="group" aria-label="Result type"><button type="button" aria-pressed="true" data-result-tab="places">Places <span data-place-count>{places.length}</span></button>{points.length>0 && <button type="button" aria-pressed="false" data-result-tab="points">Points <span data-point-count>{points.length}</span></button>}<button type="button" aria-pressed="false" data-result-tab="notes">Notes <span data-note-count>0</span></button><button type="button" aria-pressed="false" data-result-tab="saved">Saved <span data-saved-count>0</span></button></div>
       <p class="map-result-summary" data-result-summary role="status">{places.length} places{points.length ? ` · ${points.length.toLocaleString('en-US')} point references` : ''}</p>
       <div class="map-result-list" data-result-list>{places.map(place => <a class="map-result-item" href={placeDetailUrl(place)} data-select-place={place.id}><span class="map-result-symbol" aria-hidden="true">{place.level ? 'L'+place.level : place.type === 'Landmark' ? '★' : place.name.slice(0,1)}</span><span><strong>{place.name}</strong><small>{place.district} · {place.type}</small></span><HomeIcon name="arrow" size={15}/></a>)}</div>
       <div class="map-detail" data-map-detail hidden></div>
       <div class="map-share-status" data-map-share-status role="status"></div>
+      <input type="file" data-import-progress accept="application/json,.json" aria-label="Import saved places" hidden/>
       <input type="file" data-import-notes accept="application/json,.json" aria-label="Import map notes" hidden/>
     </aside>
   </div>
