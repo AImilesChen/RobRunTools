@@ -1,0 +1,64 @@
+---
+import { mapDefinitions, mapPlaces, mapPoints, mapTypes, placeDetailUrl, placeMapUrl } from '../../lib/map-data';
+import type { MapDefinition } from '../../lib/map-data';
+import HomeIcon from '../HomeIcon.astro';
+
+interface Props { definition: MapDefinition; imageUrl: string; }
+const { definition, imageUrl } = Astro.props;
+const places = mapPlaces.filter(place => place.mapId === definition.id);
+const points = mapPoints.filter(point => point.mapId === definition.id);
+const districts = [...new Set(places.map(place => place.district))].sort();
+const groups = [
+  {name:'Services', types:mapTypes.filter(type => ['s-atm','s-parking','s-fence','s-cargo-exchange'].includes(type.id))},
+  {name:'Loot & containers', types:mapTypes.filter(type => !['s-camera','s-alarm','s-metal_detector','s-door','s-atm','s-parking','s-fence','s-cargo-exchange','s-conquest','s-cargo-event'].includes(type.id))},
+  {name:'Security & access', types:mapTypes.filter(type => ['s-camera','s-alarm','s-metal_detector','s-door'].includes(type.id))},
+  {name:'Clans & events', types:mapTypes.filter(type => ['s-conquest','s-cargo-event'].includes(type.id))},
+];
+---
+
+<section class="map-explorer" data-map-explorer data-map-id={definition.id} data-map-image={imageUrl} aria-label={`${definition.name} interactive map`}>
+  <div class="map-topbar">
+    <nav class="map-switcher" aria-label="Maps">{mapDefinitions.map(map => <a href={map.path} aria-current={map.id === definition.id ? 'page' : undefined}><strong>{map.name}</strong><small>{map.label}</small></a>)}</nav>
+    <label class="map-mobile-choice">Map<select aria-label="Choose map" data-map-choice>{mapDefinitions.map(map=><option value={map.path} selected={map.id===definition.id}>{map.name}</option>)}</select></label>
+    <a class="map-directory-link" href="/locations/">Location directory <HomeIcon name="arrow" size={17} /></a>
+  </div>
+  <div class="map-workspace" data-mobile-panel="closed">
+    <aside class="map-filters" aria-labelledby="map-filter-title" data-map-filters>
+      <div class="map-panel-head"><h2 id="map-filter-title">Find a location</h2><button type="button" class="map-icon-button map-mobile-only" data-close-panel aria-label="Close filters">×</button></div>
+      <form class="map-search" data-map-search role="search"><label for="map-search">Search the map</label><div class="map-search-field"><input type="search" id="map-search" maxlength="120" placeholder={points.length ? 'Bank, safe, camera…' : 'District or city…'} autocomplete="off" data-map-query /><button type="submit" aria-label="Find on map"><HomeIcon name="search" size={19} /></button></div><button type="button" class="map-text-button" data-clear-query hidden>Clear search</button></form>
+      <label class="map-field" for="map-district"><span>{definition.id === 'world' ? 'District level' : definition.id==='looty-bay'?'City district':'Place type'}</span><select id="map-district" data-map-district><option value="">{definition.id === 'world' ? 'All levels & destinations' : definition.id==='looty-bay'?'All districts':'All place types'}</option>{districts.map(district=><option value={district}>{district}</option>)}</select></label>
+      {points.length > 0 && <div class="map-type-groups"><div class="map-filter-title"><h3>Point layers</h3><span><button type="button" data-types-all>All</button><button type="button" data-types-none>None</button></span></div>{groups.map(group => <details open><summary>{group.name}</summary><div class="map-type-list">{group.types.map(type => <div class="map-type-row"><input type="checkbox" id={`map-type-${type.id}`} name="map-type" value={type.id} checked aria-label={type.name}/><span class="map-type-dot" style={`--point-color:${type.color}`}></span><label for={`map-type-${type.id}`}>{type.name}</label><small>{points.filter(point => point.type===type.id).length}</small><button type="button" data-type-only={type.id} aria-label={`Show only ${type.name}`}>Only</button></div>)}</div></details>)}</div>}
+      <div class="map-filter-footer"><button type="button" class="map-secondary-button" data-clear-filters>Clear filters</button><p>{definition.id==='looty-bay'?'Markers locate recorded building areas and objects. Zoom in to inspect details.':definition.id==='world'?'Pins identify labelled district areas, not live ownership.':'Markers identify named layout references, not live availability.'}</p><button type="button" class="map-primary-button map-mobile-only" data-apply-filters>Show results</button></div>
+    </aside>
+
+    <div class="map-stage" data-map-stage>
+      <div class="map-canvas" data-map-canvas role="region" aria-label={`${definition.name} map`}>
+        <img class="map-static-image" data-map-fallback src={imageUrl} width={definition.width} height={definition.height} alt={definition.id === 'world' ? 'ROB RUN world-map reference showing named desert districts and coastal Looty Bay' : definition.id==='looty-bay'?'Looty Bay in-game map: west island, central island and Downtown connected by bridges':`${definition.name} map layout reference`} fetchpriority="high" />
+      </div>
+      <div class="map-live-status" data-map-live-status role="status">Loading interactive map…</div>
+      <div class="map-note-prompt" data-add-note-prompt hidden>Click the map to place your note.<button type="button" data-cancel-note>Cancel</button></div>
+      <div class="map-load-error" data-map-error hidden><strong>The interactive map could not load.</strong><p>The place list and location records are still available.</p><button type="button" class="map-primary-button" data-map-retry>Try again</button><a href="/locations/">Browse locations</a></div>
+      <div class="map-floating-top"><span class="map-view-name">{definition.name}<small data-map-zoom>Overview</small></span><button type="button" class="map-secondary-button map-mobile-only" data-open-filters><HomeIcon name="compare" size={17}/> Filters</button></div>
+      <div class="map-controls" aria-label="Map controls"><button type="button" data-zoom-in aria-label="Zoom in">+</button><button type="button" data-zoom-out aria-label="Zoom out">−</button><button type="button" data-fit-map aria-label="Show whole map"><HomeIcon name="pin" size={20}/></button><button type="button" data-full-map aria-label="Expand map view">⛶</button></div>
+      <p class="map-overview-hint" data-map-hint>Drag to explore · zoom for details</p>
+      <button type="button" class="map-results-toggle map-mobile-only" data-open-results><span data-mobile-result-count>{places.length} places</span><strong>Browse results ↑</strong></button>
+      <noscript><p class="map-noscript">This is a static map preview. Enable JavaScript for zoom, search and point layers, or use the place links below.</p></noscript>
+    </div>
+
+    <aside class="map-results-panel" aria-labelledby="map-results-heading" data-map-results-panel>
+      <div class="map-panel-head"><h2 id="map-results-heading">Places on this map</h2><button type="button" class="map-icon-button map-mobile-only" data-close-panel aria-label="Close results">×</button></div>
+      <div class="map-result-tabs" role="group" aria-label="Result type"><button type="button" aria-pressed="true" data-result-tab="places">Places <span data-place-count>{places.length}</span></button>{points.length>0 && <button type="button" aria-pressed="false" data-result-tab="points">Points <span data-point-count>{points.length}</span></button>}<button type="button" aria-pressed="false" data-result-tab="notes">Notes <span data-note-count>0</span></button></div>
+      <p class="map-result-summary" data-result-summary role="status">{places.length} places{points.length ? ` · ${points.length.toLocaleString('en-US')} point references` : ''}</p>
+      <div class="map-result-list" data-result-list>{places.map(place => <a class="map-result-item" href={placeDetailUrl(place)} data-select-place={place.id}><span class="map-result-symbol" aria-hidden="true">{place.level ? 'L'+place.level : place.type === 'Landmark' ? '★' : place.name.slice(0,1)}</span><span><strong>{place.name}</strong><small>{place.district} · {place.type}</small></span><HomeIcon name="arrow" size={15}/></a>)}</div>
+      <div class="map-detail" data-map-detail hidden></div>
+      <div class="map-share-status" data-map-share-status role="status"></div>
+      <input type="file" data-import-notes accept="application/json,.json" aria-label="Import map notes" hidden/>
+    </aside>
+  </div>
+  <div class="map-caption"><span>{definition.version}</span><span>Checked {definition.checkedAt} · <a href={definition.source}>Map source</a></span></div>
+</section>
+
+<script>
+  import { mountMapExplorer } from '../../lib/map-controller';
+  document.querySelectorAll<HTMLElement>('[data-map-explorer]').forEach(root => mountMapExplorer(root));
+</script>

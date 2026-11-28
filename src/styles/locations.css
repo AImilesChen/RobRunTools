@@ -6,6 +6,8 @@
   background: #2d2e2b;
   color: #f4f4ee;
 }
+.location-map-links{display:flex;flex-wrap:wrap;gap:12px 24px;padding:12px 18px;border-top:1px solid var(--location-line);font-size:12px;color:var(--location-accent)}
+.location-map-links a{display:inline-flex;align-items:center;gap:8px;min-height:40px}
 .location-page svg {
   flex: none;
 }

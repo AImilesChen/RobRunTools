@@ -1,0 +1,42 @@
+---
+import { Image, getImage } from 'astro:assets';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import HomeIcon from '../../components/HomeIcon.astro';
+import CatalogItemCard from '../../components/CatalogItemCard.astro';
+import { catalogItems } from '../../lib/catalog-items';
+import { profilePlaces, placeMapUrl, placeRecordUrl } from '../../lib/map-data';
+import { locationRecords, locationRecordUrl } from '../../lib/location-records';
+import { buildingIllustration } from '../../lib/location-visuals';
+import cityImage from '../../../assets/maps/looty-bay.webp';
+import '../../styles/location-profile.css';
+import '../../styles/catalog-items.css';
+
+export function getStaticPaths() {return profilePlaces.map(place=>({params:{slug:place.slug},props:{place}}));}
+const { place } = Astro.props;
+const profile=place.profile!;
+const art=buildingIllustration(place.name,true,place.district);
+const records=locationRecords.filter(record=>place.recordIds.includes(record.id));
+const groups=[...new Set(records.map(record=>record.type))].map(type=>({type,count:records.filter(record=>record.type===type).length}));
+const related=profile.itemIds.map(id=>catalogItems.find(item=>item.id===id)!).filter(Boolean);
+const preview=await getImage({src:cityImage,width:1000,format:'webp'});
+const canonical='https://robrun.win/locations/'+place.slug+'/';
+const title=`ROB RUN ${place.name}: Location, Records & Item References`;
+const schemas=[{'@context':'https://schema.org','@type':'WebPage','@id':canonical,url:canonical,name:title,description:profile.intro,dateModified:place.checkedAt},
+{'@context':'https://schema.org','@type':'BreadcrumbList',itemListElement:[{'@type':'ListItem',position:1,name:'Home',item:'https://robrun.win/'},{'@type':'ListItem',position:2,name:'Locations',item:'https://robrun.win/locations/'},{'@type':'ListItem',position:3,name:place.name,item:canonical}]}];
+---
+<BaseLayout title={title} description={profile.intro} shareImage={art.image.src}>
+  <main class="location-profile">
+    <div class="profile-container">
+      <nav class="profile-breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><a href="/locations/">Locations</a><span>/</span><span aria-current="page">{place.name}</span></nav>
+      <section class="profile-intro"><div class="profile-main-copy"><p class="profile-eyebrow">// LOOTY BAY · {place.district}</p><h1>{place.name}</h1><p class="profile-lead">{profile.intro}</p><div class="profile-actions"><a class="profile-primary" href={placeMapUrl(place)}><HomeIcon name="pin" size={19}/> Locate on map</a><a class="profile-secondary" href={placeRecordUrl(place)}>Browse {records.length} records <HomeIcon name="arrow" size={17}/></a></div><p class="profile-date">Community reference · game version 0.7.0 · checked {place.checkedAt}</p></div><figure class:list={['profile-image',{'is-artwork':art.label==='Type artwork'}]}><Image src={art.image} alt={art.alt} width={840} loading="eager"/><figcaption>{art.label} · <a href="/sources/">Image sources</a></figcaption></figure></section>
+      <nav class="profile-contents" aria-label="On this page"><a href="#where">Location</a><a href="#records">Recorded objects</a><a href="#access">Access references</a><a href="#related-items">Related items</a><a href="#profile-sources">Sources</a></nav>
+      <section class="profile-section profile-where" id="where"><div><p class="profile-eyebrow">// FIND YOUR WAY</p><h2>Where is {place.name}?</h2><p>{profile.location}</p><p>{profile.purpose}</p><a class="profile-text-link" href={placeMapUrl(place)}>Open this location on the interactive map <HomeIcon name="arrow" size={18}/></a></div><a class="profile-map-preview" href={placeMapUrl(place)} aria-label={`Locate ${place.name} on the Looty Bay map`}><img src={preview.src} width={preview.attributes.width} height={preview.attributes.height} alt="Looty Bay city map reference" loading="lazy"/><span class="profile-map-pin" style={`left:${place.u*100}%;top:${place.v*100}%`}><span></span><strong>{place.name}</strong></span><span class="profile-map-caption">Building area reference · open interactive map ↗</span></a></section>
+      <section class="profile-section" id="records"><p class="profile-eyebrow">// TWO SOURCES, TWO COUNTS</p><h2>Recorded objects at this building</h2><p>The location directory contains <strong>{records.length} records</strong> for this building. The independent coordinate snapshot contains <strong>{place.pointCount} map points</strong>. These are different source collections; their individual objects have not been matched one to one.</p><div class="profile-record-counts">{groups.map(group=><div><strong>{group.count}</strong><span>{group.type}</span></div>)}</div><div class="profile-record-preview"><h3>From the location directory</h3><ul>{records.slice(0,6).map(record=><li><a href={locationRecordUrl(record.id)}><span>{record.name}</span><small>{record.type}</small><HomeIcon name="arrow" size={15}/></a></li>)}</ul><a class="profile-text-link" href={placeRecordUrl(place)}>Browse all {records.length} building records <HomeIcon name="arrow" size={17}/></a></div></section>
+      <section class="profile-section profile-access" id="access"><div><p class="profile-eyebrow">// CHECK BEFORE YOU VISIT</p><h2>Keys, tools & access</h2><p>{profile.access}</p><a class="profile-text-link" href={profile.source}>Check the building source <HomeIcon name="external" size={16}/></a></div><aside><h3>What the map does not know</h3><ul>{profile.notes.map(note=><li>{note}</li>)}</ul><p>Floor numbers, respawn timers and live server availability are not supplied by the published coordinate data.</p></aside></section>
+      <section class="profile-section" id="related-items"><p class="profile-eyebrow">// CONTINUE THE REFERENCE</p><h2>Related item references</h2><p>Items and tools associated with the building reference. A link does not guarantee that an item is present or available on your visit. Prices below use the item database’s listed values.</p><div class="profile-item-grid">{related.map(item=><CatalogItemCard item={item}/>)}</div></section>
+      <section class="profile-section profile-source-box" id="profile-sources"><h2>Sources & scope</h2><ul><li><a href={profile.source}>ROB RUN Wiki — {place.name}</a>: building, potential rewards and access references.</li><li><a href="https://robrunwiki.com/en/data/">ROB RUN Wiki open data</a>: location records and item tables, version 0.7.0.</li><li><a href="https://robrunwiki.net/map/">ROB RUN Wiki community map</a>: coordinate snapshot, build 26464639; original game-map image © Kefir / ROB RUN.</li></ul><p>Building record links are matched by building name. The marker locates the recorded building area; it is not a verified entry door. Checked {place.checkedAt}. <a href="/contact/">Report a correction</a>.</p></section>
+      <section class="profile-section"><h2>Explore another landmark</h2><div class="profile-next-links">{profilePlaces.filter(other=>other.id!==place.id).map(other=><a href={`/locations/${other.slug}/`}>{other.name}<HomeIcon name="arrow" size={18}/></a>)}</div><a class="profile-text-link" href="/locations/">Return to the location directory</a></section>
+    </div>
+  </main>
+  <script type="application/ld+json" set:html={JSON.stringify(schemas).replaceAll('<','\\u003c')}/>
+</BaseLayout>

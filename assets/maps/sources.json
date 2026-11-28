@@ -1,0 +1,92 @@
+{
+  "checkedAt": "2026-11-28",
+  "gameArtOwner": "Kefir / ROB RUN",
+  "note": "Original game-map imagery for an independent game reference. Community archives identify the imagery as the in-game map and the world screenshot. Source records describe provenance, not a license grant. The viewer, controls, labels and directory integration are independently implemented; no competitor viewer, watermark or site code is copied.",
+  "images": [
+    {
+      "file": "looty-bay.webp",
+      "source": "https://robrunwiki.net/assets/looty-bay-1320.webp",
+      "width": 1320,
+      "height": 1020,
+      "bytes": 57836,
+      "sha256": "630088f92b0da49b0a3deb333e206f29dad6c0e5f9febff7de11a32d7c31e29b"
+    },
+    {
+      "file": "world.webp",
+      "source": "https://robrunwiki.net/assets/map-1200.webp",
+      "width": 1200,
+      "height": 594,
+      "bytes": 92888,
+      "sha256": "84191f5e1c467c4236e38a07901135041ea7b1b03c67d8f446eb9afbf4653bb2"
+    },
+    {
+      "file": "motel.webp",
+      "source": "https://robrunwiki.net/assets/lennys-motel-still.webp",
+      "width": 1000,
+      "height": 1000,
+      "bytes": 16158,
+      "sha256": "a00efc62206e8e531e51957f31328b04b5a1ca8bd61d7371b80fe771ab8cb842"
+    },
+    {
+      "file": "prison.webp",
+      "source": "https://robrunwiki.net/assets/prison-still.webp",
+      "width": 900,
+      "height": 700,
+      "bytes": 10736,
+      "sha256": "d2be450baecf44f74745250a189a19d1bc42c329f4a993b41446db7952937a06"
+    },
+    {
+      "file": "sales-center.webp",
+      "source": "https://robrunwiki.net/assets/sales-center-still.webp",
+      "width": 1000,
+      "height": 1000,
+      "bytes": 24054,
+      "sha256": "9083115eeea175d14d392820c643a775be7920be52ef4f4ac27c3eda5040c4db"
+    }
+  ],
+  "coordinateData": {
+    "source": "https://robrunwiki.net/assets/map-spots.json",
+    "build": 26464639,
+    "count": 1117,
+    "correction": "Preserved 243 source place indices of -1 as unassigned; the old importer incorrectly mapped them to the last place. Stable point IDs derive from source build, coordinates, type index and place index; duplicate source rows use occurrence suffixes."
+  },
+  "serviceMarkers": {
+    "source": "https://robrunwiki.net/map/",
+    "count": 81,
+    "note": "Separately sourced named service/event references from public map markup, not a one-to-one extension of the object snapshot. Counts describe references, not guaranteed unique in-game objects."
+  },
+  "regionalMarkers": {
+    "source": "https://robrunwiki.net/map/",
+    "maps": [
+      {
+        "id": "motel",
+        "count": 6,
+        "width": 1000,
+        "height": 1000
+      },
+      {
+        "id": "prison",
+        "count": 10,
+        "width": 900,
+        "height": 700
+      },
+      {
+        "id": "sales-center",
+        "count": 21,
+        "width": 1000,
+        "height": 1000
+      }
+    ],
+    "note": "Only name, type, source identifier and coordinates are used. The viewer and text are independently implemented."
+  },
+  "records": {
+    "source": "https://robrunwiki.com/en/data/",
+    "count": 927,
+    "version": "0.7.0",
+    "relation": "Explicit building-level links only; no invented individual-point correspondence."
+  },
+  "world": {
+    "source": "https://store.steampowered.com/news/app/4262460/view/717917092255368502",
+    "method": "Independently placed region-reference pins at visible district labels on the 1200×594 world screenshot. No live ownership or settlement pins."
+  }
+}

@@ -1,20 +1,9 @@
 import { defineConfig } from 'astro/config';
-import { fileURLToPath } from 'node:url';
 import { copyFile, mkdir, readFile } from 'node:fs/promises';
 import react from '@astrojs/react';
 import searchFiles from './scripts/astro-search-files.mjs';
 import { siteUrl } from './src/lib/site-release.mjs';
-import { officialArtPreview } from './src/lib/game-media.mjs';
 import { homeGameplayEnabled } from './src/lib/home-game-media.mjs';
-
-const mapPreview = {
-  name: 'robrun-map-preview',
-  hooks: {
-    'astro:config:setup': ({ injectRoute }) => {
-      injectRoute({ pattern: '/map', entrypoint: fileURLToPath(new URL('./src/previews/point-map.astro', import.meta.url)) });
-    },
-  },
-};
 
 const gameplayAssets = {
   name: 'robrun-gameplay-assets',
@@ -37,6 +26,7 @@ const gameplayAssets = {
 };
 
 export default defineConfig({
-  integrations: [react(), searchFiles(), ...(officialArtPreview ? [mapPreview] : []), ...(homeGameplayEnabled ? [gameplayAssets] : [])],
+  integrations: [react(), searchFiles(), ...(homeGameplayEnabled ? [gameplayAssets] : [])],
+  redirects: { '/map/looty-bay': '/map/' },
   site: siteUrl,
 });

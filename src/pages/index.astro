@@ -19,7 +19,7 @@ const searchExample = '/search/?q=Action+Camera';
 const itemMedia = (id: string) => Object.hasOwn(media, id) ? id as keyof typeof media : null;
 const actions = [
   { href: '/items/', label: 'Check a Price', tone: 'value', detail: 'Look up an in-game item', icon: 'box' },
-  { href: '/locations/', label: 'Browse Districts', tone: 'locations', detail: 'Find records in Looty Bay', icon: 'pin' },
+  { href: '/map/', label: 'Explore the Map', tone: 'locations', detail: 'Locate places and recorded points', icon: 'pin' },
   { href: '/tools/loot-calculator/', label: 'Total Your Loot', tone: 'tools', detail: 'Estimate a haul by quantity', icon: 'calculator' },
   { href: '/guides/beginner-guide/', label: 'Read the Starter Guide', tone: 'guides', detail: 'Get ready for your first run', icon: 'book' },
 ] as const;

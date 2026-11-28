@@ -1,0 +1,127 @@
+[
+  {
+    "id": "s-safe",
+    "name": "Safe",
+    "color": "#ffd166"
+  },
+  {
+    "id": "s-bank_vault",
+    "name": "Bank Vault",
+    "color": "#ffb703"
+  },
+  {
+    "id": "s-deposit_box",
+    "name": "Deposit Box",
+    "color": "#fb8500"
+  },
+  {
+    "id": "s-cash_register",
+    "name": "Cash Register",
+    "color": "#a8e063"
+  },
+  {
+    "id": "s-jewellery",
+    "name": "Jewellery",
+    "color": "#f6a6ff"
+  },
+  {
+    "id": "s-weapons",
+    "name": "Weapons",
+    "color": "#ff8fa3"
+  },
+  {
+    "id": "s-drugs",
+    "name": "Drugs",
+    "color": "#c77dff"
+  },
+  {
+    "id": "s-art",
+    "name": "Art",
+    "color": "#ffb38a"
+  },
+  {
+    "id": "s-electronics",
+    "name": "Electronics",
+    "color": "#4cc9f0"
+  },
+  {
+    "id": "s-medicine",
+    "name": "Medicine",
+    "color": "#80ffdb"
+  },
+  {
+    "id": "s-alcohol",
+    "name": "Alcohol",
+    "color": "#d4a5a5"
+  },
+  {
+    "id": "s-car_parts",
+    "name": "Car Parts",
+    "color": "#b8c4cc"
+  },
+  {
+    "id": "s-gear",
+    "name": "Gear",
+    "color": "#a7c957"
+  },
+  {
+    "id": "s-container",
+    "name": "Container",
+    "color": "#d6ccc2"
+  },
+  {
+    "id": "s-trash",
+    "name": "Trash",
+    "color": "#8d99ae"
+  },
+  {
+    "id": "s-camera",
+    "name": "Camera",
+    "color": "#ff5d73"
+  },
+  {
+    "id": "s-alarm",
+    "name": "Alarm",
+    "color": "#ff9e00"
+  },
+  {
+    "id": "s-metal_detector",
+    "name": "Metal Detector",
+    "color": "#e0aaff"
+  },
+  {
+    "id": "s-door",
+    "name": "Door",
+    "color": "#f1faee"
+  },
+  {
+    "id": "s-atm",
+    "name": "ATM",
+    "color": "#d5f839"
+  },
+  {
+    "id": "s-parking",
+    "name": "Parking terminal",
+    "color": "#e9e9de"
+  },
+  {
+    "id": "s-fence",
+    "name": "Fence van",
+    "color": "#91ed8f"
+  },
+  {
+    "id": "s-cargo-exchange",
+    "name": "Cargo exchange",
+    "color": "#f6bd6a"
+  },
+  {
+    "id": "s-conquest",
+    "name": "Conquest point",
+    "color": "#d79ef1"
+  },
+  {
+    "id": "s-cargo-event",
+    "name": "Cargo event",
+    "color": "#f4a67e"
+  }
+]

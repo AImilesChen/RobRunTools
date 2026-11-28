@@ -6,6 +6,7 @@ sourced from ROB RUN Wiki (robrunwiki.net), game build 26464639.
 """
 import json
 import os
+import hashlib
 
 TYPE_NAMES = {
     "s-safe": "Safe",
@@ -63,7 +64,7 @@ PLACE_NAMES = {
 
 def main():
     base = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    src = os.path.join(base, ".spots.tmp.json")
+    src = os.path.join(base, "raw-data", "map-spots-source.json")
     out = os.path.join(base, "src", "data", "map-spots.json")
 
     raw = json.load(open(src, encoding="utf-8"))
@@ -77,14 +78,19 @@ def main():
     place_list = [{"id": p, "name": PLACE_NAMES.get(p, p)} for p in places]
 
     spots = []
+    occurrences = {}
     for s in raw["spots"]:
         x, y, ti, pi = s[0], s[1], s[2], s[3]
+        fingerprint = hashlib.sha256(f"{raw['build']}:{x}:{y}:{ti}:{pi}".encode()).hexdigest()[:16]
+        occurrences[fingerprint] = occurrences.get(fingerprint, 0) + 1
+        point_id = "point-" + fingerprint + (f"-{occurrences[fingerprint]}" if occurrences[fingerprint] > 1 else "")
         spots.append(
             {
                 "x": round(x, 1),
                 "y": round(y, 1),
-                "type": types[ti] if ti < len(types) else "s-safe",
-                "place": places[pi] if pi < len(places) else "",
+                "id": point_id,
+                "type": types[ti] if 0 <= ti < len(types) else "unknown",
+                "place": places[pi] if 0 <= pi < len(places) else "",
             }
         )
 
@@ -93,6 +99,7 @@ def main():
         "build": raw["build"],
         "width": 1320,
         "height": 1020,
+        "coordinateOrigin": "top-left",
         "types": type_list,
         "places": place_list,
         "spots": spots,

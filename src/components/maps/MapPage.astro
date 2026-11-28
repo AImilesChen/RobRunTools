@@ -1,0 +1,40 @@
+---
+import { getImage, Image } from 'astro:assets';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import MapExplorer from './MapExplorer.astro';
+import HomeIcon from '../HomeIcon.astro';
+import cityImage from '../../../assets/maps/looty-bay.webp';
+import worldImage from '../../../assets/maps/world.webp';
+import motelImage from '../../../assets/maps/motel.webp';
+import prisonImage from '../../../assets/maps/prison.webp';
+import salesImage from '../../../assets/maps/sales-center.webp';
+import { mapDefinitions, mapPlaces, profilePlaces, placeDetailUrl, placeMapUrl } from '../../lib/map-data';
+import { buildingIllustration } from '../../lib/location-visuals';
+import '../../styles/maps.css';
+interface Props { mapId: string; }
+const { mapId } = Astro.props;
+const definition = mapDefinitions.find(map => map.id === mapId)!;
+const places = mapPlaces.filter(place => place.mapId === mapId);
+const isRegional=!['looty-bay','world'].includes(mapId);
+const mapImages={ 'looty-bay':cityImage,world:worldImage,motel:motelImage,prison:prisonImage,'sales-center':salesImage };
+const image = await getImage({src:mapImages[mapId as keyof typeof mapImages],format:'webp'});
+const breadcrumb = { '@context':'https://schema.org','@type':'BreadcrumbList',itemListElement:[
+  {'@type':'ListItem',position:1,name:'Home',item:'https://robrun.win/'},
+  {'@type':'ListItem',position:2,name:definition.name+' map',item:'https://robrun.win'+definition.path},
+]};
+const webpage = {'@context':'https://schema.org','@type':'WebPage','@id':'https://robrun.win'+definition.path,name:definition.title,description:definition.description,url:'https://robrun.win'+definition.path,image:new URL(image.src,'https://robrun.win').href,dateModified:definition.checkedAt};
+---
+<BaseLayout title={definition.title} description={definition.description} shareImage={image.src}>
+  <main class="maps-page">
+    <div class="map-page-heading map-shell"><nav class="map-breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><a href="/map/">Maps</a>{mapId!=='looty-bay'&&<><span>/</span><span aria-current="page">{definition.name}</span></>}</nav><div class="map-heading-line"><div><p class="map-eyebrow">// EXPLORE THE {mapId==='world'?'WORLD':isRegional?'LAYOUT':'CITY'}</p><h1>{mapId==='world'?'ROB RUN World Map':isRegional?'ROB RUN Location Map':'ROB RUN Interactive Map'}<span>{definition.name}</span></h1></div><p>{mapId==='world'?'Explore districts by level and find the city on the coast.':isRegional?definition.description:'Find a building. Inspect recorded points. Plan your next stop.'}<small>Static reference · no account required</small></p></div></div>
+    <div class="map-shell"><MapExplorer definition={definition} imageUrl={image.src}/></div>
+    <section class="map-info-section map-shell" id="map-directory"><div class="map-section-heading"><div><p class="map-eyebrow">// PLACES IN PLAIN SIGHT</p><h2>{mapId==='world'?'World districts & destinations':isRegional?definition.name+' layout markers':'Looty Bay places by district'}</h2></div><p>These links work even when the interactive map is unavailable.</p></div>
+      <div class="map-static-directory">{[...new Set(places.map(place=>place.district))].map(district=><section><h3>{district}</h3><ul>{places.filter(place=>place.district===district).map(place=><li><a href={placeDetailUrl(place)}>{place.name}<HomeIcon name="arrow" size={15}/></a><span>{place.summary}</span><a class="map-locate-link" href={placeMapUrl(place)}>Locate on map</a></li>)}</ul></section>)}</div>
+    </section>
+    {!isRegional&&<section class="map-info-section map-shell"><div class="map-section-heading"><div><p class="map-eyebrow">// FOLLOW THE REFERENCE</p><h2>Start with a landmark</h2></div><p>Location, recorded objects and related item references.</p></div><div class="map-profile-cards">{profilePlaces.map(place=>{const art=buildingIllustration(place.name,true,place.district);return <article><a href={placeDetailUrl(place)}><Image src={art.image} alt={art.alt} width={480} loading="lazy"/><span class="map-art-label">{art.label}</span><div><small>{place.district}</small><h3>{place.name}</h3><p>{place.summary}</p><span class="map-card-action">Explore location <HomeIcon name="arrow" size={17}/></span></div></a></article>})}</div></section>}
+    <section class="map-info-section map-shell map-how-to"><div><p class="map-eyebrow">// USING THE MAP</p><h2>From a name to a place.</h2><ol><li><strong>Search or choose a category.</strong> Results include matching place names and available point types.</li><li><strong>Select a result or marker.</strong> The map and details follow the same selection. Zoom in to inspect the layout.</li><li><strong>Open the reference.</strong> Follow available location records, and copy a link to the current view.</li></ol></div><div class="map-source-note"><h2>What this map shows</h2><p>{definition.note}</p>{mapId==='looty-bay'&&<><p>The city combines 1,117 object-coordinate references from build 26464639 with 81 separately sourced service and event markers. Overlapping references may describe the same position; counts are not a promise of unique available objects.</p><p>The location directory is a separate 927-record table for version 0.7.0. 243 object points have no building assigned. Three residential markers retain directional names because their numbered-directory match is unconfirmed.</p></>}<p>Images © Kefir / ROB RUN. <a href={definition.source}>View the map reference</a> · <a href="https://robrunwiki.com/en/data/">Directory data: ROB RUN Wiki</a> · <a href="/sources/#map-data">Sources and corrections</a>.</p></div></section>
+    <section class="map-region-links map-shell"><h2>Explore regional location references</h2><p>Read the regional guides, including settlement references whose dedicated map is still being checked.</p><nav aria-label="Regional location references"><a href="/locations/?region=motel#location-results">Lenny’s Motel</a><a href="/locations/?region=prison#location-results">Prison</a><a href="/locations/?region=settlement#location-results">Settlements</a><a href="/locations/?region=sales-center#location-results">Sales Center</a></nav></section>
+  </main>
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumb).replaceAll('<','\\u003c')}/>
+  <script type="application/ld+json" set:html={JSON.stringify(webpage).replaceAll('<','\\u003c')}/>
+</BaseLayout>

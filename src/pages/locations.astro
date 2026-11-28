@@ -9,9 +9,10 @@ import terrain from '../../assets/locations/world.webp';
 import { officialSteamPage } from '../lib/game-media.mjs';
 import { locationRecords } from '../lib/location-records';
 import { locationDistricts, locationGroups, locationTypes } from '../lib/location-directory';
+import { placeForBuilding, placeMapUrl } from '../lib/map-data';
 import { buildingPhotos, buildingIllustration, buildingAnchor, districtStories, residentialItems, featuredStories } from '../lib/location-visuals';
 import '../styles/locations.css';
-const cityMap = 'https://robrunwiki.com/en/map/';
+const cityMap = '/map/';
 const number = new Intl.NumberFormat('en-US');
 const examples = ['Looty Bay Bank', 'Lenny’s Motel', 'Prison', 'ATMs'];
 const buildingCount = locationGroups.filter(group => group.sourceName).length;
@@ -90,6 +91,7 @@ const recordTone = (type: string) => {
                   </span>
                   <span class="location-building-overview"><span class="location-building-meta"><span class="location-building-district">{group.district}</span><span class="location-building-count"><strong data-group-count>{group.records.length}</strong> <span data-record-label>records</span></span></span><span class="location-building-name">{group.sourceName ? group.name : 'Other district points'}</span><span class="location-type-tags">{group.types.map(([type, count], index) => <span class="location-type-tag" data-tone={recordTone(type)} data-group-type={type} hidden={index >= 2}>{type} <b>{count}</b></span>)}</span><span class="location-disclosure"><span class="location-disclosure-open">View records</span><span class="location-disclosure-close">Hide records</span><HomeIcon name="arrow" size={16} /></span></span>
                 </summary>
+                {placeForBuilding(group.name) && <div class="location-map-links"><a href={placeMapUrl(placeForBuilding(group.name)!)}>Locate on map <HomeIcon name="pin" size={15}/></a>{placeForBuilding(group.name)!.profile && <a href={`/locations/${placeForBuilding(group.name)!.slug}/`}>Location guide <HomeIcon name="arrow" size={15}/></a>}</div>}
                 {!group.sourceName && <p class="location-record-note">The source does not assign these points to a named building.</p>}
                 {photo && <p class="location-record-note"><a href={photo.source}>{photo.caption} · image source <HomeIcon name="external" size={13} /></a></p>}
                 <ul class="location-record-list">{group.records.map(record => <li class="location-record" data-record-type={record.type} data-search-text={record.searchText}><details id={'record-' + record.id} class="location-record-details"><summary><span>{record.name}</span><small data-tone={recordTone(record.type)}>{record.type}</small></summary><dl><dt>Building</dt><dd>{record.building ? group.name : 'Unspecified in source'}</dd><dt>Recorded loot entries</dt><dd>{record.lootEntries ?? 'Unknown'}</dd></dl><a class="location-text-link" href={record.url}>View community source <HomeIcon name="external" size={13} /></a></details></li>)}</ul>

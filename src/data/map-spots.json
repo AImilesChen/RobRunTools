@@ -1,0 +1,8039 @@
+{
+ "source": "ROB RUN Wiki (robrunwiki.net), game build 26464639",
+ "build": 26464639,
+ "width": 1320,
+ "height": 1020,
+ "coordinateOrigin": "top-left",
+ "types": [
+  {
+   "id": "s-safe",
+   "name": "Safe",
+   "color": "#ffd166"
+  },
+  {
+   "id": "s-bank_vault",
+   "name": "Bank Vault",
+   "color": "#ffb703"
+  },
+  {
+   "id": "s-deposit_box",
+   "name": "Deposit Box",
+   "color": "#fb8500"
+  },
+  {
+   "id": "s-cash_register",
+   "name": "Cash Register",
+   "color": "#a8e063"
+  },
+  {
+   "id": "s-jewellery",
+   "name": "Jewellery",
+   "color": "#f6a6ff"
+  },
+  {
+   "id": "s-weapons",
+   "name": "Weapons",
+   "color": "#ff8fa3"
+  },
+  {
+   "id": "s-drugs",
+   "name": "Drugs",
+   "color": "#c77dff"
+  },
+  {
+   "id": "s-art",
+   "name": "Art",
+   "color": "#ffb38a"
+  },
+  {
+   "id": "s-electronics",
+   "name": "Electronics",
+   "color": "#4cc9f0"
+  },
+  {
+   "id": "s-medicine",
+   "name": "Medicine",
+   "color": "#80ffdb"
+  },
+  {
+   "id": "s-alcohol",
+   "name": "Alcohol",
+   "color": "#d4a5a5"
+  },
+  {
+   "id": "s-car_parts",
+   "name": "Car Parts",
+   "color": "#b8c4cc"
+  },
+  {
+   "id": "s-gear",
+   "name": "Gear",
+   "color": "#a7c957"
+  },
+  {
+   "id": "s-container",
+   "name": "Container",
+   "color": "#d6ccc2"
+  },
+  {
+   "id": "s-trash",
+   "name": "Trash",
+   "color": "#8d99ae"
+  },
+  {
+   "id": "s-camera",
+   "name": "Camera",
+   "color": "#ff5d73"
+  },
+  {
+   "id": "s-alarm",
+   "name": "Alarm",
+   "color": "#ff9e00"
+  },
+  {
+   "id": "s-metal_detector",
+   "name": "Metal Detector",
+   "color": "#e0aaff"
+  },
+  {
+   "id": "s-door",
+   "name": "Door",
+   "color": "#f1faee"
+  }
+ ],
+ "places": [
+  {
+   "id": "nightclub",
+   "name": "Nightclub"
+  },
+  {
+   "id": "liquor-sunny",
+   "name": "Liquor Store (Sunny)"
+  },
+  {
+   "id": "hotel-sunny-west",
+   "name": "Hotel (Sunny West)"
+  },
+  {
+   "id": "noble-mansion",
+   "name": "Noble Mansion"
+  },
+  {
+   "id": "grand-hotel",
+   "name": "Grand Hotel"
+  },
+  {
+   "id": "cafe-pier",
+   "name": "Pier Café"
+  },
+  {
+   "id": "elite-cottage",
+   "name": "Elite Cottage"
+  },
+  {
+   "id": "cottage",
+   "name": "Cottage"
+  },
+  {
+   "id": "hotel-sunny-east",
+   "name": "Hotel (Sunny East)"
+  },
+  {
+   "id": "loraine-house-se",
+   "name": "Loraine House SE"
+  },
+  {
+   "id": "loraine-house-ne",
+   "name": "Loraine House NE"
+  },
+  {
+   "id": "gas-station",
+   "name": "Gas Station"
+  },
+  {
+   "id": "cafe-downtown",
+   "name": "Downtown Café"
+  },
+  {
+   "id": "liquor-downtown",
+   "name": "Liquor Store (Downtown)"
+  },
+  {
+   "id": "liquor-downtown-north",
+   "name": "Liquor Store (Downtown N)"
+  },
+  {
+   "id": "art-gallery",
+   "name": "Art Gallery"
+  },
+  {
+   "id": "police-station",
+   "name": "Police Station"
+  },
+  {
+   "id": "looty-bay-bank",
+   "name": "Looty Bay Bank"
+  },
+  {
+   "id": "jeweler-sunny",
+   "name": "Jeweler (Sunny)"
+  },
+  {
+   "id": "gun-shop-sunny",
+   "name": "Gun Shop (Sunny)"
+  },
+  {
+   "id": "equipment-sunny",
+   "name": "Equipment (Sunny)"
+  },
+  {
+   "id": "pharmacy-sunny",
+   "name": "Pharmacy (Sunny)"
+  },
+  {
+   "id": "electronics-sunny",
+   "name": "Electronics (Sunny)"
+  },
+  {
+   "id": "electronics-downtown",
+   "name": "Electronics (Downtown)"
+  },
+  {
+   "id": "equipment-downtown",
+   "name": "Equipment (Downtown)"
+  },
+  {
+   "id": "jeweler-downtown",
+   "name": "Jeweler (Downtown)"
+  },
+  {
+   "id": "pharmacy-downtown",
+   "name": "Pharmacy (Downtown)"
+  },
+  {
+   "id": "gun-shop-downtown",
+   "name": "Gun Shop (Downtown)"
+  }
+ ],
+ "spots": [
+  {
+   "x": 199.8,
+   "y": 692.8,
+   "id": "point-83fc4957ec916ada",
+   "type": "s-alcohol",
+   "place": "nightclub"
+  },
+  {
+   "x": 201.9,
+   "y": 690.9,
+   "id": "point-1df28ac1bf261bd2",
+   "type": "s-alcohol",
+   "place": "nightclub"
+  },
+  {
+   "x": 206,
+   "y": 705.3,
+   "id": "point-2e0bb2e2a171c6f3",
+   "type": "s-alcohol",
+   "place": "nightclub"
+  },
+  {
+   "x": 206.3,
+   "y": 705.4,
+   "id": "point-d2a3689ce900700f",
+   "type": "s-alcohol",
+   "place": "nightclub"
+  },
+  {
+   "x": 206.7,
+   "y": 700.3,
+   "id": "point-f41e80428ca83dff",
+   "type": "s-alcohol",
+   "place": "nightclub"
+  },
+  {
+   "x": 207,
+   "y": 700.3,
+   "id": "point-3b3d0340fde9c120",
+   "type": "s-alcohol",
+   "place": "nightclub"
+  },
+  {
+   "x": 221.5,
+   "y": 695.8,
+   "id": "point-3056c64931498022",
+   "type": "s-alcohol",
+   "place": "nightclub"
+  },
+  {
+   "x": 228.9,
+   "y": 698.5,
+   "id": "point-ac4a29e4fe8a9835",
+   "type": "s-alcohol",
+   "place": "nightclub"
+  },
+  {
+   "x": 229.3,
+   "y": 721.7,
+   "id": "point-8cf3428d62624b9f",
+   "type": "s-alcohol",
+   "place": "nightclub"
+  },
+  {
+   "x": 231.5,
+   "y": 701.2,
+   "id": "point-a56b56abbecb4e95",
+   "type": "s-alcohol",
+   "place": "nightclub"
+  },
+  {
+   "x": 231.8,
+   "y": 714.5,
+   "id": "point-e4b0de36d24b7eaa",
+   "type": "s-alcohol",
+   "place": "nightclub"
+  },
+  {
+   "x": 231.9,
+   "y": 702.2,
+   "id": "point-1223e29c41cfa262",
+   "type": "s-alcohol",
+   "place": "nightclub"
+  },
+  {
+   "x": 287.8,
+   "y": 612.2,
+   "id": "point-07b4cb0b4e919844",
+   "type": "s-alcohol",
+   "place": "liquor-sunny"
+  },
+  {
+   "x": 288.6,
+   "y": 613,
+   "id": "point-49224b96acd3159f",
+   "type": "s-alcohol",
+   "place": "liquor-sunny"
+  },
+  {
+   "x": 291.1,
+   "y": 600.6,
+   "id": "point-ef97c1cfcbef1e8c",
+   "type": "s-alcohol",
+   "place": "liquor-sunny"
+  },
+  {
+   "x": 292.8,
+   "y": 598.8,
+   "id": "point-b94057cea2be636f",
+   "type": "s-alcohol",
+   "place": "liquor-sunny"
+  },
+  {
+   "x": 293.2,
+   "y": 611.5,
+   "id": "point-b4d093011b48a06c",
+   "type": "s-alcohol",
+   "place": "liquor-sunny"
+  },
+  {
+   "x": 298,
+   "y": 612.3,
+   "id": "point-be9654f4d02ed3d6",
+   "type": "s-alcohol",
+   "place": "liquor-sunny"
+  },
+  {
+   "x": 298.7,
+   "y": 608.5,
+   "id": "point-df9c68073334e42b",
+   "type": "s-alcohol",
+   "place": "liquor-sunny"
+  },
+  {
+   "x": 302.6,
+   "y": 609.7,
+   "id": "point-c2f1bb7a70ac25a8",
+   "type": "s-alcohol",
+   "place": "liquor-sunny"
+  },
+  {
+   "x": 304.3,
+   "y": 608,
+   "id": "point-a4fc894923a52196",
+   "type": "s-alcohol",
+   "place": "liquor-sunny"
+  },
+  {
+   "x": 306.7,
+   "y": 722.2,
+   "id": "point-acf5461cb28c0652",
+   "type": "s-alcohol",
+   "place": "hotel-sunny-west"
+  },
+  {
+   "x": 309.8,
+   "y": 723.9,
+   "id": "point-c931946bef5993cc",
+   "type": "s-alcohol",
+   "place": "hotel-sunny-west"
+  },
+  {
+   "x": 310.1,
+   "y": 193.7,
+   "id": "point-dfb795f16dbedfc7",
+   "type": "s-alcohol",
+   "place": "noble-mansion"
+  },
+  {
+   "x": 312.1,
+   "y": 487.5,
+   "id": "point-bfdefb6846b5146b",
+   "type": "s-alcohol",
+   "place": "grand-hotel"
+  },
+  {
+   "x": 314.7,
+   "y": 489.5,
+   "id": "point-52cb13bc3cad5616",
+   "type": "s-alcohol",
+   "place": "grand-hotel"
+  },
+  {
+   "x": 316.1,
+   "y": 184.2,
+   "id": "point-0037eb11333a8317",
+   "type": "s-alcohol",
+   "place": "noble-mansion"
+  },
+  {
+   "x": 320.8,
+   "y": 492.8,
+   "id": "point-e171b2c7bc7b4232",
+   "type": "s-alcohol",
+   "place": "grand-hotel"
+  },
+  {
+   "x": 321.6,
+   "y": 491.5,
+   "id": "point-2e1184c0b26f015d",
+   "type": "s-alcohol",
+   "place": "grand-hotel"
+  },
+  {
+   "x": 326.1,
+   "y": 490.1,
+   "id": "point-5313e164b5130e11",
+   "type": "s-alcohol",
+   "place": "grand-hotel"
+  },
+  {
+   "x": 326.8,
+   "y": 705.1,
+   "id": "point-71a3b33de8980b3e",
+   "type": "s-alcohol",
+   "place": "hotel-sunny-west"
+  },
+  {
+   "x": 326.9,
+   "y": 705.9,
+   "id": "point-7eab0746530de622",
+   "type": "s-alcohol",
+   "place": "hotel-sunny-west"
+  },
+  {
+   "x": 328.1,
+   "y": 721,
+   "id": "point-7d8e50231cd73090",
+   "type": "s-alcohol",
+   "place": "hotel-sunny-west"
+  },
+  {
+   "x": 329.2,
+   "y": 486.5,
+   "id": "point-eb75f5168f7a8a17",
+   "type": "s-alcohol",
+   "place": "grand-hotel"
+  },
+  {
+   "x": 333.6,
+   "y": 487.2,
+   "id": "point-b784d5e460d6e388",
+   "type": "s-alcohol",
+   "place": "grand-hotel"
+  },
+  {
+   "x": 346.9,
+   "y": 923.2,
+   "id": "point-91b6e29d963d18a2",
+   "type": "s-alcohol",
+   "place": "cafe-pier"
+  },
+  {
+   "x": 346.9,
+   "y": 919.9,
+   "id": "point-f1c143f19e0e4c6b",
+   "type": "s-alcohol",
+   "place": "cafe-pier"
+  },
+  {
+   "x": 352.7,
+   "y": 924.7,
+   "id": "point-3927ebade2e868d2",
+   "type": "s-alcohol",
+   "place": "cafe-pier"
+  },
+  {
+   "x": 352.8,
+   "y": 927.6,
+   "id": "point-0c9753f83544bb06",
+   "type": "s-alcohol",
+   "place": "cafe-pier"
+  },
+  {
+   "x": 352.8,
+   "y": 921.7,
+   "id": "point-ff318025255651d4",
+   "type": "s-alcohol",
+   "place": "cafe-pier"
+  },
+  {
+   "x": 356,
+   "y": 921.7,
+   "id": "point-0fef1d1a6061757b",
+   "type": "s-alcohol",
+   "place": "cafe-pier"
+  },
+  {
+   "x": 357.7,
+   "y": 927.6,
+   "id": "point-e7e70ae048793b78",
+   "type": "s-alcohol",
+   "place": "cafe-pier"
+  },
+  {
+   "x": 359.7,
+   "y": 918,
+   "id": "point-3fe00758a57963a9",
+   "type": "s-alcohol",
+   "place": "cafe-pier"
+  },
+  {
+   "x": 372.3,
+   "y": 152.8,
+   "id": "point-f6a927977695b9fa",
+   "type": "s-alcohol",
+   "place": "elite-cottage"
+  },
+  {
+   "x": 384.9,
+   "y": 229.1,
+   "id": "point-232b92b7dc387b49",
+   "type": "s-alcohol",
+   "place": "cottage"
+  },
+  {
+   "x": 398.8,
+   "y": 712.7,
+   "id": "point-8f1b8aa0dd119449",
+   "type": "s-alcohol",
+   "place": "hotel-sunny-east"
+  },
+  {
+   "x": 399,
+   "y": 711.6,
+   "id": "point-6dc58fe4df7e4fbe",
+   "type": "s-alcohol",
+   "place": "hotel-sunny-east"
+  },
+  {
+   "x": 407.3,
+   "y": 723.5,
+   "id": "point-2261fda76ce0edf4",
+   "type": "s-alcohol",
+   "place": "hotel-sunny-east"
+  },
+  {
+   "x": 407.6,
+   "y": 713.2,
+   "id": "point-de9c91ff5d2dae53",
+   "type": "s-alcohol",
+   "place": "hotel-sunny-east"
+  },
+  {
+   "x": 425.4,
+   "y": 237.1,
+   "id": "point-97dab6060e54faec",
+   "type": "s-alcohol",
+   "place": "loraine-house-se"
+  },
+  {
+   "x": 427,
+   "y": 155,
+   "id": "point-ea58cfb1b50f9d5e",
+   "type": "s-alcohol",
+   "place": "loraine-house-ne"
+  },
+  {
+   "x": 436.8,
+   "y": 165,
+   "id": "point-44a0d41c3cef430a",
+   "type": "s-alcohol",
+   "place": "loraine-house-ne"
+  },
+  {
+   "x": 913.1,
+   "y": 568.7,
+   "id": "point-55ebaa6d0ef79b32",
+   "type": "s-alcohol",
+   "place": "gas-station"
+  },
+  {
+   "x": 913.2,
+   "y": 572.8,
+   "id": "point-a7d469b7f8d22bcb",
+   "type": "s-alcohol",
+   "place": "gas-station"
+  },
+  {
+   "x": 913.3,
+   "y": 572.8,
+   "id": "point-cbfae1fed35201e9",
+   "type": "s-alcohol",
+   "place": "gas-station"
+  },
+  {
+   "x": 914.2,
+   "y": 557.5,
+   "id": "point-d35aedf976e30738",
+   "type": "s-alcohol",
+   "place": "gas-station"
+  },
+  {
+   "x": 915.7,
+   "y": 578.3,
+   "id": "point-897fdf27a7539e5e",
+   "type": "s-alcohol",
+   "place": "gas-station"
+  },
+  {
+   "x": 917.7,
+   "y": 572.8,
+   "id": "point-6a22a6e17fa9c03c",
+   "type": "s-alcohol",
+   "place": "gas-station"
+  },
+  {
+   "x": 928,
+   "y": 662.3,
+   "id": "point-47aa2a4396d526ff",
+   "type": "s-alcohol",
+   "place": "cafe-downtown"
+  },
+  {
+   "x": 931.3,
+   "y": 653.2,
+   "id": "point-43284e4d9530f803",
+   "type": "s-alcohol",
+   "place": "cafe-downtown"
+  },
+  {
+   "x": 932.1,
+   "y": 658.2,
+   "id": "point-dcf845ca7a3da2e9",
+   "type": "s-alcohol",
+   "place": "cafe-downtown"
+  },
+  {
+   "x": 932.1,
+   "y": 657.3,
+   "id": "point-1318bee6d5cae246",
+   "type": "s-alcohol",
+   "place": "cafe-downtown"
+  },
+  {
+   "x": 1125.1,
+   "y": 591.6,
+   "id": "point-d2d217201043d544",
+   "type": "s-alcohol",
+   "place": "liquor-downtown"
+  },
+  {
+   "x": 1129.4,
+   "y": 591.3,
+   "id": "point-3c2e5591199ba6d3",
+   "type": "s-alcohol",
+   "place": "liquor-downtown"
+  },
+  {
+   "x": 1129.4,
+   "y": 588.9,
+   "id": "point-9b6b5e2747011ac2",
+   "type": "s-alcohol",
+   "place": "liquor-downtown"
+  },
+  {
+   "x": 1131.1,
+   "y": 596.6,
+   "id": "point-fcdf4b824387cf56",
+   "type": "s-alcohol",
+   "place": "liquor-downtown"
+  },
+  {
+   "x": 1137.5,
+   "y": 593.6,
+   "id": "point-8e8f71f1bfc891aa",
+   "type": "s-alcohol",
+   "place": "liquor-downtown"
+  },
+  {
+   "x": 1138.4,
+   "y": 589.8,
+   "id": "point-45250f60f0187c8b",
+   "type": "s-alcohol",
+   "place": "liquor-downtown"
+  },
+  {
+   "x": 1139.3,
+   "y": 589.8,
+   "id": "point-71a4ff5a9e185283",
+   "type": "s-alcohol",
+   "place": "liquor-downtown"
+  },
+  {
+   "x": 1175.2,
+   "y": 419.4,
+   "id": "point-fffe75b21b3b80bf",
+   "type": "s-alcohol",
+   "place": "liquor-downtown-north"
+  },
+  {
+   "x": 1177.5,
+   "y": 418.8,
+   "id": "point-ea835034354bf4a0",
+   "type": "s-alcohol",
+   "place": "liquor-downtown-north"
+  },
+  {
+   "x": 1180.2,
+   "y": 421.7,
+   "id": "point-bfaf03a83daa654e",
+   "type": "s-alcohol",
+   "place": "liquor-downtown-north"
+  },
+  {
+   "x": 1180.5,
+   "y": 433.1,
+   "id": "point-03996678df6867af",
+   "type": "s-alcohol",
+   "place": "liquor-downtown-north"
+  },
+  {
+   "x": 1182.8,
+   "y": 418.8,
+   "id": "point-6c5a677b2eadfa39",
+   "type": "s-alcohol",
+   "place": "liquor-downtown-north"
+  },
+  {
+   "x": 1182.9,
+   "y": 432.5,
+   "id": "point-95a58c73098fe2f8",
+   "type": "s-alcohol",
+   "place": "liquor-downtown-north"
+  },
+  {
+   "x": 1186.4,
+   "y": 422,
+   "id": "point-8e0a8598c24bc114",
+   "type": "s-alcohol",
+   "place": "liquor-downtown-north"
+  },
+  {
+   "x": 1191.2,
+   "y": 423,
+   "id": "point-dca6bafbd9909e2a",
+   "type": "s-alcohol",
+   "place": "liquor-downtown-north"
+  },
+  {
+   "x": 1191.5,
+   "y": 424.1,
+   "id": "point-a7e8f7cf5f9aaae3",
+   "type": "s-alcohol",
+   "place": "liquor-downtown-north"
+  },
+  {
+   "x": 236.7,
+   "y": 702.3,
+   "id": "point-52a1e86e8e16383c",
+   "type": "s-art",
+   "place": "nightclub"
+  },
+  {
+   "x": 309.5,
+   "y": 186.1,
+   "id": "point-2d22403bf58757e1",
+   "type": "s-art",
+   "place": "noble-mansion"
+  },
+  {
+   "x": 311.7,
+   "y": 191.4,
+   "id": "point-534f5e766b92e0b0",
+   "type": "s-art",
+   "place": "noble-mansion"
+  },
+  {
+   "x": 312.5,
+   "y": 192.5,
+   "id": "point-79317cbdd9cb45e6",
+   "type": "s-art",
+   "place": "noble-mansion"
+  },
+  {
+   "x": 315.7,
+   "y": 715.4,
+   "id": "point-39fb3c7bb382ebef",
+   "type": "s-art",
+   "place": "hotel-sunny-west"
+  },
+  {
+   "x": 315.7,
+   "y": 711.7,
+   "id": "point-4baf53f3eb5cd1f3",
+   "type": "s-art",
+   "place": "hotel-sunny-west"
+  },
+  {
+   "x": 315.6,
+   "y": 483.7,
+   "id": "point-683f65eca8626683",
+   "type": "s-art",
+   "place": "grand-hotel"
+  },
+  {
+   "x": 316.5,
+   "y": 494.8,
+   "id": "point-8168084045b32225",
+   "type": "s-art",
+   "place": "grand-hotel"
+  },
+  {
+   "x": 316.6,
+   "y": 201.6,
+   "id": "point-4a3ca19d1e4844eb",
+   "type": "s-art",
+   "place": "noble-mansion"
+  },
+  {
+   "x": 317.7,
+   "y": 496,
+   "id": "point-e3311563af8f6e18",
+   "type": "s-art",
+   "place": "grand-hotel"
+  },
+  {
+   "x": 322.1,
+   "y": 482.2,
+   "id": "point-881df9046c4073b8",
+   "type": "s-art",
+   "place": "grand-hotel"
+  },
+  {
+   "x": 322.9,
+   "y": 715.4,
+   "id": "point-ebb61897dfe50d09",
+   "type": "s-art",
+   "place": "hotel-sunny-west"
+  },
+  {
+   "x": 322.9,
+   "y": 711.7,
+   "id": "point-1aa2bbca3d8a7a0c",
+   "type": "s-art",
+   "place": "hotel-sunny-west"
+  },
+  {
+   "x": 324.3,
+   "y": 480,
+   "id": "point-9e222d884b876587",
+   "type": "s-art",
+   "place": "grand-hotel"
+  },
+  {
+   "x": 324.3,
+   "y": 495.4,
+   "id": "point-a82c941fbc7144c2",
+   "type": "s-art",
+   "place": "grand-hotel"
+  },
+  {
+   "x": 328.5,
+   "y": 201.8,
+   "id": "point-3d36499df64935c8",
+   "type": "s-art",
+   "place": "noble-mansion"
+  },
+  {
+   "x": 365,
+   "y": 224.9,
+   "id": "point-d531d68c3aab8f00",
+   "type": "s-art",
+   "place": "cottage"
+  },
+  {
+   "x": 365,
+   "y": 225.5,
+   "id": "point-ab213b60e97e6136",
+   "type": "s-art",
+   "place": "cottage"
+  },
+  {
+   "x": 366.1,
+   "y": 223.6,
+   "id": "point-ae14415632890784",
+   "type": "s-art",
+   "place": "cottage"
+  },
+  {
+   "x": 367.6,
+   "y": 212.7,
+   "id": "point-259c2205ebd0e3a3",
+   "type": "s-art",
+   "place": "cottage"
+  },
+  {
+   "x": 367.7,
+   "y": 223.5,
+   "id": "point-542ffd878285afde",
+   "type": "s-art",
+   "place": "cottage"
+  },
+  {
+   "x": 371.4,
+   "y": 155.8,
+   "id": "point-cbc68a3dacc93893",
+   "type": "s-art",
+   "place": "elite-cottage"
+  },
+  {
+   "x": 377,
+   "y": 152.1,
+   "id": "point-913ddbfe9e517a09",
+   "type": "s-art",
+   "place": "elite-cottage"
+  },
+  {
+   "x": 378.2,
+   "y": 156.1,
+   "id": "point-20efd92a699210ae",
+   "type": "s-art",
+   "place": "elite-cottage"
+  },
+  {
+   "x": 379.8,
+   "y": 151.3,
+   "id": "point-bb7d9e256a6e1d83",
+   "type": "s-art",
+   "place": "elite-cottage"
+  },
+  {
+   "x": 380.2,
+   "y": 222.6,
+   "id": "point-2ae147647ab909d6",
+   "type": "s-art",
+   "place": "cottage"
+  },
+  {
+   "x": 381.3,
+   "y": 227.4,
+   "id": "point-3c26f1fb1ec2a5ab",
+   "type": "s-art",
+   "place": "cottage"
+  },
+  {
+   "x": 384.5,
+   "y": 220.9,
+   "id": "point-949738bff380e427",
+   "type": "s-art",
+   "place": "cottage"
+  },
+  {
+   "x": 384.8,
+   "y": 151.3,
+   "id": "point-8fec3fe6f8398991",
+   "type": "s-art",
+   "place": "elite-cottage"
+  },
+  {
+   "x": 386.8,
+   "y": 156.1,
+   "id": "point-1f09aad5ee2ea339",
+   "type": "s-art",
+   "place": "elite-cottage"
+  },
+  {
+   "x": 387.5,
+   "y": 153.7,
+   "id": "point-95d57e1806c4b860",
+   "type": "s-art",
+   "place": "elite-cottage"
+  },
+  {
+   "x": 394.8,
+   "y": 715.3,
+   "id": "point-4913e62d4222330c",
+   "type": "s-art",
+   "place": "hotel-sunny-east"
+  },
+  {
+   "x": 401.3,
+   "y": 719.2,
+   "id": "point-1ec63c0e13071b1d",
+   "type": "s-art",
+   "place": "hotel-sunny-east"
+  },
+  {
+   "x": 401.3,
+   "y": 716.8,
+   "id": "point-1022bb46f91ba25e",
+   "type": "s-art",
+   "place": "hotel-sunny-east"
+  },
+  {
+   "x": 416.2,
+   "y": 216.2,
+   "id": "point-6b323aba1733ad8b",
+   "type": "s-art",
+   "place": "loraine-house-se"
+  },
+  {
+   "x": 423.2,
+   "y": 231.7,
+   "id": "point-71f783ce3bb6004d",
+   "type": "s-art",
+   "place": "loraine-house-se"
+  },
+  {
+   "x": 430.5,
+   "y": 238.3,
+   "id": "point-49921dec5c86e62a",
+   "type": "s-art",
+   "place": "loraine-house-se"
+  },
+  {
+   "x": 434.7,
+   "y": 154.8,
+   "id": "point-596b67619ea9ac96",
+   "type": "s-art",
+   "place": "loraine-house-ne"
+  },
+  {
+   "x": 438.8,
+   "y": 150.2,
+   "id": "point-7a57c8eed01b9794",
+   "type": "s-art",
+   "place": "loraine-house-ne"
+  },
+  {
+   "x": 644.8,
+   "y": 806.9,
+   "id": "point-3cdaa6b10ab63a2a",
+   "type": "s-art",
+   "place": "art-gallery"
+  },
+  {
+   "x": 646.3,
+   "y": 817.7,
+   "id": "point-04178c408562f45c",
+   "type": "s-art",
+   "place": "art-gallery"
+  },
+  {
+   "x": 646.6,
+   "y": 818.3,
+   "id": "point-d92414874f3db560",
+   "type": "s-art",
+   "place": "art-gallery"
+  },
+  {
+   "x": 648.3,
+   "y": 822.9,
+   "id": "point-df76706e6dd689d5",
+   "type": "s-art",
+   "place": "art-gallery"
+  },
+  {
+   "x": 649.2,
+   "y": 805.6,
+   "id": "point-478f65231df6a560",
+   "type": "s-art",
+   "place": "art-gallery"
+  },
+  {
+   "x": 649.6,
+   "y": 832.3,
+   "id": "point-ce6cadfbb33d0bdd",
+   "type": "s-art",
+   "place": "art-gallery"
+  },
+  {
+   "x": 650.3,
+   "y": 834.1,
+   "id": "point-93f08ca65352d9f7",
+   "type": "s-art",
+   "place": "art-gallery"
+  },
+  {
+   "x": 650.4,
+   "y": 837.1,
+   "id": "point-4f0ff854e1fcbfd0",
+   "type": "s-art",
+   "place": "art-gallery"
+  },
+  {
+   "x": 650.6,
+   "y": 814.3,
+   "id": "point-e0109740f9369573",
+   "type": "s-art",
+   "place": "art-gallery"
+  },
+  {
+   "x": 651.2,
+   "y": 839.4,
+   "id": "point-590a9ade759ec7d3",
+   "type": "s-art",
+   "place": "art-gallery"
+  },
+  {
+   "x": 651.9,
+   "y": 832.9,
+   "id": "point-8264bf22aa76d9b5",
+   "type": "s-art",
+   "place": "art-gallery"
+  },
+  {
+   "x": 652.2,
+   "y": 818.7,
+   "id": "point-b8b447ac02771eaa",
+   "type": "s-art",
+   "place": "art-gallery"
+  },
+  {
+   "x": 652.6,
+   "y": 804,
+   "id": "point-2a540b8351014ae3",
+   "type": "s-art",
+   "place": "art-gallery"
+  },
+  {
+   "x": 653.2,
+   "y": 836.6,
+   "id": "point-b2c7077a96d7575a",
+   "type": "s-art",
+   "place": "art-gallery"
+  },
+  {
+   "x": 654.4,
+   "y": 809.8,
+   "id": "point-6a22451982c158e4",
+   "type": "s-art",
+   "place": "art-gallery"
+  },
+  {
+   "x": 656.1,
+   "y": 840.9,
+   "id": "point-0bd2822fdbd89660",
+   "type": "s-art",
+   "place": "art-gallery"
+  },
+  {
+   "x": 656.2,
+   "y": 802.7,
+   "id": "point-39e75e74b0a933dd",
+   "type": "s-art",
+   "place": "art-gallery"
+  },
+  {
+   "x": 657.2,
+   "y": 808.8,
+   "id": "point-472a52bf145f928f",
+   "type": "s-art",
+   "place": "art-gallery"
+  },
+  {
+   "x": 657.4,
+   "y": 827.5,
+   "id": "point-022693b2610f603f",
+   "type": "s-art",
+   "place": "art-gallery"
+  },
+  {
+   "x": 657.6,
+   "y": 839.3,
+   "id": "point-b23f31cb56bbc237",
+   "type": "s-art",
+   "place": "art-gallery"
+  },
+  {
+   "x": 657.7,
+   "y": 821.4,
+   "id": "point-32ee1996a863ef83",
+   "type": "s-art",
+   "place": "art-gallery"
+  },
+  {
+   "x": 657.9,
+   "y": 808.5,
+   "id": "point-a21e0c1a95c25dbf",
+   "type": "s-art",
+   "place": "art-gallery"
+  },
+  {
+   "x": 658.4,
+   "y": 821.1,
+   "id": "point-ee6be5589a27231e",
+   "type": "s-art",
+   "place": "art-gallery"
+  },
+  {
+   "x": 658.4,
+   "y": 829.3,
+   "id": "point-b5b3b03a8cf12772",
+   "type": "s-art",
+   "place": "art-gallery"
+  },
+  {
+   "x": 658.7,
+   "y": 829.9,
+   "id": "point-c95b42c37283ecdd",
+   "type": "s-art",
+   "place": "art-gallery"
+  },
+  {
+   "x": 660.5,
+   "y": 826.9,
+   "id": "point-fb28dc635201dfdd",
+   "type": "s-art",
+   "place": "art-gallery"
+  },
+  {
+   "x": 660.8,
+   "y": 801.5,
+   "id": "point-13e526d69c0edac3",
+   "type": "s-art",
+   "place": "art-gallery"
+  },
+  {
+   "x": 660.9,
+   "y": 838,
+   "id": "point-65f3d6359b441b06",
+   "type": "s-art",
+   "place": "art-gallery"
+  },
+  {
+   "x": 661.1,
+   "y": 826.6,
+   "id": "point-7cde771a8eb17176",
+   "type": "s-art",
+   "place": "art-gallery"
+  },
+  {
+   "x": 661.4,
+   "y": 820,
+   "id": "point-6ff8a858e8fdceeb",
+   "type": "s-art",
+   "place": "art-gallery"
+  },
+  {
+   "x": 662,
+   "y": 831.4,
+   "id": "point-3e6fd5955186c2db",
+   "type": "s-art",
+   "place": "art-gallery"
+  },
+  {
+   "x": 663.4,
+   "y": 825.3,
+   "id": "point-47833dce24743641",
+   "type": "s-art",
+   "place": "art-gallery"
+  },
+  {
+   "x": 663.9,
+   "y": 836.4,
+   "id": "point-bcbdb4a253e5ebc2",
+   "type": "s-art",
+   "place": "art-gallery"
+  },
+  {
+   "x": 664.4,
+   "y": 825.1,
+   "id": "point-a272d263dd8ba539",
+   "type": "s-art",
+   "place": "art-gallery"
+  },
+  {
+   "x": 664.7,
+   "y": 825.7,
+   "id": "point-873b1974132a1b4f",
+   "type": "s-art",
+   "place": "art-gallery"
+  },
+  {
+   "x": 665,
+   "y": 799.5,
+   "id": "point-cfb9edd11dc19173",
+   "type": "s-art",
+   "place": "art-gallery"
+  },
+  {
+   "x": 665.3,
+   "y": 829.9,
+   "id": "point-48e45559f9f4296a",
+   "type": "s-art",
+   "place": "art-gallery"
+  },
+  {
+   "x": 665.4,
+   "y": 830.5,
+   "id": "point-e047b182e189688b",
+   "type": "s-art",
+   "place": "art-gallery"
+  },
+  {
+   "x": 665.5,
+   "y": 830.1,
+   "id": "point-3ce8cbc24d6de5f6",
+   "type": "s-art",
+   "place": "art-gallery"
+  },
+  {
+   "x": 665.8,
+   "y": 828.7,
+   "id": "point-db8c814d2b883242",
+   "type": "s-art",
+   "place": "art-gallery"
+  },
+  {
+   "x": 666.1,
+   "y": 829.4,
+   "id": "point-a5a3ff9ad7b061c7",
+   "type": "s-art",
+   "place": "art-gallery"
+  },
+  {
+   "x": 668.1,
+   "y": 835.4,
+   "id": "point-cd32550a7b590bb5",
+   "type": "s-art",
+   "place": "art-gallery"
+  },
+  {
+   "x": 668.1,
+   "y": 804.8,
+   "id": "point-a705898cd40dbdc5",
+   "type": "s-art",
+   "place": "art-gallery"
+  },
+  {
+   "x": 668.7,
+   "y": 798.1,
+   "id": "point-fb9947230955569d",
+   "type": "s-art",
+   "place": "art-gallery"
+  },
+  {
+   "x": 669.7,
+   "y": 822.5,
+   "id": "point-bfe09e77b28b2fd1",
+   "type": "s-art",
+   "place": "art-gallery"
+  },
+  {
+   "x": 671,
+   "y": 803.7,
+   "id": "point-02a7f642bd4e2906",
+   "type": "s-art",
+   "place": "art-gallery"
+  },
+  {
+   "x": 672.1,
+   "y": 816,
+   "id": "point-9485a24795fdeed3",
+   "type": "s-art",
+   "place": "art-gallery"
+  },
+  {
+   "x": 672.3,
+   "y": 797.2,
+   "id": "point-df70856366664a7a",
+   "type": "s-art",
+   "place": "art-gallery"
+  },
+  {
+   "x": 672.9,
+   "y": 821.4,
+   "id": "point-6a7c237bfab9592a",
+   "type": "s-art",
+   "place": "art-gallery"
+  },
+  {
+   "x": 674.4,
+   "y": 834.5,
+   "id": "point-f4b24eb38fbae931",
+   "type": "s-art",
+   "place": "art-gallery"
+  },
+  {
+   "x": 674.4,
+   "y": 815.3,
+   "id": "point-b11f896a01790c3f",
+   "type": "s-art",
+   "place": "art-gallery"
+  },
+  {
+   "x": 675,
+   "y": 834.2,
+   "id": "point-67ad52e3e51ca661",
+   "type": "s-art",
+   "place": "art-gallery"
+  },
+  {
+   "x": 675,
+   "y": 815,
+   "id": "point-fe9dd03ffbdcf3c9",
+   "type": "s-art",
+   "place": "art-gallery"
+  },
+  {
+   "x": 675.5,
+   "y": 795.7,
+   "id": "point-b6e4c5d9fd4c0094",
+   "type": "s-art",
+   "place": "art-gallery"
+  },
+  {
+   "x": 675.8,
+   "y": 821.7,
+   "id": "point-a1b49c222652b593",
+   "type": "s-art",
+   "place": "art-gallery"
+  },
+  {
+   "x": 676.1,
+   "y": 822.3,
+   "id": "point-b422c7a6f48c6e53",
+   "type": "s-art",
+   "place": "art-gallery"
+  },
+  {
+   "x": 676.3,
+   "y": 820.1,
+   "id": "point-a0aac4422c5b16b0",
+   "type": "s-art",
+   "place": "art-gallery"
+  },
+  {
+   "x": 677.1,
+   "y": 825.3,
+   "id": "point-344dd316a0879c16",
+   "type": "s-art",
+   "place": "art-gallery"
+  },
+  {
+   "x": 677.2,
+   "y": 825.9,
+   "id": "point-57784f1b45c5c0d1",
+   "type": "s-art",
+   "place": "art-gallery"
+  },
+  {
+   "x": 677.4,
+   "y": 825.9,
+   "id": "point-ce19af6cc4213229",
+   "type": "s-art",
+   "place": "art-gallery"
+  },
+  {
+   "x": 678.2,
+   "y": 819.9,
+   "id": "point-d8691e4d1edaa0c5",
+   "type": "s-art",
+   "place": "art-gallery"
+  },
+  {
+   "x": 679.7,
+   "y": 817,
+   "id": "point-2905457db096d2f7",
+   "type": "s-art",
+   "place": "art-gallery"
+  },
+  {
+   "x": 681,
+   "y": 813.9,
+   "id": "point-20ac7221060a85ed",
+   "type": "s-art",
+   "place": "art-gallery"
+  },
+  {
+   "x": 681.1,
+   "y": 792.6,
+   "id": "point-ae3e7cfb962fa350",
+   "type": "s-art",
+   "place": "art-gallery"
+  },
+  {
+   "x": 682.9,
+   "y": 828.4,
+   "id": "point-dd69345a8b63b486",
+   "type": "s-art",
+   "place": "art-gallery"
+  },
+  {
+   "x": 685.1,
+   "y": 830.5,
+   "id": "point-34b2639cf7aef863",
+   "type": "s-art",
+   "place": "art-gallery"
+  },
+  {
+   "x": 691.9,
+   "y": 801.9,
+   "id": "point-d533e0e9b5572c09",
+   "type": "s-art",
+   "place": "art-gallery"
+  },
+  {
+   "x": 692.2,
+   "y": 802.6,
+   "id": "point-a37e7c30dcc06898",
+   "type": "s-art",
+   "place": "art-gallery"
+  },
+  {
+   "x": 695,
+   "y": 812.9,
+   "id": "point-515ffbfd289018fc",
+   "type": "s-art",
+   "place": "art-gallery"
+  },
+  {
+   "x": 695.3,
+   "y": 813.5,
+   "id": "point-9d0431b426cc430d",
+   "type": "s-art",
+   "place": "art-gallery"
+  },
+  {
+   "x": 696.5,
+   "y": 817.2,
+   "id": "point-5c5eee6e486b5f87",
+   "type": "s-art",
+   "place": "art-gallery"
+  },
+  {
+   "x": 203.4,
+   "y": 706.8,
+   "id": "point-e521d6c57e85bbce",
+   "type": "s-bank_vault",
+   "place": "nightclub"
+  },
+  {
+   "x": 321.6,
+   "y": 492.3,
+   "id": "point-a555af578a59961c",
+   "type": "s-bank_vault",
+   "place": "grand-hotel"
+  },
+  {
+   "x": 421.6,
+   "y": 153.8,
+   "id": "point-3945d60d4a40ecf0",
+   "type": "s-bank_vault",
+   "place": "loraine-house-ne"
+  },
+  {
+   "x": 628.9,
+   "y": 676.5,
+   "id": "point-b32709f9a0f018d5",
+   "type": "s-bank_vault",
+   "place": "police-station"
+  },
+  {
+   "x": 630,
+   "y": 670.8,
+   "id": "point-09ad54da3cb3d9e9",
+   "type": "s-bank_vault",
+   "place": "police-station"
+  },
+  {
+   "x": 921.3,
+   "y": 574.8,
+   "id": "point-f6da78335cf65156",
+   "type": "s-bank_vault",
+   "place": "gas-station"
+  },
+  {
+   "x": 1007.9,
+   "y": 290.2,
+   "id": "point-48a17eeed8044d39",
+   "type": "s-bank_vault",
+   "place": "looty-bay-bank"
+  },
+  {
+   "x": 1008.3,
+   "y": 291.5,
+   "id": "point-6bdc2b37a2685757",
+   "type": "s-bank_vault",
+   "place": "looty-bay-bank"
+  },
+  {
+   "x": 1008.6,
+   "y": 289,
+   "id": "point-c18f3134c19f29af",
+   "type": "s-bank_vault",
+   "place": "looty-bay-bank"
+  },
+  {
+   "x": 1009.9,
+   "y": 288.6,
+   "id": "point-7365b844ce4420ec",
+   "type": "s-bank_vault",
+   "place": "looty-bay-bank"
+  },
+  {
+   "x": 1011,
+   "y": 296.8,
+   "id": "point-07f979ed40062f7f",
+   "type": "s-bank_vault",
+   "place": "looty-bay-bank"
+  },
+  {
+   "x": 1011.2,
+   "y": 295.9,
+   "id": "point-4fa81a16ce1e117f",
+   "type": "s-bank_vault",
+   "place": "looty-bay-bank"
+  },
+  {
+   "x": 1011.3,
+   "y": 288.2,
+   "id": "point-3158382a7a8cb97d",
+   "type": "s-bank_vault",
+   "place": "looty-bay-bank"
+  },
+  {
+   "x": 1011.7,
+   "y": 296.6,
+   "id": "point-580e89ef446337fe",
+   "type": "s-bank_vault",
+   "place": "looty-bay-bank"
+  },
+  {
+   "x": 1011.8,
+   "y": 295.8,
+   "id": "point-b6fe384ae3276b99",
+   "type": "s-bank_vault",
+   "place": "looty-bay-bank"
+  },
+  {
+   "x": 1012.4,
+   "y": 295.6,
+   "id": "point-2cb617c5e20ded87",
+   "type": "s-bank_vault",
+   "place": "looty-bay-bank"
+  },
+  {
+   "x": 1012.5,
+   "y": 288.9,
+   "id": "point-29a400d27410525d",
+   "type": "s-bank_vault",
+   "place": "looty-bay-bank"
+  },
+  {
+   "x": 1012.9,
+   "y": 290.3,
+   "id": "point-53aef584bb0e3492",
+   "type": "s-bank_vault",
+   "place": "looty-bay-bank"
+  },
+  {
+   "x": 1015.8,
+   "y": 298.8,
+   "id": "point-ff8a6d9472716ae4",
+   "type": "s-bank_vault",
+   "place": "looty-bay-bank"
+  },
+  {
+   "x": 303.2,
+   "y": 200.9,
+   "id": "point-a9ccef5eb69b2797",
+   "type": "s-car_parts",
+   "place": "noble-mansion"
+  },
+  {
+   "x": 305.1,
+   "y": 200.6,
+   "id": "point-47808a4de39378dd",
+   "type": "s-car_parts",
+   "place": "noble-mansion"
+  },
+  {
+   "x": 310.6,
+   "y": 206,
+   "id": "point-87333443c3fb62cb",
+   "type": "s-car_parts",
+   "place": "noble-mansion"
+  },
+  {
+   "x": 391.8,
+   "y": 150.7,
+   "id": "point-8463a2ea61a59128",
+   "type": "s-car_parts",
+   "place": "elite-cottage"
+  },
+  {
+   "x": 395.7,
+   "y": 137.1,
+   "id": "point-821fa9325ef01f0d",
+   "type": "s-car_parts",
+   "place": "elite-cottage"
+  },
+  {
+   "x": 422.8,
+   "y": 149.5,
+   "id": "point-da45ac33f2202878",
+   "type": "s-car_parts",
+   "place": "loraine-house-ne"
+  },
+  {
+   "x": 429.8,
+   "y": 148.1,
+   "id": "point-cbd2fdcaa6fbb794",
+   "type": "s-car_parts",
+   "place": "loraine-house-ne"
+  },
+  {
+   "x": 437,
+   "y": 212.3,
+   "id": "point-0b34ff48ceef639e",
+   "type": "s-car_parts",
+   "place": "loraine-house-se"
+  },
+  {
+   "x": 438.5,
+   "y": 221.1,
+   "id": "point-bd3beecda4fc4c9a",
+   "type": "s-car_parts",
+   "place": "loraine-house-se"
+  },
+  {
+   "x": 915,
+   "y": 600.6,
+   "id": "point-994a4b7352941055",
+   "type": "s-car_parts",
+   "place": "gas-station"
+  },
+  {
+   "x": 917,
+   "y": 600.6,
+   "id": "point-db592c8e18103be1",
+   "type": "s-car_parts",
+   "place": "gas-station"
+  },
+  {
+   "x": 917.6,
+   "y": 586.1,
+   "id": "point-63f63f4ef8afdbd5",
+   "type": "s-car_parts",
+   "place": "gas-station"
+  },
+  {
+   "x": 919.5,
+   "y": 578.5,
+   "id": "point-e2ee531d9c33a9a1",
+   "type": "s-car_parts",
+   "place": "gas-station"
+  },
+  {
+   "x": 920,
+   "y": 581.3,
+   "id": "point-ddd8b3b881b6cc81",
+   "type": "s-car_parts",
+   "place": "gas-station"
+  },
+  {
+   "x": 921.9,
+   "y": 581.3,
+   "id": "point-b21862f442f2e80e",
+   "type": "s-car_parts",
+   "place": "gas-station"
+  },
+  {
+   "x": 922.2,
+   "y": 580.4,
+   "id": "point-a6bcd204973c33fa",
+   "type": "s-car_parts",
+   "place": "gas-station"
+  },
+  {
+   "x": 922.2,
+   "y": 579.4,
+   "id": "point-fe51164363d0b4b5",
+   "type": "s-car_parts",
+   "place": "gas-station"
+  },
+  {
+   "x": 922.4,
+   "y": 576.3,
+   "id": "point-0f48a534500a4273",
+   "type": "s-car_parts",
+   "place": "gas-station"
+  },
+  {
+   "x": 922.4,
+   "y": 577.4,
+   "id": "point-f505bf83f06c9ed3",
+   "type": "s-car_parts",
+   "place": "gas-station"
+  },
+  {
+   "x": 202.6,
+   "y": 703.8,
+   "id": "point-dbac2b06c7f10fcb",
+   "type": "s-cash_register",
+   "place": "nightclub"
+  },
+  {
+   "x": 202.7,
+   "y": 690.7,
+   "id": "point-d6fb907e7687a82f",
+   "type": "s-cash_register",
+   "place": "nightclub"
+  },
+  {
+   "x": 202.9,
+   "y": 704.3,
+   "id": "point-ffa7add66d5ddbb8",
+   "type": "s-cash_register",
+   "place": "nightclub"
+  },
+  {
+   "x": 203,
+   "y": 703.4,
+   "id": "point-c455b7ff676ac7bf",
+   "type": "s-cash_register",
+   "place": "nightclub"
+  },
+  {
+   "x": 203.3,
+   "y": 704.3,
+   "id": "point-e976332898899164",
+   "type": "s-cash_register",
+   "place": "nightclub"
+  },
+  {
+   "x": 203.4,
+   "y": 703.7,
+   "id": "point-1e83364deec27781",
+   "type": "s-cash_register",
+   "place": "nightclub"
+  },
+  {
+   "x": 226.8,
+   "y": 700.5,
+   "id": "point-ba37610d1955b9bd",
+   "type": "s-cash_register",
+   "place": "nightclub"
+  },
+  {
+   "x": 229.5,
+   "y": 715.9,
+   "id": "point-c8375934604e36a8",
+   "type": "s-cash_register",
+   "place": "nightclub"
+  },
+  {
+   "x": 229.8,
+   "y": 716.2,
+   "id": "point-bfc481bfdc997934",
+   "type": "s-cash_register",
+   "place": "nightclub"
+  },
+  {
+   "x": 231.6,
+   "y": 713.8,
+   "id": "point-9f89b9e11f9bf5bd",
+   "type": "s-cash_register",
+   "place": "nightclub"
+  },
+  {
+   "x": 265.5,
+   "y": 582.5,
+   "id": "point-f259c98e33a52656",
+   "type": "s-cash_register",
+   "place": "jeweler-sunny"
+  },
+  {
+   "x": 299.1,
+   "y": 609,
+   "id": "point-f01dd9b17bb41ce6",
+   "type": "s-cash_register",
+   "place": "liquor-sunny"
+  },
+  {
+   "x": 308.8,
+   "y": 186.5,
+   "id": "point-e28a8babbee3f06c",
+   "type": "s-cash_register",
+   "place": "noble-mansion"
+  },
+  {
+   "x": 309.2,
+   "y": 185.9,
+   "id": "point-a3e99ccce34fd802",
+   "type": "s-cash_register",
+   "place": "noble-mansion"
+  },
+  {
+   "x": 309.2,
+   "y": 186.2,
+   "id": "point-092423432d21eb73",
+   "type": "s-cash_register",
+   "place": "noble-mansion"
+  },
+  {
+   "x": 309.8,
+   "y": 721,
+   "id": "point-80d238226920e3fd",
+   "type": "s-cash_register",
+   "place": "hotel-sunny-west"
+  },
+  {
+   "x": 325.8,
+   "y": 470.9,
+   "id": "point-e93c92db0bedd219",
+   "type": "s-cash_register",
+   "place": "grand-hotel"
+  },
+  {
+   "x": 356.8,
+   "y": 925.9,
+   "id": "point-c5d7a60c49a5700e",
+   "type": "s-cash_register",
+   "place": "cafe-pier"
+  },
+  {
+   "x": 356.8,
+   "y": 923.6,
+   "id": "point-d6e56561762c3b8b",
+   "type": "s-cash_register",
+   "place": "cafe-pier"
+  },
+  {
+   "x": 363.2,
+   "y": 479.8,
+   "id": "point-de6a113a1266fdbd",
+   "type": "s-cash_register",
+   "place": "grand-hotel"
+  },
+  {
+   "x": 370.4,
+   "y": 660,
+   "id": "point-5a7ea8336d7f4328",
+   "type": "s-cash_register",
+   "place": "gun-shop-sunny"
+  },
+  {
+   "x": 382.2,
+   "y": 616.4,
+   "id": "point-78b8e1ecc8d5db2d",
+   "type": "s-cash_register",
+   "place": "equipment-sunny"
+  },
+  {
+   "x": 406.5,
+   "y": 717.1,
+   "id": "point-4b855781621a5282",
+   "type": "s-cash_register",
+   "place": "hotel-sunny-east"
+  },
+  {
+   "x": 419.1,
+   "y": 638.6,
+   "id": "point-d677ae01f0356d03",
+   "type": "s-cash_register",
+   "place": "pharmacy-sunny"
+  },
+  {
+   "x": 429,
+   "y": 645.3,
+   "id": "point-9e9e64eae2a14e98",
+   "type": "s-cash_register",
+   "place": "electronics-sunny"
+  },
+  {
+   "x": 897.9,
+   "y": 444.1,
+   "id": "point-1fdef0c4781290db",
+   "type": "s-cash_register",
+   "place": "electronics-downtown"
+  },
+  {
+   "x": 915,
+   "y": 568.4,
+   "id": "point-d85aab7592a54680",
+   "type": "s-cash_register",
+   "place": "gas-station"
+  },
+  {
+   "x": 922.9,
+   "y": 655.6,
+   "id": "point-40aa04efbe6dc466",
+   "type": "s-cash_register",
+   "place": "cafe-downtown"
+  },
+  {
+   "x": 922.9,
+   "y": 653.8,
+   "id": "point-833467f6bb45f39c",
+   "type": "s-cash_register",
+   "place": "cafe-downtown"
+  },
+  {
+   "x": 996.9,
+   "y": 809.9,
+   "id": "point-fbee9b683bcfb44c",
+   "type": "s-cash_register",
+   "place": "equipment-downtown"
+  },
+  {
+   "x": 1037.8,
+   "y": 652.6,
+   "id": "point-91d9d272a9988ed1",
+   "type": "s-cash_register",
+   "place": "jeweler-downtown"
+  },
+  {
+   "x": 1040.6,
+   "y": 590.7,
+   "id": "point-6ea9c76502253933",
+   "type": "s-cash_register",
+   "place": "pharmacy-downtown"
+  },
+  {
+   "x": 1108.7,
+   "y": 805.3,
+   "id": "point-24553a3ecc582fdb",
+   "type": "s-cash_register",
+   "place": "gun-shop-downtown"
+  },
+  {
+   "x": 1136.2,
+   "y": 593.6,
+   "id": "point-453aac34fbd1918e",
+   "type": "s-cash_register",
+   "place": "liquor-downtown"
+  },
+  {
+   "x": 1180.2,
+   "y": 421.1,
+   "id": "point-9554140794f06d01",
+   "type": "s-cash_register",
+   "place": "liquor-downtown-north"
+  },
+  {
+   "x": 199.8,
+   "y": 701.3,
+   "id": "point-ca5acfad71e77ea9",
+   "type": "s-container",
+   "place": "nightclub"
+  },
+  {
+   "x": 199.9,
+   "y": 697.6,
+   "id": "point-a283675248d47306",
+   "type": "s-container",
+   "place": "nightclub"
+  },
+  {
+   "x": 207,
+   "y": 696.6,
+   "id": "point-74307dc485d42d5d",
+   "type": "s-container",
+   "place": "nightclub"
+  },
+  {
+   "x": 213.2,
+   "y": 697.2,
+   "id": "point-f63b1691666f31fc",
+   "type": "s-container",
+   "place": "nightclub"
+  },
+  {
+   "x": 223.4,
+   "y": 698.1,
+   "id": "point-a55b122e32cfd614",
+   "type": "s-container",
+   "place": "nightclub"
+  },
+  {
+   "x": 232.4,
+   "y": 695.6,
+   "id": "point-83301023c130e4fd",
+   "type": "s-container",
+   "place": "nightclub"
+  },
+  {
+   "x": 234.6,
+   "y": 703.2,
+   "id": "point-6e8717122a6885c9",
+   "type": "s-container",
+   "place": "nightclub"
+  },
+  {
+   "x": 266.9,
+   "y": 604.3,
+   "id": "point-4b0d543aef30d35e",
+   "type": "s-container",
+   "place": "jeweler-sunny"
+  },
+  {
+   "x": 267.8,
+   "y": 603.3,
+   "id": "point-fb1011878dc45556",
+   "type": "s-container",
+   "place": "jeweler-sunny"
+  },
+  {
+   "x": 274.8,
+   "y": 587.7,
+   "id": "point-67d811a228f03881",
+   "type": "s-container",
+   "place": "jeweler-sunny"
+  },
+  {
+   "x": 275.7,
+   "y": 586.8,
+   "id": "point-f899cea85ef13d88",
+   "type": "s-container",
+   "place": "jeweler-sunny"
+  },
+  {
+   "x": 280.4,
+   "y": 604.4,
+   "id": "point-944e83bb37c2f309",
+   "type": "s-container",
+   "place": "liquor-sunny"
+  },
+  {
+   "x": 282.1,
+   "y": 602.6,
+   "id": "point-c9060a055c02b51f",
+   "type": "s-container",
+   "place": "liquor-sunny"
+  },
+  {
+   "x": 282.4,
+   "y": 602.3,
+   "id": "point-f0e8112b9eed3154",
+   "type": "s-container",
+   "place": "liquor-sunny"
+  },
+  {
+   "x": 292.7,
+   "y": 610.6,
+   "id": "point-27655b452f083dac",
+   "type": "s-container",
+   "place": "liquor-sunny"
+  },
+  {
+   "x": 296.9,
+   "y": 611.1,
+   "id": "point-c516414d7b6564d8",
+   "type": "s-container",
+   "place": "liquor-sunny"
+  },
+  {
+   "x": 297.9,
+   "y": 612.2,
+   "id": "point-678fa954e3855d52",
+   "type": "s-container",
+   "place": "liquor-sunny"
+  },
+  {
+   "x": 306.6,
+   "y": 725.9,
+   "id": "point-30890154d676ce98",
+   "type": "s-container",
+   "place": "hotel-sunny-west"
+  },
+  {
+   "x": 306.6,
+   "y": 718.6,
+   "id": "point-8b82baf1191a1305",
+   "type": "s-container",
+   "place": "hotel-sunny-west"
+  },
+  {
+   "x": 312.5,
+   "y": 207.3,
+   "id": "point-31edc216cd61e2ea",
+   "type": "s-container",
+   "place": "noble-mansion"
+  },
+  {
+   "x": 314.4,
+   "y": 187.1,
+   "id": "point-d2c77ffdfb0829c9",
+   "type": "s-container",
+   "place": "noble-mansion"
+  },
+  {
+   "x": 317.9,
+   "y": 202.8,
+   "id": "point-e91988e470e856aa",
+   "type": "s-container",
+   "place": "noble-mansion"
+  },
+  {
+   "x": 317.9,
+   "y": 187.1,
+   "id": "point-656d944e4371ef2f",
+   "type": "s-container",
+   "place": "noble-mansion"
+  },
+  {
+   "x": 321.9,
+   "y": 209.2,
+   "id": "point-a95ed2e35bb63481",
+   "type": "s-container",
+   "place": "noble-mansion"
+  },
+  {
+   "x": 322.9,
+   "y": 496.8,
+   "id": "point-cef36bdd096eb2d9",
+   "type": "s-container",
+   "place": "grand-hotel"
+  },
+  {
+   "x": 323.5,
+   "y": 710.3,
+   "id": "point-03f21ca42792b15f",
+   "type": "s-container",
+   "place": "hotel-sunny-west"
+  },
+  {
+   "x": 324.8,
+   "y": 494.9,
+   "id": "point-d604d2397d5ba429",
+   "type": "s-container",
+   "place": "grand-hotel"
+  },
+  {
+   "x": 325,
+   "y": 712,
+   "id": "point-dd7e995fdafd33ca",
+   "type": "s-container",
+   "place": "hotel-sunny-west"
+  },
+  {
+   "x": 328.7,
+   "y": 711.1,
+   "id": "point-6a90f8f904de200f",
+   "type": "s-container",
+   "place": "hotel-sunny-west"
+  },
+  {
+   "x": 329.6,
+   "y": 712,
+   "id": "point-decf65526c07844e",
+   "type": "s-container",
+   "place": "hotel-sunny-west"
+  },
+  {
+   "x": 329.8,
+   "y": 711.1,
+   "id": "point-5e87df493b801681",
+   "type": "s-container",
+   "place": "hotel-sunny-west"
+  },
+  {
+   "x": 351.9,
+   "y": 932.3,
+   "id": "point-26044b87a9a9757d",
+   "type": "s-container",
+   "place": "cafe-pier"
+  },
+  {
+   "x": 351.9,
+   "y": 931.1,
+   "id": "point-dbea46522fe87b4b",
+   "type": "s-container",
+   "place": "cafe-pier"
+  },
+  {
+   "x": 361.6,
+   "y": 667,
+   "id": "point-85658a1a5f1e1885",
+   "type": "s-container",
+   "place": "gun-shop-sunny"
+  },
+  {
+   "x": 364.9,
+   "y": 210.9,
+   "id": "point-a93955a6ab399a26",
+   "type": "s-container",
+   "place": "cottage"
+  },
+  {
+   "x": 364.9,
+   "y": 207.7,
+   "id": "point-f61f7d69981a45bc",
+   "type": "s-container",
+   "place": "cottage"
+  },
+  {
+   "x": 366.8,
+   "y": 664.9,
+   "id": "point-e92768a104ab2e1d",
+   "type": "s-container",
+   "place": "gun-shop-sunny"
+  },
+  {
+   "x": 367.8,
+   "y": 218.7,
+   "id": "point-63f7f39c729a21d4",
+   "type": "s-container",
+   "place": "cottage"
+  },
+  {
+   "x": 368,
+   "y": 664.9,
+   "id": "point-e6dc9f799037291e",
+   "type": "s-container",
+   "place": "gun-shop-sunny"
+  },
+  {
+   "x": 371.9,
+   "y": 222.2,
+   "id": "point-bd0fe37117fa51bf",
+   "type": "s-container",
+   "place": "cottage"
+  },
+  {
+   "x": 373,
+   "y": 211.7,
+   "id": "point-fb9364605e1860ab",
+   "type": "s-container",
+   "place": "cottage"
+  },
+  {
+   "x": 378.3,
+   "y": 663.8,
+   "id": "point-92a1ecb2c4f1b4bc",
+   "type": "s-container",
+   "place": "gun-shop-sunny"
+  },
+  {
+   "x": 380.6,
+   "y": 226.7,
+   "id": "point-ffee768be7b82229",
+   "type": "s-container",
+   "place": "cottage"
+  },
+  {
+   "x": 381.7,
+   "y": 230.1,
+   "id": "point-6caee811fa3da355",
+   "type": "s-container",
+   "place": "cottage"
+  },
+  {
+   "x": 384.7,
+   "y": 223.3,
+   "id": "point-c1fbb6e9897bf1e3",
+   "type": "s-container",
+   "place": "cottage"
+  },
+  {
+   "x": 385.7,
+   "y": 223.4,
+   "id": "point-70d207cfa32623d0",
+   "type": "s-container",
+   "place": "cottage"
+  },
+  {
+   "x": 387.7,
+   "y": 613,
+   "id": "point-41014fcdc3ca4382",
+   "type": "s-container",
+   "place": "equipment-sunny"
+  },
+  {
+   "x": 388.5,
+   "y": 612.2,
+   "id": "point-8562ff10bb3f26cb",
+   "type": "s-container",
+   "place": "equipment-sunny"
+  },
+  {
+   "x": 389.6,
+   "y": 607.7,
+   "id": "point-346156193f5ddbd9",
+   "type": "s-container",
+   "place": "equipment-sunny"
+  },
+  {
+   "x": 391.3,
+   "y": 156.4,
+   "id": "point-7c48cc3ca09445aa",
+   "type": "s-container",
+   "place": "elite-cottage"
+  },
+  {
+   "x": 391.5,
+   "y": 137.4,
+   "id": "point-751d65b923d516da",
+   "type": "s-container",
+   "place": "elite-cottage"
+  },
+  {
+   "x": 394.4,
+   "y": 167.8,
+   "id": "point-f08d2799bdab68a0",
+   "type": "s-container",
+   "place": "elite-cottage"
+  },
+  {
+   "x": 395.3,
+   "y": 160,
+   "id": "point-8000b18c1351422a",
+   "type": "s-container",
+   "place": "elite-cottage"
+  },
+  {
+   "x": 397.1,
+   "y": 709,
+   "id": "point-bdbea5efc52444bc",
+   "type": "s-container",
+   "place": "hotel-sunny-east"
+  },
+  {
+   "x": 397.6,
+   "y": 167.8,
+   "id": "point-9d880024bbce6406",
+   "type": "s-container",
+   "place": "elite-cottage"
+  },
+  {
+   "x": 398.9,
+   "y": 716.8,
+   "id": "point-16cbd0b94892db3b",
+   "type": "s-container",
+   "place": "hotel-sunny-east"
+  },
+  {
+   "x": 400.5,
+   "y": 719.8,
+   "id": "point-95e7194eaf766ad5",
+   "type": "s-container",
+   "place": "hotel-sunny-east"
+  },
+  {
+   "x": 400.5,
+   "y": 718.3,
+   "id": "point-7072627fb37872f8",
+   "type": "s-container",
+   "place": "hotel-sunny-east"
+  },
+  {
+   "x": 412.6,
+   "y": 213.3,
+   "id": "point-7d6653e72edcd243",
+   "type": "s-container",
+   "place": "loraine-house-se"
+  },
+  {
+   "x": 413.2,
+   "y": 210,
+   "id": "point-16230dc424dbff83",
+   "type": "s-container",
+   "place": "loraine-house-se"
+  },
+  {
+   "x": 416.2,
+   "y": 227.4,
+   "id": "point-ec4c3c5975f0b4d9",
+   "type": "s-container",
+   "place": "loraine-house-se"
+  },
+  {
+   "x": 420.2,
+   "y": 650.2,
+   "id": "point-b97158ec04f4d9ea",
+   "type": "s-container",
+   "place": "pharmacy-sunny"
+  },
+  {
+   "x": 420.2,
+   "y": 655.9,
+   "id": "point-8b6652abc14bbeb4",
+   "type": "s-container",
+   "place": "pharmacy-sunny"
+  },
+  {
+   "x": 420.3,
+   "y": 651.3,
+   "id": "point-a901732102ab77f3",
+   "type": "s-container",
+   "place": "pharmacy-sunny"
+  },
+  {
+   "x": 421.4,
+   "y": 152.6,
+   "id": "point-2bdc4a24feb93eef",
+   "type": "s-container",
+   "place": "loraine-house-ne"
+  },
+  {
+   "x": 421.4,
+   "y": 151.4,
+   "id": "point-53af7d8102381d01",
+   "type": "s-container",
+   "place": "loraine-house-ne"
+  },
+  {
+   "x": 422.3,
+   "y": 635.9,
+   "id": "point-e3548265e428fc1f",
+   "type": "s-container",
+   "place": "pharmacy-sunny"
+  },
+  {
+   "x": 422.5,
+   "y": 638.6,
+   "id": "point-69057c6f100131d5",
+   "type": "s-container",
+   "place": "pharmacy-sunny"
+  },
+  {
+   "x": 422.7,
+   "y": 641.2,
+   "id": "point-4fd37e15245ded78",
+   "type": "s-container",
+   "place": "pharmacy-sunny"
+  },
+  {
+   "x": 424.1,
+   "y": 645.7,
+   "id": "point-fdf522ad3f2cffcd",
+   "type": "s-container",
+   "place": "pharmacy-sunny"
+  },
+  {
+   "x": 425.7,
+   "y": 642.6,
+   "id": "point-681cb49711123427",
+   "type": "s-container",
+   "place": "electronics-sunny"
+  },
+  {
+   "x": 426.2,
+   "y": 160.5,
+   "id": "point-a90cd4d72651b440",
+   "type": "s-container",
+   "place": "loraine-house-ne"
+  },
+  {
+   "x": 426.3,
+   "y": 153.7,
+   "id": "point-fd85edafb839fab5",
+   "type": "s-container",
+   "place": "loraine-house-ne"
+  },
+  {
+   "x": 427.3,
+   "y": 650.4,
+   "id": "point-486b452d1114f786",
+   "type": "s-container",
+   "place": "electronics-sunny"
+  },
+  {
+   "x": 429.1,
+   "y": 164.7,
+   "id": "point-40971eee2461cf71",
+   "type": "s-container",
+   "place": "loraine-house-ne"
+  },
+  {
+   "x": 430.1,
+   "y": 155.5,
+   "id": "point-cb652fb499989aa2",
+   "type": "s-container",
+   "place": "loraine-house-ne"
+  },
+  {
+   "x": 432.2,
+   "y": 214.5,
+   "id": "point-9bcd91ad96d3c994",
+   "type": "s-container",
+   "place": "loraine-house-se"
+  },
+  {
+   "x": 433.4,
+   "y": 223.9,
+   "id": "point-086f1e1397ead811",
+   "type": "s-container",
+   "place": "loraine-house-se"
+  },
+  {
+   "x": 434.6,
+   "y": 230.1,
+   "id": "point-2a652ca456e67b5f",
+   "type": "s-container",
+   "place": "loraine-house-se"
+  },
+  {
+   "x": 439,
+   "y": 155.1,
+   "id": "point-820d57e2720124a5",
+   "type": "s-container",
+   "place": "loraine-house-ne"
+  },
+  {
+   "x": 440.2,
+   "y": 155.1,
+   "id": "point-f7f81d58998104a7",
+   "type": "s-container",
+   "place": "loraine-house-ne"
+  },
+  {
+   "x": 441.5,
+   "y": 155.1,
+   "id": "point-ab8be56634cd19c7",
+   "type": "s-container",
+   "place": "loraine-house-ne"
+  },
+  {
+   "x": 622,
+   "y": 672.7,
+   "id": "point-20056d9ec749ae55",
+   "type": "s-container",
+   "place": "police-station"
+  },
+  {
+   "x": 623.9,
+   "y": 696.3,
+   "id": "point-560f2f40af7c5d42",
+   "type": "s-container",
+   "place": ""
+  },
+  {
+   "x": 623.9,
+   "y": 695.9,
+   "id": "point-d16e284af537013c",
+   "type": "s-container",
+   "place": ""
+  },
+  {
+   "x": 623.9,
+   "y": 695.5,
+   "id": "point-8f301e4f7774e75c",
+   "type": "s-container",
+   "place": ""
+  },
+  {
+   "x": 623.9,
+   "y": 695.1,
+   "id": "point-afddb27d8dbd8e3b",
+   "type": "s-container",
+   "place": ""
+  },
+  {
+   "x": 623.9,
+   "y": 694.7,
+   "id": "point-0a7b4b483e56e805",
+   "type": "s-container",
+   "place": ""
+  },
+  {
+   "x": 623.9,
+   "y": 694.3,
+   "id": "point-91e3f0eac8828586",
+   "type": "s-container",
+   "place": ""
+  },
+  {
+   "x": 623.9,
+   "y": 693.9,
+   "id": "point-5b0bbe25a3b5d5a9",
+   "type": "s-container",
+   "place": ""
+  },
+  {
+   "x": 623.9,
+   "y": 693.4,
+   "id": "point-173b43ce8b39e97b",
+   "type": "s-container",
+   "place": ""
+  },
+  {
+   "x": 623.9,
+   "y": 693,
+   "id": "point-a42e616fbc0b9cff",
+   "type": "s-container",
+   "place": ""
+  },
+  {
+   "x": 623.9,
+   "y": 692.6,
+   "id": "point-3cd982b0b134ceaf",
+   "type": "s-container",
+   "place": ""
+  },
+  {
+   "x": 623.9,
+   "y": 692.2,
+   "id": "point-87ec3326b1dfbf73",
+   "type": "s-container",
+   "place": ""
+  },
+  {
+   "x": 623.9,
+   "y": 691.8,
+   "id": "point-1f945337ea237f74",
+   "type": "s-container",
+   "place": ""
+  },
+  {
+   "x": 623.9,
+   "y": 691.4,
+   "id": "point-6f66e61f258f8088",
+   "type": "s-container",
+   "place": ""
+  },
+  {
+   "x": 886.2,
+   "y": 440.4,
+   "id": "point-fba3906823536f45",
+   "type": "s-container",
+   "place": "electronics-downtown"
+  },
+  {
+   "x": 886.8,
+   "y": 442.6,
+   "id": "point-7927911c5d6f9001",
+   "type": "s-container",
+   "place": "electronics-downtown"
+  },
+  {
+   "x": 889.6,
+   "y": 443.4,
+   "id": "point-1a10363516073240",
+   "type": "s-container",
+   "place": "electronics-downtown"
+  },
+  {
+   "x": 890.9,
+   "y": 443,
+   "id": "point-09a41fdf562f527a",
+   "type": "s-container",
+   "place": "electronics-downtown"
+  },
+  {
+   "x": 910.4,
+   "y": 597.2,
+   "id": "point-3a520208b129ec83",
+   "type": "s-container",
+   "place": "gas-station"
+  },
+  {
+   "x": 910.4,
+   "y": 594.9,
+   "id": "point-591712e85e27ae41",
+   "type": "s-container",
+   "place": "gas-station"
+  },
+  {
+   "x": 910.4,
+   "y": 583.1,
+   "id": "point-c77bbd95693c17f4",
+   "type": "s-container",
+   "place": "gas-station"
+  },
+  {
+   "x": 915.2,
+   "y": 562.9,
+   "id": "point-89303a5f360a8943",
+   "type": "s-container",
+   "place": "gas-station"
+  },
+  {
+   "x": 915.2,
+   "y": 561.6,
+   "id": "point-0c5059ef79460819",
+   "type": "s-container",
+   "place": "gas-station"
+  },
+  {
+   "x": 916.4,
+   "y": 597.3,
+   "id": "point-b45c0c74853cb84b",
+   "type": "s-container",
+   "place": "gas-station"
+  },
+  {
+   "x": 916.9,
+   "y": 582.3,
+   "id": "point-56b313bd3507a02b",
+   "type": "s-container",
+   "place": "gas-station"
+  },
+  {
+   "x": 920.8,
+   "y": 599.2,
+   "id": "point-f365516efc40dccb",
+   "type": "s-container",
+   "place": "gas-station"
+  },
+  {
+   "x": 921.9,
+   "y": 599.2,
+   "id": "point-92ea38275d09392f",
+   "type": "s-container",
+   "place": "gas-station"
+  },
+  {
+   "x": 922.7,
+   "y": 663.1,
+   "id": "point-e51219f9eaa90a57",
+   "type": "s-container",
+   "place": "cafe-downtown"
+  },
+  {
+   "x": 926.8,
+   "y": 663.1,
+   "id": "point-5b95cdee131fc974",
+   "type": "s-container",
+   "place": "cafe-downtown"
+  },
+  {
+   "x": 926.8,
+   "y": 659.9,
+   "id": "point-ccec836918704020",
+   "type": "s-container",
+   "place": "cafe-downtown"
+  },
+  {
+   "x": 932.2,
+   "y": 659.2,
+   "id": "point-d8d5260c3a39bfa0",
+   "type": "s-container",
+   "place": "cafe-downtown"
+  },
+  {
+   "x": 994.7,
+   "y": 798.5,
+   "id": "point-d469285e831ab5e2",
+   "type": "s-container",
+   "place": "equipment-downtown"
+  },
+  {
+   "x": 997.5,
+   "y": 803.6,
+   "id": "point-3496ccf17cecaf63",
+   "type": "s-container",
+   "place": "equipment-downtown"
+  },
+  {
+   "x": 997.5,
+   "y": 802.4,
+   "id": "point-873097d77f268c66",
+   "type": "s-container",
+   "place": "equipment-downtown"
+  },
+  {
+   "x": 1023.5,
+   "y": 668.9,
+   "id": "point-81aa14a69d8818cf",
+   "type": "s-container",
+   "place": "jeweler-downtown"
+  },
+  {
+   "x": 1023.5,
+   "y": 590.2,
+   "id": "point-e694401e05c1dcbd",
+   "type": "s-container",
+   "place": "pharmacy-downtown"
+  },
+  {
+   "x": 1024.7,
+   "y": 668.9,
+   "id": "point-dd272e9efd95ba26",
+   "type": "s-container",
+   "place": "jeweler-downtown"
+  },
+  {
+   "x": 1027.9,
+   "y": 590.7,
+   "id": "point-1b1aca1e030afa09",
+   "type": "s-container",
+   "place": "pharmacy-downtown"
+  },
+  {
+   "x": 1029.1,
+   "y": 590.7,
+   "id": "point-603f1f95c412bea0",
+   "type": "s-container",
+   "place": "pharmacy-downtown"
+  },
+  {
+   "x": 1033.2,
+   "y": 595,
+   "id": "point-ec18ce9e72124ecb",
+   "type": "s-container",
+   "place": "pharmacy-downtown"
+  },
+  {
+   "x": 1037.7,
+   "y": 594,
+   "id": "point-59adf9fd1f1398b3",
+   "type": "s-container",
+   "place": "pharmacy-downtown"
+  },
+  {
+   "x": 1040.4,
+   "y": 594,
+   "id": "point-c91d66a107201b1e",
+   "type": "s-container",
+   "place": "pharmacy-downtown"
+  },
+  {
+   "x": 1040.7,
+   "y": 662.8,
+   "id": "point-f14137231edd2d44",
+   "type": "s-container",
+   "place": "jeweler-downtown"
+  },
+  {
+   "x": 1042,
+   "y": 662.8,
+   "id": "point-bb18c1955ccbb8d0",
+   "type": "s-container",
+   "place": "jeweler-downtown"
+  },
+  {
+   "x": 1043.1,
+   "y": 594,
+   "id": "point-a94e4e8d8172b4e8",
+   "type": "s-container",
+   "place": "pharmacy-downtown"
+  },
+  {
+   "x": 1100,
+   "y": 812.3,
+   "id": "point-e4bc43132121697b",
+   "type": "s-container",
+   "place": "gun-shop-downtown"
+  },
+  {
+   "x": 1105.1,
+   "y": 810.2,
+   "id": "point-ec657af6353abe20",
+   "type": "s-container",
+   "place": "gun-shop-downtown"
+  },
+  {
+   "x": 1106.4,
+   "y": 810.2,
+   "id": "point-ef9ebe4b0b013004",
+   "type": "s-container",
+   "place": "gun-shop-downtown"
+  },
+  {
+   "x": 1116.7,
+   "y": 809.1,
+   "id": "point-42eb65ff02e5d3b4",
+   "type": "s-container",
+   "place": "gun-shop-downtown"
+  },
+  {
+   "x": 1120.9,
+   "y": 591.4,
+   "id": "point-e88c835f1835b462",
+   "type": "s-container",
+   "place": "liquor-downtown"
+  },
+  {
+   "x": 1126,
+   "y": 587.3,
+   "id": "point-4318dcb024241c77",
+   "type": "s-container",
+   "place": "liquor-downtown"
+  },
+  {
+   "x": 1136.3,
+   "y": 596.5,
+   "id": "point-af39dc4393c5768f",
+   "type": "s-container",
+   "place": "liquor-downtown"
+  },
+  {
+   "x": 1137.9,
+   "y": 596.5,
+   "id": "point-1cd8a117ce7f7918",
+   "type": "s-container",
+   "place": "liquor-downtown"
+  },
+  {
+   "x": 1182.7,
+   "y": 418.9,
+   "id": "point-cfac86d4c7b923df",
+   "type": "s-container",
+   "place": "liquor-downtown-north"
+  },
+  {
+   "x": 1183.1,
+   "y": 420.4,
+   "id": "point-d5cb2199708fbd9f",
+   "type": "s-container",
+   "place": "liquor-downtown-north"
+  },
+  {
+   "x": 1186.5,
+   "y": 423,
+   "id": "point-99371654a7c97433",
+   "type": "s-container",
+   "place": "liquor-downtown-north"
+  },
+  {
+   "x": 1191.2,
+   "y": 435.3,
+   "id": "point-d0187f672d1861a2",
+   "type": "s-container",
+   "place": "liquor-downtown-north"
+  },
+  {
+   "x": 1191.7,
+   "y": 435.2,
+   "id": "point-6ac7c9110f1c0624",
+   "type": "s-container",
+   "place": "liquor-downtown-north"
+  },
+  {
+   "x": 1194.1,
+   "y": 434.5,
+   "id": "point-7b46b281f2a16283",
+   "type": "s-container",
+   "place": "liquor-downtown-north"
+  },
+  {
+   "x": 1016.2,
+   "y": 291.2,
+   "id": "point-a4e1a435b13c0d63",
+   "type": "s-deposit_box",
+   "place": "looty-bay-bank"
+  },
+  {
+   "x": 1016.4,
+   "y": 291.8,
+   "id": "point-5dc66ccd686f5bcc",
+   "type": "s-deposit_box",
+   "place": "looty-bay-bank"
+  },
+  {
+   "x": 1016.5,
+   "y": 292.4,
+   "id": "point-c461aae5793b9c11",
+   "type": "s-deposit_box",
+   "place": "looty-bay-bank"
+  },
+  {
+   "x": 1016.7,
+   "y": 293,
+   "id": "point-f5c3de30b1311dba",
+   "type": "s-deposit_box",
+   "place": "looty-bay-bank"
+  },
+  {
+   "x": 1016.9,
+   "y": 293.6,
+   "id": "point-e8b69f3b1df0cf71",
+   "type": "s-deposit_box",
+   "place": "looty-bay-bank"
+  },
+  {
+   "x": 1017,
+   "y": 294.2,
+   "id": "point-cdf5873f08d7d3d7",
+   "type": "s-deposit_box",
+   "place": "looty-bay-bank"
+  },
+  {
+   "x": 1017.2,
+   "y": 294.9,
+   "id": "point-de550d84ef6a5e3e",
+   "type": "s-deposit_box",
+   "place": "looty-bay-bank"
+  },
+  {
+   "x": 1017.4,
+   "y": 295.5,
+   "id": "point-7fc8214b9709c6d8",
+   "type": "s-deposit_box",
+   "place": "looty-bay-bank"
+  },
+  {
+   "x": 1017.5,
+   "y": 296.1,
+   "id": "point-afedab05b9e5897b",
+   "type": "s-deposit_box",
+   "place": "looty-bay-bank"
+  },
+  {
+   "x": 1017.7,
+   "y": 296.7,
+   "id": "point-d743abe25203e8b3",
+   "type": "s-deposit_box",
+   "place": "looty-bay-bank"
+  },
+  {
+   "x": 1017.9,
+   "y": 297.3,
+   "id": "point-84c05eba3067af39",
+   "type": "s-deposit_box",
+   "place": "looty-bay-bank"
+  },
+  {
+   "x": 1018,
+   "y": 297.9,
+   "id": "point-151a7d495a7a9865",
+   "type": "s-deposit_box",
+   "place": "looty-bay-bank"
+  },
+  {
+   "x": 199.7,
+   "y": 691.6,
+   "id": "point-1b00619639418414",
+   "type": "s-drugs",
+   "place": "nightclub"
+  },
+  {
+   "x": 201.2,
+   "y": 698.7,
+   "id": "point-d65079d0778d28ff",
+   "type": "s-drugs",
+   "place": "nightclub"
+  },
+  {
+   "x": 201.6,
+   "y": 698.6,
+   "id": "point-8a4584131e089197",
+   "type": "s-drugs",
+   "place": "nightclub"
+  },
+  {
+   "x": 201.7,
+   "y": 704.6,
+   "id": "point-fcbe4237236e6ad3",
+   "type": "s-drugs",
+   "place": "nightclub"
+  },
+  {
+   "x": 202.7,
+   "y": 699.7,
+   "id": "point-c82ba9ccdca6892d",
+   "type": "s-drugs",
+   "place": "nightclub"
+  },
+  {
+   "x": 316.1,
+   "y": 486.9,
+   "id": "point-97eaebb91f7c6ca5",
+   "type": "s-drugs",
+   "place": "grand-hotel"
+  },
+  {
+   "x": 319.9,
+   "y": 497.1,
+   "id": "point-5aa0732b238c9c83",
+   "type": "s-drugs",
+   "place": "grand-hotel"
+  },
+  {
+   "x": 320.8,
+   "y": 492.4,
+   "id": "point-32a6e8158991e748",
+   "type": "s-drugs",
+   "place": "grand-hotel"
+  },
+  {
+   "x": 381.7,
+   "y": 228.5,
+   "id": "point-d5b78a7f20efb521",
+   "type": "s-drugs",
+   "place": "cottage"
+  },
+  {
+   "x": 381.7,
+   "y": 226.8,
+   "id": "point-9c7fad4f15fc2331",
+   "type": "s-drugs",
+   "place": "cottage"
+  },
+  {
+   "x": 421.5,
+   "y": 157.2,
+   "id": "point-fc1af682d6cc61c0",
+   "type": "s-drugs",
+   "place": "loraine-house-ne"
+  },
+  {
+   "x": 423.4,
+   "y": 158.4,
+   "id": "point-deaefe767530d0a9",
+   "type": "s-drugs",
+   "place": "loraine-house-ne"
+  },
+  {
+   "x": 426.4,
+   "y": 163.1,
+   "id": "point-fd5e1e85f9e5b144",
+   "type": "s-drugs",
+   "place": "loraine-house-ne"
+  },
+  {
+   "x": 426.4,
+   "y": 161,
+   "id": "point-8fd3d365db6cd64c",
+   "type": "s-drugs",
+   "place": "loraine-house-ne"
+  },
+  {
+   "x": 426.4,
+   "y": 161.9,
+   "id": "point-4ab5bd3a6227ad89",
+   "type": "s-drugs",
+   "place": "loraine-house-ne"
+  },
+  {
+   "x": 426.5,
+   "y": 162.8,
+   "id": "point-7c8b1948d6456a60",
+   "type": "s-drugs",
+   "place": "loraine-house-ne"
+  },
+  {
+   "x": 440.4,
+   "y": 151,
+   "id": "point-9b7f9428aacba991",
+   "type": "s-drugs",
+   "place": "loraine-house-ne"
+  },
+  {
+   "x": 441.4,
+   "y": 151,
+   "id": "point-efa098d021d1e30d",
+   "type": "s-drugs",
+   "place": "loraine-house-ne"
+  },
+  {
+   "x": 622,
+   "y": 679.8,
+   "id": "point-88727441481af9eb",
+   "type": "s-drugs",
+   "place": "police-station"
+  },
+  {
+   "x": 622,
+   "y": 674.3,
+   "id": "point-a3cb727c598a672f",
+   "type": "s-drugs",
+   "place": "police-station"
+  },
+  {
+   "x": 624.2,
+   "y": 669.9,
+   "id": "point-3855ca7d731cf2aa",
+   "type": "s-drugs",
+   "place": "police-station"
+  },
+  {
+   "x": 624.7,
+   "y": 681.6,
+   "id": "point-9a8d31138d8281b2",
+   "type": "s-drugs",
+   "place": "police-station"
+  },
+  {
+   "x": 625.3,
+   "y": 678.8,
+   "id": "point-54d55e6b904e0612",
+   "type": "s-drugs",
+   "place": "police-station"
+  },
+  {
+   "x": 629.1,
+   "y": 677.7,
+   "id": "point-6c5b66603971dd5f",
+   "type": "s-drugs",
+   "place": "police-station"
+  },
+  {
+   "x": 632,
+   "y": 674.7,
+   "id": "point-701cf97658b569d4",
+   "type": "s-drugs",
+   "place": "police-station"
+  },
+  {
+   "x": 632,
+   "y": 676.3,
+   "id": "point-4671435973b6ed47",
+   "type": "s-drugs",
+   "place": "police-station"
+  },
+  {
+   "x": 651.5,
+   "y": 831,
+   "id": "point-45b2ae92830725ea",
+   "type": "s-drugs",
+   "place": "art-gallery"
+  },
+  {
+   "x": 652.1,
+   "y": 831.7,
+   "id": "point-89ab86095a539331",
+   "type": "s-drugs",
+   "place": "art-gallery"
+  },
+  {
+   "x": 654.2,
+   "y": 829.1,
+   "id": "point-e8debf781b6aa417",
+   "type": "s-drugs",
+   "place": "art-gallery"
+  },
+  {
+   "x": 654.8,
+   "y": 829.8,
+   "id": "point-2396ea4052db687f",
+   "type": "s-drugs",
+   "place": "art-gallery"
+  },
+  {
+   "x": 654.9,
+   "y": 828.8,
+   "id": "point-f0717999fcad3cb9",
+   "type": "s-drugs",
+   "place": "art-gallery"
+  },
+  {
+   "x": 655.1,
+   "y": 840,
+   "id": "point-b389f025a2157f99",
+   "type": "s-drugs",
+   "place": "art-gallery"
+  },
+  {
+   "x": 655.6,
+   "y": 828.6,
+   "id": "point-1d8b88d91fa40e49",
+   "type": "s-drugs",
+   "place": "art-gallery"
+  },
+  {
+   "x": 657,
+   "y": 840.8,
+   "id": "point-85968447a21efcc6",
+   "type": "s-drugs",
+   "place": "art-gallery"
+  },
+  {
+   "x": 664.2,
+   "y": 836.2,
+   "id": "point-91ff9cf8ad734309",
+   "type": "s-drugs",
+   "place": "art-gallery"
+  },
+  {
+   "x": 664.5,
+   "y": 827.4,
+   "id": "point-a48430eccec993ca",
+   "type": "s-drugs",
+   "place": "art-gallery"
+  },
+  {
+   "x": 664.8,
+   "y": 835.6,
+   "id": "point-226b8e7d68f0d142",
+   "type": "s-drugs",
+   "place": "art-gallery"
+  },
+  {
+   "x": 664.8,
+   "y": 828.2,
+   "id": "point-bbb208cb95f8e992",
+   "type": "s-drugs",
+   "place": "art-gallery"
+  },
+  {
+   "x": 665.2,
+   "y": 829.3,
+   "id": "point-ff8d5c7fc01d9c36",
+   "type": "s-drugs",
+   "place": "art-gallery"
+  },
+  {
+   "x": 669,
+   "y": 830.4,
+   "id": "point-3ce2aa5a822e1b85",
+   "type": "s-drugs",
+   "place": "art-gallery"
+  },
+  {
+   "x": 669.3,
+   "y": 829.8,
+   "id": "point-d7c58b8070f7a048",
+   "type": "s-drugs",
+   "place": "art-gallery"
+  },
+  {
+   "x": 669.9,
+   "y": 834.2,
+   "id": "point-0ff271955a28cf2f",
+   "type": "s-drugs",
+   "place": "art-gallery"
+  },
+  {
+   "x": 671.1,
+   "y": 834.1,
+   "id": "point-8d3826d219131e4a",
+   "type": "s-drugs",
+   "place": "art-gallery"
+  },
+  {
+   "x": 671.3,
+   "y": 833.3,
+   "id": "point-cbcfaad62f62db8d",
+   "type": "s-drugs",
+   "place": "art-gallery"
+  },
+  {
+   "x": 672.1,
+   "y": 832.6,
+   "id": "point-a4f6189ad3dff33b",
+   "type": "s-drugs",
+   "place": "art-gallery"
+  },
+  {
+   "x": 678.1,
+   "y": 826.5,
+   "id": "point-8ee73ac4768e60a2",
+   "type": "s-drugs",
+   "place": "art-gallery"
+  },
+  {
+   "x": 679.2,
+   "y": 830.8,
+   "id": "point-386e8d7c0a382e4c",
+   "type": "s-drugs",
+   "place": "art-gallery"
+  },
+  {
+   "x": 679.4,
+   "y": 830.2,
+   "id": "point-eb88b870c26dd85d",
+   "type": "s-drugs",
+   "place": "art-gallery"
+  },
+  {
+   "x": 679.9,
+   "y": 830.7,
+   "id": "point-4b57fcbd10c6cd34",
+   "type": "s-drugs",
+   "place": "art-gallery"
+  },
+  {
+   "x": 917.6,
+   "y": 599.1,
+   "id": "point-44d1a196ccf2b6a0",
+   "type": "s-drugs",
+   "place": "gas-station"
+  },
+  {
+   "x": 199.7,
+   "y": 693.3,
+   "id": "point-4751335135c50a14",
+   "type": "s-electronics",
+   "place": "nightclub"
+  },
+  {
+   "x": 206.8,
+   "y": 699.7,
+   "id": "point-a6c9fe642f91177c",
+   "type": "s-electronics",
+   "place": "nightclub"
+  },
+  {
+   "x": 225.5,
+   "y": 700,
+   "id": "point-23e94adc011334de",
+   "type": "s-electronics",
+   "place": "nightclub"
+  },
+  {
+   "x": 237.7,
+   "y": 713.7,
+   "id": "point-20c9ca15f80d3470",
+   "type": "s-electronics",
+   "place": "nightclub"
+  },
+  {
+   "x": 310.3,
+   "y": 720.7,
+   "id": "point-b3de87fc1cee4c92",
+   "type": "s-electronics",
+   "place": "hotel-sunny-west"
+  },
+  {
+   "x": 310.4,
+   "y": 722,
+   "id": "point-aedd568a91d5a543",
+   "type": "s-electronics",
+   "place": "hotel-sunny-west"
+  },
+  {
+   "x": 310.3,
+   "y": 190.9,
+   "id": "point-cb0263398f8b9db3",
+   "type": "s-electronics",
+   "place": "noble-mansion"
+  },
+  {
+   "x": 317.6,
+   "y": 205.5,
+   "id": "point-006856b9b046bd29",
+   "type": "s-electronics",
+   "place": "noble-mansion"
+  },
+  {
+   "x": 356,
+   "y": 926.5,
+   "id": "point-560dc18205c44f4b",
+   "type": "s-electronics",
+   "place": "cafe-pier"
+  },
+  {
+   "x": 359,
+   "y": 931.5,
+   "id": "point-71f120519b770656",
+   "type": "s-electronics",
+   "place": "cafe-pier"
+  },
+  {
+   "x": 360.4,
+   "y": 931.1,
+   "id": "point-c074182763517c2f",
+   "type": "s-electronics",
+   "place": "cafe-pier"
+  },
+  {
+   "x": 365.1,
+   "y": 925.2,
+   "id": "point-563ca959df21fe8e",
+   "type": "s-electronics",
+   "place": "cafe-pier"
+  },
+  {
+   "x": 368.2,
+   "y": 923,
+   "id": "point-8688c7d1a04a2305",
+   "type": "s-electronics",
+   "place": "cafe-pier"
+  },
+  {
+   "x": 369.9,
+   "y": 222.3,
+   "id": "point-c175d43eac8b6454",
+   "type": "s-electronics",
+   "place": "cottage"
+  },
+  {
+   "x": 372.7,
+   "y": 162.8,
+   "id": "point-d1c9baebf65bec65",
+   "type": "s-electronics",
+   "place": "elite-cottage"
+  },
+  {
+   "x": 373,
+   "y": 209.2,
+   "id": "point-821df7d2d7c143ad",
+   "type": "s-electronics",
+   "place": "cottage"
+  },
+  {
+   "x": 376.5,
+   "y": 161.2,
+   "id": "point-2c6e0e3a06405163",
+   "type": "s-electronics",
+   "place": "elite-cottage"
+  },
+  {
+   "x": 395.4,
+   "y": 157.7,
+   "id": "point-b762ed27c216471c",
+   "type": "s-electronics",
+   "place": "elite-cottage"
+  },
+  {
+   "x": 414.9,
+   "y": 211.2,
+   "id": "point-ecf3f5b601c50866",
+   "type": "s-electronics",
+   "place": "loraine-house-se"
+  },
+  {
+   "x": 421,
+   "y": 212.8,
+   "id": "point-f85ceb93fd8eb672",
+   "type": "s-electronics",
+   "place": "loraine-house-se"
+  },
+  {
+   "x": 425.6,
+   "y": 635.2,
+   "id": "point-5e8a01330f0543af",
+   "type": "s-electronics",
+   "place": "electronics-sunny"
+  },
+  {
+   "x": 426.1,
+   "y": 644.5,
+   "id": "point-468bbc1da64cdccd",
+   "type": "s-electronics",
+   "place": "electronics-sunny"
+  },
+  {
+   "x": 426.3,
+   "y": 646.1,
+   "id": "point-7cae144299ea3f79",
+   "type": "s-electronics",
+   "place": "electronics-sunny"
+  },
+  {
+   "x": 426.4,
+   "y": 647.6,
+   "id": "point-8577f97edf1b20ae",
+   "type": "s-electronics",
+   "place": "electronics-sunny"
+  },
+  {
+   "x": 427.4,
+   "y": 639.6,
+   "id": "point-edc0e90a479fbf41",
+   "type": "s-electronics",
+   "place": "electronics-sunny"
+  },
+  {
+   "x": 427.4,
+   "y": 657,
+   "id": "point-5a7a318b90d84eea",
+   "type": "s-electronics",
+   "place": "electronics-sunny"
+  },
+  {
+   "x": 428.5,
+   "y": 652.3,
+   "id": "point-d689128f2e18ad3e",
+   "type": "s-electronics",
+   "place": "electronics-sunny"
+  },
+  {
+   "x": 429.3,
+   "y": 643.1,
+   "id": "point-8d61bda74e660797",
+   "type": "s-electronics",
+   "place": "electronics-sunny"
+  },
+  {
+   "x": 429.6,
+   "y": 646,
+   "id": "point-6b2b71e6f86bace5",
+   "type": "s-electronics",
+   "place": "electronics-sunny"
+  },
+  {
+   "x": 429.7,
+   "y": 648.5,
+   "id": "point-759e1d82cedb82b9",
+   "type": "s-electronics",
+   "place": "electronics-sunny"
+  },
+  {
+   "x": 429.8,
+   "y": 646.5,
+   "id": "point-eb09b27ac5d696ae",
+   "type": "s-electronics",
+   "place": "electronics-sunny"
+  },
+  {
+   "x": 430.4,
+   "y": 235.8,
+   "id": "point-4dd3bde714fca981",
+   "type": "s-electronics",
+   "place": "loraine-house-se"
+  },
+  {
+   "x": 432.3,
+   "y": 165,
+   "id": "point-16ccf22f2a66bf81",
+   "type": "s-electronics",
+   "place": "loraine-house-ne"
+  },
+  {
+   "x": 435,
+   "y": 227.9,
+   "id": "point-3daa8590d888216a",
+   "type": "s-electronics",
+   "place": "loraine-house-se"
+  },
+  {
+   "x": 437.6,
+   "y": 634.2,
+   "id": "point-69318553cbbc5541",
+   "type": "s-electronics",
+   "place": "electronics-sunny"
+  },
+  {
+   "x": 437.8,
+   "y": 637.2,
+   "id": "point-617b5a6e41bcb55b",
+   "type": "s-electronics",
+   "place": "electronics-sunny"
+  },
+  {
+   "x": 438.2,
+   "y": 641.6,
+   "id": "point-092eddfcf4ac67e8",
+   "type": "s-electronics",
+   "place": "electronics-sunny"
+  },
+  {
+   "x": 438.8,
+   "y": 648.2,
+   "id": "point-a2ca5ec094dd2d19",
+   "type": "s-electronics",
+   "place": "electronics-sunny"
+  },
+  {
+   "x": 439.2,
+   "y": 652.7,
+   "id": "point-760dfc835609cb03",
+   "type": "s-electronics",
+   "place": "electronics-sunny"
+  },
+  {
+   "x": 439,
+   "y": 163.1,
+   "id": "point-def704c437c18fc4",
+   "type": "s-electronics",
+   "place": "loraine-house-ne"
+  },
+  {
+   "x": 439.4,
+   "y": 655.7,
+   "id": "point-f089aad9b40c81fa",
+   "type": "s-electronics",
+   "place": "electronics-sunny"
+  },
+  {
+   "x": 439.3,
+   "y": 160.3,
+   "id": "point-bef101fecd23102a",
+   "type": "s-electronics",
+   "place": "loraine-house-ne"
+  },
+  {
+   "x": 686.3,
+   "y": 827.5,
+   "id": "point-8a8481ad96927ca9",
+   "type": "s-electronics",
+   "place": "art-gallery"
+  },
+  {
+   "x": 883.5,
+   "y": 438.3,
+   "id": "point-68a4724fbdd15733",
+   "type": "s-electronics",
+   "place": "electronics-downtown"
+  },
+  {
+   "x": 886.5,
+   "y": 446,
+   "id": "point-e0307280658b7e4c",
+   "type": "s-electronics",
+   "place": "electronics-downtown"
+  },
+  {
+   "x": 886.9,
+   "y": 444.2,
+   "id": "point-e82ec64ad977426c",
+   "type": "s-electronics",
+   "place": "electronics-downtown"
+  },
+  {
+   "x": 887.5,
+   "y": 444.3,
+   "id": "point-0e20ccfd9bf5445b",
+   "type": "s-electronics",
+   "place": "electronics-downtown"
+  },
+  {
+   "x": 888,
+   "y": 444,
+   "id": "point-c750f580cb45284e",
+   "type": "s-electronics",
+   "place": "electronics-downtown"
+  },
+  {
+   "x": 890.2,
+   "y": 435.8,
+   "id": "point-6b88d60441904cb2",
+   "type": "s-electronics",
+   "place": "electronics-downtown"
+  },
+  {
+   "x": 892.1,
+   "y": 442.4,
+   "id": "point-5131609b60610f3d",
+   "type": "s-electronics",
+   "place": "electronics-downtown"
+  },
+  {
+   "x": 897.2,
+   "y": 437.9,
+   "id": "point-50b12f891627a22a",
+   "type": "s-electronics",
+   "place": "electronics-downtown"
+  },
+  {
+   "x": 905.4,
+   "y": 441.4,
+   "id": "point-04284ab483d9d649",
+   "type": "s-electronics",
+   "place": "electronics-downtown"
+  },
+  {
+   "x": 913.4,
+   "y": 658.9,
+   "id": "point-4607e19d2dcac6ce",
+   "type": "s-electronics",
+   "place": "cafe-downtown"
+  },
+  {
+   "x": 917.1,
+   "y": 650,
+   "id": "point-e0748946c798a172",
+   "type": "s-electronics",
+   "place": "cafe-downtown"
+  },
+  {
+   "x": 918.6,
+   "y": 658.9,
+   "id": "point-105c954047f4ad25",
+   "type": "s-electronics",
+   "place": "cafe-downtown"
+  },
+  {
+   "x": 921,
+   "y": 650.1,
+   "id": "point-c8e6ce4819b10fa2",
+   "type": "s-electronics",
+   "place": "cafe-downtown"
+  },
+  {
+   "x": 922.9,
+   "y": 657.4,
+   "id": "point-6632e1b414377e74",
+   "type": "s-electronics",
+   "place": "cafe-downtown"
+  },
+  {
+   "x": 372.6,
+   "y": 616.5,
+   "id": "point-628a2436c792a1bc",
+   "type": "s-gear",
+   "place": "equipment-sunny"
+  },
+  {
+   "x": 375.6,
+   "y": 619.6,
+   "id": "point-43c4c276690360d4",
+   "type": "s-gear",
+   "place": "equipment-sunny"
+  },
+  {
+   "x": 378.7,
+   "y": 622.7,
+   "id": "point-832d44b9f9238f62",
+   "type": "s-gear",
+   "place": "equipment-sunny"
+  },
+  {
+   "x": 380.9,
+   "y": 615.1,
+   "id": "point-182fbd8189dd6b6c",
+   "type": "s-gear",
+   "place": "equipment-sunny"
+  },
+  {
+   "x": 381.7,
+   "y": 625.7,
+   "id": "point-29c7bdb6a3f39812",
+   "type": "s-gear",
+   "place": "equipment-sunny"
+  },
+  {
+   "x": 383.5,
+   "y": 617.7,
+   "id": "point-93ee79dc512c0c66",
+   "type": "s-gear",
+   "place": "equipment-sunny"
+  },
+  {
+   "x": 385.9,
+   "y": 617.4,
+   "id": "point-5f0219ddac134b36",
+   "type": "s-gear",
+   "place": "equipment-sunny"
+  },
+  {
+   "x": 386.1,
+   "y": 606.9,
+   "id": "point-027d430ea7f6a8b9",
+   "type": "s-gear",
+   "place": "equipment-sunny"
+  },
+  {
+   "x": 386.6,
+   "y": 606.3,
+   "id": "point-7fce7ba3ec00d93d",
+   "type": "s-gear",
+   "place": "equipment-sunny"
+  },
+  {
+   "x": 627.8,
+   "y": 667.9,
+   "id": "point-4811c7e73f51dc4e",
+   "type": "s-gear",
+   "place": "police-station"
+  },
+  {
+   "x": 670.9,
+   "y": 824.8,
+   "id": "point-11d6caf645ca1be4",
+   "type": "s-gear",
+   "place": "art-gallery"
+  },
+  {
+   "x": 671.1,
+   "y": 825.2,
+   "id": "point-0392686bcb3f765c",
+   "type": "s-gear",
+   "place": "art-gallery"
+  },
+  {
+   "x": 919.7,
+   "y": 596.6,
+   "id": "point-3c97e6a0c8627405",
+   "type": "s-gear",
+   "place": "gas-station"
+  },
+  {
+   "x": 989.4,
+   "y": 816.8,
+   "id": "point-3e882b95773cdec5",
+   "type": "s-gear",
+   "place": "equipment-downtown"
+  },
+  {
+   "x": 992.1,
+   "y": 800.7,
+   "id": "point-8c227696ecaff8d3",
+   "type": "s-gear",
+   "place": "equipment-downtown"
+  },
+  {
+   "x": 992.1,
+   "y": 801.5,
+   "id": "point-a9c61087da8fedf3",
+   "type": "s-gear",
+   "place": "equipment-downtown"
+  },
+  {
+   "x": 992.4,
+   "y": 808,
+   "id": "point-2cdab3ea03a68078",
+   "type": "s-gear",
+   "place": "equipment-downtown"
+  },
+  {
+   "x": 993.7,
+   "y": 816.8,
+   "id": "point-92822b5d71b8f165",
+   "type": "s-gear",
+   "place": "equipment-downtown"
+  },
+  {
+   "x": 995.2,
+   "y": 809.9,
+   "id": "point-21282188ac0f8167",
+   "type": "s-gear",
+   "place": "equipment-downtown"
+  },
+  {
+   "x": 998,
+   "y": 816.8,
+   "id": "point-2dac9102611c4e47",
+   "type": "s-gear",
+   "place": "equipment-downtown"
+  },
+  {
+   "x": 998.6,
+   "y": 809.9,
+   "id": "point-08e610d265937fdd",
+   "type": "s-gear",
+   "place": "equipment-downtown"
+  },
+  {
+   "x": 1002.3,
+   "y": 816.8,
+   "id": "point-afb44e417e99a638",
+   "type": "s-gear",
+   "place": "equipment-downtown"
+  },
+  {
+   "x": 254.5,
+   "y": 580.8,
+   "id": "point-75afee971ff66799",
+   "type": "s-jewellery",
+   "place": "jeweler-sunny"
+  },
+  {
+   "x": 255.1,
+   "y": 578.6,
+   "id": "point-4a05a455617a1159",
+   "type": "s-jewellery",
+   "place": "jeweler-sunny"
+  },
+  {
+   "x": 255.7,
+   "y": 582,
+   "id": "point-3862fdc32f506857",
+   "type": "s-jewellery",
+   "place": "jeweler-sunny"
+  },
+  {
+   "x": 259.5,
+   "y": 585.9,
+   "id": "point-8264df7b1d52bdef",
+   "type": "s-jewellery",
+   "place": "jeweler-sunny"
+  },
+  {
+   "x": 260.7,
+   "y": 587,
+   "id": "point-f5d472de11f278f5",
+   "type": "s-jewellery",
+   "place": "jeweler-sunny"
+  },
+  {
+   "x": 262,
+   "y": 572.3,
+   "id": "point-76ef1dcf5f060dbc",
+   "type": "s-jewellery",
+   "place": "jeweler-sunny"
+  },
+  {
+   "x": 262.1,
+   "y": 578.1,
+   "id": "point-11a1944cf1d55bf7",
+   "type": "s-jewellery",
+   "place": "jeweler-sunny"
+  },
+  {
+   "x": 262.3,
+   "y": 583,
+   "id": "point-b4085613b11ede2f",
+   "type": "s-jewellery",
+   "place": "jeweler-sunny"
+  },
+  {
+   "x": 263.2,
+   "y": 602.1,
+   "id": "point-351cb0c57f1be648",
+   "type": "s-jewellery",
+   "place": "jeweler-sunny"
+  },
+  {
+   "x": 263.5,
+   "y": 598.9,
+   "id": "point-f05f21df10ff2dd6",
+   "type": "s-jewellery",
+   "place": "jeweler-sunny"
+  },
+  {
+   "x": 264.4,
+   "y": 586.4,
+   "id": "point-d5b50145e2ca5c1d",
+   "type": "s-jewellery",
+   "place": "jeweler-sunny"
+  },
+  {
+   "x": 265.4,
+   "y": 586.5,
+   "id": "point-f1b1c281cecb7571",
+   "type": "s-jewellery",
+   "place": "jeweler-sunny"
+  },
+  {
+   "x": 266.5,
+   "y": 586.5,
+   "id": "point-c42dcd2fc9ea24d1",
+   "type": "s-jewellery",
+   "place": "jeweler-sunny"
+  },
+  {
+   "x": 267.5,
+   "y": 586.5,
+   "id": "point-633536e1303f395e",
+   "type": "s-jewellery",
+   "place": "jeweler-sunny"
+  },
+  {
+   "x": 269.6,
+   "y": 583,
+   "id": "point-441777476e8985ad",
+   "type": "s-jewellery",
+   "place": "jeweler-sunny"
+  },
+  {
+   "x": 269.9,
+   "y": 578.1,
+   "id": "point-98b21b6e22831970",
+   "type": "s-jewellery",
+   "place": "jeweler-sunny"
+  },
+  {
+   "x": 269.9,
+   "y": 572.3,
+   "id": "point-0b0fdef90a543268",
+   "type": "s-jewellery",
+   "place": "jeweler-sunny"
+  },
+  {
+   "x": 272.6,
+   "y": 587.4,
+   "id": "point-7ee0ffcebc8796ee",
+   "type": "s-jewellery",
+   "place": "jeweler-sunny"
+  },
+  {
+   "x": 273.7,
+   "y": 586.3,
+   "id": "point-13300c315ea5bc94",
+   "type": "s-jewellery",
+   "place": "jeweler-sunny"
+  },
+  {
+   "x": 276.7,
+   "y": 583.2,
+   "id": "point-1fed9c59025d59b2",
+   "type": "s-jewellery",
+   "place": "jeweler-sunny"
+  },
+  {
+   "x": 277.3,
+   "y": 579.1,
+   "id": "point-e9c979deac6ab36e",
+   "type": "s-jewellery",
+   "place": "jeweler-sunny"
+  },
+  {
+   "x": 277.8,
+   "y": 582.1,
+   "id": "point-c0f6bfbea55cc2eb",
+   "type": "s-jewellery",
+   "place": "jeweler-sunny"
+  },
+  {
+   "x": 323,
+   "y": 472.9,
+   "id": "point-2a48c05c3b72ded5",
+   "type": "s-jewellery",
+   "place": "grand-hotel"
+  },
+  {
+   "x": 323,
+   "y": 467.2,
+   "id": "point-910ead05b67c9118",
+   "type": "s-jewellery",
+   "place": "grand-hotel"
+  },
+  {
+   "x": 326.2,
+   "y": 474.6,
+   "id": "point-9c17908d833793a7",
+   "type": "s-jewellery",
+   "place": "grand-hotel"
+  },
+  {
+   "x": 326.2,
+   "y": 465.3,
+   "id": "point-b8e7c9462ad57eb7",
+   "type": "s-jewellery",
+   "place": "grand-hotel"
+  },
+  {
+   "x": 328.6,
+   "y": 465.4,
+   "id": "point-ece8a8dd931a5216",
+   "type": "s-jewellery",
+   "place": "grand-hotel"
+  },
+  {
+   "x": 328.6,
+   "y": 474.7,
+   "id": "point-81cf827cebafeb23",
+   "type": "s-jewellery",
+   "place": "grand-hotel"
+  },
+  {
+   "x": 331,
+   "y": 474.6,
+   "id": "point-93eb17ef86d8dc80",
+   "type": "s-jewellery",
+   "place": "grand-hotel"
+  },
+  {
+   "x": 331,
+   "y": 465.4,
+   "id": "point-152ed9151b613527",
+   "type": "s-jewellery",
+   "place": "grand-hotel"
+  },
+  {
+   "x": 332.9,
+   "y": 474.6,
+   "id": "point-5fa30b21eb9860ce",
+   "type": "s-jewellery",
+   "place": "grand-hotel"
+  },
+  {
+   "x": 332.9,
+   "y": 465.4,
+   "id": "point-7b2c7fd1e6fc8e45",
+   "type": "s-jewellery",
+   "place": "grand-hotel"
+  },
+  {
+   "x": 341.3,
+   "y": 451.4,
+   "id": "point-4adc1df59f08d6b8",
+   "type": "s-jewellery",
+   "place": "grand-hotel"
+  },
+  {
+   "x": 342.5,
+   "y": 450.2,
+   "id": "point-31abf54b207e7038",
+   "type": "s-jewellery",
+   "place": "grand-hotel"
+  },
+  {
+   "x": 342.5,
+   "y": 466.4,
+   "id": "point-c8ffa5ca98d983f5",
+   "type": "s-jewellery",
+   "place": "grand-hotel"
+  },
+  {
+   "x": 345.8,
+   "y": 463.1,
+   "id": "point-7bbe3f3e9b427c73",
+   "type": "s-jewellery",
+   "place": "grand-hotel"
+  },
+  {
+   "x": 356,
+   "y": 450.2,
+   "id": "point-23035f96a46a56e8",
+   "type": "s-jewellery",
+   "place": "grand-hotel"
+  },
+  {
+   "x": 356,
+   "y": 466.3,
+   "id": "point-1c1af0ac94c77f08",
+   "type": "s-jewellery",
+   "place": "grand-hotel"
+  },
+  {
+   "x": 358.4,
+   "y": 482.3,
+   "id": "point-89bf213a51903507",
+   "type": "s-jewellery",
+   "place": "grand-hotel"
+  },
+  {
+   "x": 359.5,
+   "y": 483.5,
+   "id": "point-29e5b262292a510b",
+   "type": "s-jewellery",
+   "place": "grand-hotel"
+  },
+  {
+   "x": 362.1,
+   "y": 485.3,
+   "id": "point-a883a065603dc8d6",
+   "type": "s-jewellery",
+   "place": "grand-hotel"
+  },
+  {
+   "x": 363.3,
+   "y": 484.1,
+   "id": "point-a3fe1058b0c99cc4",
+   "type": "s-jewellery",
+   "place": "grand-hotel"
+  },
+  {
+   "x": 364.2,
+   "y": 483.1,
+   "id": "point-0902ea5d5024dcd4",
+   "type": "s-jewellery",
+   "place": "grand-hotel"
+  },
+  {
+   "x": 364.6,
+   "y": 476.1,
+   "id": "point-4c02a4463049c314",
+   "type": "s-jewellery",
+   "place": "grand-hotel"
+  },
+  {
+   "x": 364.8,
+   "y": 482.6,
+   "id": "point-3fbad435b034578c",
+   "type": "s-jewellery",
+   "place": "grand-hotel"
+  },
+  {
+   "x": 365.4,
+   "y": 482,
+   "id": "point-5b5a8ac00d9e4143",
+   "type": "s-jewellery",
+   "place": "grand-hotel"
+  },
+  {
+   "x": 365.7,
+   "y": 477.3,
+   "id": "point-08f71fa67577d736",
+   "type": "s-jewellery",
+   "place": "grand-hotel"
+  },
+  {
+   "x": 366.3,
+   "y": 481.1,
+   "id": "point-83ac1fd2294c55ce",
+   "type": "s-jewellery",
+   "place": "grand-hotel"
+  },
+  {
+   "x": 367.5,
+   "y": 479.9,
+   "id": "point-d84fa30c1a94942e",
+   "type": "s-jewellery",
+   "place": "grand-hotel"
+  },
+  {
+   "x": 1022.4,
+   "y": 664.8,
+   "id": "point-9d22adc176968716",
+   "type": "s-jewellery",
+   "place": "jeweler-downtown"
+  },
+  {
+   "x": 1024.9,
+   "y": 662.7,
+   "id": "point-09c356b9174b2a4a",
+   "type": "s-jewellery",
+   "place": "jeweler-downtown"
+  },
+  {
+   "x": 1031.2,
+   "y": 652.3,
+   "id": "point-71c05e4653376312",
+   "type": "s-jewellery",
+   "place": "jeweler-downtown"
+  },
+  {
+   "x": 1031.2,
+   "y": 650.6,
+   "id": "point-f502524c10ebc038",
+   "type": "s-jewellery",
+   "place": "jeweler-downtown"
+  },
+  {
+   "x": 1031.2,
+   "y": 645.3,
+   "id": "point-a5f6c11ad60e5eb2",
+   "type": "s-jewellery",
+   "place": "jeweler-downtown"
+  },
+  {
+   "x": 1031.2,
+   "y": 643.6,
+   "id": "point-2eb9d5b615e96bfd",
+   "type": "s-jewellery",
+   "place": "jeweler-downtown"
+  },
+  {
+   "x": 1033.2,
+   "y": 642.4,
+   "id": "point-9d781b803d6dd7db",
+   "type": "s-jewellery",
+   "place": "jeweler-downtown"
+  },
+  {
+   "x": 1034.3,
+   "y": 654.5,
+   "id": "point-6aabed6ea5ba5b57",
+   "type": "s-jewellery",
+   "place": "jeweler-downtown"
+  },
+  {
+   "x": 1035,
+   "y": 655.3,
+   "id": "point-e9f29ebabdd0a798",
+   "type": "s-jewellery",
+   "place": "jeweler-downtown"
+  },
+  {
+   "x": 1035.2,
+   "y": 650.7,
+   "id": "point-56bfa859c98a102a",
+   "type": "s-jewellery",
+   "place": "jeweler-downtown"
+  },
+  {
+   "x": 1035.7,
+   "y": 656.1,
+   "id": "point-eb47290ccac5a347",
+   "type": "s-jewellery",
+   "place": "jeweler-downtown"
+  },
+  {
+   "x": 1036.5,
+   "y": 656.8,
+   "id": "point-e2b332d7e5005ca2",
+   "type": "s-jewellery",
+   "place": "jeweler-downtown"
+  },
+  {
+   "x": 1038.5,
+   "y": 647,
+   "id": "point-d60a39eafcb50ebe",
+   "type": "s-jewellery",
+   "place": "jeweler-downtown"
+  },
+  {
+   "x": 1039.4,
+   "y": 661,
+   "id": "point-66e198849225ed6a",
+   "type": "s-jewellery",
+   "place": "jeweler-downtown"
+  },
+  {
+   "x": 1040.3,
+   "y": 655.8,
+   "id": "point-c2a7b2f8ab170c70",
+   "type": "s-jewellery",
+   "place": "jeweler-downtown"
+  },
+  {
+   "x": 1041,
+   "y": 661,
+   "id": "point-e93ccd4131056915",
+   "type": "s-jewellery",
+   "place": "jeweler-downtown"
+  },
+  {
+   "x": 1042.5,
+   "y": 642.9,
+   "id": "point-faebb8251dcbb5e0",
+   "type": "s-jewellery",
+   "place": "jeweler-downtown"
+  },
+  {
+   "x": 1044,
+   "y": 652.5,
+   "id": "point-9861cfe6ceb1b341",
+   "type": "s-jewellery",
+   "place": "jeweler-downtown"
+  },
+  {
+   "x": 1045.3,
+   "y": 661,
+   "id": "point-a077158f6713d9fe",
+   "type": "s-jewellery",
+   "place": "jeweler-downtown"
+  },
+  {
+   "x": 1046.9,
+   "y": 661,
+   "id": "point-b7ccdb50da34ce95",
+   "type": "s-jewellery",
+   "place": "jeweler-downtown"
+  },
+  {
+   "x": 1048.1,
+   "y": 648.5,
+   "id": "point-05b557413afb2349",
+   "type": "s-jewellery",
+   "place": "jeweler-downtown"
+  },
+  {
+   "x": 1048.6,
+   "y": 658.5,
+   "id": "point-4edc44ee0eaa0e71",
+   "type": "s-jewellery",
+   "place": "jeweler-downtown"
+  },
+  {
+   "x": 410.4,
+   "y": 647.8,
+   "id": "point-64cfbfe74eff8cc3",
+   "type": "s-medicine",
+   "place": "pharmacy-sunny"
+  },
+  {
+   "x": 411.5,
+   "y": 639.4,
+   "id": "point-5ed08bb3d106a747",
+   "type": "s-medicine",
+   "place": "pharmacy-sunny"
+  },
+  {
+   "x": 411.7,
+   "y": 640,
+   "id": "point-080dc154b27ddb2c",
+   "type": "s-medicine",
+   "place": "pharmacy-sunny"
+  },
+  {
+   "x": 411.8,
+   "y": 643.3,
+   "id": "point-c4cf899368ff3deb",
+   "type": "s-medicine",
+   "place": "pharmacy-sunny"
+  },
+  {
+   "x": 412,
+   "y": 643.8,
+   "id": "point-3be367eb0ef4f903",
+   "type": "s-medicine",
+   "place": "pharmacy-sunny"
+  },
+  {
+   "x": 412.5,
+   "y": 647.6,
+   "id": "point-a1c89b04cadf3cec",
+   "type": "s-medicine",
+   "place": "pharmacy-sunny"
+  },
+  {
+   "x": 414.6,
+   "y": 647.4,
+   "id": "point-9813d109fadafd77",
+   "type": "s-medicine",
+   "place": "pharmacy-sunny"
+  },
+  {
+   "x": 414.9,
+   "y": 652.3,
+   "id": "point-c52be02c3fcff574",
+   "type": "s-medicine",
+   "place": "pharmacy-sunny"
+  },
+  {
+   "x": 415.1,
+   "y": 650.4,
+   "id": "point-db3ce6534cf0ffba",
+   "type": "s-medicine",
+   "place": "pharmacy-sunny"
+  },
+  {
+   "x": 415.1,
+   "y": 650.6,
+   "id": "point-95d6baa143a326f1",
+   "type": "s-medicine",
+   "place": "pharmacy-sunny"
+  },
+  {
+   "x": 415.1,
+   "y": 650.7,
+   "id": "point-48dab2de6454929d",
+   "type": "s-medicine",
+   "place": "pharmacy-sunny"
+  },
+  {
+   "x": 417.1,
+   "y": 208.8,
+   "id": "point-6b68ec37ae9f2fa2",
+   "type": "s-medicine",
+   "place": "loraine-house-se"
+  },
+  {
+   "x": 419.2,
+   "y": 638,
+   "id": "point-251425c2b0baaad8",
+   "type": "s-medicine",
+   "place": "pharmacy-sunny"
+  },
+  {
+   "x": 1027.4,
+   "y": 585.3,
+   "id": "point-2e6f8cbb228a7ee3",
+   "type": "s-medicine",
+   "place": "pharmacy-downtown"
+  },
+  {
+   "x": 1029,
+   "y": 585.6,
+   "id": "point-c41ee324b976bc73",
+   "type": "s-medicine",
+   "place": "pharmacy-downtown"
+  },
+  {
+   "x": 1029.1,
+   "y": 585.6,
+   "id": "point-630713e72db5bdc8",
+   "type": "s-medicine",
+   "place": "pharmacy-downtown"
+  },
+  {
+   "x": 1029.3,
+   "y": 585.6,
+   "id": "point-d7acfde329010cc8",
+   "type": "s-medicine",
+   "place": "pharmacy-downtown"
+  },
+  {
+   "x": 1032.3,
+   "y": 583.2,
+   "id": "point-b1511f5c7189c5fe",
+   "type": "s-medicine",
+   "place": "pharmacy-downtown"
+  },
+  {
+   "x": 1032.3,
+   "y": 585.3,
+   "id": "point-b95afe74b94b80ad",
+   "type": "s-medicine",
+   "place": "pharmacy-downtown"
+  },
+  {
+   "x": 1032.3,
+   "y": 581.1,
+   "id": "point-9582e70dc4972b4f",
+   "type": "s-medicine",
+   "place": "pharmacy-downtown"
+  },
+  {
+   "x": 1036.1,
+   "y": 583.1,
+   "id": "point-02200fe04f16c135",
+   "type": "s-medicine",
+   "place": "pharmacy-downtown"
+  },
+  {
+   "x": 1036.7,
+   "y": 582.9,
+   "id": "point-658e34bb930440e5",
+   "type": "s-medicine",
+   "place": "pharmacy-downtown"
+  },
+  {
+   "x": 1040,
+   "y": 583.1,
+   "id": "point-84e5da05eac042d1",
+   "type": "s-medicine",
+   "place": "pharmacy-downtown"
+  },
+  {
+   "x": 1040.5,
+   "y": 583,
+   "id": "point-36c8d30e2dc8f546",
+   "type": "s-medicine",
+   "place": "pharmacy-downtown"
+  },
+  {
+   "x": 1041.3,
+   "y": 590.8,
+   "id": "point-2afa953caae703f9",
+   "type": "s-medicine",
+   "place": "pharmacy-downtown"
+  },
+  {
+   "x": 199.6,
+   "y": 702.9,
+   "id": "point-84794927f816278a",
+   "type": "s-safe",
+   "place": "nightclub"
+  },
+  {
+   "x": 200.8,
+   "y": 690.8,
+   "id": "point-bd54789a000975af",
+   "type": "s-safe",
+   "place": "nightclub"
+  },
+  {
+   "x": 236.8,
+   "y": 702.4,
+   "id": "point-776676baf01049df",
+   "type": "s-safe",
+   "place": "nightclub"
+  },
+  {
+   "x": 287.3,
+   "y": 603.1,
+   "id": "point-eeb3c782552b4839",
+   "type": "s-safe",
+   "place": "liquor-sunny"
+  },
+  {
+   "x": 292.7,
+   "y": 613.6,
+   "id": "point-60ebce79f9a9e371",
+   "type": "s-safe",
+   "place": "liquor-sunny"
+  },
+  {
+   "x": 309.5,
+   "y": 186,
+   "id": "point-61641c7b83ba8b5a",
+   "type": "s-safe",
+   "place": "noble-mansion"
+  },
+  {
+   "x": 323.5,
+   "y": 488,
+   "id": "point-255c8c3fcd9aab26",
+   "type": "s-safe",
+   "place": "grand-hotel"
+  },
+  {
+   "x": 323.7,
+   "y": 708.1,
+   "id": "point-7165d6e9d645defb",
+   "type": "s-safe",
+   "place": "hotel-sunny-west"
+  },
+  {
+   "x": 324.3,
+   "y": 488.8,
+   "id": "point-33b3c4c0015ce520",
+   "type": "s-safe",
+   "place": "grand-hotel"
+  },
+  {
+   "x": 331.6,
+   "y": 712.1,
+   "id": "point-ee05931cf39b9841",
+   "type": "s-safe",
+   "place": "hotel-sunny-west"
+  },
+  {
+   "x": 331.8,
+   "y": 705.5,
+   "id": "point-07689696e8583717",
+   "type": "s-safe",
+   "place": "hotel-sunny-west"
+  },
+  {
+   "x": 347.5,
+   "y": 932.6,
+   "id": "point-1e5d09c19b328d26",
+   "type": "s-safe",
+   "place": "cafe-pier"
+  },
+  {
+   "x": 375.7,
+   "y": 665.1,
+   "id": "point-4788fe0b770bca8d",
+   "type": "s-safe",
+   "place": "gun-shop-sunny"
+  },
+  {
+   "x": 376.1,
+   "y": 668,
+   "id": "point-190c28af8a982266",
+   "type": "s-safe",
+   "place": "gun-shop-sunny"
+  },
+  {
+   "x": 377.2,
+   "y": 152.1,
+   "id": "point-f1626b2fd542f8d6",
+   "type": "s-safe",
+   "place": "elite-cottage"
+  },
+  {
+   "x": 380,
+   "y": 606,
+   "id": "point-617fcabd038ddfbb",
+   "type": "s-safe",
+   "place": "equipment-sunny"
+  },
+  {
+   "x": 380.7,
+   "y": 605.3,
+   "id": "point-2337573cb3482bc5",
+   "type": "s-safe",
+   "place": "equipment-sunny"
+  },
+  {
+   "x": 386.5,
+   "y": 231,
+   "id": "point-20a80c110afe6e71",
+   "type": "s-safe",
+   "place": "cottage"
+  },
+  {
+   "x": 395.6,
+   "y": 709.1,
+   "id": "point-92eeed9d61a78a3e",
+   "type": "s-safe",
+   "place": "hotel-sunny-east"
+  },
+  {
+   "x": 418.7,
+   "y": 655.9,
+   "id": "point-97b27b488928bc2e",
+   "type": "s-safe",
+   "place": "pharmacy-sunny"
+  },
+  {
+   "x": 419.3,
+   "y": 639.7,
+   "id": "point-b282485ed5c3fd82",
+   "type": "s-safe",
+   "place": "pharmacy-sunny"
+  },
+  {
+   "x": 421.5,
+   "y": 155.8,
+   "id": "point-ecd791f18df9b3e4",
+   "type": "s-safe",
+   "place": "loraine-house-ne"
+  },
+  {
+   "x": 425.1,
+   "y": 151,
+   "id": "point-06db679155e6932f",
+   "type": "s-safe",
+   "place": "loraine-house-ne"
+  },
+  {
+   "x": 429.3,
+   "y": 643.8,
+   "id": "point-0452e8b47dd43ab9",
+   "type": "s-safe",
+   "place": "electronics-sunny"
+  },
+  {
+   "x": 431.5,
+   "y": 216.5,
+   "id": "point-dd9f2d5a911b0d9e",
+   "type": "s-safe",
+   "place": "loraine-house-se"
+  },
+  {
+   "x": 621.9,
+   "y": 676.9,
+   "id": "point-e5f9d56153bdb7a7",
+   "type": "s-safe",
+   "place": "police-station"
+  },
+  {
+   "x": 621.9,
+   "y": 675.8,
+   "id": "point-cba524c118cfd86d",
+   "type": "s-safe",
+   "place": "police-station"
+  },
+  {
+   "x": 631.9,
+   "y": 677.9,
+   "id": "point-8283d5c75b09a560",
+   "type": "s-safe",
+   "place": "police-station"
+  },
+  {
+   "x": 658.3,
+   "y": 840.4,
+   "id": "point-69678620169a7a11",
+   "type": "s-safe",
+   "place": "art-gallery"
+  },
+  {
+   "x": 685.9,
+   "y": 826,
+   "id": "point-b46fc5ef640027c8",
+   "type": "s-safe",
+   "place": "art-gallery"
+  },
+  {
+   "x": 911.5,
+   "y": 568.1,
+   "id": "point-a778d9908a1e4a53",
+   "type": "s-safe",
+   "place": "gas-station"
+  },
+  {
+   "x": 916.4,
+   "y": 596.2,
+   "id": "point-f26d71cfad7ac0e2",
+   "type": "s-safe",
+   "place": "gas-station"
+  },
+  {
+   "x": 916.9,
+   "y": 574.6,
+   "id": "point-dd0d06865c839e77",
+   "type": "s-safe",
+   "place": "gas-station"
+  },
+  {
+   "x": 918,
+   "y": 574.6,
+   "id": "point-58f3c6568a5a43cb",
+   "type": "s-safe",
+   "place": "gas-station"
+  },
+  {
+   "x": 922.7,
+   "y": 661.6,
+   "id": "point-bd4103cdd5a27414",
+   "type": "s-safe",
+   "place": "cafe-downtown"
+  },
+  {
+   "x": 987.2,
+   "y": 804.3,
+   "id": "point-47881ad805e42ddd",
+   "type": "s-safe",
+   "place": "equipment-downtown"
+  },
+  {
+   "x": 987.2,
+   "y": 803.2,
+   "id": "point-60a1990f6df829e9",
+   "type": "s-safe",
+   "place": "equipment-downtown"
+  },
+  {
+   "x": 1005.5,
+   "y": 296.4,
+   "id": "point-4e20167d8f9a8078",
+   "type": "s-safe",
+   "place": "looty-bay-bank"
+  },
+  {
+   "x": 1005.8,
+   "y": 297.6,
+   "id": "point-19a45e353bc54471",
+   "type": "s-safe",
+   "place": "looty-bay-bank"
+  },
+  {
+   "x": 1006.1,
+   "y": 298.8,
+   "id": "point-9140cfc9dc006245",
+   "type": "s-safe",
+   "place": "looty-bay-bank"
+  },
+  {
+   "x": 1023.6,
+   "y": 588.7,
+   "id": "point-da482f5514884ccb",
+   "type": "s-safe",
+   "place": "pharmacy-downtown"
+  },
+  {
+   "x": 1039.6,
+   "y": 590.7,
+   "id": "point-10f2f07257714011",
+   "type": "s-safe",
+   "place": "pharmacy-downtown"
+  },
+  {
+   "x": 1114.1,
+   "y": 810.4,
+   "id": "point-eb1385574e6b7a6a",
+   "type": "s-safe",
+   "place": "gun-shop-downtown"
+  },
+  {
+   "x": 1114.4,
+   "y": 813.3,
+   "id": "point-6c29611bebab3363",
+   "type": "s-safe",
+   "place": "gun-shop-downtown"
+  },
+  {
+   "x": 1128.3,
+   "y": 590.8,
+   "id": "point-e61b03a01d6f9531",
+   "type": "s-safe",
+   "place": "liquor-downtown"
+  },
+  {
+   "x": 1187.4,
+   "y": 432.2,
+   "id": "point-81c318754d77aaab",
+   "type": "s-safe",
+   "place": "liquor-downtown-north"
+  },
+  {
+   "x": 1188,
+   "y": 420.4,
+   "id": "point-dd43d0e307d71c64",
+   "type": "s-safe",
+   "place": "liquor-downtown-north"
+  },
+  {
+   "x": 207.6,
+   "y": 728.3,
+   "id": "point-716456c4d6e7926c",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 208.8,
+   "y": 687,
+   "id": "point-caeb9b86985577c7",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 208.8,
+   "y": 684.7,
+   "id": "point-c466f507ae7f3c24",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 224.5,
+   "y": 787.9,
+   "id": "point-8ed1a4c676586f7f",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 224.6,
+   "y": 624,
+   "id": "point-48fa5bff9c3197c1",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 248.5,
+   "y": 604.9,
+   "id": "point-36f63c1de98f3ff9",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 250.1,
+   "y": 796.5,
+   "id": "point-990b9ef68e9962eb",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 250.1,
+   "y": 571,
+   "id": "point-a93ad22966191f1c",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 250.3,
+   "y": 606.2,
+   "id": "point-732b2e1eb56bb1a2",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 254,
+   "y": 693.1,
+   "id": "point-2ee2635671a4e9f2",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 254.2,
+   "y": 722.3,
+   "id": "point-9e9b1551e2a37d08",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 255.6,
+   "y": 550,
+   "id": "point-87b315cb191ac0b8",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 262.4,
+   "y": 693,
+   "id": "point-a50ec4eed555ae6f",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 262.7,
+   "y": 725.1,
+   "id": "point-d9c9e54274089052",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 286.3,
+   "y": 797.8,
+   "id": "point-8c137ee79fe3795d",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 287.5,
+   "y": 614.1,
+   "id": "point-e672628447f1bb32",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 289.8,
+   "y": 734.2,
+   "id": "point-3caf7eb6edaa6492",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 301.3,
+   "y": 580,
+   "id": "point-f9a796897683469e",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 303.4,
+   "y": 700.4,
+   "id": "point-1fa1f1fa4e65529c",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 315.1,
+   "y": 683.2,
+   "id": "point-8cfcab5ea68a8832",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 317,
+   "y": 431.8,
+   "id": "point-5a9693eb304a306f",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 317.4,
+   "y": 683.1,
+   "id": "point-6025db965057da7b",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 318.5,
+   "y": 613.6,
+   "id": "point-5004a8108812b8a9",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 323.1,
+   "y": 734.4,
+   "id": "point-512ca00c18312acd",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 325.8,
+   "y": 564.4,
+   "id": "point-c4b9328cecbf2679",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 331.7,
+   "y": 129.2,
+   "id": "point-d339d8f5f6ffccf2",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 332.6,
+   "y": 571.3,
+   "id": "point-e96772b2dc3fef00",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 334,
+   "y": 556.7,
+   "id": "point-893057289dbb6db3",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 341.3,
+   "y": 497.1,
+   "id": "point-4d3ca9bac68578ca",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 341.5,
+   "y": 523.3,
+   "id": "point-ecfea94dee4a3c80",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 341.8,
+   "y": 580.2,
+   "id": "point-2af7c05a6354e40b",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 344,
+   "y": 491.8,
+   "id": "point-bfd02330b2086950",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 345.5,
+   "y": 922.4,
+   "id": "point-5180e7f9dfd1c6f4",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 352.6,
+   "y": 580.2,
+   "id": "point-60d553bba598d15e",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 357,
+   "y": 523.4,
+   "id": "point-9f9e21bc719c1f6e",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 357.3,
+   "y": 497,
+   "id": "point-fbbe86a04e07515c",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 362.9,
+   "y": 537.9,
+   "id": "point-825de307d28b094c",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 364.5,
+   "y": 555,
+   "id": "point-5fbb2fb9c00fe3b8",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 365.9,
+   "y": 571.2,
+   "id": "point-bf753411b2e345bc",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 369.9,
+   "y": 613,
+   "id": "point-43adb7831b7842b6",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 372.6,
+   "y": 547.5,
+   "id": "point-4abee0ea8e96977f",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 373.8,
+   "y": 113.6,
+   "id": "point-992cdd19d31ac643",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 375.8,
+   "y": 954.4,
+   "id": "point-f7d47498b0f7d3fb",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 378.4,
+   "y": 734.7,
+   "id": "point-6f1606f25ba17ec3",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 381.5,
+   "y": 687.2,
+   "id": "point-94fc62c2102f5b51",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 381.7,
+   "y": 672.6,
+   "id": "point-62669c4658f891ce",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 384.8,
+   "y": 635,
+   "id": "point-8f563660f3adfcab",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 386.4,
+   "y": 714.3,
+   "id": "point-dec89949fa74db13",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 388.7,
+   "y": 661.7,
+   "id": "point-5c46f1adb07c6227",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 389,
+   "y": 949.8,
+   "id": "point-88f37aa4091cc084",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 388.7,
+   "y": 188.2,
+   "id": "point-80e248aafbefdb15",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 390.1,
+   "y": 876.8,
+   "id": "point-ac3936f23ec777f3",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 390.1,
+   "y": 871.1,
+   "id": "point-22db9a451e265db8",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 390.2,
+   "y": 890.8,
+   "id": "point-5457f39363780f86",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 390.7,
+   "y": 591.8,
+   "id": "point-5fcfc58aa78f8f38",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 396.8,
+   "y": 646.8,
+   "id": "point-894f079132126063",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 399.6,
+   "y": 954.3,
+   "id": "point-f4799c80484e370f",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 400.7,
+   "y": 735,
+   "id": "point-448376b9c2e5fb56",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 402.9,
+   "y": 810.1,
+   "id": "point-0fc8e79001ee6c80",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 406.2,
+   "y": 854.2,
+   "id": "point-aebeaa00715bd5af",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 407.1,
+   "y": 664.6,
+   "id": "point-c82e85e38d7d2443",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 415.9,
+   "y": 598.1,
+   "id": "point-c5e0f7318bafd5aa",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 420.8,
+   "y": 198.3,
+   "id": "point-3431afa6f7c2fdab",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 422.1,
+   "y": 629.9,
+   "id": "point-edf1dae986684cfc",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 423.7,
+   "y": 671,
+   "id": "point-16c548a1c4382c3b",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 442.1,
+   "y": 662.8,
+   "id": "point-0d46a022e2ad342d",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 462,
+   "y": 220.7,
+   "id": "point-89fc9d621d7a696f",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 479.3,
+   "y": 199.3,
+   "id": "point-82c715ee0633e2ef",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 607.9,
+   "y": 711.3,
+   "id": "point-40bca3439a9a5a97",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 608.9,
+   "y": 586.4,
+   "id": "point-f0f9dc8e6673217e",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 610.4,
+   "y": 705.9,
+   "id": "point-6b8834f2fd5c3e16",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 622.9,
+   "y": 650.6,
+   "id": "point-6f31ee66ccad6dcc",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 623,
+   "y": 652.9,
+   "id": "point-864fac1148b25b55",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 625.9,
+   "y": 595.6,
+   "id": "point-1f2696141bf4401a",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 631.6,
+   "y": 540.1,
+   "id": "point-9556dcaf6520f7fe",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 633.2,
+   "y": 538.5,
+   "id": "point-0cce65b5a593544e",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 700.9,
+   "y": 824.7,
+   "id": "point-d9a53d2c36d91db1",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 714.6,
+   "y": 578.7,
+   "id": "point-9296d59fa31c5bfb",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 723.4,
+   "y": 587.2,
+   "id": "point-2f4bd9a116ecf6a3",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 726.6,
+   "y": 569.4,
+   "id": "point-38ad1a51a5af7551",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 847.8,
+   "y": 616.2,
+   "id": "point-45e7ebee832ce389",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 852,
+   "y": 655.9,
+   "id": "point-4b7593d992ff4ce3",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 855.8,
+   "y": 662.6,
+   "id": "point-c68fe933e05ff98f",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 856.8,
+   "y": 646.3,
+   "id": "point-24fb1abbcf1e86c0",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 859.3,
+   "y": 771.8,
+   "id": "point-4177a9e55260390c",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 860.2,
+   "y": 653,
+   "id": "point-0be09fa6f480f2de",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 860.2,
+   "y": 621.5,
+   "id": "point-30f1b78952fa641e",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 879.5,
+   "y": 449,
+   "id": "point-6ac1062c46440948",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 892.5,
+   "y": 832.4,
+   "id": "point-0bf8739f1a8c7da0",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 897.2,
+   "y": 788.8,
+   "id": "point-df47ababd3e812d4",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 901.4,
+   "y": 294.2,
+   "id": "point-abeb4ea9735be0c3",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 902.2,
+   "y": 694.6,
+   "id": "point-0e893c770327914c",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 904.4,
+   "y": 557.7,
+   "id": "point-d277897830762922",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 905,
+   "y": 301,
+   "id": "point-dd49a8a3ac909e70",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 906.9,
+   "y": 773.4,
+   "id": "point-46c08e1827f47988",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 909.2,
+   "y": 316.8,
+   "id": "point-56d997860274c708",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 912.9,
+   "y": 677.2,
+   "id": "point-ec02661033245ea2",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 914,
+   "y": 334.9,
+   "id": "point-4fcc52b7c5cfcd09",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 914.3,
+   "y": 810.8,
+   "id": "point-4c8ae11a33bb0651",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 915.6,
+   "y": 602.4,
+   "id": "point-568090aa89cad552",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 917,
+   "y": 294.7,
+   "id": "point-efe6a6c11664f087",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 917.4,
+   "y": 347.9,
+   "id": "point-de2202ead33fa597",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 920.8,
+   "y": 360.9,
+   "id": "point-48c092f62dac6c91",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 926.2,
+   "y": 817.5,
+   "id": "point-4a04d8125bdc9d34",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 928.7,
+   "y": 516.4,
+   "id": "point-dfb9e6609ae3b227",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 934.4,
+   "y": 290,
+   "id": "point-b0998344c74cb0e3",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 934.6,
+   "y": 647,
+   "id": "point-92ddcaa0a9582f64",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 936.9,
+   "y": 647.1,
+   "id": "point-d0131f0cf5df3fbc",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 937.8,
+   "y": 714.5,
+   "id": "point-60e4fa6986921549",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 938,
+   "y": 684.4,
+   "id": "point-ea17cd7acbe0a20d",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 942.1,
+   "y": 689.7,
+   "id": "point-4ae3911b8ece0cac",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 942.3,
+   "y": 706.8,
+   "id": "point-3da2cab1c92f6011",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 945.8,
+   "y": 799.2,
+   "id": "point-3a71e5bfcda4913a",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 945.8,
+   "y": 784.1,
+   "id": "point-abe245b6079fabc1",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 953.3,
+   "y": 285,
+   "id": "point-b50253754def283f",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 971,
+   "y": 235.7,
+   "id": "point-ffebd3f548fcc795",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 976.2,
+   "y": 873.3,
+   "id": "point-c81109676f19dded",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 978.6,
+   "y": 289,
+   "id": "point-b909af2bbbd8cae6",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 980.6,
+   "y": 674.4,
+   "id": "point-3e1341dec1d8d593",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 980.9,
+   "y": 659.8,
+   "id": "point-de3cfcb712910b31",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 981.4,
+   "y": 860.9,
+   "id": "point-31562ea5c4d02ecc",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 983.2,
+   "y": 576.4,
+   "id": "point-a6d1749cb39b7c09",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 987.3,
+   "y": 350.6,
+   "id": "point-d3c34ee779e4688f",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 993.2,
+   "y": 574.6,
+   "id": "point-86a1ec229bc86a65",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 995.5,
+   "y": 574.6,
+   "id": "point-153296da8856fc39",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 1003.8,
+   "y": 556.4,
+   "id": "point-271fc06bc0615eb0",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 1006.1,
+   "y": 864.3,
+   "id": "point-b26283e49126562f",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 1011,
+   "y": 555.1,
+   "id": "point-070903c140f09d82",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 1012,
+   "y": 533.5,
+   "id": "point-1363a7d53506bdb7",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 1012.8,
+   "y": 860.9,
+   "id": "point-4df47b53fa072f94",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 1012.8,
+   "y": 660.3,
+   "id": "point-ae0aae70f056db74",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 1015.7,
+   "y": 869.2,
+   "id": "point-b1cea43ac242f5a1",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 1017.4,
+   "y": 615.4,
+   "id": "point-48d92c1e7922c200",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 1020.3,
+   "y": 555.1,
+   "id": "point-4815ffbfad6761bc",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 1025.1,
+   "y": 679.2,
+   "id": "point-2fa5b234fdb68473",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 1032.3,
+   "y": 695.3,
+   "id": "point-9f9d4e2b4c1f2486",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 1054.6,
+   "y": 829.7,
+   "id": "point-3e5a82440b24afda",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 1056.8,
+   "y": 829.1,
+   "id": "point-7e6ee305f68eaa9c",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 1080.8,
+   "y": 317.1,
+   "id": "point-db82064f9ca99948",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 1084.4,
+   "y": 516.2,
+   "id": "point-7bd49b9d508116a1",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 1087.4,
+   "y": 579.6,
+   "id": "point-ff1495dbc4a89ac9",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 1087.4,
+   "y": 588.2,
+   "id": "point-83854137856effab",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 1089.8,
+   "y": 725.4,
+   "id": "point-dd1df63c51f9a656",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 1089.8,
+   "y": 648.8,
+   "id": "point-7882a224fe272d99",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 1103.7,
+   "y": 679,
+   "id": "point-7af0761861406321",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 1104.6,
+   "y": 706.5,
+   "id": "point-52ee63ab799f3bb7",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 1106.8,
+   "y": 265.5,
+   "id": "point-b720075146e17259",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 1114.2,
+   "y": 564.3,
+   "id": "point-2c803c7e83cc4fcc",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 1114.8,
+   "y": 217.7,
+   "id": "point-6537b908ca19b068",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 1119.4,
+   "y": 598.4,
+   "id": "point-65507ce5c05c7cb1",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 1130.5,
+   "y": 842.2,
+   "id": "point-f8ab71bb629676b3",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 1132.8,
+   "y": 842.1,
+   "id": "point-956136337f600584",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 1136.9,
+   "y": 725.5,
+   "id": "point-0e6eddfc7679b183",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 1136.8,
+   "y": 648.8,
+   "id": "point-44b0e7d6e168a9ab",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 1176.8,
+   "y": 781.4,
+   "id": "point-f8f774294e4ac378",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 1177,
+   "y": 563.4,
+   "id": "point-f60b07a6bc89725a",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 1179.4,
+   "y": 800.5,
+   "id": "point-3cb609c714026f9b",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 1183.7,
+   "y": 524.9,
+   "id": "point-4e1853e66b1a5127",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 1187.8,
+   "y": 564.6,
+   "id": "point-4f0fc9d7547e6f2d",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 1192,
+   "y": 419.8,
+   "id": "point-a7ae5ee0522ce987",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 1192.6,
+   "y": 422,
+   "id": "point-c28412e47651a27b",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 1192.7,
+   "y": 555,
+   "id": "point-8715cb339658528a",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 1196.1,
+   "y": 561.6,
+   "id": "point-97610f3e2bfa6abc",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 1196,
+   "y": 530.2,
+   "id": "point-8828fd2f365e1d2a",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 1208,
+   "y": 837.5,
+   "id": "point-b76223d7508a0c3b",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 1208,
+   "y": 822.5,
+   "id": "point-3549b949554aff1c",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 1210.9,
+   "y": 630.6,
+   "id": "point-8d2b35eca9f52039",
+   "type": "s-trash",
+   "place": ""
+  },
+  {
+   "x": 222.5,
+   "y": 693.3,
+   "id": "point-7b36126ccfad21ae",
+   "type": "s-weapons",
+   "place": "nightclub"
+  },
+  {
+   "x": 267.3,
+   "y": 589,
+   "id": "point-c0812c2e3cc1118e",
+   "type": "s-weapons",
+   "place": "jeweler-sunny"
+  },
+  {
+   "x": 277.6,
+   "y": 592.6,
+   "id": "point-345c448bfe5ca87c",
+   "type": "s-weapons",
+   "place": ""
+  },
+  {
+   "x": 289.3,
+   "y": 613.5,
+   "id": "point-eed05f1cf1b9000b",
+   "type": "s-weapons",
+   "place": "liquor-sunny"
+  },
+  {
+   "x": 317,
+   "y": 188.2,
+   "id": "point-c1a93cb134822313",
+   "type": "s-weapons",
+   "place": "noble-mansion"
+  },
+  {
+   "x": 322.2,
+   "y": 198.9,
+   "id": "point-177df8e159ddba5e",
+   "type": "s-weapons",
+   "place": ""
+  },
+  {
+   "x": 348,
+   "y": 930.2,
+   "id": "point-b855fc63f4af74b2",
+   "type": "s-weapons",
+   "place": "cafe-pier"
+  },
+  {
+   "x": 365.1,
+   "y": 211.3,
+   "id": "point-9ebe9bac37683ca5",
+   "type": "s-weapons",
+   "place": "cottage"
+  },
+  {
+   "x": 365.8,
+   "y": 661.1,
+   "id": "point-95c7ecea39930be1",
+   "type": "s-weapons",
+   "place": ""
+  },
+  {
+   "x": 366.5,
+   "y": 668.8,
+   "id": "point-7cdc660ed1712b52",
+   "type": "s-weapons",
+   "place": "gun-shop-sunny"
+  },
+  {
+   "x": 366.8,
+   "y": 668.8,
+   "id": "point-ad76af3f52560edd",
+   "type": "s-weapons",
+   "place": "gun-shop-sunny"
+  },
+  {
+   "x": 366.9,
+   "y": 660,
+   "id": "point-77a46f4b6a1629aa",
+   "type": "s-weapons",
+   "place": "gun-shop-sunny"
+  },
+  {
+   "x": 367.4,
+   "y": 650.5,
+   "id": "point-2ccae0a3884ad0a6",
+   "type": "s-weapons",
+   "place": "gun-shop-sunny"
+  },
+  {
+   "x": 368.6,
+   "y": 669,
+   "id": "point-3ceb9e4bd6d6ca59",
+   "type": "s-weapons",
+   "place": "gun-shop-sunny"
+  },
+  {
+   "x": 368.6,
+   "y": 669,
+   "id": "point-3ceb9e4bd6d6ca59-2",
+   "type": "s-weapons",
+   "place": "gun-shop-sunny"
+  },
+  {
+   "x": 368.7,
+   "y": 660,
+   "id": "point-6d9288e5b2ac78af",
+   "type": "s-weapons",
+   "place": "gun-shop-sunny"
+  },
+  {
+   "x": 369.8,
+   "y": 669,
+   "id": "point-dc44c747f4c1080a",
+   "type": "s-weapons",
+   "place": "gun-shop-sunny"
+  },
+  {
+   "x": 369.8,
+   "y": 669,
+   "id": "point-dc44c747f4c1080a-2",
+   "type": "s-weapons",
+   "place": "gun-shop-sunny"
+  },
+  {
+   "x": 370.9,
+   "y": 650.5,
+   "id": "point-19318739001bacf1",
+   "type": "s-weapons",
+   "place": "gun-shop-sunny"
+  },
+  {
+   "x": 371,
+   "y": 669,
+   "id": "point-6e5ad13324827b53",
+   "type": "s-weapons",
+   "place": "gun-shop-sunny"
+  },
+  {
+   "x": 371,
+   "y": 669,
+   "id": "point-6e5ad13324827b53-2",
+   "type": "s-weapons",
+   "place": "gun-shop-sunny"
+  },
+  {
+   "x": 371.5,
+   "y": 156.1,
+   "id": "point-c0d925d3c4cc131f",
+   "type": "s-weapons",
+   "place": "elite-cottage"
+  },
+  {
+   "x": 372.1,
+   "y": 669,
+   "id": "point-9a29662b3447b3af",
+   "type": "s-weapons",
+   "place": "gun-shop-sunny"
+  },
+  {
+   "x": 372.1,
+   "y": 669,
+   "id": "point-9a29662b3447b3af-2",
+   "type": "s-weapons",
+   "place": "gun-shop-sunny"
+  },
+  {
+   "x": 372.2,
+   "y": 150.9,
+   "id": "point-256ceca496e223e5",
+   "type": "s-weapons",
+   "place": "elite-cottage"
+  },
+  {
+   "x": 373.3,
+   "y": 669,
+   "id": "point-12ea078c4449de33",
+   "type": "s-weapons",
+   "place": "gun-shop-sunny"
+  },
+  {
+   "x": 373.3,
+   "y": 669,
+   "id": "point-12ea078c4449de33-2",
+   "type": "s-weapons",
+   "place": "gun-shop-sunny"
+  },
+  {
+   "x": 373.4,
+   "y": 660,
+   "id": "point-03572d6033bc935e",
+   "type": "s-weapons",
+   "place": "gun-shop-sunny"
+  },
+  {
+   "x": 374.5,
+   "y": 650.5,
+   "id": "point-809723607e29f44f",
+   "type": "s-weapons",
+   "place": "gun-shop-sunny"
+  },
+  {
+   "x": 375.1,
+   "y": 660,
+   "id": "point-f560cb65a5a4f601",
+   "type": "s-weapons",
+   "place": "gun-shop-sunny"
+  },
+  {
+   "x": 379.6,
+   "y": 613.9,
+   "id": "point-470f99186e22714f",
+   "type": "s-weapons",
+   "place": "equipment-sunny"
+  },
+  {
+   "x": 387.2,
+   "y": 616.1,
+   "id": "point-aed14f694369ce5a",
+   "type": "s-weapons",
+   "place": "equipment-sunny"
+  },
+  {
+   "x": 399.4,
+   "y": 709,
+   "id": "point-5f4a49773df19d19",
+   "type": "s-weapons",
+   "place": "hotel-sunny-east"
+  },
+  {
+   "x": 413.6,
+   "y": 212.3,
+   "id": "point-c36f6c9492bdce41",
+   "type": "s-weapons",
+   "place": "loraine-house-se"
+  },
+  {
+   "x": 424.1,
+   "y": 648.7,
+   "id": "point-1281c88ed8a707e1",
+   "type": "s-weapons",
+   "place": "pharmacy-sunny"
+  },
+  {
+   "x": 441.3,
+   "y": 163.3,
+   "id": "point-93ae2f22242e29a8",
+   "type": "s-weapons",
+   "place": "loraine-house-ne"
+  },
+  {
+   "x": 609.2,
+   "y": 688,
+   "id": "point-9413431d9866d702",
+   "type": "s-weapons",
+   "place": ""
+  },
+  {
+   "x": 623.7,
+   "y": 671.2,
+   "id": "point-e9f00bc5408dfb97",
+   "type": "s-weapons",
+   "place": "police-station"
+  },
+  {
+   "x": 623.7,
+   "y": 669.9,
+   "id": "point-ac99f9de911c4f2b",
+   "type": "s-weapons",
+   "place": "police-station"
+  },
+  {
+   "x": 623.7,
+   "y": 668.5,
+   "id": "point-0dce8c631ded3ebd",
+   "type": "s-weapons",
+   "place": "police-station"
+  },
+  {
+   "x": 624.7,
+   "y": 667.9,
+   "id": "point-75aa284ddb1b98dc",
+   "type": "s-weapons",
+   "place": "police-station"
+  },
+  {
+   "x": 624.7,
+   "y": 667.9,
+   "id": "point-75aa284ddb1b98dc-2",
+   "type": "s-weapons",
+   "place": "police-station"
+  },
+  {
+   "x": 625.7,
+   "y": 667.9,
+   "id": "point-d62c89480a53adfd",
+   "type": "s-weapons",
+   "place": "police-station"
+  },
+  {
+   "x": 625.7,
+   "y": 667.9,
+   "id": "point-d62c89480a53adfd-2",
+   "type": "s-weapons",
+   "place": "police-station"
+  },
+  {
+   "x": 627,
+   "y": 668.3,
+   "id": "point-ae1518b1ba5bcd9b",
+   "type": "s-weapons",
+   "place": "police-station"
+  },
+  {
+   "x": 628.4,
+   "y": 667.9,
+   "id": "point-954243ca0a865689",
+   "type": "s-weapons",
+   "place": "police-station"
+  },
+  {
+   "x": 628.4,
+   "y": 667.9,
+   "id": "point-954243ca0a865689-2",
+   "type": "s-weapons",
+   "place": "police-station"
+  },
+  {
+   "x": 628.7,
+   "y": 675.7,
+   "id": "point-9675cec1fef55b6b",
+   "type": "s-weapons",
+   "place": "police-station"
+  },
+  {
+   "x": 629,
+   "y": 674.6,
+   "id": "point-ad37a89354406484",
+   "type": "s-weapons",
+   "place": "police-station"
+  },
+  {
+   "x": 629.1,
+   "y": 675.8,
+   "id": "point-243708eacda4b592",
+   "type": "s-weapons",
+   "place": "police-station"
+  },
+  {
+   "x": 629.6,
+   "y": 667.9,
+   "id": "point-22df95c04cc447da",
+   "type": "s-weapons",
+   "place": "police-station"
+  },
+  {
+   "x": 629.6,
+   "y": 667.9,
+   "id": "point-22df95c04cc447da-2",
+   "type": "s-weapons",
+   "place": "police-station"
+  },
+  {
+   "x": 629.7,
+   "y": 668.9,
+   "id": "point-a67ae179efb5a850",
+   "type": "s-weapons",
+   "place": "police-station"
+  },
+  {
+   "x": 629.7,
+   "y": 668.3,
+   "id": "point-abb674237d7f055c",
+   "type": "s-weapons",
+   "place": "police-station"
+  },
+  {
+   "x": 629.8,
+   "y": 669.2,
+   "id": "point-5c566d87922c505f",
+   "type": "s-weapons",
+   "place": "police-station"
+  },
+  {
+   "x": 629.8,
+   "y": 669.3,
+   "id": "point-28b7e955d19cea01",
+   "type": "s-weapons",
+   "place": "police-station"
+  },
+  {
+   "x": 629.9,
+   "y": 670.2,
+   "id": "point-076fdb7eceab895c",
+   "type": "s-weapons",
+   "place": "police-station"
+  },
+  {
+   "x": 630,
+   "y": 669.7,
+   "id": "point-73630217ac767246",
+   "type": "s-weapons",
+   "place": "police-station"
+  },
+  {
+   "x": 630,
+   "y": 669.3,
+   "id": "point-fc5cf7deb88a78c4",
+   "type": "s-weapons",
+   "place": "police-station"
+  },
+  {
+   "x": 630,
+   "y": 669,
+   "id": "point-488cea52f951536e",
+   "type": "s-weapons",
+   "place": "police-station"
+  },
+  {
+   "x": 630,
+   "y": 668.6,
+   "id": "point-0da7d3153e8c03b5",
+   "type": "s-weapons",
+   "place": "police-station"
+  },
+  {
+   "x": 630.3,
+   "y": 671.2,
+   "id": "point-79e40af24413f613",
+   "type": "s-weapons",
+   "place": "police-station"
+  },
+  {
+   "x": 630.3,
+   "y": 669.9,
+   "id": "point-abd436348c58a01f",
+   "type": "s-weapons",
+   "place": "police-station"
+  },
+  {
+   "x": 630.3,
+   "y": 668.5,
+   "id": "point-ced34e83eb583759",
+   "type": "s-weapons",
+   "place": "police-station"
+  },
+  {
+   "x": 632,
+   "y": 673.1,
+   "id": "point-597e86bf8eabf985",
+   "type": "s-weapons",
+   "place": "police-station"
+  },
+  {
+   "x": 632,
+   "y": 681.4,
+   "id": "point-5092a167a4ec7b5c",
+   "type": "s-weapons",
+   "place": "police-station"
+  },
+  {
+   "x": 671.5,
+   "y": 825.9,
+   "id": "point-1d04540e7f60cc65",
+   "type": "s-weapons",
+   "place": "art-gallery"
+  },
+  {
+   "x": 671.9,
+   "y": 827,
+   "id": "point-912f8e04bb579617",
+   "type": "s-weapons",
+   "place": "art-gallery"
+  },
+  {
+   "x": 883,
+   "y": 438.6,
+   "id": "point-b473dc34f04b3e9f",
+   "type": "s-weapons",
+   "place": "electronics-downtown"
+  },
+  {
+   "x": 907.5,
+   "y": 558.6,
+   "id": "point-673d3838e2b382fb",
+   "type": "s-weapons",
+   "place": "gas-station"
+  },
+  {
+   "x": 919.5,
+   "y": 596.2,
+   "id": "point-be99d9ad77d66af5",
+   "type": "s-weapons",
+   "place": "gas-station"
+  },
+  {
+   "x": 932,
+   "y": 653.1,
+   "id": "point-f260ba4ba637f7dd",
+   "type": "s-weapons",
+   "place": "cafe-downtown"
+  },
+  {
+   "x": 992.3,
+   "y": 806.2,
+   "id": "point-7641d48a0753b8a7",
+   "type": "s-weapons",
+   "place": "equipment-downtown"
+  },
+  {
+   "x": 993.3,
+   "y": 809.9,
+   "id": "point-e5310d405e1e696a",
+   "type": "s-weapons",
+   "place": "equipment-downtown"
+  },
+  {
+   "x": 1030.2,
+   "y": 594.7,
+   "id": "point-4d8ba982f264df27",
+   "type": "s-weapons",
+   "place": "pharmacy-downtown"
+  },
+  {
+   "x": 1034.5,
+   "y": 658.5,
+   "id": "point-425369bd1c2ab74c",
+   "type": "s-weapons",
+   "place": "jeweler-downtown"
+  },
+  {
+   "x": 1039.3,
+   "y": 668.3,
+   "id": "point-46569a026e82b4dd",
+   "type": "s-weapons",
+   "place": ""
+  },
+  {
+   "x": 1104.2,
+   "y": 806.4,
+   "id": "point-6ea3eca31be743bc",
+   "type": "s-weapons",
+   "place": ""
+  },
+  {
+   "x": 1104.8,
+   "y": 814.1,
+   "id": "point-cf903fe2cbffb02e",
+   "type": "s-weapons",
+   "place": "gun-shop-downtown"
+  },
+  {
+   "x": 1105.1,
+   "y": 814.1,
+   "id": "point-1ecb5ec3b489f77b",
+   "type": "s-weapons",
+   "place": "gun-shop-downtown"
+  },
+  {
+   "x": 1105.2,
+   "y": 805.3,
+   "id": "point-f8373e71cf5b1a9d",
+   "type": "s-weapons",
+   "place": "gun-shop-downtown"
+  },
+  {
+   "x": 1105.8,
+   "y": 795.8,
+   "id": "point-1707fbf38bf6b2f2",
+   "type": "s-weapons",
+   "place": "gun-shop-downtown"
+  },
+  {
+   "x": 1106.9,
+   "y": 814.3,
+   "id": "point-4b97e39bd6c0fc3e",
+   "type": "s-weapons",
+   "place": "gun-shop-downtown"
+  },
+  {
+   "x": 1106.9,
+   "y": 814.3,
+   "id": "point-4b97e39bd6c0fc3e-2",
+   "type": "s-weapons",
+   "place": "gun-shop-downtown"
+  },
+  {
+   "x": 1107.1,
+   "y": 805.3,
+   "id": "point-3969c6c4825afbd3",
+   "type": "s-weapons",
+   "place": "gun-shop-downtown"
+  },
+  {
+   "x": 1108.2,
+   "y": 814.3,
+   "id": "point-799bd3469571cb93",
+   "type": "s-weapons",
+   "place": "gun-shop-downtown"
+  },
+  {
+   "x": 1108.2,
+   "y": 814.3,
+   "id": "point-799bd3469571cb93-2",
+   "type": "s-weapons",
+   "place": "gun-shop-downtown"
+  },
+  {
+   "x": 1109.3,
+   "y": 795.8,
+   "id": "point-069e378c772e6aaa",
+   "type": "s-weapons",
+   "place": "gun-shop-downtown"
+  },
+  {
+   "x": 1109.4,
+   "y": 814.3,
+   "id": "point-13ea31cc2bec6652",
+   "type": "s-weapons",
+   "place": "gun-shop-downtown"
+  },
+  {
+   "x": 1109.4,
+   "y": 814.3,
+   "id": "point-13ea31cc2bec6652-2",
+   "type": "s-weapons",
+   "place": "gun-shop-downtown"
+  },
+  {
+   "x": 1110.4,
+   "y": 814.3,
+   "id": "point-d843eca68c1a4f2f",
+   "type": "s-weapons",
+   "place": "gun-shop-downtown"
+  },
+  {
+   "x": 1110.4,
+   "y": 814.3,
+   "id": "point-d843eca68c1a4f2f-2",
+   "type": "s-weapons",
+   "place": "gun-shop-downtown"
+  },
+  {
+   "x": 1111.7,
+   "y": 814.3,
+   "id": "point-280a6ef4ee8b08cf",
+   "type": "s-weapons",
+   "place": "gun-shop-downtown"
+  },
+  {
+   "x": 1111.7,
+   "y": 814.3,
+   "id": "point-280a6ef4ee8b08cf-2",
+   "type": "s-weapons",
+   "place": "gun-shop-downtown"
+  },
+  {
+   "x": 1111.7,
+   "y": 805.3,
+   "id": "point-fd29ca8ae79990fb",
+   "type": "s-weapons",
+   "place": "gun-shop-downtown"
+  },
+  {
+   "x": 1112.8,
+   "y": 795.8,
+   "id": "point-890ef12f73a8fdc0",
+   "type": "s-weapons",
+   "place": "gun-shop-downtown"
+  },
+  {
+   "x": 1113.5,
+   "y": 805.3,
+   "id": "point-fa8bb5151555a592",
+   "type": "s-weapons",
+   "place": "gun-shop-downtown"
+  },
+  {
+   "x": 1124.4,
+   "y": 587.3,
+   "id": "point-b953159152913f18",
+   "type": "s-weapons",
+   "place": "liquor-downtown"
+  },
+  {
+   "x": 1190.9,
+   "y": 422.2,
+   "id": "point-0ee4c7fb6ab67516",
+   "type": "s-weapons",
+   "place": "liquor-downtown-north"
+  },
+  {
+   "x": 201.4,
+   "y": 706,
+   "id": "point-3a82413766f3e359",
+   "type": "s-alarm",
+   "place": "nightclub"
+  },
+  {
+   "x": 254.4,
+   "y": 588.8,
+   "id": "point-8a5d9fc962a19b55",
+   "type": "s-alarm",
+   "place": ""
+  },
+  {
+   "x": 286.4,
+   "y": 611.7,
+   "id": "point-4189d885defe4383",
+   "type": "s-alarm",
+   "place": ""
+  },
+  {
+   "x": 306,
+   "y": 209.9,
+   "id": "point-7112457f2187b042",
+   "type": "s-alarm",
+   "place": ""
+  },
+  {
+   "x": 315.3,
+   "y": 702.3,
+   "id": "point-9bedfe4b92b8a345",
+   "type": "s-alarm",
+   "place": ""
+  },
+  {
+   "x": 346.4,
+   "y": 930.3,
+   "id": "point-9d1aa1dd3cc7afa4",
+   "type": "s-alarm",
+   "place": ""
+  },
+  {
+   "x": 364.2,
+   "y": 229.5,
+   "id": "point-9c8936e8c3ea3c71",
+   "type": "s-alarm",
+   "place": ""
+  },
+  {
+   "x": 397,
+   "y": 139.3,
+   "id": "point-9bc04dbbc7ba9b25",
+   "type": "s-alarm",
+   "place": ""
+  },
+  {
+   "x": 403.7,
+   "y": 693.8,
+   "id": "point-c8d6c8486e858c18",
+   "type": "s-alarm",
+   "place": ""
+  },
+  {
+   "x": 425.5,
+   "y": 660.4,
+   "id": "point-04e879c4833f2c3b",
+   "type": "s-alarm",
+   "place": ""
+  },
+  {
+   "x": 436.5,
+   "y": 211.6,
+   "id": "point-391f416a3c774bbe",
+   "type": "s-alarm",
+   "place": "loraine-house-se"
+  },
+  {
+   "x": 446.5,
+   "y": 170.7,
+   "id": "point-ff970743e9a6e549",
+   "type": "s-alarm",
+   "place": ""
+  },
+  {
+   "x": 879.4,
+   "y": 439.5,
+   "id": "point-90d75296c6e4ca41",
+   "type": "s-alarm",
+   "place": ""
+  },
+  {
+   "x": 905.2,
+   "y": 562.8,
+   "id": "point-417b3aa2ec5ced53",
+   "type": "s-alarm",
+   "place": ""
+  },
+  {
+   "x": 932.8,
+   "y": 663.7,
+   "id": "point-6fc7264a18028e67",
+   "type": "s-alarm",
+   "place": ""
+  },
+  {
+   "x": 1018.5,
+   "y": 595.1,
+   "id": "point-7758e2f3b7bd592a",
+   "type": "s-alarm",
+   "place": ""
+  },
+  {
+   "x": 1025.5,
+   "y": 649.2,
+   "id": "point-ed774b85761246e0",
+   "type": "s-alarm",
+   "place": ""
+  },
+  {
+   "x": 1126.2,
+   "y": 597.4,
+   "id": "point-b1a0c073ce3753c8",
+   "type": "s-alarm",
+   "place": ""
+  },
+  {
+   "x": 1192.5,
+   "y": 425.2,
+   "id": "point-92c92e9e766687f1",
+   "type": "s-alarm",
+   "place": ""
+  },
+  {
+   "x": 220.8,
+   "y": 697.5,
+   "id": "point-7190be355dade972",
+   "type": "s-camera",
+   "place": ""
+  },
+  {
+   "x": 226.4,
+   "y": 688.7,
+   "id": "point-51357c31d720bcf4",
+   "type": "s-camera",
+   "place": ""
+  },
+  {
+   "x": 228.6,
+   "y": 687.1,
+   "id": "point-d21a78e1170e0de4",
+   "type": "s-camera",
+   "place": ""
+  },
+  {
+   "x": 259.9,
+   "y": 594.7,
+   "id": "point-c8e8df7b42551d8e",
+   "type": "s-camera",
+   "place": ""
+  },
+  {
+   "x": 261.4,
+   "y": 587.7,
+   "id": "point-c93e0aa299e0d257",
+   "type": "s-camera",
+   "place": "jeweler-sunny"
+  },
+  {
+   "x": 276,
+   "y": 594.8,
+   "id": "point-b45dc32dc696d9c5",
+   "type": "s-camera",
+   "place": ""
+  },
+  {
+   "x": 278.9,
+   "y": 581.1,
+   "id": "point-3c308e4d9b700fdc",
+   "type": "s-camera",
+   "place": "jeweler-sunny"
+  },
+  {
+   "x": 299,
+   "y": 612.9,
+   "id": "point-6c58cb3f7b92e0f1",
+   "type": "s-camera",
+   "place": "liquor-sunny"
+  },
+  {
+   "x": 305.3,
+   "y": 199.5,
+   "id": "point-9ab3d43114ad97a0",
+   "type": "s-camera",
+   "place": "noble-mansion"
+  },
+  {
+   "x": 306.8,
+   "y": 195.7,
+   "id": "point-e71db5b4e2dc9d05",
+   "type": "s-camera",
+   "place": ""
+  },
+  {
+   "x": 307.1,
+   "y": 717.8,
+   "id": "point-97f20392c2b466f9",
+   "type": "s-camera",
+   "place": "hotel-sunny-west"
+  },
+  {
+   "x": 310.6,
+   "y": 201.8,
+   "id": "point-50c14d98cefcf5df",
+   "type": "s-camera",
+   "place": ""
+  },
+  {
+   "x": 323.5,
+   "y": 711.9,
+   "id": "point-83cc622a99cef790",
+   "type": "s-camera",
+   "place": "hotel-sunny-west"
+  },
+  {
+   "x": 326.2,
+   "y": 185.1,
+   "id": "point-78e7a717257457b6",
+   "type": "s-camera",
+   "place": ""
+  },
+  {
+   "x": 333.7,
+   "y": 474.6,
+   "id": "point-138acea475585ad1",
+   "type": "s-camera",
+   "place": "grand-hotel"
+  },
+  {
+   "x": 340,
+   "y": 481.5,
+   "id": "point-82c988ba0b830446",
+   "type": "s-camera",
+   "place": ""
+  },
+  {
+   "x": 342,
+   "y": 490,
+   "id": "point-94348d2e4dfbcebe",
+   "type": "s-camera",
+   "place": ""
+  },
+  {
+   "x": 354.1,
+   "y": 455.1,
+   "id": "point-259deedd5a3f270d",
+   "type": "s-camera",
+   "place": ""
+  },
+  {
+   "x": 363.9,
+   "y": 475.9,
+   "id": "point-d423cb9ee3d64296",
+   "type": "s-camera",
+   "place": "grand-hotel"
+  },
+  {
+   "x": 372.2,
+   "y": 231.8,
+   "id": "point-c9c159faf4e51010",
+   "type": "s-camera",
+   "place": ""
+  },
+  {
+   "x": 380.4,
+   "y": 663.9,
+   "id": "point-e2b9092722c54182",
+   "type": "s-camera",
+   "place": ""
+  },
+  {
+   "x": 391.1,
+   "y": 620.1,
+   "id": "point-cbf7f68dca869690",
+   "type": "s-camera",
+   "place": ""
+  },
+  {
+   "x": 401.4,
+   "y": 720.5,
+   "id": "point-f4d66fe52c5aa148",
+   "type": "s-camera",
+   "place": "hotel-sunny-east"
+  },
+  {
+   "x": 423.4,
+   "y": 642.5,
+   "id": "point-31eed7860bd78e9b",
+   "type": "s-camera",
+   "place": "pharmacy-sunny"
+  },
+  {
+   "x": 429.9,
+   "y": 154.2,
+   "id": "point-c0542d81e0e07d1e",
+   "type": "s-camera",
+   "place": "loraine-house-ne"
+  },
+  {
+   "x": 432.1,
+   "y": 211.4,
+   "id": "point-7103308e7c88ed51",
+   "type": "s-camera",
+   "place": ""
+  },
+  {
+   "x": 439.9,
+   "y": 658.2,
+   "id": "point-df0c37b81610d561",
+   "type": "s-camera",
+   "place": ""
+  },
+  {
+   "x": 446.9,
+   "y": 164.8,
+   "id": "point-e38f1ad5da21b963",
+   "type": "s-camera",
+   "place": ""
+  },
+  {
+   "x": 612.8,
+   "y": 696.5,
+   "id": "point-e003e6439313a031",
+   "type": "s-camera",
+   "place": ""
+  },
+  {
+   "x": 620.1,
+   "y": 679,
+   "id": "point-5fcda3b483e39f25",
+   "type": "s-camera",
+   "place": ""
+  },
+  {
+   "x": 623.9,
+   "y": 701.1,
+   "id": "point-081b7674ea948f01",
+   "type": "s-camera",
+   "place": ""
+  },
+  {
+   "x": 632,
+   "y": 678.7,
+   "id": "point-739841d619fae1f5",
+   "type": "s-camera",
+   "place": "police-station"
+  },
+  {
+   "x": 655.1,
+   "y": 839.9,
+   "id": "point-931ddfb42150e37e",
+   "type": "s-camera",
+   "place": "art-gallery"
+  },
+  {
+   "x": 679.1,
+   "y": 817.5,
+   "id": "point-b1ac5c903d8d2e0c",
+   "type": "s-camera",
+   "place": "art-gallery"
+  },
+  {
+   "x": 679.3,
+   "y": 819.7,
+   "id": "point-7904b2c7bf0ae992",
+   "type": "s-camera",
+   "place": "art-gallery"
+  },
+  {
+   "x": 699,
+   "y": 823.6,
+   "id": "point-d0daee6b286ed4cc",
+   "type": "s-camera",
+   "place": ""
+  },
+  {
+   "x": 891.2,
+   "y": 442.8,
+   "id": "point-fa9f575a41682fcf",
+   "type": "s-camera",
+   "place": "electronics-downtown"
+  },
+  {
+   "x": 893.9,
+   "y": 447.7,
+   "id": "point-2cda57e6c2df6257",
+   "type": "s-camera",
+   "place": ""
+  },
+  {
+   "x": 909.8,
+   "y": 564.4,
+   "id": "point-884b039da1f092fb",
+   "type": "s-camera",
+   "place": ""
+  },
+  {
+   "x": 910.8,
+   "y": 659.8,
+   "id": "point-f4ddc75b350a258c",
+   "type": "s-camera",
+   "place": ""
+  },
+  {
+   "x": 997.1,
+   "y": 325.3,
+   "id": "point-531979b824112faa",
+   "type": "s-camera",
+   "place": ""
+  },
+  {
+   "x": 1004.1,
+   "y": 308.7,
+   "id": "point-8a27e0acda027bde",
+   "type": "s-camera",
+   "place": ""
+  },
+  {
+   "x": 1004.9,
+   "y": 806.2,
+   "id": "point-4cff93db1e2c33d2",
+   "type": "s-camera",
+   "place": ""
+  },
+  {
+   "x": 1006.9,
+   "y": 312.8,
+   "id": "point-088f338426625210",
+   "type": "s-camera",
+   "place": ""
+  },
+  {
+   "x": 1025.3,
+   "y": 657.2,
+   "id": "point-d278a57f409c268a",
+   "type": "s-camera",
+   "place": ""
+  },
+  {
+   "x": 1031.2,
+   "y": 653.3,
+   "id": "point-19d307b3d2a8eea5",
+   "type": "s-camera",
+   "place": "jeweler-downtown"
+  },
+  {
+   "x": 1036.5,
+   "y": 594.6,
+   "id": "point-886aa4f33be23291",
+   "type": "s-camera",
+   "place": "pharmacy-downtown"
+  },
+  {
+   "x": 1036.6,
+   "y": 668.7,
+   "id": "point-f5f18642885147c3",
+   "type": "s-camera",
+   "place": ""
+  },
+  {
+   "x": 1040.3,
+   "y": 314.4,
+   "id": "point-a6454a68eb5afac4",
+   "type": "s-camera",
+   "place": ""
+  },
+  {
+   "x": 1048.3,
+   "y": 661.1,
+   "id": "point-d258f7c2d133a620",
+   "type": "s-camera",
+   "place": "jeweler-downtown"
+  },
+  {
+   "x": 1118.8,
+   "y": 809.2,
+   "id": "point-b2ae8d92173790f8",
+   "type": "s-camera",
+   "place": ""
+  },
+  {
+   "x": 1182.1,
+   "y": 417.8,
+   "id": "point-f756cfb2084d4d0f",
+   "type": "s-camera",
+   "place": "liquor-downtown-north"
+  },
+  {
+   "x": 266,
+   "y": 570.9,
+   "id": "point-c50b93754a1f645d",
+   "type": "s-metal_detector",
+   "place": ""
+  },
+  {
+   "x": 361.6,
+   "y": 655.9,
+   "id": "point-362218b1a15bc7d4",
+   "type": "s-metal_detector",
+   "place": ""
+  },
+  {
+   "x": 380,
+   "y": 655.9,
+   "id": "point-029b7f650899602e",
+   "type": "s-metal_detector",
+   "place": ""
+  },
+  {
+   "x": 1018.8,
+   "y": 326.4,
+   "id": "point-c6bfb982abc26455",
+   "type": "s-metal_detector",
+   "place": ""
+  },
+  {
+   "x": 1021.1,
+   "y": 325.8,
+   "id": "point-1945c89158ed36bd",
+   "type": "s-metal_detector",
+   "place": ""
+  },
+  {
+   "x": 1046.3,
+   "y": 644.7,
+   "id": "point-466d1983d1de808a",
+   "type": "s-metal_detector",
+   "place": ""
+  },
+  {
+   "x": 1100,
+   "y": 801.2,
+   "id": "point-f38ae44e447dbff9",
+   "type": "s-metal_detector",
+   "place": ""
+  },
+  {
+   "x": 1118.3,
+   "y": 801.2,
+   "id": "point-11aaf9dac1321d4c",
+   "type": "s-metal_detector",
+   "place": ""
+  },
+  {
+   "x": 424,
+   "y": 660.4,
+   "id": "point-33363592de1a06aa",
+   "type": "s-door",
+   "place": "electronics-sunny"
+  },
+  {
+   "x": 305.7,
+   "y": 197.7,
+   "id": "point-5959724212de8261",
+   "type": "s-door",
+   "place": "noble-mansion"
+  },
+  {
+   "x": 389.1,
+   "y": 155.9,
+   "id": "point-43841fa429ec177d",
+   "type": "s-door",
+   "place": "elite-cottage"
+  },
+  {
+   "x": 312.4,
+   "y": 188.6,
+   "id": "point-c030b51d47f6e1fd",
+   "type": "s-door",
+   "place": "noble-mansion"
+  },
+  {
+   "x": 418.9,
+   "y": 218.3,
+   "id": "point-66d863fa07748d53",
+   "type": "s-door",
+   "place": "loraine-house-se"
+  },
+  {
+   "x": 617.2,
+   "y": 680.5,
+   "id": "point-de92e613c13b51ce",
+   "type": "s-door",
+   "place": "police-station"
+  },
+  {
+   "x": 1023.7,
+   "y": 657.9,
+   "id": "point-16c0fd726fbcb1ce",
+   "type": "s-door",
+   "place": "jeweler-downtown"
+  },
+  {
+   "x": 205.8,
+   "y": 694.6,
+   "id": "point-05ff390cd3e85468",
+   "type": "s-door",
+   "place": "nightclub"
+  },
+  {
+   "x": 1036.9,
+   "y": 659.9,
+   "id": "point-926a11ccd3edee60",
+   "type": "s-door",
+   "place": "jeweler-downtown"
+  },
+  {
+   "x": 425.9,
+   "y": 154.6,
+   "id": "point-43e9b422fd33f964",
+   "type": "s-door",
+   "place": "loraine-house-ne"
+  },
+  {
+   "x": 1128.8,
+   "y": 594.7,
+   "id": "point-4216c0b2cac9ad81",
+   "type": "s-door",
+   "place": "liquor-downtown"
+  },
+  {
+   "x": 1010.8,
+   "y": 291.9,
+   "id": "point-cd1fb4d30fcc62c7",
+   "type": "s-door",
+   "place": "looty-bay-bank"
+  },
+  {
+   "x": 352.4,
+   "y": 918.3,
+   "id": "point-dab134008c366fb0",
+   "type": "s-door",
+   "place": "cafe-pier"
+  },
+  {
+   "x": 437.1,
+   "y": 148.7,
+   "id": "point-5e4cf749eda1e802",
+   "type": "s-door",
+   "place": "loraine-house-ne"
+  },
+  {
+   "x": 324,
+   "y": 193.3,
+   "id": "point-e58a8adc6abc747c",
+   "type": "s-door",
+   "place": "noble-mansion"
+  },
+  {
+   "x": 284.9,
+   "y": 610.1,
+   "id": "point-797c34a17743b3d4",
+   "type": "s-door",
+   "place": "liquor-sunny"
+  },
+  {
+   "x": 376.8,
+   "y": 228.4,
+   "id": "point-8d8bd56f8cbc71a3",
+   "type": "s-door",
+   "place": "cottage"
+  },
+  {
+   "x": 1193,
+   "y": 427.3,
+   "id": "point-6bb52dfdd3d91dab",
+   "type": "s-door",
+   "place": "liquor-downtown-north"
+  },
+  {
+   "x": 380.3,
+   "y": 693.1,
+   "id": "point-de92d6a07cc9159b",
+   "type": "s-door",
+   "place": "hotel-sunny-east"
+  },
+  {
+   "x": 684.3,
+   "y": 820.1,
+   "id": "point-51b55cf3e44705f7",
+   "type": "s-door",
+   "place": "art-gallery"
+  },
+  {
+   "x": 271.1,
+   "y": 597.3,
+   "id": "point-2d5f6f97c3ced48b",
+   "type": "s-door",
+   "place": "jeweler-sunny"
+  },
+  {
+   "x": 417.8,
+   "y": 647.7,
+   "id": "point-bed46c39b255a93d",
+   "type": "s-door",
+   "place": "pharmacy-sunny"
+  },
+  {
+   "x": 1010.4,
+   "y": 656.8,
+   "id": "point-9a56dbab302e4e73",
+   "type": "s-door",
+   "place": "jeweler-downtown"
+  },
+  {
+   "x": 417.4,
+   "y": 643.4,
+   "id": "point-0c8651903ec029cd",
+   "type": "s-door",
+   "place": "pharmacy-sunny"
+  },
+  {
+   "x": 346.6,
+   "y": 928.6,
+   "id": "point-8a1725a2eeafc392",
+   "type": "s-door",
+   "place": "cafe-pier"
+  },
+  {
+   "x": 315.5,
+   "y": 704.8,
+   "id": "point-b1f3fc70b8440a70",
+   "type": "s-door",
+   "place": "hotel-sunny-west"
+  },
+  {
+   "x": 628,
+   "y": 686.5,
+   "id": "point-d86b98611ddce127",
+   "type": "s-door",
+   "place": "police-station"
+  },
+  {
+   "x": 627,
+   "y": 671.9,
+   "id": "point-c2cf918044e74cb3",
+   "type": "s-door",
+   "place": "police-station"
+  },
+  {
+   "x": 394.6,
+   "y": 713,
+   "id": "point-66b0183efb06518c",
+   "type": "s-door",
+   "place": "hotel-sunny-east"
+  },
+  {
+   "x": 1186,
+   "y": 429.1,
+   "id": "point-c491c9b9b5efe964",
+   "type": "s-door",
+   "place": "liquor-downtown-north"
+  },
+  {
+   "x": 204.4,
+   "y": 692.7,
+   "id": "point-03c75a7155d97e52",
+   "type": "s-door",
+   "place": "nightclub"
+  },
+  {
+   "x": 372.6,
+   "y": 225.1,
+   "id": "point-4a791540b672c27d",
+   "type": "s-door",
+   "place": "cottage"
+  },
+  {
+   "x": 311.2,
+   "y": 202.9,
+   "id": "point-d87abea745bc8b45",
+   "type": "s-door",
+   "place": "noble-mansion"
+  },
+  {
+   "x": 448.2,
+   "y": 160.6,
+   "id": "point-cced78794b5da9fc",
+   "type": "s-door",
+   "place": "loraine-house-ne"
+  },
+  {
+   "x": 921,
+   "y": 586.9,
+   "id": "point-80948afea8a42e7b",
+   "type": "s-door",
+   "place": "gas-station"
+  },
+  {
+   "x": 290.1,
+   "y": 605,
+   "id": "point-7d65e19ddddcf779",
+   "type": "s-door",
+   "place": "liquor-sunny"
+  },
+  {
+   "x": 401.1,
+   "y": 714.4,
+   "id": "point-66828f3e859b64da",
+   "type": "s-door",
+   "place": "hotel-sunny-east"
+  },
+  {
+   "x": 1036.9,
+   "y": 667,
+   "id": "point-ef5d22084a16cbe4",
+   "type": "s-door",
+   "place": "jeweler-downtown"
+  },
+  {
+   "x": 370.8,
+   "y": 212.9,
+   "id": "point-6c34412619085a1c",
+   "type": "s-door",
+   "place": "cottage"
+  },
+  {
+   "x": 627.3,
+   "y": 697,
+   "id": "point-a97381f3e1619c2d",
+   "type": "s-door",
+   "place": "police-station"
+  },
+  {
+   "x": 332.6,
+   "y": 483,
+   "id": "point-d72431b4517a0fae",
+   "type": "s-door",
+   "place": "grand-hotel"
+  },
+  {
+   "x": 284.7,
+   "y": 606.8,
+   "id": "point-85af4a7be5651c84",
+   "type": "s-door",
+   "place": "liquor-sunny"
+  },
+  {
+   "x": 921,
+   "y": 592.5,
+   "id": "point-698e30c3fe3c66a8",
+   "type": "s-door",
+   "place": "gas-station"
+  },
+  {
+   "x": 927.4,
+   "y": 657,
+   "id": "point-3262ce3605de658f",
+   "type": "s-door",
+   "place": "cafe-downtown"
+  },
+  {
+   "x": 382.3,
+   "y": 151.2,
+   "id": "point-b3c36e09147f78fe",
+   "type": "s-door",
+   "place": "elite-cottage"
+  },
+  {
+   "x": 363.4,
+   "y": 664.3,
+   "id": "point-9cd71518970fb79f",
+   "type": "s-door",
+   "place": "gun-shop-sunny"
+  },
+  {
+   "x": 1191.5,
+   "y": 430.3,
+   "id": "point-600c9d4e46bb1e2e",
+   "type": "s-door",
+   "place": "liquor-downtown-north"
+  },
+  {
+   "x": 1124.7,
+   "y": 597.3,
+   "id": "point-fa57ef71e9176c7b",
+   "type": "s-door",
+   "place": "liquor-downtown"
+  },
+  {
+   "x": 259.2,
+   "y": 596.3,
+   "id": "point-1f968fd95d292c3e",
+   "type": "s-door",
+   "place": "jeweler-sunny"
+  },
+  {
+   "x": 445.2,
+   "y": 154.7,
+   "id": "point-a6ae3eb6ae267b35",
+   "type": "s-door",
+   "place": "loraine-house-ne"
+  },
+  {
+   "x": 270,
+   "y": 588.3,
+   "id": "point-18624d9a7305d379",
+   "type": "s-door",
+   "place": "jeweler-sunny"
+  },
+  {
+   "x": 1101.7,
+   "y": 809.6,
+   "id": "point-e2303a0a29ec93cd",
+   "type": "s-door",
+   "place": "gun-shop-downtown"
+  },
+  {
+   "x": 1018.7,
+   "y": 593.6,
+   "id": "point-801ae7a8736eb005",
+   "type": "s-door",
+   "place": "pharmacy-downtown"
+  },
+  {
+   "x": 383.9,
+   "y": 611.9,
+   "id": "point-9dda9b5d5a4a3f4e",
+   "type": "s-door",
+   "place": "equipment-sunny"
+  },
+  {
+   "x": 619.7,
+   "y": 701.5,
+   "id": "point-34b36d6aef577197",
+   "type": "s-door",
+   "place": "police-station"
+  },
+  {
+   "x": 613.9,
+   "y": 670.2,
+   "id": "point-2cfb3ab79186b443",
+   "type": "s-door",
+   "place": "police-station"
+  },
+  {
+   "x": 634,
+   "y": 688.9,
+   "id": "point-2325f308a0450cbd",
+   "type": "s-door",
+   "place": "police-station"
+  },
+  {
+   "x": 1036,
+   "y": 588.6,
+   "id": "point-9835e16235a7f43e",
+   "type": "s-door",
+   "place": "pharmacy-downtown"
+  },
+  {
+   "x": 932.7,
+   "y": 662.4,
+   "id": "point-c5262d2f18a16ab0",
+   "type": "s-door",
+   "place": "cafe-downtown"
+  },
+  {
+   "x": 392.2,
+   "y": 169.2,
+   "id": "point-aee85e7003138804",
+   "type": "s-door",
+   "place": "elite-cottage"
+  },
+  {
+   "x": 382.6,
+   "y": 222.8,
+   "id": "point-c9372b22df4295f6",
+   "type": "s-door",
+   "place": "cottage"
+  },
+  {
+   "x": 374.9,
+   "y": 155.9,
+   "id": "point-f315754ea24626db",
+   "type": "s-door",
+   "place": "elite-cottage"
+  },
+  {
+   "x": 1031.8,
+   "y": 588.6,
+   "id": "point-1802c591dcd77f4f",
+   "type": "s-door",
+   "place": "pharmacy-downtown"
+  },
+  {
+   "x": 431.8,
+   "y": 220.6,
+   "id": "point-2e6309685ad8115a",
+   "type": "s-door",
+   "place": "loraine-house-se"
+  },
+  {
+   "x": 1031.4,
+   "y": 667,
+   "id": "point-f7585b740f6a11e0",
+   "type": "s-door",
+   "place": "jeweler-downtown"
+  },
+  {
+   "x": 639.2,
+   "y": 672,
+   "id": "point-40e411fff31b1c8f",
+   "type": "s-door",
+   "place": "police-station"
+  },
+  {
+   "x": 396.4,
+   "y": 717.2,
+   "id": "point-8b37bdb56f871063",
+   "type": "s-door",
+   "place": "hotel-sunny-east"
+  },
+  {
+   "x": 912.3,
+   "y": 578.4,
+   "id": "point-bf381af31cc60df2",
+   "type": "s-door",
+   "place": "gas-station"
+  },
+  {
+   "x": 994.1,
+   "y": 805.5,
+   "id": "point-7595f4d77b4f74d6",
+   "type": "s-door",
+   "place": "equipment-downtown"
+  },
+  {
+   "x": 880.2,
+   "y": 442,
+   "id": "point-39c69c4fe8aeb31a",
+   "type": "s-door",
+   "place": "electronics-downtown"
+  },
+  {
+   "x": 422.3,
+   "y": 237,
+   "id": "point-30c434140068c27d",
+   "type": "s-door",
+   "place": "loraine-house-se"
+  },
+  {
+   "x": 327,
+   "y": 711.5,
+   "id": "point-84d95ee958e1f45c",
+   "type": "s-door",
+   "place": "hotel-sunny-west"
+  },
+  {
+   "x": 275,
+   "y": 593.4,
+   "id": "point-4bc22d1fb86e170a",
+   "type": "s-door",
+   "place": "jeweler-sunny"
+  },
+  {
+   "x": 1010.4,
+   "y": 656.1,
+   "id": "point-8d36494e83c18192",
+   "type": "s-door",
+   "place": "jeweler-downtown"
+  },
+  {
+   "x": 315,
+   "y": 193.3,
+   "id": "point-c3362050000a67de",
+   "type": "s-door",
+   "place": "noble-mansion"
+  },
+  {
+   "x": 210.7,
+   "y": 694.3,
+   "id": "point-319800dc8f5448eb",
+   "type": "s-door",
+   "place": "nightclub"
+  },
+  {
+   "x": 892.7,
+   "y": 446.1,
+   "id": "point-8e7a5a7217ba958c",
+   "type": "s-door",
+   "place": "electronics-downtown"
+  },
+  {
+   "x": 1008.8,
+   "y": 659.2,
+   "id": "point-12438d32247f539a",
+   "type": "s-door",
+   "place": "jeweler-downtown"
+  },
+  {
+   "x": 905.4,
+   "y": 560.3,
+   "id": "point-57c06c7db5b21364",
+   "type": "s-door",
+   "place": "gas-station"
+  },
+  {
+   "x": 430.3,
+   "y": 151.6,
+   "id": "point-168c4bdaa20e003a",
+   "type": "s-door",
+   "place": "loraine-house-ne"
+  },
+  {
+   "x": 389.1,
+   "y": 151.2,
+   "id": "point-1644befaae08fde7",
+   "type": "s-door",
+   "place": "elite-cottage"
+  },
+  {
+   "x": 235.8,
+   "y": 697.7,
+   "id": "point-149a5aba5ac05a57",
+   "type": "s-door",
+   "place": "nightclub"
+  },
+  {
+   "x": 912.4,
+   "y": 563.7,
+   "id": "point-c08856e611dc4eb8",
+   "type": "s-door",
+   "place": "gas-station"
+  },
+  {
+   "x": 883.1,
+   "y": 444.9,
+   "id": "point-26b1886d26ec4dbe",
+   "type": "s-door",
+   "place": "electronics-downtown"
+  },
+  {
+   "x": 617,
+   "y": 701.5,
+   "id": "point-82ca103f32c75d00",
+   "type": "s-door",
+   "place": "police-station"
+  },
+  {
+   "x": 637,
+   "y": 698.3,
+   "id": "point-8971382c6c4506cf",
+   "type": "s-door",
+   "place": "police-station"
+  }
+ ]
+}

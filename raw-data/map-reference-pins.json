@@ -1,0 +1,1126 @@
+{
+  "source": "https://robrunwiki.net/map/",
+  "checkedAt": "2026-11-28",
+  "pins": [
+    {
+      "sourceId": "looty-bay-bank",
+      "map": "looty-bay",
+      "x": 1018.0,
+      "y": 311.0,
+      "label": "Looty Bay Bank: Landmark"
+    },
+    {
+      "sourceId": "police-station",
+      "map": "looty-bay",
+      "x": 619.0,
+      "y": 686.0,
+      "label": "Police Station: Landmark"
+    },
+    {
+      "sourceId": "fence-loraine",
+      "map": "looty-bay",
+      "x": 579.0,
+      "y": 225.0,
+      "label": "Fence van: Loraine Hills beach: Fence van"
+    },
+    {
+      "sourceId": "fence-underpass",
+      "map": "looty-bay",
+      "x": 1064.0,
+      "y": 456.0,
+      "label": "Fence van: Downtown underpass: Fence van"
+    },
+    {
+      "sourceId": "fence-downtown-south",
+      "map": "looty-bay",
+      "x": 1006.0,
+      "y": 716.0,
+      "label": "Fence van: south Downtown: Fence van"
+    },
+    {
+      "sourceId": "fence-sunny-pier",
+      "map": "looty-bay",
+      "x": 398.0,
+      "y": 869.0,
+      "label": "Fence van: Sunny Beach pier: Fence van"
+    },
+    {
+      "sourceId": "grand-hotel",
+      "map": "looty-bay",
+      "x": 349.0,
+      "y": 482.0,
+      "label": "Grand Hotel: Heist target"
+    },
+    {
+      "sourceId": "art-gallery",
+      "map": "looty-bay",
+      "x": 670.0,
+      "y": 813.0,
+      "label": "Looty Bay Art Gallery: Heist target"
+    },
+    {
+      "sourceId": "gun-shop-downtown",
+      "map": "looty-bay",
+      "x": 1104.0,
+      "y": 808.0,
+      "label": "Gun shop: Downtown: Shop"
+    },
+    {
+      "sourceId": "gun-shop-sunny",
+      "map": "looty-bay",
+      "x": 371.0,
+      "y": 662.0,
+      "label": "Gun shop: Sunny Beach: Shop"
+    },
+    {
+      "sourceId": "pharmacy-downtown",
+      "map": "looty-bay",
+      "x": 1032.0,
+      "y": 586.0,
+      "label": "Pharmacy: Downtown: Shop"
+    },
+    {
+      "sourceId": "pharmacy-sunny",
+      "map": "looty-bay",
+      "x": 418.0,
+      "y": 649.0,
+      "label": "Pharmacy: Sunny Beach: Shop"
+    },
+    {
+      "sourceId": "jeweler-sunny",
+      "map": "looty-bay",
+      "x": 265.0,
+      "y": 586.0,
+      "label": "Jewelry store: Sunny Beach: Shop"
+    },
+    {
+      "sourceId": "jeweler-downtown",
+      "map": "looty-bay",
+      "x": 1045.0,
+      "y": 647.0,
+      "label": "Jewelry store: Downtown: Shop"
+    },
+    {
+      "sourceId": "liquor-sunny",
+      "map": "looty-bay",
+      "x": 298.0,
+      "y": 607.0,
+      "label": "Liquor store: Sunny Beach: Shop"
+    },
+    {
+      "sourceId": "liquor-downtown",
+      "map": "looty-bay",
+      "x": 1130.0,
+      "y": 592.0,
+      "label": "Liquor store: Downtown: Shop"
+    },
+    {
+      "sourceId": "liquor-downtown-north",
+      "map": "looty-bay",
+      "x": 1181.0,
+      "y": 423.0,
+      "label": "Liquor store: north-east Downtown: Shop"
+    },
+    {
+      "sourceId": "equipment-sunny",
+      "map": "looty-bay",
+      "x": 383.0,
+      "y": 615.0,
+      "label": "Equipment store: Sunny Beach: Shop"
+    },
+    {
+      "sourceId": "equipment-downtown",
+      "map": "looty-bay",
+      "x": 997.0,
+      "y": 807.0,
+      "label": "Equipment store: Downtown: Shop"
+    },
+    {
+      "sourceId": "electronics-sunny",
+      "map": "looty-bay",
+      "x": 431.0,
+      "y": 645.0,
+      "label": "Electronics store: Sunny Beach: Shop"
+    },
+    {
+      "sourceId": "electronics-downtown",
+      "map": "looty-bay",
+      "x": 899.0,
+      "y": 451.0,
+      "label": "Electronics store: Downtown: Shop"
+    },
+    {
+      "sourceId": "gas-station",
+      "map": "looty-bay",
+      "x": 920.0,
+      "y": 576.0,
+      "label": "Gas station: Shop"
+    },
+    {
+      "sourceId": "cafe-downtown",
+      "map": "looty-bay",
+      "x": 926.0,
+      "y": 654.0,
+      "label": "Cafe: Downtown: Shop"
+    },
+    {
+      "sourceId": "cafe-pier",
+      "map": "looty-bay",
+      "x": 363.0,
+      "y": 924.0,
+      "label": "Cafe: Sunny Beach pier: Shop"
+    },
+    {
+      "sourceId": "nightclub",
+      "map": "looty-bay",
+      "x": 219.0,
+      "y": 711.0,
+      "label": "Strip club: Shop"
+    },
+    {
+      "sourceId": "hotel-sunny-west",
+      "map": "looty-bay",
+      "x": 319.0,
+      "y": 710.0,
+      "label": "Blueberry Hall: Shop"
+    },
+    {
+      "sourceId": "hotel-sunny-east",
+      "map": "looty-bay",
+      "x": 403.0,
+      "y": 712.0,
+      "label": "Hotel: south Sunny Beach (east): Shop"
+    },
+    {
+      "sourceId": "hospital",
+      "map": "looty-bay",
+      "x": 714.0,
+      "y": 682.0,
+      "label": "Hospital: Service"
+    },
+    {
+      "sourceId": "noble-mansion",
+      "map": "looty-bay",
+      "x": 316.0,
+      "y": 194.0,
+      "label": "Noble's Mansion: House"
+    },
+    {
+      "sourceId": "elite-cottage",
+      "map": "looty-bay",
+      "x": 382.0,
+      "y": 162.0,
+      "label": "Elite Cottage: House"
+    },
+    {
+      "sourceId": "loraine-house-se",
+      "map": "looty-bay",
+      "x": 424.0,
+      "y": 226.0,
+      "label": "Loraine Hills house (south-east): House"
+    },
+    {
+      "sourceId": "loraine-house-ne",
+      "map": "looty-bay",
+      "x": 435.0,
+      "y": 158.0,
+      "label": "Loraine Hills house (north-east): House"
+    },
+    {
+      "sourceId": "cottage",
+      "map": "looty-bay",
+      "x": 377.0,
+      "y": 220.0,
+      "label": "Cottage: House"
+    },
+    {
+      "sourceId": "atm-94dcd9f0",
+      "map": "looty-bay",
+      "x": 217.0,
+      "y": 714.0,
+      "label": "ATM · Strip club: ATM"
+    },
+    {
+      "sourceId": "atm-4af75702",
+      "map": "looty-bay",
+      "x": 344.0,
+      "y": 457.0,
+      "label": "ATM · Grand Hotel: ATM"
+    },
+    {
+      "sourceId": "atm-c100ffb8",
+      "map": "looty-bay",
+      "x": 378.0,
+      "y": 891.0,
+      "label": "ATM · Fence van: Sunny Beach pier: ATM"
+    },
+    {
+      "sourceId": "atm-e5dd337f",
+      "map": "looty-bay",
+      "x": 403.0,
+      "y": 611.0,
+      "label": "ATM · Equipment store: Sunny Beach: ATM"
+    },
+    {
+      "sourceId": "atm-b0db08d1",
+      "map": "looty-bay",
+      "x": 470.0,
+      "y": 387.0,
+      "label": "ATM · Sunny Beach: ATM"
+    },
+    {
+      "sourceId": "atm-771ef924",
+      "map": "looty-bay",
+      "x": 686.0,
+      "y": 790.0,
+      "label": "ATM · Looty Bay Art Gallery: ATM"
+    },
+    {
+      "sourceId": "atm-2869905e",
+      "map": "looty-bay",
+      "x": 711.0,
+      "y": 574.0,
+      "label": "ATM · Palmside: ATM"
+    },
+    {
+      "sourceId": "atm-befe1334",
+      "map": "looty-bay",
+      "x": 903.0,
+      "y": 431.0,
+      "label": "ATM · Electronics store: Downtown: ATM"
+    },
+    {
+      "sourceId": "atm-1e44abe4",
+      "map": "looty-bay",
+      "x": 1017.0,
+      "y": 313.0,
+      "label": "Banker · Looty Bay Bank: ATM"
+    },
+    {
+      "sourceId": "atm-8025b6ed",
+      "map": "looty-bay",
+      "x": 1026.0,
+      "y": 324.0,
+      "label": "ATM · Looty Bay Bank: ATM"
+    },
+    {
+      "sourceId": "atm-4715a781",
+      "map": "looty-bay",
+      "x": 1050.0,
+      "y": 662.0,
+      "label": "ATM · Jewelry store: Downtown: ATM"
+    },
+    {
+      "sourceId": "atm-ebff5c99",
+      "map": "looty-bay",
+      "x": 1062.0,
+      "y": 794.0,
+      "label": "ATM · Gun shop: Downtown: ATM"
+    },
+    {
+      "sourceId": "atm-2c71cce7",
+      "map": "looty-bay",
+      "x": 1177.0,
+      "y": 434.0,
+      "label": "ATM · Liquor store: north-east Downtown: ATM"
+    },
+    {
+      "sourceId": "atm-6765aad7",
+      "map": "looty-bay",
+      "x": 1195.0,
+      "y": 644.0,
+      "label": "ATM · Downtown: ATM"
+    },
+    {
+      "sourceId": "cargo-3f7a3c72",
+      "map": "looty-bay",
+      "x": 308.0,
+      "y": 635.0,
+      "label": "Cargo exchange · Liquor store: Sunny Beach: Cargo exchange"
+    },
+    {
+      "sourceId": "cargo-7ad7d805",
+      "map": "looty-bay",
+      "x": 395.0,
+      "y": 871.0,
+      "label": "Cargo exchange · Fence van: Sunny Beach pier: Cargo exchange"
+    },
+    {
+      "sourceId": "cargo-3aa08d3a",
+      "map": "looty-bay",
+      "x": 581.0,
+      "y": 224.0,
+      "label": "Cargo exchange · Fence van: Loraine Hills beach: Cargo exchange"
+    },
+    {
+      "sourceId": "cargo-70c0f3e1",
+      "map": "looty-bay",
+      "x": 1007.0,
+      "y": 715.0,
+      "label": "Cargo exchange · Fence van: south Downtown: Cargo exchange"
+    },
+    {
+      "sourceId": "cargo-932a9e7b",
+      "map": "looty-bay",
+      "x": 1060.0,
+      "y": 454.0,
+      "label": "Cargo exchange · Fence van: Downtown underpass: Cargo exchange"
+    },
+    {
+      "sourceId": "cargo-cdb875a2",
+      "map": "looty-bay",
+      "x": 1110.0,
+      "y": 524.0,
+      "label": "Cargo exchange · Downtown: Cargo exchange"
+    },
+    {
+      "sourceId": "conquest-bc712997",
+      "map": "looty-bay",
+      "x": 210.0,
+      "y": 729.0,
+      "label": "Conquest point · Strip club: Conquest point"
+    },
+    {
+      "sourceId": "conquest-63123b64",
+      "map": "looty-bay",
+      "x": 268.0,
+      "y": 569.0,
+      "label": "Conquest point · Jewelry store: Sunny Beach: Conquest point"
+    },
+    {
+      "sourceId": "conquest-6ea69929",
+      "map": "looty-bay",
+      "x": 298.0,
+      "y": 595.0,
+      "label": "Conquest point · Liquor store: Sunny Beach: Conquest point"
+    },
+    {
+      "sourceId": "conquest-23def4f8",
+      "map": "looty-bay",
+      "x": 315.0,
+      "y": 734.0,
+      "label": "Conquest point · Blueberry Hall: Conquest point"
+    },
+    {
+      "sourceId": "conquest-ceb482ee",
+      "map": "looty-bay",
+      "x": 343.0,
+      "y": 495.0,
+      "label": "Conquest point · Grand Hotel: Conquest point"
+    },
+    {
+      "sourceId": "conquest-bf0bb6f6",
+      "map": "looty-bay",
+      "x": 358.0,
+      "y": 915.0,
+      "label": "Conquest point · Cafe: Sunny Beach pier: Conquest point"
+    },
+    {
+      "sourceId": "conquest-eb640173",
+      "map": "looty-bay",
+      "x": 360.0,
+      "y": 660.0,
+      "label": "Conquest point · Gun shop: Sunny Beach: Conquest point"
+    },
+    {
+      "sourceId": "conquest-ab8356e9",
+      "map": "looty-bay",
+      "x": 378.0,
+      "y": 605.0,
+      "label": "Conquest point · Equipment store: Sunny Beach: Conquest point"
+    },
+    {
+      "sourceId": "conquest-109960bf",
+      "map": "looty-bay",
+      "x": 406.0,
+      "y": 735.0,
+      "label": "Conquest point · Hotel: south Sunny Beach (east): Conquest point"
+    },
+    {
+      "sourceId": "conquest-94ba7271",
+      "map": "looty-bay",
+      "x": 411.0,
+      "y": 632.0,
+      "label": "Conquest point · Pharmacy: Sunny Beach: Conquest point"
+    },
+    {
+      "sourceId": "conquest-88dd5d25",
+      "map": "looty-bay",
+      "x": 443.0,
+      "y": 639.0,
+      "label": "Conquest point · Electronics store: Sunny Beach: Conquest point"
+    },
+    {
+      "sourceId": "conquest-c05e4eb1",
+      "map": "looty-bay",
+      "x": 675.0,
+      "y": 794.0,
+      "label": "Conquest point · Looty Bay Art Gallery: Conquest point"
+    },
+    {
+      "sourceId": "conquest-a02c6861",
+      "map": "looty-bay",
+      "x": 909.0,
+      "y": 429.0,
+      "label": "Conquest point · Electronics store: Downtown: Conquest point"
+    },
+    {
+      "sourceId": "conquest-6b949f23",
+      "map": "looty-bay",
+      "x": 911.0,
+      "y": 648.0,
+      "label": "Conquest point · Cafe: Downtown: Conquest point"
+    },
+    {
+      "sourceId": "conquest-4d3ac631",
+      "map": "looty-bay",
+      "x": 923.0,
+      "y": 564.0,
+      "label": "Conquest point · Gas station: Conquest point"
+    },
+    {
+      "sourceId": "conquest-00bdc0ce",
+      "map": "looty-bay",
+      "x": 985.0,
+      "y": 816.0,
+      "label": "Conquest point · Equipment store: Downtown: Conquest point"
+    },
+    {
+      "sourceId": "conquest-98eaab7f",
+      "map": "looty-bay",
+      "x": 1032.0,
+      "y": 331.0,
+      "label": "Conquest point · Looty Bay Bank: Conquest point"
+    },
+    {
+      "sourceId": "conquest-0a2a93a1",
+      "map": "looty-bay",
+      "x": 1048.0,
+      "y": 583.0,
+      "label": "Conquest point · Pharmacy: Downtown: Conquest point"
+    },
+    {
+      "sourceId": "conquest-35defce6",
+      "map": "looty-bay",
+      "x": 1049.0,
+      "y": 645.0,
+      "label": "Conquest point · Jewelry store: Downtown: Conquest point"
+    },
+    {
+      "sourceId": "conquest-7958ec93",
+      "map": "looty-bay",
+      "x": 1120.0,
+      "y": 797.0,
+      "label": "Conquest point · Gun shop: Downtown: Conquest point"
+    },
+    {
+      "sourceId": "conquest-de4623ed",
+      "map": "looty-bay",
+      "x": 1142.0,
+      "y": 586.0,
+      "label": "Conquest point · Liquor store: Downtown: Conquest point"
+    },
+    {
+      "sourceId": "conquest-314d7379",
+      "map": "looty-bay",
+      "x": 1172.0,
+      "y": 423.0,
+      "label": "Conquest point · Liquor store: north-east Downtown: Conquest point"
+    },
+    {
+      "sourceId": "event-8ea10769",
+      "map": "looty-bay",
+      "x": 198.0,
+      "y": 667.0,
+      "label": "Cargo event · Strip club: Cargo event"
+    },
+    {
+      "sourceId": "event-0544c86d",
+      "map": "looty-bay",
+      "x": 226.0,
+      "y": 803.0,
+      "label": "Cargo event · Sunny Beach 1: Cargo event"
+    },
+    {
+      "sourceId": "event-eafd5528",
+      "map": "looty-bay",
+      "x": 308.0,
+      "y": 638.0,
+      "label": "Cargo event · Liquor store: Sunny Beach: Cargo event"
+    },
+    {
+      "sourceId": "event-58b0d97e",
+      "map": "looty-bay",
+      "x": 400.0,
+      "y": 855.0,
+      "label": "Cargo event · Fence van: Sunny Beach pier: Cargo event"
+    },
+    {
+      "sourceId": "event-cd564ef8",
+      "map": "looty-bay",
+      "x": 455.0,
+      "y": 414.0,
+      "label": "Cargo event · Sunny Beach 2: Cargo event"
+    },
+    {
+      "sourceId": "event-52edae36",
+      "map": "looty-bay",
+      "x": 560.0,
+      "y": 235.0,
+      "label": "Cargo event · Fence van: Loraine Hills beach: Cargo event"
+    },
+    {
+      "sourceId": "event-82b3ffce",
+      "map": "looty-bay",
+      "x": 657.0,
+      "y": 497.0,
+      "label": "Cargo event · Palmside 1: Cargo event"
+    },
+    {
+      "sourceId": "event-6366659a",
+      "map": "looty-bay",
+      "x": 771.0,
+      "y": 608.0,
+      "label": "Cargo event · Palmside 2: Cargo event"
+    },
+    {
+      "sourceId": "event-385c6b7d",
+      "map": "looty-bay",
+      "x": 849.0,
+      "y": 647.0,
+      "label": "Cargo event · Palmside 3: Cargo event"
+    },
+    {
+      "sourceId": "event-c285ee98",
+      "map": "looty-bay",
+      "x": 939.0,
+      "y": 225.0,
+      "label": "Cargo event · Downtown 1: Cargo event"
+    },
+    {
+      "sourceId": "event-11a712ff",
+      "map": "looty-bay",
+      "x": 983.0,
+      "y": 483.0,
+      "label": "Cargo event · Downtown 2: Cargo event"
+    },
+    {
+      "sourceId": "event-8619caf9",
+      "map": "looty-bay",
+      "x": 1086.0,
+      "y": 268.0,
+      "label": "Cargo event · Downtown 3: Cargo event"
+    },
+    {
+      "sourceId": "event-69087334",
+      "map": "looty-bay",
+      "x": 1110.0,
+      "y": 528.0,
+      "label": "Cargo event · Liquor store: Downtown: Cargo event"
+    },
+    {
+      "sourceId": "event-faf7db55",
+      "map": "looty-bay",
+      "x": 1165.0,
+      "y": 839.0,
+      "label": "Cargo event · Gun shop: Downtown: Cargo event"
+    },
+    {
+      "sourceId": "parking-614d90f6",
+      "map": "looty-bay",
+      "x": 215.0,
+      "y": 670.0,
+      "label": "Parking terminal · Strip club: Parking terminal"
+    },
+    {
+      "sourceId": "parking-5c7e3c58",
+      "map": "looty-bay",
+      "x": 236.0,
+      "y": 440.0,
+      "label": "Parking terminal · Sunny Beach 1: Parking terminal"
+    },
+    {
+      "sourceId": "parking-5d62ec3e",
+      "map": "looty-bay",
+      "x": 305.0,
+      "y": 586.0,
+      "label": "Parking terminal · Liquor store: Sunny Beach 1: Parking terminal"
+    },
+    {
+      "sourceId": "parking-9119d467",
+      "map": "looty-bay",
+      "x": 331.0,
+      "y": 637.0,
+      "label": "Parking terminal · Liquor store: Sunny Beach 2: Parking terminal"
+    },
+    {
+      "sourceId": "parking-83efae60",
+      "map": "looty-bay",
+      "x": 407.0,
+      "y": 849.0,
+      "label": "Parking terminal · Fence van: Sunny Beach pier: Parking terminal"
+    },
+    {
+      "sourceId": "parking-5122ef73",
+      "map": "looty-bay",
+      "x": 417.0,
+      "y": 731.0,
+      "label": "Parking terminal · Hotel: south Sunny Beach (east): Parking terminal"
+    },
+    {
+      "sourceId": "parking-b75aa8a4",
+      "map": "looty-bay",
+      "x": 465.0,
+      "y": 394.0,
+      "label": "Parking terminal · Sunny Beach 2: Parking terminal"
+    },
+    {
+      "sourceId": "parking-7bebd227",
+      "map": "looty-bay",
+      "x": 490.0,
+      "y": 175.0,
+      "label": "Parking terminal · Loraine Hills house (north-east): Parking terminal"
+    },
+    {
+      "sourceId": "parking-4cf1af83",
+      "map": "looty-bay",
+      "x": 566.0,
+      "y": 667.0,
+      "label": "Parking terminal · Police Station 1: Parking terminal"
+    },
+    {
+      "sourceId": "parking-d3f46cc5",
+      "map": "looty-bay",
+      "x": 575.0,
+      "y": 515.0,
+      "label": "Parking terminal · Palmside 1: Parking terminal"
+    },
+    {
+      "sourceId": "parking-36ed4df6",
+      "map": "looty-bay",
+      "x": 611.0,
+      "y": 562.0,
+      "label": "Parking terminal · Palmside 2: Parking terminal"
+    },
+    {
+      "sourceId": "parking-2a58a060",
+      "map": "looty-bay",
+      "x": 624.0,
+      "y": 716.0,
+      "label": "Parking terminal · Police Station 2: Parking terminal"
+    },
+    {
+      "sourceId": "parking-d0f3d08b",
+      "map": "looty-bay",
+      "x": 667.0,
+      "y": 791.0,
+      "label": "Parking terminal · Looty Bay Art Gallery: Parking terminal"
+    },
+    {
+      "sourceId": "parking-33ea8abd",
+      "map": "looty-bay",
+      "x": 697.0,
+      "y": 728.0,
+      "label": "Parking terminal · Hospital: Parking terminal"
+    },
+    {
+      "sourceId": "parking-48abc81e",
+      "map": "looty-bay",
+      "x": 930.0,
+      "y": 612.0,
+      "label": "Parking terminal · Gas station: Parking terminal"
+    },
+    {
+      "sourceId": "parking-2e3dcf9b",
+      "map": "looty-bay",
+      "x": 932.0,
+      "y": 313.0,
+      "label": "Parking terminal · Downtown: Parking terminal"
+    },
+    {
+      "sourceId": "parking-8dc230e4",
+      "map": "looty-bay",
+      "x": 999.0,
+      "y": 653.0,
+      "label": "Parking terminal · Jewelry store: Downtown: Parking terminal"
+    },
+    {
+      "sourceId": "parking-0363d7fa",
+      "map": "looty-bay",
+      "x": 1043.0,
+      "y": 819.0,
+      "label": "Parking terminal · Equipment store: Downtown: Parking terminal"
+    },
+    {
+      "sourceId": "parking-3aa18f1d",
+      "map": "looty-bay",
+      "x": 1088.0,
+      "y": 518.0,
+      "label": "Parking terminal · Fence van: Downtown underpass: Parking terminal"
+    },
+    {
+      "sourceId": "parking-8b208775",
+      "map": "looty-bay",
+      "x": 1166.0,
+      "y": 441.0,
+      "label": "Parking terminal · Liquor store: north-east Downtown: Parking terminal"
+    },
+    {
+      "sourceId": "parking-873ba727",
+      "map": "looty-bay",
+      "x": 1195.0,
+      "y": 604.0,
+      "label": "Parking terminal · Liquor store: Downtown: Parking terminal"
+    },
+    {
+      "sourceId": "highlands",
+      "map": "desert",
+      "x": 905.0,
+      "y": 541.0,
+      "label": "Highlands: Level 3 district"
+    },
+    {
+      "sourceId": "rivertown",
+      "map": "desert",
+      "x": 926.0,
+      "y": 402.0,
+      "label": "Rivertown: Level 2 district"
+    },
+    {
+      "sourceId": "fallrock",
+      "map": "desert",
+      "x": 733.0,
+      "y": 521.0,
+      "label": "Fallrock: Level 2 district"
+    },
+    {
+      "sourceId": "el-peso",
+      "map": "desert",
+      "x": 1083.0,
+      "y": 571.0,
+      "label": "El Peso: Level 2 district"
+    },
+    {
+      "sourceId": "dustbowl",
+      "map": "desert",
+      "x": 832.0,
+      "y": 228.0,
+      "label": "Dustbowl: Level 1 district"
+    },
+    {
+      "sourceId": "redstone",
+      "map": "desert",
+      "x": 1138.0,
+      "y": 291.0,
+      "label": "Redstone: Level 1 district"
+    },
+    {
+      "sourceId": "fairfield",
+      "map": "desert",
+      "x": 517.0,
+      "y": 449.0,
+      "label": "Fairfield: Level 1 district"
+    },
+    {
+      "sourceId": "loneford",
+      "map": "desert",
+      "x": 1340.0,
+      "y": 496.0,
+      "label": "Loneford: Level 1 district"
+    },
+    {
+      "sourceId": "rustvale",
+      "map": "desert",
+      "x": 593.0,
+      "y": 703.0,
+      "label": "Rustvale: Level 1 district"
+    },
+    {
+      "sourceId": "cascadas",
+      "map": "desert",
+      "x": 1295.0,
+      "y": 758.0,
+      "label": "Cascadas: Level 1 district"
+    },
+    {
+      "sourceId": "looty-bay",
+      "map": "desert",
+      "x": 1740.0,
+      "y": 815.0,
+      "label": "Looty Bay: City"
+    },
+    {
+      "sourceId": "prison",
+      "map": "desert",
+      "x": 188.0,
+      "y": 310.0,
+      "label": "Prison: Place"
+    },
+    {
+      "sourceId": "lennys-motel",
+      "map": "desert",
+      "x": 276.0,
+      "y": 615.0,
+      "label": "Lenny's Motel: Place"
+    },
+    {
+      "sourceId": "sales-center-vehicle-55fbbb3c",
+      "map": "sales-center",
+      "x": 908.4,
+      "y": 468.8,
+      "label": "Vehicle spawn: Vehicle spawn"
+    },
+    {
+      "sourceId": "sales-center-vehicle-cd90c91e",
+      "map": "sales-center",
+      "x": 353.9,
+      "y": 116.7,
+      "label": "Vehicle spawn: Vehicle spawn"
+    },
+    {
+      "sourceId": "sales-center-trash-b3cd8fce",
+      "map": "sales-center",
+      "x": 488.8,
+      "y": 503.8,
+      "label": "Trash bin: Loot spot"
+    },
+    {
+      "sourceId": "sales-center-helicopter-60aa9a97",
+      "map": "sales-center",
+      "x": 578.7,
+      "y": 489.8,
+      "label": "Helicopter spawn: Helicopter spawn"
+    },
+    {
+      "sourceId": "sales-center-vehicle-23d4f387",
+      "map": "sales-center",
+      "x": 530.5,
+      "y": 513.4,
+      "label": "Vehicle spawn: Vehicle spawn"
+    },
+    {
+      "sourceId": "sales-center-trash-c89da7f5",
+      "map": "sales-center",
+      "x": 586.9,
+      "y": 516.9,
+      "label": "Trash bin: Loot spot"
+    },
+    {
+      "sourceId": "sales-center-treasure-c23e97a0",
+      "map": "sales-center",
+      "x": 470.3,
+      "y": 337.1,
+      "label": "Treasure: Treasure"
+    },
+    {
+      "sourceId": "sales-center-vehicle-b7938e4f",
+      "map": "sales-center",
+      "x": 193.0,
+      "y": 925.1,
+      "label": "Vehicle spawn: Vehicle spawn"
+    },
+    {
+      "sourceId": "sales-center-buyer",
+      "map": "sales-center",
+      "x": 544.0,
+      "y": 517.8,
+      "label": "Buyer: Where you sell"
+    },
+    {
+      "sourceId": "sales-center-treasure-26293edb",
+      "map": "sales-center",
+      "x": 780.3,
+      "y": 765.6,
+      "label": "Treasure: Treasure"
+    },
+    {
+      "sourceId": "sales-center-cargo",
+      "map": "sales-center",
+      "x": 546.7,
+      "y": 518.1,
+      "label": "Cargo exchange: Where you sell"
+    },
+    {
+      "sourceId": "sales-center-informant",
+      "map": "sales-center",
+      "x": 518.0,
+      "y": 483.0,
+      "label": "Informant: Person"
+    },
+    {
+      "sourceId": "sales-center-middle-man",
+      "map": "sales-center",
+      "x": 550.1,
+      "y": 538.2,
+      "label": "Middle Man: Person"
+    },
+    {
+      "sourceId": "sales-center-utility-room",
+      "map": "sales-center",
+      "x": 571.8,
+      "y": 499.6,
+      "label": "Utility room: Place"
+    },
+    {
+      "sourceId": "sales-center-radio",
+      "map": "sales-center",
+      "x": 512.3,
+      "y": 555.8,
+      "label": "Radio: Place"
+    },
+    {
+      "sourceId": "sales-center-door-f024e802",
+      "map": "sales-center",
+      "x": 544.9,
+      "y": 459.9,
+      "label": "Door: Door"
+    },
+    {
+      "sourceId": "sales-center-door-419d3bb4",
+      "map": "sales-center",
+      "x": 535.2,
+      "y": 538.6,
+      "label": "Door: Door"
+    },
+    {
+      "sourceId": "sales-center-door-7a0200ed",
+      "map": "sales-center",
+      "x": 571.4,
+      "y": 516.8,
+      "label": "Door: Door"
+    },
+    {
+      "sourceId": "sales-center-door-ca744a1c",
+      "map": "sales-center",
+      "x": 538.5,
+      "y": 527.0,
+      "label": "Door: Door"
+    },
+    {
+      "sourceId": "sales-center-door-7abf2bea",
+      "map": "sales-center",
+      "x": 527.7,
+      "y": 470.5,
+      "label": "Door: Door"
+    },
+    {
+      "sourceId": "sales-center-door-2db0f2fc",
+      "map": "sales-center",
+      "x": 583.1,
+      "y": 517.8,
+      "label": "Door: Door"
+    },
+    {
+      "sourceId": "motel-lenny",
+      "map": "lennys-motel",
+      "x": 538.3,
+      "y": 395.1,
+      "label": "Lenny: Person"
+    },
+    {
+      "sourceId": "motel-atm",
+      "map": "lennys-motel",
+      "x": 524.3,
+      "y": 373.6,
+      "label": "ATM: ATM"
+    },
+    {
+      "sourceId": "motel-vehicle-924fd5bd",
+      "map": "lennys-motel",
+      "x": 477.2,
+      "y": 428.8,
+      "label": "Vehicle spawn: Vehicle spawn"
+    },
+    {
+      "sourceId": "motel-vehicle-0099e1e9",
+      "map": "lennys-motel",
+      "x": 482.9,
+      "y": 552.1,
+      "label": "Vehicle spawn: Vehicle spawn"
+    },
+    {
+      "sourceId": "motel-helicopter-877f344e",
+      "map": "lennys-motel",
+      "x": 532.0,
+      "y": 678.1,
+      "label": "Helicopter spawn: Helicopter spawn"
+    },
+    {
+      "sourceId": "motel-cash-register-833155e1",
+      "map": "lennys-motel",
+      "x": 541.1,
+      "y": 397.3,
+      "label": "Cash register: Loot spot"
+    },
+    {
+      "sourceId": "prison-tattoo-artist",
+      "map": "prison",
+      "x": 541.7,
+      "y": 355.3,
+      "label": "Tattoo Artist: Person"
+    },
+    {
+      "sourceId": "prison-phone",
+      "map": "prison",
+      "x": 364.9,
+      "y": 139.6,
+      "label": "Phone: Place"
+    },
+    {
+      "sourceId": "prison-execution",
+      "map": "prison",
+      "x": 372.5,
+      "y": 559.2,
+      "label": "Execution: Place"
+    },
+    {
+      "sourceId": "prison-prank",
+      "map": "prison",
+      "x": 310.4,
+      "y": 404.1,
+      "label": "Prank: Place"
+    },
+    {
+      "sourceId": "prison-spit",
+      "map": "prison",
+      "x": 442.7,
+      "y": 251.3,
+      "label": "Spit: Place"
+    },
+    {
+      "sourceId": "prison-gym",
+      "map": "prison",
+      "x": 433.4,
+      "y": 613.7,
+      "label": "Gym: Place"
+    },
+    {
+      "sourceId": "prison-task-board",
+      "map": "prison",
+      "x": 548.1,
+      "y": 164.8,
+      "label": "Task board: Place"
+    },
+    {
+      "sourceId": "prison-yard",
+      "map": "prison",
+      "x": 433.4,
+      "y": 136.0,
+      "label": "Yard: Place"
+    },
+    {
+      "sourceId": "prison-mailbox",
+      "map": "prison",
+      "x": 506.8,
+      "y": 144.1,
+      "label": "Mailbox: Place"
+    },
+    {
+      "sourceId": "prison-west-block",
+      "map": "prison",
+      "x": 318.0,
+      "y": 524.0,
+      "label": "West block: Place"
+    }
+  ]
+}

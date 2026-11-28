@@ -44,6 +44,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   import { priceRange } from '../lib/item-value';
   import { locationRecords, locationRecordUrl } from '../lib/location-records';
   import { tools, guides } from '../lib/site-catalog';
+  import { mapDefinitions, profilePlaces } from '../lib/map-data';
 
   const form = document.querySelector<HTMLFormElement>('#site-search-form')!;
   const input = document.querySelector<HTMLInputElement>('#query')!;
@@ -56,6 +57,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     vehicle: item.category === 'vehicles',
   }));
   const groups = [
+    { label: 'Maps & location guides', entries: [
+      ...mapDefinitions.map(map => ({name:map.name+' map',href:map.path,detail:map.description,keywords:'map maps interactive districts '+map.label,value:''})),
+      ...profilePlaces.map(place => ({name:place.name,href:`/locations/${place.slug}/`,detail:place.summary,keywords:place.aliases.join(' '),value:''})),
+    ] },
     { label: 'Items', entries: itemEntries.filter(entry => !entry.vehicle) },
     { label: 'Vehicles', entries: itemEntries.filter(entry => entry.vehicle) },
     { label: 'Locations', entries: locationRecords.map(record => ({

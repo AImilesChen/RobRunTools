@@ -10,14 +10,16 @@ interface Props {
   title: string;
   description: string;
   noindex?: boolean;
+  shareImage?: string;
 }
 
-const { title, description, noindex = false } = Astro.props;
+const { title, description, noindex = false, shareImage: pageShareImage } = Astro.props;
 const path = Astro.url.pathname.replace(/\/$/, '') || '/';
 const isHome = path === '/';
 const canonical = canonicalUrl(Astro.url.pathname);
-const shareImage = new URL('/brand/robrun-social.jpg', canonical).href;
+const shareImage = new URL(pageShareImage || '/brand/robrun-social.jpg', canonical).href;
 const links = [
+  { href: '/map', label: 'Maps', detail: 'Explore Looty Bay and world-map references.', scene: 'terrain' },
   { href: '/items', label: 'Items', detail: 'Look up item names, categories and listed prices.', scene: 'equipment' },
   { href: '/locations', label: 'Locations', detail: 'Search Looty Bay point records and regional place guides.', scene: 'terrain' },
   { href: '/tools', label: 'Tools', detail: 'Estimate item values, compare weapons or set a manual timer.', scene: 'equipment' },
