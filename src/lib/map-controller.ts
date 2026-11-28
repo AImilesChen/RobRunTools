@@ -11,7 +11,7 @@ export async function mountMapExplorer(root: HTMLElement) {
   const definition = mapDefinitions.find(map => map.id === root.dataset.mapId)!;
   const places = mapPlaces.filter(place => place.mapId === definition.id);
   const points = mapPoints.filter(point => point.mapId === definition.id);
-  const types = points.length ? mapTypes : [];
+  const types = mapTypes.filter(type=>points.some(point=>point.type===type.id));
   const byPlace = new Map(places.map(place => [place.id, place]));
   const byPoint = new Map(points.map(point => [point.id, point]));
   const byType = new Map(types.map(type => [type.id, type]));
@@ -232,7 +232,7 @@ export async function mountMapExplorer(root: HTMLElement) {
     const type=point?byType.get(point.type):null;
     detail.append(element('h3','map-selected-title',point?(type?.name??'Recorded point'):place!.name));
     if(place) detailParagraph(`${place.name} · ${place.district}`,'map-detail-meta');
-    else detailParagraph('Building not assigned in source','map-detail-meta');
+    else detailParagraph(definition.id==='settlements'?'Settlement layout A · entrance reference':'Building not assigned in source','map-detail-meta');
     const isVisible=point?filtered.points.some(p=>p.id===point.id):filtered.places.some(p=>p.id===place!.id);
     if(!isVisible){
       detailParagraph('This selection is outside the current filters.','map-selection-warning');
@@ -240,9 +240,9 @@ export async function mountMapExplorer(root: HTMLElement) {
     }
     if(point){
       if(point.name)detailParagraph(point.name,'map-detail-meta');
-      detailParagraph(point.origin==='service-reference'?'A named service or event reference from the community map. This position does not show live availability, stock or an active event.':'A recorded object position from the community snapshot. Its current contents, availability, floor and opening requirements are not supplied by this coordinate record.');
+      detailParagraph(point.origin==='settlement-reference'?'A resident entrance group recorded in settlement layout A, client build 4052. Reference group numbers follow source order; they do not identify an owned or available plot.':point.origin==='service-reference'?'A named service or event reference from the community map. This position does not show live availability, stock or an active event.':'A recorded object position from the community snapshot. Its current contents, availability, floor and opening requirements are not supplied by this coordinate record.');
       const dl=element('dl','map-detail-facts');
-      dl.append(element('dt','','Type'),element('dd','',type?.name??point.type),element('dt','','Source'),element('dd','',point.origin==='service-reference'?'Community reference':'Build 26464639'));
+      dl.append(element('dt','','Type'),element('dd','',type?.name??point.type),element('dt','','Source'),element('dd','',point.origin==='settlement-reference'?'Client build 4052 · layout A':point.origin==='service-reference'?'Community reference':'Build 26464639'));
       detail.append(dl);
       detailParagraph('Object references can share the same coordinates. A position is not a guaranteed loot drop.','map-detail-note');
     } else {
@@ -259,6 +259,7 @@ export async function mountMapExplorer(root: HTMLElement) {
     if(place?.id==='world-looty-bay') detail.append(link('/map/','Open Looty Bay map →','map-primary-button'));
     if(place?.referenceUrl) detail.append(link(place.referenceUrl,'Open regional location references →','map-primary-button'));
     if(place?.recordMatch==='unmatched-numbering') detailParagraph('This residential marker is named by direction. Its match to the numbered cottages in the location directory has not been confirmed.');
+    if(place?.numberingSource)detail.append(link(place.numberingSource,'Numbered cottage reference ↗'));
     drawProgressControls(point?'point':'place',selected.id);
     const addNote=element('button','map-secondary-button','Add a personal note here');addNote.type='button';addNote.disabled=!notesWritable;addNote.addEventListener('click',()=>createDraft(selected,point?(point.name??type?.name??'Point'):place!.name));detail.append(addNote);
     const share=element('button','map-secondary-button','Copy link to this position');share.type='button';share.addEventListener('click',copyView);detail.append(share);
@@ -270,7 +271,7 @@ export async function mountMapExplorer(root: HTMLElement) {
     const place=kind==='places'?object as MapPlace:byPlace.get((object as MapPoint).placeId??'');
     const type=kind==='points'?byType.get((object as MapPoint).type):null;
     const title=kind==='places'?place!.name:(object as MapPoint).name??type?.name??'Point';
-    const symbol=element('span','map-result-symbol',kind==='places'?(place!.level?'L'+place!.level:place!.name.slice(0,1)):'·');symbol.setAttribute('aria-hidden','true');
+    const symbol=element('span','map-result-symbol',kind==='places'?(place!.plotNumber?String(place!.plotNumber):place!.level?'L'+place!.level:place!.name.slice(0,1)):'·');symbol.setAttribute('aria-hidden','true');
     if(type)symbol.style.setProperty('--symbol-color',type.color);
     const text=element('span');text.append(element('strong','',title),element('small','',kind==='places'?`${place!.district} · ${place!.type}`:place?`${place.name} · ${place.district}`:'Building not assigned'));
     const progressStatus=statusFor(kind==='places'?'place':'point',object.id);if(progressStatus?.favorite||progressStatus?.explored)text.append(element('small','map-saved-status',[progressStatus.favorite?'★ Favorite':'',progressStatus.explored?'✓ Explored':''].filter(Boolean).join(' · ')));
@@ -308,7 +309,7 @@ export async function mountMapExplorer(root: HTMLElement) {
     drawList();drawDetails();paintMarkers();
   }
   function markerIcon(place:MapPlace) {
-    const span=element('span','map-place-symbol'+(place.level?' map-region-symbol':'')+(state.place===place.id?' is-selected':''),place.level?'L'+place.level:place.name==='Looty Bay Bank'?'B':place.name==='Grand Hotel'?'H':place.name==='Art Gallery'?'A':place.name==='Police Station'?'P':place.type==='City'?'LB':place.type==='Shop'?'S':place.type==='Home'?'C':place.name.slice(0,1));
+    const span=element('span','map-place-symbol'+(place.level?' map-region-symbol':'')+(state.place===place.id?' is-selected':''),place.plotNumber?String(place.plotNumber):place.level?'L'+place.level:place.name==='Looty Bay Bank'?'B':place.name==='Grand Hotel'?'H':place.name==='Art Gallery'?'A':place.name==='Police Station'?'P':place.type==='City'?'LB':place.type==='Shop'?'S':place.type==='Home'?'C':place.name.slice(0,1));
     span.title=place.name;return L.divIcon({html:span,className:'map-place-marker',iconSize:[30,30],iconAnchor:[15,15]});
   }
   function paintMarkers() {

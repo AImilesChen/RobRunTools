@@ -9,6 +9,8 @@ const items = read('src/data/items.json');
 const checkedAt = '2026-11-28';
 const imageMetadata = read('assets/maps/sources.json').images;
 const referencePins = read('raw-data/map-reference-pins.json').pins;
+const settlement = read('raw-data/settlement-reference.json');
+const cottageCrosswalk = read('raw-data/cottage-crosswalk.json');
 mkdirSync(new URL('../docs/map-plan-2026-11-28/',import.meta.url),{recursive:true});
 
 // Record matches are explicit building-level links. They do not assert that a
@@ -21,10 +23,10 @@ const curated = [
   ['grand-hotel','grand-hotel','Grand Hotel','Sunny Beach','Гранд-отель','Landmark'],
   ['cafe-pier','ocean-breeze-cafe','Ocean Breeze Café','Sunny Beach','Кафе Ocean Breeze','Café'],
   ['elite-cottage','luxury-cottage','Luxury Cottage','Lauren Hills','Элитный коттедж','Home'],
-  ['cottage','cottage-south-west','Cottage · south-west','Lauren Hills',null,'Home'],
+  ['cottage','cottage-south-west','Cottage No. 5','Lauren Hills','Коттедж №5','Home'],
   ['hotel-sunny-east','seasons-hotel','Seasons Hotel','Sunny Beach','Отель Seasons','Hotel'],
-  ['loraine-house-se','cottage-south-east','Cottage · south-east','Lauren Hills',null,'Home'],
-  ['loraine-house-ne','cottage-north-east','Cottage · north-east','Lauren Hills',null,'Home'],
+  ['loraine-house-se','cottage-south-east','Cottage No. 4','Lauren Hills','Коттедж №4','Home'],
+  ['loraine-house-ne','cottage-north-east','Cottage No. 3','Lauren Hills','Коттедж №3','Home'],
   ['gas-station','gas-station','Gas Station','Downtown','Автозаправка','Shop'],
   ['cafe-downtown','rusty-burgers-cafe','Rusty Burgers Café','Downtown','Кафе Rusty Burgers','Café'],
   ['liquor-downtown','central-downtown-convenience-store','Central Downtown Convenience Store','Downtown','Минимаркет · Даунтаун · центр','Shop'],
@@ -112,13 +114,14 @@ const places = curated.map(([id,slug,name,district,building,type]) => {
   });
   const marker = referencePins.find(pin => pin.map === 'looty-bay' && pin.sourceId === id);
   return { id,slug,mapId:'looty-bay',name,district,type,
-    aliases:[building, raw.places.find(s => s === id), district === 'Parkside' ? 'Palmside Palm Side' : district === 'Lauren Hills' ? 'Loraine Hills' : null,...recordTerms,...(p?.itemNames??[])].filter(Boolean),
+    aliases:[building, raw.places.find(s => s === id),id==='cottage'?'Cottage south west':id==='loraine-house-se'?'Cottage south east':id==='loraine-house-ne'?'Cottage north east':null,district === 'Parkside' ? 'Palmside Palm Side' : district === 'Lauren Hills' ? 'Loraine Hills' : null,...recordTerms,...(p?.itemNames??[])].filter(Boolean),
     u:marker ? marker.x/1320 : own.reduce((a,s)=>a+s.u,0)/own.length,v:marker ? marker.y/1020 : own.reduce((a,s)=>a+s.v,0)/own.length,
     pointCount:own.length,recordIds,recordBuilding:building,
     recordMatch:building ? 'building-level' : 'unmatched-numbering',
     source:'https://robrunwiki.net/map/',checkedAt,
     profile:p ? {...p,itemNames:undefined,itemIds} : null,
     summary:p?.purpose ?? `A ${type.toLowerCase()} reference in ${district}. Explore its recorded map objects and available building records.`,
+    ...(cottageCrosswalk.matches.some(match=>match.placeId===id)?{numberingSource:cottageCrosswalk.source,numberingEvidence:cottageCrosswalk.matches.find(match=>match.placeId===id)}:{}),
   };
 });
 
@@ -165,6 +168,22 @@ const world = [
   ['world-looty-bay','Looty Bay',1080,477,null],
 ].map(([id,name,x,y,level])=>({id,slug:id,mapId:'world',name,type:level?'District':'City',district:level?`Level ${level}`:'Destination',level,u:x/1200,v:y/594,pointCount:0,recordIds:[],recordBuilding:null,recordMatch:'not-applicable',aliases:[],source:'https://store.steampowered.com/news/app/4262460/view/717917092255368502',checkedAt,profile:null,summary:level?`${name} is marked as a Level ${level} district on Kefir’s world-map reference. This view shows its region, not live ownership, free plots or individual settlement boundaries.`:'Looty Bay is the coastal city shown on the east of the world map. Open the city map to explore buildings and recorded points.'}));
 
+const cityServiceCount=spots.length-originalPointCount;
+const settlementDefinition={id:'settlements',path:'/map/settlements/',name:'Settlements',label:'Candidate plots · layout A',width:1218,height:1218,coordinateOrigin:'top-left',version:'Layout A · community game-data reference · client build 4052',checkedAt,source:settlement.source,title:'ROB RUN Settlement Map: Plot Layout A & Entrances',description:'Explore 31 candidate plot footprints, resident entrance groups and services in ROB RUN settlement layout A. Compare 15 source plot sets and keep personal notes.',note:'An independently drawn coordinate diagram of layout A. Roads, terrain and other layouts are not depicted. The 31 positions are candidate plots, not 31 available plots. Reference numbering follows source order and may differ from in-game labels. Ownership and the active set must be checked in your game.'};
+const position=(x,z)=>({u:(609+x)/1218,v:(609-z)/1218});
+for(const plot of settlement.plots){
+  const sets=settlement.plotSets.flatMap((set,index)=>set.includes(plot.number)?[index+1]:[]);
+  places.push({id:`settlement-plot-${plot.number}`,slug:`settlement-plot-${plot.number}`,mapId:'settlements',name:`Plot ${plot.number}`,district:'Candidate plots',type:'Candidate plot',plotNumber:plot.number,plotSets:sets,groundHeight:plot.height,aliases:['settlement',`reference ${plot.number}`],...position(plot.x,plot.z),pointCount:0,recordIds:[],recordBuilding:null,recordMatch:'not-applicable',source:settlement.source,checkedAt,profile:null,referenceUrl:'/locations/?region=settlement#location-results',summary:`Reference plot ${plot.number}: ground height ${plot.height} game metres. ${sets.length?`Included in source sets ${sets.join(', ')}.`:'Not used by any of the 15 source sets.'} This is a candidate footprint, not an available plot or an ownership record.`});
+}
+const serviceCounters=new Map();
+for(const service of settlement.services){
+  const index=(serviceCounters.get(service.kind)??0)+1;serviceCounters.set(service.kind,index);
+  const name=service.kind==='svc'?'Tax collection van':service.kind==='park'?`Parking terminal ${index}`:'Respawn reference';
+  places.push({id:`settlement-${service.kind}-${index}`,slug:`settlement-${service.kind}-${index}`,mapId:'settlements',name,district:'Services',type:service.kind==='park'?'Parking':'Service',aliases:['settlement'],...position(service.x,service.z),pointCount:0,recordIds:[],recordBuilding:null,recordMatch:'not-applicable',source:settlement.source,checkedAt,profile:null,referenceUrl:'/locations/?region=settlement#location-results',summary:`A recorded ${name.toLowerCase()} position in layout A, from client build 4052. This reference does not show live service or vehicle availability.`});
+}
+publishedTypes.push({id:'settlement-resident-entrance',name:'Resident entrance group',color:'#8fd6e8'});
+for(const entrance of settlement.entranceGroups)spots.push({id:`settlement-entrance-${entrance.number}`,mapId:'settlements',type:'settlement-resident-entrance',name:`Resident entrance group ${entrance.number}`,placeId:null,district:'Entrances',...position(entrance.x,entrance.z),source:settlement.source,origin:'settlement-reference'});
+
 write('src/data/map-places.json',[...places,...world]);
 write('src/data/map-points-published.json',spots);
 write('src/data/map-types.json',publishedTypes);
@@ -172,6 +191,7 @@ write('src/data/maps.json',[
   {id:'looty-bay',path:'/map/',name:'Looty Bay',label:'City & recorded points',width:1320,height:1020,coordinateOrigin:'top-left',version:`Community snapshot · build ${raw.build}`,checkedAt,source:'https://robrunwiki.net/map/',title:'ROB RUN Interactive Map: Looty Bay Locations & Loot',description:'Find buildings, services and recorded points on the Looty Bay map. Search locations, filter point types and open related item references.',note:'Building markers locate the area of each recorded point group, not a verified entrance. Coordinate objects and location-directory records are separate datasets. This map does not show live loot or server state.'},
   {id:'world',path:'/map/world/',name:'World',label:'Districts & city reference',width:1200,height:594,coordinateOrigin:'top-left',version:'Kefir world-map screenshot · pre-release reference',checkedAt,source:'https://store.steampowered.com/news/app/4262460/view/717917092255368502',title:'ROB RUN World Map: Districts & Looty Bay',description:'Explore ROB RUN world-map districts by level, locate Looty Bay and open related location references. A static map reference, without live plot ownership.',note:'Pins locate the labelled district areas on the reference screenshot; they do not mark exact settlement boundaries or available plots. The world image is a pre-release reference and does not show current ownership.'},
   ...regionalConfigs,
+  settlementDefinition,
 ]);
 write('src/data/record-point-links.json',{
   checkedAt, policy:'No one-to-one point match is asserted between independent datasets.',
@@ -183,12 +203,14 @@ const sources={
   note:'Original game-map imagery for an independent game reference. Community archives identify the imagery as the in-game map and the world screenshot. Source records describe provenance, not a license grant. The viewer, controls, labels and directory integration are independently implemented; no competitor viewer, watermark or site code is copied.',
   images:imageMetadata,
   coordinateData:{source:'https://robrunwiki.net/assets/map-spots.json',build:raw.build,count:originalPointCount,correction:'Preserved 243 source place indices of -1 as unassigned; the old importer incorrectly mapped them to the last place. Stable point IDs derive from source build, coordinates, type index and place index; duplicate source rows use occurrence suffixes.'},
-  serviceMarkers:{source:'https://robrunwiki.net/map/',count:spots.length-originalPointCount,note:'Separately sourced named service/event references from public map markup, not a one-to-one extension of the object snapshot. Counts describe references, not guaranteed unique in-game objects.'},
+  serviceMarkers:{source:'https://robrunwiki.net/map/',count:cityServiceCount,note:'Separately sourced named service/event references from public map markup, not a one-to-one extension of the object snapshot. Counts describe references, not guaranteed unique in-game objects.'},
+  cottageNumbering:{source:cottageCrosswalk.source,method:cottageCrosswalk.method,matches:cottageCrosswalk.matches},
+  settlement:{source:settlement.source,crossCheckSource:settlement.crossCheckSource,clientBuild:settlement.clientBuild,sourceDate:settlement.sourceDate,plots:settlement.plots.length,plotSets:settlement.plotSets.length,residentEntranceGroups:settlement.entranceGroups.length,note:'Numeric reference facts only. The coordinate diagram is drawn independently. Source numbering may differ from in-game numbering; active set and ownership are not supplied.'},
   regionalMarkers:{source:'https://robrunwiki.net/map/',maps:regionalConfigs.map(c=>({id:c.id,count:places.filter(p=>p.mapId===c.id).length,width:c.width,height:c.height})),note:'Only name, type, source identifier and coordinates are used. The viewer and text are independently implemented.'},
   records:{source:'https://robrunwiki.com/en/data/',count:records.length,version:'0.7.0',relation:'Explicit building-level links only; no invented individual-point correspondence.'},
   world:{source:'https://store.steampowered.com/news/app/4262460/view/717917092255368502',method:'Independently placed region-reference pins at visible district labels on the 1200×594 world screenshot. No live ownership or settlement pins.'},
 };
 write('assets/maps/sources.json',sources);
-const audit={checkedAt,sourceBuild:raw.build,points:spots.length,originalObjectPoints:originalPointCount,serviceMarkers:spots.length-originalPointCount,coincidentSourceRows:originalPointCount-occurrences.size,unassignedObjectPoints:spots.slice(0,originalPointCount).filter(p=>!p.placeId).length,cityPlaces:places.filter(p=>p.mapId==='looty-bay').length,buildingLinkedPlaces:places.filter(p=>p.recordIds.length).length,matchedBuildingRecords:places.reduce((a,p)=>a+p.recordIds.length,0),unmatchedNumberedCottages:places.filter(p=>p.recordMatch==='unmatched-numbering').map(p=>p.name),pointIdsUnique:new Set(spots.map(p=>p.id)).size===spots.length,individualRecordPointLinks:0,worldPlaces:world.length,regionalMaps:regionalConfigs.map(c=>({id:c.id,markers:places.filter(p=>p.mapId===c.id).length}))};
+const audit={checkedAt,sourceBuild:raw.build,points:spots.length,cityPoints:spots.filter(p=>p.mapId==='looty-bay').length,originalObjectPoints:originalPointCount,serviceMarkers:cityServiceCount,coincidentSourceRows:originalPointCount-occurrences.size,unassignedObjectPoints:spots.slice(0,originalPointCount).filter(p=>!p.placeId).length,cityPlaces:places.filter(p=>p.mapId==='looty-bay').length,buildingLinkedPlaces:places.filter(p=>p.recordIds.length).length,matchedBuildingRecords:places.reduce((a,p)=>a+p.recordIds.length,0),unmatchedNumberedCottages:places.filter(p=>p.recordMatch==='unmatched-numbering').map(p=>p.name),pointIdsUnique:new Set(spots.map(p=>p.id)).size===spots.length,individualRecordPointLinks:0,worldPlaces:world.length,settlementPlaces:places.filter(p=>p.mapId==='settlements').length,regionalMaps:regionalConfigs.map(c=>({id:c.id,markers:places.filter(p=>p.mapId===c.id).length}))};
 write('docs/map-plan-2026-11-28/data-audit.json',audit);
 console.log(audit);

@@ -19,6 +19,10 @@ export interface MapPlace {
   recordMatch: string; source: string; checkedAt: string; profile: PlaceProfile | null;
   summary: string;
   referenceUrl?: string;
+  plotNumber?: number;
+  plotSets?: number[];
+  groundHeight?: number;
+  numberingSource?: string;
 }
 export interface MapPoint { id: string; mapId: string; type: string; placeId: string | null; u: number; v: number; name?: string; district?: string | null; source?: string; origin?: string; }
 export interface MapType { id: string; name: string; color: string; }

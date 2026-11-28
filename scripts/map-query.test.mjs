@@ -63,7 +63,7 @@ test('directory relationships remain at building level; every referenced record 
   const links=read('record-point-links.json');
   const records=new Set(read('map-points.json').map(r=>r.id));
   assert.deepEqual(links.directLinks,[]);
-  assert.equal(links.buildingLinks.length,25);
+  assert.equal(links.buildingLinks.length,28);
   assert.ok(links.buildingLinks.every(l=>l.recordIds.every(id=>records.has(id))));
   assert.equal(places.filter(p=>p.profile).length,4);
 });

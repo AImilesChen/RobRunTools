@@ -7,13 +7,14 @@ interface Props { definition: MapDefinition; imageUrl: string; }
 const { definition, imageUrl } = Astro.props;
 const places = mapPlaces.filter(place => place.mapId === definition.id);
 const points = mapPoints.filter(point => point.mapId === definition.id);
+const localTypes=mapTypes.filter(type=>points.some(point=>point.type===type.id));
 const districts = [...new Set(places.map(place => place.district))].sort();
-const groups = [
+const groups = definition.id==='settlements'?[{name:'Resident entrances',types:localTypes}]:[
   {name:'Services', types:mapTypes.filter(type => ['s-atm','s-parking','s-fence','s-cargo-exchange'].includes(type.id))},
   {name:'Loot & containers', types:mapTypes.filter(type => !['s-camera','s-alarm','s-metal_detector','s-door','s-atm','s-parking','s-fence','s-cargo-exchange','s-conquest','s-cargo-event'].includes(type.id))},
   {name:'Security & access', types:mapTypes.filter(type => ['s-camera','s-alarm','s-metal_detector','s-door'].includes(type.id))},
   {name:'Clans & events', types:mapTypes.filter(type => ['s-conquest','s-cargo-event'].includes(type.id))},
-];
+].map(group=>({...group,types:group.types.filter(type=>localTypes.some(local=>local.id===type.id))})).filter(group=>group.types.length);
 ---
 
 <section class="map-explorer" data-map-explorer data-map-id={definition.id} data-map-image={imageUrl} aria-label={`${definition.name} interactive map`}>
@@ -25,7 +26,7 @@ const groups = [
   <div class="map-workspace" data-mobile-panel="closed">
     <aside class="map-filters" aria-labelledby="map-filter-title" data-map-filters>
       <div class="map-panel-head"><h2 id="map-filter-title">Find a location</h2><button type="button" class="map-icon-button map-mobile-only" data-close-panel aria-label="Close filters">×</button></div>
-      <form class="map-search" data-map-search role="search"><label for="map-search">Search the map</label><div class="map-search-field"><input type="search" id="map-search" maxlength="120" placeholder={points.length ? 'Bank, safe, camera…' : 'District or city…'} autocomplete="off" data-map-query /><button type="submit" aria-label="Find on map"><HomeIcon name="search" size={19} /></button></div><button type="button" class="map-text-button" data-clear-query hidden>Clear search</button></form>
+      <form class="map-search" data-map-search role="search"><label for="map-search">Search the map</label><div class="map-search-field"><input type="search" id="map-search" maxlength="120" placeholder={definition.id==='settlements'?'Plot 12, parking, entrance…':points.length ? 'Bank, safe, camera…' : 'District or city…'} autocomplete="off" data-map-query /><button type="submit" aria-label="Find on map"><HomeIcon name="search" size={19} /></button></div><button type="button" class="map-text-button" data-clear-query hidden>Clear search</button></form>
       <label class="map-field" for="map-district"><span>{definition.id === 'world' ? 'District level' : definition.id==='looty-bay'?'City district':'Place type'}</span><select id="map-district" data-map-district><option value="">{definition.id === 'world' ? 'All levels & destinations' : definition.id==='looty-bay'?'All districts':'All place types'}</option>{districts.map(district=><option value={district}>{district}</option>)}</select></label>
       {points.length > 0 && <div class="map-type-groups"><div class="map-filter-title"><h3>Point layers</h3><span><button type="button" data-types-all>All</button><button type="button" data-types-none>None</button></span></div>{groups.map(group => <details open><summary>{group.name}</summary><div class="map-type-list">{group.types.map(type => <div class="map-type-row"><input type="checkbox" id={`map-type-${type.id}`} name="map-type" value={type.id} checked aria-label={type.name}/><span class="map-type-dot" style={`--point-color:${type.color}`}></span><label for={`map-type-${type.id}`}>{type.name}</label><small>{points.filter(point => point.type===type.id).length}</small><button type="button" data-type-only={type.id} aria-label={`Show only ${type.name}`}>Only</button></div>)}</div></details>)}</div>}
       <div class="map-filter-footer"><button type="button" class="map-secondary-button" data-clear-filters>Clear filters</button><p>{definition.id==='looty-bay'?'Markers locate recorded building areas and objects. Zoom in to inspect details.':definition.id==='world'?'Pins identify labelled district areas, not live ownership.':'Markers identify named layout references, not live availability.'}</p><button type="button" class="map-primary-button map-mobile-only" data-apply-filters>Show results</button></div>

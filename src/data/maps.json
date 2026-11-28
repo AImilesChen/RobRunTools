@@ -79,5 +79,20 @@
     "version": "Community layout reference",
     "checkedAt": "2026-11-28",
     "source": "https://robrunwiki.net/map/"
+  },
+  {
+    "id": "settlements",
+    "path": "/map/settlements/",
+    "name": "Settlements",
+    "label": "Candidate plots · layout A",
+    "width": 1218,
+    "height": 1218,
+    "coordinateOrigin": "top-left",
+    "version": "Layout A · community game-data reference · client build 4052",
+    "checkedAt": "2026-11-28",
+    "source": "https://robrunwikijp.com/en/places/settlement-a/",
+    "title": "ROB RUN Settlement Map: Plot Layout A & Entrances",
+    "description": "Explore 31 candidate plot footprints, resident entrance groups and services in ROB RUN settlement layout A. Compare 15 source plot sets and keep personal notes.",
+    "note": "An independently drawn coordinate diagram of layout A. Roads, terrain and other layouts are not depicted. The 31 positions are candidate plots, not 31 available plots. Reference numbering follows source order and may differ from in-game labels. Ownership and the active set must be checked in your game."
   }
 ]

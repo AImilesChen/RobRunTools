@@ -1,0 +1,90 @@
+{
+  "source": "https://robrunwiki.com/en/map/",
+  "data": "https://robrunwiki.com/en/map/city-data.json",
+  "target": "https://robrunwiki.net/map/",
+  "method": "Axis calibration from four separately named non-cottage landmarks; mapping retained at building level.",
+  "transform": {
+    "sx": 0.3228677710664906,
+    "ox": -5.746468871748675,
+    "sy": 0.32210038693145127,
+    "oy": -52.81553601255297
+  },
+  "controls": [
+    {
+      "sourceId": "looty-bay-bank",
+      "targetId": "looty-bay-bank",
+      "residualPx": 1.06
+    },
+    {
+      "sourceId": "grand-hotel",
+      "targetId": "grand-hotel",
+      "residualPx": 0.856
+    },
+    {
+      "sourceId": "luxury-cottage",
+      "targetId": "elite-cottage",
+      "residualPx": 1.16
+    },
+    {
+      "sourceId": "aristocrats-mansion",
+      "targetId": "noble-mansion",
+      "residualPx": 0.464
+    }
+  ],
+  "matches": [
+    {
+      "placeId": "loraine-house-ne",
+      "number": 3,
+      "sourcePosition": [
+        1357.7,
+        653.3
+      ],
+      "projectedPosition": [
+        432.611,
+        157.613
+      ],
+      "existingPosition": [
+        435.0,
+        158.0
+      ],
+      "residualPx": 2.42,
+      "key": "Keycard Cottage No. 3"
+    },
+    {
+      "placeId": "loraine-house-se",
+      "number": 4,
+      "sourcePosition": [
+        1330.9,
+        875.4
+      ],
+      "projectedPosition": [
+        423.958,
+        229.151
+      ],
+      "existingPosition": [
+        424.0,
+        226.0
+      ],
+      "residualPx": 3.151,
+      "key": "Safe Key Cottage No. 4"
+    },
+    {
+      "placeId": "cottage",
+      "number": 5,
+      "sourcePosition": [
+        1185.4,
+        841.3
+      ],
+      "projectedPosition": [
+        376.981,
+        218.168
+      ],
+      "existingPosition": [
+        377.0,
+        220.0
+      ],
+      "residualPx": 1.833,
+      "key": "Room Key Cottage No. 5"
+    }
+  ]
+}

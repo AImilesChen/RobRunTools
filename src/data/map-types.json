@@ -123,5 +123,10 @@
     "id": "s-cargo-event",
     "name": "Cargo event",
     "color": "#f4a67e"
+  },
+  {
+    "id": "settlement-resident-entrance",
+    "name": "Resident entrance group",
+    "color": "#8fd6e8"
   }
 ]
