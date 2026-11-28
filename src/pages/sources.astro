@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { officialGamePage, officialSteamPage } from '../lib/game-media.mjs';
 import itemArt from '../../assets/item-icons/sources.json';
+import supplementalArt from '../../assets/item-icons/supplemental.json';
 
 const sources = [
   { name: 'ROB RUN — Kefir', url: officialGamePage, note: 'The developer’s overview and creator program.' },
@@ -16,6 +17,15 @@ const artSources = [
   { name: 'ROB RUN Wiki Japan', url: 'https://robrunwikijp.com/' },
   { name: 'ROB RUN Wiki on robrun.pro', url: 'https://robrun.pro/' },
 ].filter(source => Object.values(itemArt).some(art => art.source.startsWith(source.url)));
+const supplementalSources = [
+  { name: 'ROB RUN Calc · in-game tattoo screenshots', url: 'https://robruncalc.com/en/tattoos/' },
+  { name: 'ROB RUN Wiki · vehicle and Authority screenshots', url: 'https://robrun-wiki.ru/en/shop/' },
+  { name: 'Rob Run Guide · vehicle images', url: 'https://robrunguide.app/en-US/vehicles' },
+  { name: 'Rob Run Romania · Arsenal', url: 'https://robrun.ro/en/iteme' },
+  { name: 'ROB RUN Game · Steam Community screenshots', url: 'https://robrungame.app/guides/rob-run-bank-heist/' },
+  { name: 'ROB RUN Wiki on robrun.pro · workbench images', url: 'https://robrun.pro/en/guides/set_furniture' },
+  { name: 'MetaForge · Larry’s Shipments', url: 'https://metaforge.app/rob-run/shipments' },
+].filter(source => Object.values(supplementalArt).some(art => new URL(art.reference).host === new URL(source.url).host));
 ---
 
 <BaseLayout title="Sources — ROB RUN Companion" description="The data sources behind ROB RUN Companion, with attribution.">
@@ -41,9 +51,9 @@ const artSources = [
         </div>
         <section class="src-item" id="item-art">
           <h2 class="src-name">Catalog Image Sources</h2>
-          <p class="src-note">Game item icons © Kefir. Images were matched to game item IDs using these community archives.</p>
+          <p class="src-note">Game icons and screenshots © Kefir. Images were matched to catalog entries using these community archives and in-game references.</p>
           <ul class="src-note">
-            {artSources.map(source => <li><a href={source.url}>{source.name}</a></li>)}
+            {[...artSources, ...supplementalSources].map(source => <li><a href={source.url}>{source.name}</a></li>)}
           </ul>
         </section>
         <p class="src-foot">

@@ -1,0 +1,266 @@
+{
+  "car_parts_parts_1": {
+    "source": "https://robrunwikijp.com/img/items/car_parts_1.webp",
+    "width": 117,
+    "height": 102,
+    "reference": "https://robrunwikijp.com/en/items/car_parts_1/"
+  },
+  "car_parts_parts_2": {
+    "source": "https://robrunwikijp.com/img/items/car_parts_2.webp",
+    "width": 160,
+    "height": 124,
+    "reference": "https://robrunwikijp.com/en/items/car_parts_2/"
+  },
+  "car_parts_parts_3": {
+    "source": "https://robrunwikijp.com/img/items/car_parts_3.webp",
+    "width": 232,
+    "height": 124,
+    "reference": "https://robrunwikijp.com/en/items/car_parts_3/"
+  },
+  "car_parts_parts_4": {
+    "source": "https://robrunwikijp.com/img/items/car_parts_4.webp",
+    "width": 48,
+    "height": 121,
+    "reference": "https://robrunwikijp.com/en/items/car_parts_4/"
+  },
+  "car_parts_parts_5": {
+    "source": "https://robrunwikijp.com/img/items/car_parts_5.webp",
+    "width": 124,
+    "height": 186,
+    "reference": "https://robrunwikijp.com/en/items/car_parts_5/"
+  },
+  "car_parts_parts_6": {
+    "source": "https://robrunwikijp.com/img/items/car_parts_6.webp",
+    "width": 128,
+    "height": 101,
+    "reference": "https://robrunwikijp.com/en/items/car_parts_6/"
+  },
+  "car_parts_parts_7": {
+    "source": "https://robrunwikijp.com/img/items/car_parts_7.webp",
+    "width": 203,
+    "height": 128,
+    "reference": "https://robrunwikijp.com/en/items/car_parts_7/"
+  },
+  "car_parts_parts_8": {
+    "source": "https://robrunwikijp.com/img/items/car_parts_8.webp",
+    "width": 220,
+    "height": 128,
+    "reference": "https://robrunwikijp.com/en/items/car_parts_8/"
+  },
+  "cash_loot": {
+    "source": "https://robrungame.app/_astro/sc-bank-cash-pile.CJP5LRK5_Z12AFSu.jpg",
+    "width": 1056,
+    "height": 616,
+    "reference": "https://robrungame.app/guides/rob-run-bank-heist/"
+  },
+  "cop_salary_box": {
+    "source": "https://robrungame.app/_astro/sc-confiscated-goods.C7Fu7jV4_Z1cLtai.jpg",
+    "width": 1344,
+    "height": 875,
+    "reference": "https://robrungame.app/guides/rob-run-keys/"
+  },
+  "item_cargo_production_workbench_upgrade_converter_1": {
+    "source": "https://robrunwikijp.com/img/items/cargo_production_workbench_upgrade_converter_1.webp",
+    "width": 207,
+    "height": 199,
+    "reference": "https://robrunwikijp.com/en/items/cargo_production_workbench_upgrade_converter_1/"
+  },
+  "item_cargo_production_workbench_upgrade_engine_1": {
+    "source": "https://robrunwikijp.com/img/items/cargo_production_workbench_upgrade_engine_1.webp",
+    "width": 215,
+    "height": 152,
+    "reference": "https://robrunwikijp.com/en/items/cargo_production_workbench_upgrade_engine_1/"
+  },
+  "item_cargo_production_workbench_upgrade_thermometer_1": {
+    "source": "https://robrunwikijp.com/img/items/cargo_production_workbench_upgrade_thermometer_1.webp",
+    "width": 210,
+    "height": 180,
+    "reference": "https://robrunwikijp.com/en/items/cargo_production_workbench_upgrade_thermometer_1/"
+  },
+  "police_car": {
+    "source": "https://assets.robrunguide.app/assets/0682b43473e23918727bd42fb470751c937ebf4b23116c7b4ec775c0f8d1341e.webp",
+    "width": 232,
+    "height": 231,
+    "reference": "https://robrunguide.app/en-US/vehicles"
+  },
+  "safe_bank_deposit_box": {
+    "source": "https://robrungame.app/_astro/sc-bank-deposit-boxes.HPf6ofQm_Z1tITJt.jpg",
+    "width": 1400,
+    "height": 525,
+    "reference": "https://robrungame.app/guides/rob-run-bank-heist/"
+  },
+  "safe_door_target": {
+    "source": "https://robrungame.app/_astro/sc-bank-vault-door.cMioUi3b_1ivPoN.jpg",
+    "width": 1203,
+    "height": 677,
+    "reference": "https://robrungame.app/guides/rob-run-bank-heist/"
+  },
+  "skill_cargo_exchange_workbench_0": {
+    "source": "https://robrun.pro/icons/cargo_exchange_workbench_1.webp",
+    "width": 222,
+    "height": 212,
+    "reference": "https://robrun.pro/en/guides/set_furniture"
+  },
+  "skill_cargo_open_workbench_0": {
+    "source": "https://robrun.pro/icons/cargo_open_workbench_1.webp",
+    "width": 222,
+    "height": 212,
+    "reference": "https://robrun.pro/en/guides/set_furniture"
+  },
+  "tattoo_set_0": {
+    "source": "https://robrun-wiki.ru/uploads/s000.webp",
+    "width": 1000,
+    "height": 562,
+    "reference": "https://robrun-wiki.ru/en/shop/#s3"
+  },
+  "tattoo_set_0_grade_1": {
+    "source": "https://robruncalc.com/img/tattoos/12.webp",
+    "width": 142,
+    "height": 128,
+    "reference": "https://robruncalc.com/en/tattoos/"
+  },
+  "tattoo_set_0_grade_10": {
+    "source": "https://robruncalc.com/img/tattoos/10.webp",
+    "width": 142,
+    "height": 128,
+    "reference": "https://robruncalc.com/en/tattoos/"
+  },
+  "tattoo_set_0_grade_11": {
+    "source": "https://robruncalc.com/img/tattoos/09.webp",
+    "width": 142,
+    "height": 128,
+    "reference": "https://robruncalc.com/en/tattoos/"
+  },
+  "tattoo_set_0_grade_12": {
+    "source": "https://robruncalc.com/img/tattoos/11.webp",
+    "width": 142,
+    "height": 128,
+    "reference": "https://robruncalc.com/en/tattoos/"
+  },
+  "tattoo_set_0_grade_13": {
+    "source": "https://robruncalc.com/img/tattoos/01.webp",
+    "width": 142,
+    "height": 128,
+    "reference": "https://robruncalc.com/en/tattoos/"
+  },
+  "tattoo_set_0_grade_14": {
+    "source": "https://robruncalc.com/img/tattoos/14.webp",
+    "width": 142,
+    "height": 128,
+    "reference": "https://robruncalc.com/en/tattoos/"
+  },
+  "tattoo_set_0_grade_16": {
+    "source": "https://robruncalc.com/img/tattoos/15.webp",
+    "width": 142,
+    "height": 128,
+    "reference": "https://robruncalc.com/en/tattoos/"
+  },
+  "tattoo_set_0_grade_17": {
+    "source": "https://robruncalc.com/img/tattoos/16.webp",
+    "width": 142,
+    "height": 128,
+    "reference": "https://robruncalc.com/en/tattoos/"
+  },
+  "tattoo_set_0_grade_18": {
+    "source": "https://robruncalc.com/img/tattoos/13.webp",
+    "width": 142,
+    "height": 128,
+    "reference": "https://robruncalc.com/en/tattoos/"
+  },
+  "tattoo_set_0_grade_19": {
+    "source": "https://robruncalc.com/img/tattoos/19.webp",
+    "width": 142,
+    "height": 128,
+    "reference": "https://robruncalc.com/en/tattoos/"
+  },
+  "tattoo_set_0_grade_2": {
+    "source": "https://robruncalc.com/img/tattoos/02.webp",
+    "width": 142,
+    "height": 128,
+    "reference": "https://robruncalc.com/en/tattoos/"
+  },
+  "tattoo_set_0_grade_20": {
+    "source": "https://robruncalc.com/img/tattoos/18.webp",
+    "width": 142,
+    "height": 128,
+    "reference": "https://robruncalc.com/en/tattoos/"
+  },
+  "tattoo_set_0_grade_21": {
+    "source": "https://robruncalc.com/img/tattoos/17.webp",
+    "width": 142,
+    "height": 128,
+    "reference": "https://robruncalc.com/en/tattoos/"
+  },
+  "tattoo_set_0_grade_23": {
+    "source": "https://robruncalc.com/img/tattoos/20.webp",
+    "width": 142,
+    "height": 128,
+    "reference": "https://robruncalc.com/en/tattoos/"
+  },
+  "tattoo_set_0_grade_24": {
+    "source": "https://robruncalc.com/img/tattoos/21.webp",
+    "width": 142,
+    "height": 128,
+    "reference": "https://robruncalc.com/en/tattoos/"
+  },
+  "tattoo_set_0_grade_25": {
+    "source": "https://robruncalc.com/img/tattoos/22.webp",
+    "width": 142,
+    "height": 128,
+    "reference": "https://robruncalc.com/en/tattoos/"
+  },
+  "tattoo_set_0_grade_26": {
+    "source": "https://robruncalc.com/img/tattoos/23.webp",
+    "width": 142,
+    "height": 128,
+    "reference": "https://robruncalc.com/en/tattoos/"
+  },
+  "tattoo_set_0_grade_3": {
+    "source": "https://robruncalc.com/img/tattoos/03.webp",
+    "width": 142,
+    "height": 128,
+    "reference": "https://robruncalc.com/en/tattoos/"
+  },
+  "tattoo_set_0_grade_4": {
+    "source": "https://robruncalc.com/img/tattoos/04.webp",
+    "width": 142,
+    "height": 128,
+    "reference": "https://robruncalc.com/en/tattoos/"
+  },
+  "tattoo_set_0_grade_5": {
+    "source": "https://robruncalc.com/img/tattoos/08.webp",
+    "width": 142,
+    "height": 128,
+    "reference": "https://robruncalc.com/en/tattoos/"
+  },
+  "tattoo_set_0_grade_7": {
+    "source": "https://robruncalc.com/img/tattoos/06.webp",
+    "width": 142,
+    "height": 128,
+    "reference": "https://robruncalc.com/en/tattoos/"
+  },
+  "tattoo_set_0_grade_8": {
+    "source": "https://robruncalc.com/img/tattoos/07.webp",
+    "width": 142,
+    "height": 128,
+    "reference": "https://robruncalc.com/en/tattoos/"
+  },
+  "tattoo_set_0_grade_9": {
+    "source": "https://robruncalc.com/img/tattoos/05.webp",
+    "width": 142,
+    "height": 128,
+    "reference": "https://robruncalc.com/en/tattoos/"
+  },
+  "vendor_card": {
+    "source": "https://static.metaforge.app/rob-run/shipments/larry.webp",
+    "width": 465,
+    "height": 511,
+    "reference": "https://metaforge.app/rob-run/shipments"
+  },
+  "watchtower_1": {
+    "source": "https://robrunwikijp.com/img/items/car_lift_1.webp",
+    "width": 219,
+    "height": 173,
+    "reference": "https://robrunwikijp.com/en/items/car_lift_1/"
+  }
+}

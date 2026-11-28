@@ -5,7 +5,7 @@ import { priceRange } from '../../lib/item-value';
 import weapons from '../../data/weapons.json';
 import ItemPicture from '../../components/ItemPicture.astro';
 import CatalogItemCard from '../../components/CatalogItemCard.astro';
-import { catalogItems, itemRarities } from '../../lib/catalog-items';
+import { catalogItemArt, catalogItems, itemRarities } from '../../lib/catalog-items';
 import '../../styles/catalog-items.css';
 
 type Item = (typeof items)[number];
@@ -33,6 +33,7 @@ const color = item.rarity ? rarityColor[item.rarity] : '#8A8F98';
 const hasPrice = item.priceMin !== null || item.priceMax !== null;
 const lootUrl = `/tools/loot-calculator/?item=${encodeURIComponent(item.id)}`;
 const categoryUrl = '/items/category/' + item.category + '/';
+const imageReference = catalogItemArt(item)?.reference;
 const relatedItems = catalogItems.filter(candidate => candidate.category === item.category && candidate.name !== item.name).slice(0, 4);
 ---
 
@@ -87,6 +88,7 @@ const relatedItems = catalogItems.filter(candidate => candidate.category === ite
         <p class="source-line">
           Source: <a href={item.url}>ROB RUN Wiki community record</a>. Listed prices can change with Early Access updates.
         </p>
+        {imageReference && <p class="source-line">Game image © Kefir. <a href={imageReference}>View image source ↗</a></p>}
         <p class="source-line muted">Unofficial fan site · not affiliated with Kefir.</p>
       </section>
       {relatedItems.length > 0 && (
