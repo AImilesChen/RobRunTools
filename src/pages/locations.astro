@@ -1,200 +1,107 @@
 ---
+import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import HomeIcon from '../components/HomeIcon.astro';
+import RegionDirectory from '../components/RegionDirectory.astro';
+import { locationRegions, regionalPlaces } from '../lib/location-regions';
+import hero from '../../assets/locations/city-gameplay.jpg';
+import terrain from '../../assets/locations/world.webp';
+import { officialSteamPage } from '../lib/game-media.mjs';
 import { locationRecords } from '../lib/location-records';
-
-const districts = [...new Set(locationRecords.map(record => record.district))].sort();
-const types = [...new Set(locationRecords.map(record => record.type))].sort();
+import { locationDistricts, locationGroups, locationTypes } from '../lib/location-directory';
+import { buildingPhotos, buildingIllustration, buildingAnchor, districtStories, residentialItems, featuredStories } from '../lib/location-visuals';
+import '../styles/locations.css';
+const cityMap = 'https://robrunwiki.com/en/map/';
+const number = new Intl.NumberFormat('en-US');
+const examples = ['Looty Bay Bank', 'Lenny’s Motel', 'Prison', 'ATMs'];
+const buildingCount = locationGroups.filter(group => group.sourceName).length;
+const unassignedCount = locationGroups.filter(group => !group.sourceName).reduce((sum, group) => sum + group.records.length, 0);
+const locationLink = (params: Record<string, string>) => {
+  const search = new URLSearchParams(params).toString();
+  return '/locations/' + (search ? '?' + search : '') + '#location-results';
+};
+const recordTone = (type: string) => {
+  if (type === 'Cash withdrawal' || type === 'Cash node') return 'cash';
+  if (type === 'Container' || type === 'Cargo container') return 'storage';
+  if (type === 'Access point' || type === 'Charger') return 'access';
+  return 'loot';
+};
 ---
-
-<BaseLayout title="ROB RUN Locations — Looty Bay Directory" description="Browse community location records from Looty Bay by name, district and type.">
-  <main>
-    <section class="page-hero">
-      <span class="watermark" aria-hidden="true">LOCATIONS</span>
-      <div class="container">
-        <p class="eyebrow">// LOOTY BAY DIRECTORY</p>
-        <h1 class="page-title">Locations</h1>
-        <p class="page-sub">Browse community location records by name, district or type. <a href="/sources">Data sources</a></p>
-        <div class="toolbar">
-          <input id="search" type="search" aria-label="Search location names" class="toolbar-search" placeholder="Search location names…" />
-          <select id="district" class="toolbar-select" aria-label="District">
-            <option value="">All districts</option>
-            {districts.map((d) => <option value={d}>{d}</option>)}
-          </select>
-          <select id="type" class="toolbar-select" aria-label="Location type">
-            <option value="">All types</option>
-            {types.map((t) => <option value={t}>{t}</option>)}
-          </select>
-        </div>
-        <p class="loc-count" id="count" role="status">{locationRecords.length} location records</p>
+<BaseLayout title="ROB RUN Locations: Looty Bay, Motel, Prison & Settlements" description="Find ROB RUN locations across Looty Bay, Lenny’s Motel, Prison, Settlements and Sales Center. Search city point records and regional place guides with community maps.">
+  <main class="location-page">
+    <section class="location-hero" aria-labelledby="location-title">
+      <Image class="location-hero-image" src={hero} widths={[720, 1200, 1560]} sizes="100vw" alt="ROB RUN gameplay in Looty Bay" loading="eager" fetchpriority="high" />
+      <span class="watermark location-watermark" aria-hidden="true">LOOTY BAY</span>
+      <div class="container location-hero-content">
+        <nav class="location-breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><span>Locations</span></nav>
+        <p class="eyebrow">FIELD GUIDE / CITY & BEYOND</p>
+        <h1 id="location-title">ROB RUN<br /><span>LOCATIONS</span></h1>
+        <p class="location-lead">Find your next stop. Explore Looty Bay’s buildings and point records, or head beyond the city to the motel, prison, settlements and Sales Center.</p>
+        <form id="location-search" class="location-search" action="/locations/#location-results" method="get" role="search" aria-label="Find a ROB RUN location">
+          <label class="location-search-input" for="location-query"><HomeIcon name="search" /><span class="sr-only">Search by building or point name</span><input id="location-query" name="q" type="search" placeholder="Bank, motel, prison, ATMs…" autocomplete="off" maxlength="100" data-primary-search /></label>
+          <button class="btn" type="submit">Find location <HomeIcon name="arrow" size={17} /></button>
+        </form>
+        <div class="location-examples"><span>Quick lookups</span>{examples.map(query => <a href={locationLink({ q: query })} data-location-example={query}>{query}<HomeIcon name="arrow" size={13} /></a>)}</div>
+        <noscript><p>Search needs JavaScript. All buildings and records are available below.</p></noscript>
+        <div class="location-hero-bottom"><p><strong>{locationRegions.length}</strong> areas <span>/</span> <strong>{locationDistricts.length}</strong> city districts <span>/</span> <strong>{buildingCount}</strong> buildings <span>/</span> <strong>{number.format(locationRecords.length)}</strong> point records</p><a href={officialSteamPage}>Gameplay © Kefir <HomeIcon name="external" size={13} /></a></div>
       </div>
     </section>
-
-    <section class="loc-section">
-      <div class="container">
-        <div class="loc-grid" id="grid">
-          {locationRecords.map((p) => (
-            <details id={`record-${p.id}`} class="loc-item" data-name={p.name.toLowerCase()} data-district={p.district} data-type={p.type}>
-              <summary>
-                <span class="loc-name">{p.name}</span>
-                <span class="loc-meta">{p.type} · {p.district}</span>
-              </summary>
-              <dl>
-                <dt>Building in source</dt><dd lang={p.building ? 'ru' : undefined}>{p.building || 'Unknown'}</dd>
-                <dt>Recorded loot entries</dt><dd>{p.lootEntries ?? 'Unknown'}</dd>
-              </dl>
-              <a href={p.url}>View community source</a>
-            </details>
-          ))}
-        </div>
-        <div id="locations-empty" hidden>
-          <p>No location records match these filters.</p>
-          <button id="clear-location-filters" class="btn btn-dark" type="button">Clear filters</button>
+    <nav class="container location-region-nav" aria-label="Location areas">
+      <span>Explore an area</span>
+      <div><a href={locationLink({})} data-region-link="" aria-current="true">All areas</a>{locationRegions.map(region => <a href={locationLink({ region: region.id })} data-region-link={region.id}>{region.name}</a>)}</div>
+    </nav>
+    <section class="container location-districts" aria-labelledby="location-district-title">
+      <div class="location-section-head"><div><p class="location-kicker">01 / GET YOUR BEARINGS</p><h2 id="location-district-title">Looty Bay’s four districts.</h2></div><a class="location-text-link" href="#location-results">Browse all places <HomeIcon name="arrow" size={17} /></a></div>
+      <ul class="district-list">{locationDistricts.map(({ name, count }) => {
+        const story = districtStories[name as keyof typeof districtStories];
+        const namedCount = locationGroups.filter(group => group.district === name && group.sourceName).length;
+        return <li><a class="district-card" data-district-link={name} href={locationLink({ district: name })}>
+          <span class="district-visual">{story.photo ? <Image src={story.photo.image} width={560} alt={story.photo.alt} loading="lazy" /> : <span class="residential-art">{residentialItems.map(item => <Image src={item.image} width={120} alt={item.name} loading="lazy" />)}</span>}<span class="district-code">{story.code} / {String(namedCount).padStart(2, '0')} BUILDINGS</span><small class="district-image-label">{story.photo ? story.photo.caption : 'Residential loot · item artwork'}</small></span>
+          <span class="district-copy"><strong>{name}</strong><span>{story.title}</span><small>{story.buildings}</small><span class="district-action">{count} records <HomeIcon name="arrow" size={18} /></span></span>
+        </a></li>;
+      })}</ul>
+      <p class="location-source-line">Game artwork © Kefir. <a href="#location-image-credits">Image credits</a> · Record counts describe this directory, not guaranteed loot.</p>
+    </section>
+    <section class="container location-featured" aria-labelledby="featured-title">
+      <div class="location-section-head"><div><p class="location-kicker">02 / TAKE A CLOSER LOOK</p><h2 id="featured-title">Start with a landmark.</h2></div><p>Three buildings to explore first.</p></div>
+      <div class="featured-grid">{featuredStories.map((story, index) => {
+        const group = locationGroups.find(group => group.name === story.name)!;
+        return <article class:list={['featured-card', { 'featured-card-main': index === 0 }]}>
+          <a class="featured-image" href={locationLink({ q: story.name })} data-building-link={buildingAnchor(group.name, group.district)} data-location-example={story.name}><Image src={story.image} width={index === 0 ? 900 : 480} alt={story.alt} loading="lazy" /><span>{story.caption}</span></a>
+          <div class="featured-copy"><p class="location-kicker">{story.eyebrow}</p><h3><a href={locationLink({ q: story.name })} data-building-link={buildingAnchor(group.name, group.district)} data-location-example={story.name}>{story.name}</a></h3><p>{story.description}</p><a class="location-text-link" href={locationLink({ q: story.name })} data-building-link={buildingAnchor(group.name, group.district)} data-location-example={story.name}>Explore {group.records.length} records <HomeIcon name="arrow" size={17} /></a></div>
+        </article>;
+      })}</div>
+    </section>
+    <section class="container location-results" id="location-results" aria-labelledby="location-results-title">
+      <div class="location-section-head"><div><p class="location-kicker">03 / THE COMPLETE DIRECTORY</p><h2 id="location-results-title" tabindex="-1">Buildings, places &amp; point records</h2></div><p id="location-count" role="status">{buildingCount} buildings · {number.format(locationRecords.length)} point records · {regionalPlaces.length} regional places</p></div>
+      <div class="location-results-layout">
+        <details class="location-filters" id="location-filters" open><summary>Filter locations <span id="location-filter-count" hidden></span></summary><div class="location-filter-fields"><label for="location-region">Area</label><select id="location-region" name="region" form="location-search"><option value="">All areas</option>{locationRegions.map(region => <option value={region.id}>{region.name}</option>)}</select><label for="location-district">City district</label><select id="location-district" name="district" form="location-search"><option value="">All districts</option>{locationDistricts.map(({ name }) => <option value={name}>{name}</option>)}</select><label for="location-type">Record type</label><select id="location-type" name="type" form="location-search"><option value="">All types</option>{locationTypes.map(type => <option value={type}>{type}</option>)}</select><p>City filters apply to Looty Bay records. Regional places include descriptions, references and dedicated map links.</p><a class="location-text-link" href={cityMap}>External city map <HomeIcon name="external" size={15} /></a></div></details>
+        <div class="location-result-body"><div class="location-active" id="location-active" hidden><span id="location-active-label"></span><button id="location-clear" type="button">Clear filters</button></div><p class="location-empty" id="location-empty" hidden>No matching places or point records. Try another name or clear the filters.</p>
+          <div id="location-buildings">{locationDistricts.map(({ name }) => {
+            const story = districtStories[name as keyof typeof districtStories];
+            return <section class="location-district-group" data-result-district={name} aria-label={name}><div class="directory-district-head"><span class="directory-code">{story.code}</span><div><h3>{name}</h3><p>{story.description} {story.alias}</p></div></div><div class="location-building-grid">{locationGroups.filter(group => group.district === name).map(group => {
+              const photo = buildingPhotos[group.name as keyof typeof buildingPhotos];
+              const illustration = buildingIllustration(group.name, !!group.sourceName, group.district);
+              return <details id={buildingAnchor(group.name, group.district)} class="location-building" data-district={group.district} data-named={group.sourceName ? '' : undefined}>
+                <summary class="location-building-summary has-visual">
+                  <span class:list={['directory-visual', { 'directory-visual-art': !photo }]}>
+                    <Image src={photo?.image ?? illustration.image} width={280} alt={photo?.alt ?? illustration.alt} loading="lazy" />
+                    <small>{photo ? 'Building reference' : illustration.label}</small>
+                  </span>
+                  <span class="location-building-overview"><span class="location-building-meta"><span class="location-building-district">{group.district}</span><span class="location-building-count"><strong data-group-count>{group.records.length}</strong> <span data-record-label>records</span></span></span><span class="location-building-name">{group.sourceName ? group.name : 'Other district points'}</span><span class="location-type-tags">{group.types.map(([type, count], index) => <span class="location-type-tag" data-tone={recordTone(type)} data-group-type={type} hidden={index >= 2}>{type} <b>{count}</b></span>)}</span><span class="location-disclosure"><span class="location-disclosure-open">View records</span><span class="location-disclosure-close">Hide records</span><HomeIcon name="arrow" size={16} /></span></span>
+                </summary>
+                {!group.sourceName && <p class="location-record-note">The source does not assign these points to a named building.</p>}
+                {photo && <p class="location-record-note"><a href={photo.source}>{photo.caption} · image source <HomeIcon name="external" size={13} /></a></p>}
+                <ul class="location-record-list">{group.records.map(record => <li class="location-record" data-record-type={record.type} data-search-text={record.searchText}><details id={'record-' + record.id} class="location-record-details"><summary><span>{record.name}</span><small data-tone={recordTone(record.type)}>{record.type}</small></summary><dl><dt>Building</dt><dd>{record.building ? group.name : 'Unspecified in source'}</dd><dt>Recorded loot entries</dt><dd>{record.lootEntries ?? 'Unknown'}</dd></dl><a class="location-text-link" href={record.url}>View community source <HomeIcon name="external" size={13} /></a></details></li>)}</ul>
+              </details>;
+            })}</div></section>;
+          })}</div>
+          <RegionDirectory />
         </div>
       </div>
     </section>
+    <section class="location-map-section" aria-labelledby="location-map-title"><div class="container location-map-grid"><figure class="location-map-preview"><Image src={terrain} width={1000} alt="ROB RUN world terrain showing the coastal city and the surrounding countryside" loading="lazy" /><figcaption>World terrain reference · game artwork via <a href="https://robrunbase.com/map">RobRun Base</a></figcaption></figure><div class="location-map-copy"><p class="location-kicker">04 / PUT IT ON THE MAP</p><h2 id="location-map-title">Found the building?<br />Find your bearings.</h2><p>Use the community city map to explore Looty Bay’s streets and landmarks. This directory’s records do not include coordinates.</p><a class="btn" href={cityMap}>Open community city map <HomeIcon name="external" size={18} /></a><p class="location-map-note">External map on ROB RUN Wiki. The image shows the wider world, not point locations.</p></div></div></section>
+    <section class="container location-guide" aria-labelledby="location-guide-title"><div class="location-section-head"><div><p class="location-kicker">05 / BEFORE YOU HEAD OUT</p><h2 id="location-guide-title">Read the directory with confidence.</h2></div></div><div class="location-guide-grid"><article><span>01</span><h3>Records aren’t rewards.</h3><p>A record is a point in the source data. Counts do not describe guaranteed drops, visit profits or the number of unique items.</p></article><article><span>02</span><h3>Some points stand alone.</h3><p>{unassignedCount} records have no named building. Find them under “Other district points” or search by point type.</p></article><article><span>03</span><h3>Check the source.</h3><p>Open an individual record for its community reference. City point data follows ROB RUN Wiki’s v0.7.0 dataset. Regional references show their own source and check date.</p><a class="location-text-link" href="/sources/">Data sources <HomeIcon name="arrow" size={16} /></a></article></div><nav class="location-guide-links" aria-label="Related ROB RUN resources"><a href="/items/">Browse item prices <HomeIcon name="arrow" size={16} /></a><a href="/guides/beginner-guide/">Beginner guide <HomeIcon name="arrow" size={16} /></a><a href="/contact/">Report a data error <HomeIcon name="arrow" size={16} /></a></nav><details class="location-image-credits" id="location-image-credits"><summary>Artwork &amp; image credits</summary><p>ROB RUN game artwork and gameplay © Kefir. Community references: <a href={officialSteamPage}>official Steam media</a>, <a href="https://robrunbase.com/places">RobRun Base building artwork</a>, <a href={buildingPhotos['Looty Bay Bank'].source}>bank vault gameplay</a> and <a href="https://robrunwiki.com/en/buildings/city_luxury_cottage/">residential item references</a>. The residential card uses item artwork, not a building photograph.</p></details></section>
   </main>
 </BaseLayout>
-
-<style>
-  .page-hero {
-    padding: 48px 0 40px;
-    border-bottom: 1px solid var(--border);
-    background: linear-gradient(90deg, rgba(20, 22, 27, 0.95) 0%, rgba(20, 22, 27, 0.5) 100%);
-  }
-  .page-title {
-    font-size: clamp(44px, 6vw, 72px);
-    margin: 12px 0 8px;
-  }
-  .page-sub {
-    color: var(--muted);
-    font-size: 17px;
-    margin: 0 0 20px;
-  }
-  .toolbar {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    align-items: center;
-  }
-  .toolbar-search {
-    flex: 1;
-    min-width: min(100%, 220px);
-    background: var(--input);
-    border: 1px solid var(--border);
-    color: var(--text);
-    padding: 12px 16px;
-    font-size: 15px;
-    font-family: var(--font-body);
-  }
-  .toolbar-search:focus {
-    outline: 1px solid var(--accent);
-  }
-  .toolbar-select {
-    background: var(--input);
-    border: 1px solid var(--border);
-    color: var(--text);
-    padding: 12px 14px;
-    font-size: 14px;
-    font-family: var(--font-body);
-    cursor: pointer;
-  }
-  .loc-count {
-    color: var(--muted);
-    font-size: 13px;
-    margin: 14px 0 0;
-  }
-
-  .loc-section {
-    padding: 32px 0 64px;
-  }
-  .loc-grid {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 12px;
-  }
-  .loc-item {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    padding: 14px 16px;
-    scroll-margin-block-start: 115px;
-    overflow-wrap: anywhere;
-  }
-  .loc-item:target { border-color: var(--accent); }
-  .loc-item summary { cursor: pointer; min-height: 44px; }
-  .loc-item dl { font-size: 14px; margin: 8px 0; }
-  .loc-item dd { margin: 0 0 5px; color: var(--muted); }
-  .loc-item a, .page-sub a { color: var(--accent); }
-  .loc-name {
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 1.3;
-  }
-  .loc-meta {
-    color: var(--muted);
-    font-size: 12px;
-    display: block;
-  }
-  @media (max-width: 1200px) {
-    .loc-grid {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-  }
-  @media (max-width: 900px) {
-    .loc-grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-  }
-  @media (max-width: 560px) {
-    .loc-grid {
-      grid-template-columns: 1fr;
-    }
-  }
-</style>
-
-<script>
-  const search = document.getElementById('search') as HTMLInputElement;
-  const districtSel = document.getElementById('district') as HTMLSelectElement;
-  const typeSel = document.getElementById('type') as HTMLSelectElement;
-  const grid = document.getElementById('grid') as HTMLElement;
-  const countEl = document.getElementById('count') as HTMLElement;
-  const empty = document.getElementById('locations-empty')!;
-  const items = Array.from(grid.querySelectorAll<HTMLElement>('.loc-item'));
-  const linkedDistrict = new URLSearchParams(location.search).get('district');
-  if (linkedDistrict && Array.from(districtSel.options).some(option => option.value === linkedDistrict)) {
-    districtSel.value = linkedDistrict;
-  }
-
-  function apply() {
-    const q = search.value.trim().toLowerCase();
-    const d = districtSel.value;
-    const t = typeSel.value;
-    let visible = 0;
-    for (const el of items) {
-      el.hidden = !(el.dataset.name?.includes(q) && (!d || el.dataset.district === d) && (!t || el.dataset.type === t));
-      if (!el.hidden) visible++;
-    }
-    empty.hidden = visible > 0;
-    countEl.textContent = `${visible} location ${visible === 1 ? 'record' : 'records'}`;
-  }
-
-  function clearFilters() {
-    search.value = districtSel.value = typeSel.value = '';
-    apply();
-  }
-
-  function revealRecord() {
-    const target = document.getElementById(location.hash.slice(1));
-    if (!(target instanceof HTMLDetailsElement) || !grid.contains(target)) return;
-    if (target.hidden) clearFilters();
-    target.open = true;
-    target.scrollIntoView({ block: 'start' });
-  }
-
-  search.addEventListener('input', apply);
-  districtSel.addEventListener('change', apply);
-  typeSel.addEventListener('change', apply);
-  document.getElementById('clear-location-filters')!.addEventListener('click', () => { clearFilters(); search.focus(); });
-  window.addEventListener('hashchange', revealRecord);
-  apply();
-  window.addEventListener('pageshow', () => { apply(); revealRecord(); });
-</script>
+<script>import '../lib/location-controls';</script>

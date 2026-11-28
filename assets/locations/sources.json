@@ -1,0 +1,33 @@
+{
+  "bank": {
+    "file": "bank.jpg",
+    "source": "https://robrungame.app/_astro/sc-bank-vault-door.cMioUi3b_1ivPoN.jpg",
+    "reference": "https://robrungame.app/guides/rob-run-bank-heist/",
+    "use": "Bank interior gameplay; not an exterior photograph"
+  },
+  "hotel": {
+    "file": "hotel.webp",
+    "source": "https://robrunbase.com/media/places/grand-hotel.webp",
+    "reference": "https://robrunbase.com/place/grand-hotel",
+    "use": "Grand Hotel building artwork"
+  },
+  "gallery": {
+    "file": "gallery.webp",
+    "source": "https://robrunbase.com/media/places/galeria-de-arte.webp",
+    "reference": "https://robrunbase.com/place/galeria-de-arte",
+    "use": "Art Gallery building artwork"
+  },
+  "world": {
+    "file": "world.webp",
+    "source": "https://robrunbase.com/assets/img/map/world-preview.webp",
+    "reference": "https://robrunbase.com/map",
+    "use": "World terrain reference, not a city point map"
+  },
+  "notes": "Game artwork copyright Kefir. This manifest records provenance, not a new license grant. Building references and type illustrations are identified in the interface. Item artwork sources are recorded in assets/item-icons/sources.json.",
+  "city-gameplay": {
+    "file": "city-gameplay.jpg",
+    "source": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4262460/021a08079176959be882c88607b13727f49c470f/ss_021a08079176959be882c88607b13727f49c470f.1920x1080.jpg?t=1795595062",
+    "reference": "https://store.steampowered.com/app/4262460/ROB_RUN/",
+    "use": "Official city street gameplay"
+  }
+}
